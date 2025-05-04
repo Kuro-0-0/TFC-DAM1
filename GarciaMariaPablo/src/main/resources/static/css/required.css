@@ -1,0 +1,33 @@
+.bg-main {
+    background-color: #dc001b !important;
+}
+
+.txt-main {
+    color: #dc001b !important;
+}
+
+.active .nav-link {
+    font-weight: bold;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    color: white !important;
+}
+
+/** Usado en verIncidencia.html */
+.status-badge {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+}
+
+/** Usado en index.html */
+.accordion-button::after {
+    filter: brightness(0) invert(1);
+}
+
+
+.h-5vh {
+    height: 5vh;
+}
+
+
