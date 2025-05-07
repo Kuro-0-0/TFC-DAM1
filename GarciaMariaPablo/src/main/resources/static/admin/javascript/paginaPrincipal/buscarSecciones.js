@@ -10,9 +10,10 @@ inputBusqueda.addEventListener('input', function () {
 
     /* Iteramos sobre las secciones encontradas en la linea 9*/
     secciones.forEach(seccion => {
-        /* Almacenamos en la variable titulo, el texto como minuscula de los elementos cuya clase sea accordion-button dentro de las secciones
-        *  encontradas anteriormente. */
+        /*  Almacenamos en la variable titulo, el texto como minuscula de los elementos cuya clase sea accordion-button dentro de las secciones
+            encontradas anteriormente. */
         const titulo = seccion.querySelector('.accordion-button').textContent.toLowerCase();
+        
         // Si titulo tiene lo que se escribio en el input el display se borra para que se muestre, si no, se oculta el elemento.
         if (titulo.includes(filtro)) {
             seccion.style.display = '';

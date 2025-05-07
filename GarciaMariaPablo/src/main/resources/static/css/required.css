@@ -20,6 +20,11 @@
     border-radius: 50px;
 }
 
+/** Usado en filtros */
+.max-height-3-items {
+    max-height: 11rem; 
+}
+
 /** Usado en index.html */
 .accordion-button::after {
     filter: brightness(0) invert(1);
