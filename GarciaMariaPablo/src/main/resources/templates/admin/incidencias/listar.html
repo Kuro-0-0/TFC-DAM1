@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" class="h-100">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,16 +13,17 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Icono Web -->
     <link rel="shortcut icon" href="../../../static/img/webLogo.png" th:href="@{/img/webLogo.png}" type="image/x-icon">
 
     <!-- Required Custom Css -->
     <link rel="stylesheet" href="../../../static/css/required.css" th:href="@{/css/required.css}">
-
 </head>
+
 <body class="d-flex flex-column h-100 bg-light">
 
     <!-- Encabezado -->
-    <header th:replace="~{/fragments/header.html :: header}"></header>
+    <header th:replace="~{/admin/_fragments/header.html :: header}"></header>
 
     <!-- Contenido principal -->
     <main class="container flex-grow-1 my-4">
@@ -30,10 +32,11 @@
                 <i class="bi bi-list-task me-2"></i>Listado de Incidencias
             </h1>
             <div class="d-flex gap-2">
-                <a th:href="@{/incidencias/crear}" class="btn btn-success btn-sm">
+                <a th:href="@{/incidencias/crear}" href="formulario.html" class="btn btn-success btn-sm">
                     <i class="bi bi-plus-circle me-1"></i>Crear Incidencia
                 </a>
-                <button class="btn btn-outline-secondary btn-sm rounded-2" data-bs-toggle="modal" data-bs-target="#modalFiltros">
+                <button class="btn btn-outline-secondary btn-sm rounded-2" data-bs-toggle="modal"
+                    data-bs-target="#modalFiltros">
                     <i class="bi bi-funnel me-1"></i>Filtros
                 </button>
             </div>
@@ -42,35 +45,42 @@
         <div class="bg-white rounded-3 shadow-sm p-3 mb-3">
             <div class="table-responsive">
                 <table class="table table-hover align-middle">
-                    <thead class="table-light border border-bottom border-main border-top-0 border-start-0 border-end-0 border-2">
+                    <thead
+                        class="table-light border border-bottom border-main border-top-0 border-start-0 border-end-0 border-2">
                         <tr>
                             <th scope="col">
-                                <a href="#" onclick="ordenarPor('id')" class="text-decoration-none text-dark d-flex align-items-center gap-1">
+                                <a href="#" onclick="ordenarPor('id')"
+                                    class="text-decoration-none text-dark d-flex align-items-center gap-1">
                                     ID <span id="icon-id" class="ms-1"></span>
                                 </a>
                             </th>
                             <th scope="col">
-                                <a href="#" onclick="ordenarPor('titulo')" class="text-decoration-none text-dark d-flex align-items-center gap-1">
+                                <a href="#" onclick="ordenarPor('titulo')"
+                                    class="text-decoration-none text-dark d-flex align-items-center gap-1">
                                     Título <span id="icon-titulo" class="ms-1"></span>
                                 </a>
                             </th>
                             <th scope="col">
-                                <a href="#" onclick="ordenarPor('ubicacion')" class="text-decoration-none text-dark d-flex align-items-center gap-1">
+                                <a href="#" onclick="ordenarPor('ubicacion')"
+                                    class="text-decoration-none text-dark d-flex align-items-center gap-1">
                                     Ubicación <span id="icon-ubicacion" class="ms-1"></span>
                                 </a>
                             </th>
                             <th scope="col">
-                                <a href="#" onclick="ordenarPor('reportante')" class="text-decoration-none text-dark d-flex align-items-center gap-1">
+                                <a href="#" onclick="ordenarPor('reportante')"
+                                    class="text-decoration-none text-dark d-flex align-items-center gap-1">
                                     Reportante <span id="icon-reportante" class="ms-1"></span>
                                 </a>
                             </th>
                             <th scope="col">
-                                <a href="#" onclick="ordenarPor('estado')" class="text-decoration-none text-dark d-flex align-items-center gap-1">
+                                <a href="#" onclick="ordenarPor('estado')"
+                                    class="text-decoration-none text-dark d-flex align-items-center gap-1">
                                     Estado <span id="icon-estado" class="ms-1"></span>
                                 </a>
                             </th>
                             <th scope="col">
-                                <a href="#" onclick="ordenarPor('fechaCreacion')" class="text-decoration-none text-dark d-flex align-items-center gap-1">
+                                <a href="#" onclick="ordenarPor('fechaCreacion')"
+                                    class="text-decoration-none text-dark d-flex align-items-center gap-1">
                                     Fecha IEA <span id="icon-fechaCreacion" class="ms-1"></span>
                                 </a>
                             </th>
@@ -85,8 +95,7 @@
                             <td th:text="${incidencia.ubicacion}">Planta 1</td>
                             <td th:text="${incidencia.reportante.nombre}">Ana Gómez</td>
                             <td>
-                                <span class="badge rounded-pill fw-bold px-3"
-                                    th:text="${incidencia.estado.nombre}" 
+                                <span class="badge rounded-pill fw-bold px-3" th:text="${incidencia.estado.nombre}"
                                     style="background-color: yellowgreen; color: white;"
                                     th:style="'background-color: '+${incidencia.estado.colorFondo}+';color: '+${incidencia.estado.colorTexto}">
                                     Pendiente
@@ -95,16 +104,16 @@
                             <td th:text="${incidencia.fechaCreacion}">2025-04-23</td>
                             <td class="text-center">
                                 <a th:href="@{/incidencias/inspeccionar/{id}(id=${incidencia.id})}"
+                                    href="inspeccionar.html"
                                     class="btn btn-sm btn-outline-primary px-2 py-1 rounded-1 me-1">
                                     <i class="bi bi-eye"></i>
                                 </a>
-                                <a th:href="@{/incidencias/{id}(id=${incidencia.id})}"
+                                <a th:href="@{/incidencias/{id}(id=${incidencia.id})}" href="formulario.html"
                                     class="btn btn-sm btn-outline-success px-2 py-1 rounded-1 me-1">
                                     <i class="bi bi-pencil"></i>
                                 </a>
                                 <button class="btn btn-sm btn-outline-danger px-2 py-1 rounded-1" data-bs-toggle="modal"
-                                    data-bs-target="#confirmarEliminacionModal"
-                                    th:data-id="${incidencia.id}">
+                                    data-bs-target="#confirmarEliminacionModal" th:data-id="${incidencia.id}">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </td>
@@ -126,32 +135,37 @@
                     <!-- Selector de elementos por página -->
                     <form method="get" class="d-flex align-items-center gap-2" onsubmit="handleFormSubmit(event)">
                         <label for="perPage" class="form-label mb-0 small">Elementos por página:</label>
-                        <input type="number" min="1" max="100" class="form-control form-control-sm w-auto" 
-                            id="perPage" name="perPage" th:value="${perPage}" onchange="handleInputChange()">
+                        <input type="number" min="1" max="100" class="form-control form-control-sm w-auto" id="perPage"
+                            name="perPage" th:value="${perPage}" onchange="handleInputChange()">
                     </form>
 
                     <div class="text-muted small">
-                        Mostrando <span th:text="${mostrandoAhora}">5</span> <span th:text="${mostrandoAhora == 1 ? 'elemento' : 'elementos'}"></span>
+                        Mostrando <span th:text="${mostrandoAhora}">5</span> <span
+                            th:text="${mostrandoAhora == 1 ? 'elemento' : 'elementos'}"></span>
                     </div>
 
                     <!-- Navegación de páginas -->
                     <nav>
                         <ul class="pagination mb-0 h-auto ">
                             <li class="page-item" th:classappend="${paginaActual == 1} ? 'disabled'">
-                                <a class="page-link d-flex justify-content-center align-items-center h-100" href="#" th:data-page="${paginaActual-1}" onclick="changePage(this)">
+                                <a class="page-link d-flex justify-content-center align-items-center h-100" href="#"
+                                    th:data-page="${paginaActual-1}" onclick="changePage(this)">
                                     <i class="bi bi-chevron-left"></i>
                                 </a>
                             </li>
                             <li class="page-item">
                                 <span class="page-link text-secondary h-100">
-                                    <input type="number" min="1" th:attr="max=${paginaFinal}" th:data-paginaActual="${paginaActual}"
+                                    <input type="number" min="1" th:attr="max=${paginaFinal}"
+                                        th:data-paginaActual="${paginaActual}"
                                         class="form-control form-control-sm d-inline-block text-center w-auto"
-                                        id="paginaSeleccionada" th:value="${paginaActual}" onchange="goToPage()">
+                                        id="paginaSeleccionada" value="1" th:value="${paginaActual}"
+                                        onchange="goToPage()">
                                     de <span th:text="${paginaFinal}">10</span>
                                 </span>
                             </li>
                             <li class="page-item" th:classappend="${paginaActual == paginaFinal} ? 'disabled'">
-                                <a class="page-link d-flex justify-content-center align-items-center h-100" href="#" th:data-page="${paginaActual+1}" onclick="changePage(this)">
+                                <a class="page-link d-flex justify-content-center align-items-center h-100" href="#"
+                                    th:data-page="${paginaActual+1}" onclick="changePage(this)">
                                     <i class="bi bi-chevron-right"></i>
                                 </a>
                             </li>
@@ -163,12 +177,14 @@
     </main>
 
     <!-- Modal de Confirmación de Eliminación -->
-    <div class="modal fade" id="confirmarEliminacionModal" tabindex="-1" aria-labelledby="confirmarEliminacionLabel" aria-hidden="true">
+    <div class="modal fade" id="confirmarEliminacionModal" tabindex="-1" aria-labelledby="confirmarEliminacionLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-danger text-white">
                     <h5 class="modal-title" id="confirmarEliminacionLabel">Confirmar Eliminación</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
                     ¿Estás seguro de que deseas eliminar esta incidencia? Esta acción no se puede deshacer.
@@ -232,7 +248,8 @@
                                         data-bs-toggle="dropdown">
                                         <i class="bi bi-people me-1"></i>Seleccionar Reportantes
                                     </button>
-                                    <ul class="dropdown-menu p-2 w-100 overflow-auto max-height-3-items" id="listaReportantes">
+                                    <ul class="dropdown-menu p-2 w-100 overflow-auto max-height-3-items"
+                                        id="listaReportantes">
                                         <li th:each="reportante : ${reportantes}" th:data-label="${reportante.nombre}">
                                             <div class="form-check d-flex align-items-center">
                                                 <input class="form-check-input me-2" type="checkbox"
@@ -261,7 +278,8 @@
                                         data-bs-toggle="dropdown">
                                         <i class="bi bi-tags me-1"></i>Seleccionar Estados
                                     </button>
-                                    <ul class="dropdown-menu p-2 w-100 overflow-auto max-height-3-items" id="listaEstados">
+                                    <ul class="dropdown-menu p-2 w-100 overflow-auto max-height-3-items"
+                                        id="listaEstados">
                                         <li th:each="estado : ${estados}" th:data-label="${estado.nombre}">
                                             <div class="form-check d-flex align-items-center">
                                                 <input class="form-check-input me-2" type="checkbox"
@@ -279,8 +297,8 @@
                         <!-- Switch para mostrar estados desactivados -->
                         <div class="mt-3 pt-3 border-top">
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch" 
-                                    id="mostrarDesactivados" name="mostrarDesactivados"
+                                <input class="form-check-input" type="checkbox" role="switch" id="mostrarDesactivados"
+                                    name="mostrarDesactivados"
                                     th:checked="${mostrarDesactivados != null ? mostrarDesactivados : false}">
                                 <label class="form-check-label" for="mostrarDesactivados">
                                     Mostrar estados desactivados
@@ -301,154 +319,17 @@
     </div>
 
     <!-- Footer -->
-    <footer th:replace="~{/fragments/footer.html :: footer}"></footer>
+    <footer th:replace="~{/admin/_fragments/footer.html :: footer}"></footer>
 
     <!--JavaScript-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> <!-- BootstrapJS -->
-    <script src="../../../static/admin/javaScript/incidencias/borrarIncidencia.js" th:src="@{/static/admin/javaScript/incidencias/borrarIncidencia.js}"></script>
+    <!-- Comentarios sobre como funcionan, dentro de cada JS. -->
+    <script src="../../../static/admin/javascript/incidencias/listar/borrarIncidencia.js"
+        th:src="@{/static/admin/javascript/incidencias/listar/borrarIncidencia.js}"></script>
+    <script src="../../../static/admin/javascript/incidencias/listar/limpiarFiltros.js"
+        th:src="@{/static/admin/javascript/incidencias/listar/limpiarFiltros.js}"></script>
 
-    <script> // Buscar en las listas del filtrado (NO RECICLABLE (SI ADAPTABLE))
-        function filtrarDropdown(inputId, listaId) {
-            const input = document.getElementById(inputId);
-            const lista = document.getElementById(listaId);
-            const filtro = input.value.toLowerCase();
+    <div th:replace="~{/admin/_fragments/listarJS.html :: import}"></div>
 
-            [...lista.querySelectorAll("li")].forEach(item => {
-                const texto = item.dataset.label.toLowerCase();
-                item.style.display = texto.includes(filtro) ? "" : "none";
-            });
-        }
-
-        document.getElementById("filtroReportante").addEventListener("input", () => {
-            filtrarDropdown("filtroReportante", "listaReportantes");
-        });
-
-        document.getElementById("filtroEstado").addEventListener("input", () => {
-            filtrarDropdown("filtroEstado", "listaEstados");
-        });
-    </script>
-
-    <script> // Modificar los Request Param de la web (Reciclable)
-        // Función que se activa cuando se cambia el valor de "Elementos por página"
-        function handleInputChange() {
-            const perPage = document.getElementById('perPage').value;
-            updateUrlParam('perPage', perPage);
-        }
-
-        // Función que se activa cuando se cambia la página
-        function changePage(element) {
-            updateUrlParam('pagina', element.dataset.page);
-        }
-
-        // Actualiza o añade parámetros en la URL sin recargar la página
-        function updateUrlParam(param, value) {
-            const url = new URL(window.location.href);
-            url.searchParams.set(param, value); // Establece o añade el parámetro
-            window.history.pushState({}, '', url); // Actualiza la URL sin recargar
-            window.location.reload();
-        }
-
-        // Esta función maneja el envío del formulario, pero sin recargar la página
-        function handleFormSubmit(event) {
-            event.preventDefault(); // Prevenimos el envío normal del formulario
-            const perPage = document.getElementById('perPage').value;
-            updateUrlParam('perPage', perPage); // Actualiza el parámetro de "perPage" en la URL
-        }
-    </script>
-
-    <script> // AUMENTAR/DISMINUIR PAGINA (RECICLABLE)
-        function goToPage() {
-            const input = document.getElementById('paginaSeleccionada');
-            let page = parseInt(input.value);
-            const max = parseInt(input.getAttribute('max'));
-
-            if (page < 1) page = 1;
-            if (page > max) page = max;
-
-            updateUrlParam('pagina', page);
-        }
-    </script>
-
-    <script th:inline="javascript"> // ORDENAR COLUMNAS (RECICLABLE)
-        function ordenarPor(campo) {
-            const url = new URL(window.location.href);
-            const actualCampo = url.searchParams.get("ordenarPor");
-            const ordenActual = url.searchParams.get("ordenAsc") === "true";
-
-            // Alternar orden si el campo es el mismo
-            const nuevoOrdenAsc = (actualCampo === campo) ? !ordenActual : true;
-
-            url.searchParams.set("ordenarPor", campo);
-            url.searchParams.set("ordenAsc", nuevoOrdenAsc);
-            window.location.href = url.toString();
-        }
-
-        // Mostrar ícono visual del campo ordenado actualmente
-        window.addEventListener("DOMContentLoaded", () => {
-
-            document.getElementById("paginaSeleccionada").value = document.getElementById("paginaSeleccionada").dataset.paginaactual
-
-            const url = new URL(window.location.href);
-            const campo = url.searchParams.get("ordenarPor");
-            const asc = url.searchParams.get("ordenAsc") === "true";
-            if (campo) {
-                const icono = document.getElementById(`icon-${campo}`);
-                if (icono) {
-                    icono.textContent = asc ? "↑" : "↓";
-                }
-            }
-        });
-    </script>
-
-    <script> // BORRAR FILTROS (NO RECICLABE (SI ADAPTABLE))
-        function resetForm() {
-            // Resetea el formulario
-            document.getElementById("filtroForm").reset();
-
-            // Reinicia los valores predeterminados de Thymeleaf (si es necesario)
-            document.getElementById("filtroTitulo").value = ''; // O el valor predeterminado que necesites
-            document.getElementById("filtroUbicacion").value = ''; // Lo mismo aquí
-            document.getElementById("filtroReportante").value = ''; // Y así con otros campos
-
-            // Para los checkboxes o dropdowns, puedes reiniciar su estado si es necesario
-            const checkboxesReportantes = document.querySelectorAll('input[name="reportantesSeleccionados"]');
-            checkboxesReportantes.forEach((checkbox) => checkbox.checked = false);
-
-            const checkboxesEstados = document.querySelectorAll('input[name="estadosSeleccionados"]');
-            checkboxesEstados.forEach((checkbox) => checkbox.checked = false);
-
-            // Desmarcar el switch de mostrar desactivados
-            document.getElementById("mostrarDesactivados").checked = false;
-        }
-    </script>
-
-    <script> // DESPLEGABLES DE LOS  FILTROS (RECICLABLE?)
-        document.addEventListener('DOMContentLoaded', function () {
-            function abrirDropdown(inputId, listaId) {
-                const input = document.getElementById(inputId);
-                const dropdownMenu = document.getElementById(listaId);
-                const dropdown = dropdownMenu.closest('.dropdown');
-                const toggleBtn = dropdown.querySelector('[data-bs-toggle="dropdown"]');
-
-                input.addEventListener('input', () => {
-                    dropdown.classList.add('show');
-                    toggleBtn.classList.add('show');
-                    dropdownMenu.classList.add('show');
-                });
-
-                // Opcional: cerrar si el input queda vacío
-                input.addEventListener('blur', () => {
-                    setTimeout(() => {
-                        dropdown.classList.remove('show');
-                        toggleBtn.classList.remove('show');
-                        dropdownMenu.classList.remove('show');
-                    }, 200); // pequeño delay para permitir interacciones
-                });
-            }
-
-            abrirDropdown('filtroReportante', 'listaReportantes');
-            abrirDropdown('filtroEstado', 'listaEstados');
-        });
-    </script>
 </body>
+
 </html>
