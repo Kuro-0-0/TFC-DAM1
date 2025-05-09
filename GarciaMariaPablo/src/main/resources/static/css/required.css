@@ -58,4 +58,34 @@
     filter: brightness(0) invert(1);
 }
 
+/** Usado en estadisticas.html de incidencias */
+.stats-card {
+    transition: transform 0.3s ease;
+    min-width: 200px;
+}
+
+.stats-card:hover {
+    transform: translateY(5px);
+}
+
+.stats-scroll-container {
+    scrollbar-width: thin;
+    scrollbar-color: var(--mainColor) var(--bs-light);
+    padding-bottom: 1rem;
+    gap: 1rem;
+}
+
+.stats-scroll-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.stats-scroll-container::-webkit-scrollbar-track {
+    background: var(--bs-light);
+    border-radius: 10px;
+}
+
+.stats-scroll-container::-webkit-scrollbar-thumb {
+    background-color: var(--mainColor);
+    border-radius: 10px;
+}
 
