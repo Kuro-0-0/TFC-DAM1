@@ -29,4 +29,8 @@ document.addEventListener('DOMContentLoaded', function () {
         abrirDropdown('filtroEstado', 'listaEstados');
     }
 
+    if (exist('filtroRol') && exist('listaRoles')) {
+        abrirDropdown('filtroRol', 'listaRoles');
+    }
+
 });
