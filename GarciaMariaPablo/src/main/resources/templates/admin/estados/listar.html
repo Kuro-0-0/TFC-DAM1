@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gestión de Estados - Listar Estados</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Icono Web -->
+    <link rel="shortcut icon" href="../../../static/img/webLogo.png" th:href="@{/img/webLogo.png}" type="image/x-icon">
+
+    <!-- Required Custom Css -->
+    <link rel="stylesheet" href="../../../static/css/required.css" th:href="@{/css/required.css}">
+</head>
+
+
+<body class="d-flex flex-column h-100 bg-light">
+
+    <!-- Encabezado -->
+    <header th:replace="~{/fragments/header.html :: header}"></header>
+
+    <!-- Contenido principal -->
+    <main class="container flex-grow-1 my-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h4 mb-0 fw-bold">
+                <i class="bi bi-tags me-2"></i>Listado de Estados
+            </h1>
+            <a th:href="@{/estados/crear}" href="formulario.html" class="btn btn-success btn-sm">
+                <i class="bi bi-plus-circle me-1"></i>Crear Estado
+            </a>
+        </div>
+
+        <!-- Barra de búsqueda modificada -->
+        <div class="bg-white rounded-3 shadow-sm p-3 mb-3">
+            <div class="input-group">
+                <input type="text" class="form-control form-control-sm" id="buscarInput" 
+                    th:value="${param.buscar}" placeholder="Buscar por nombre...">
+                <button class="btn btn-primary btn-sm" type="button" onclick="aplicarBusqueda()">
+                    <i class="bi bi-search"></i>
+                </button>
+                <button class="btn btn-outline-secondary btn-sm" type="button" onclick="limpiarBusqueda()" th:if="${param.buscar}">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-3 shadow-sm p-3 mb-3">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light border border-bottom border-main border-top-0 border-start-0 border-end-0 border-2">
+                        <tr>
+                            <th scope="col">
+                                <a href="#" onclick="ordenarPor('nombre')" class="text-decoration-none text-dark d-flex align-items-center gap-1">
+                                    Nombre <span id="icon-nombre" class="ms-1"></span>
+                                </a>
+                            </th>
+                            <th scope="col">Vista Previa</th>
+                            <th scope="col">
+                                <a href="#" onclick="ordenarPor('activo')" class="text-decoration-none text-dark d-flex align-items-center gap-1">
+                                    Activado <span id="icon-activo" class="ms-1"></span>
+                                </a>
+                            </th>
+                            <th scope="col" class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="estado : ${estados}">
+                            <td th:text="${estado.nombre}">Pendiente</td>
+                            <td>
+                                <span class="badge rounded-pill fw-bold px-3 w-50"
+                                    th:style="'background-color:' + ${estado.colorFondo} + '; color:' + ${estado.colorTexto}">
+                                    <span th:text="${estado.nombre}">Pendiente</span>
+                                </span>
+                            </td>
+                            <td>
+                                <span class="badge rounded-pill w-25" 
+                                    th:classappend="${estado.activo} ? 'bg-success' : 'bg-secondary'"
+                                    th:text="${estado.activo} ? 'Sí' : 'No'">
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <a th:href="@{/incidencias?estadosSeleccionados={valor}(valor=${estado.valor})}"
+                                href="../incidencias/listar.html"
+                                    class="btn btn-sm btn-outline-primary px-2 py-1 rounded-1 me-1">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a th:href="@{/estados/{id}(id=${estado.id})}"
+                                    href="formulario.html"
+                                    class="btn btn-sm btn-outline-success px-2 py-1 rounded-1 me-1">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <form class="d-inline" th:action="@{/estados/{id}(id=${estado.id})}" th:method="POST">
+                                    <input type="hidden" name="_method" value="PUT">
+                                    <button type="submit" class="btn btn-sm px-2 py-1 rounded-1" style="min-width: 90px;"
+                                        th:classappend="${estado.activo} ? 'btn-outline-danger' : 'btn-outline-secondary'"
+                                        th:text="${estado.activo} ? 'Desactivar' : 'Activar'">
+                                        Desactivar
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+
+                        <tr th:if="${estados.isEmpty()}">
+                            <td colspan="4" class="text-center py-4 text-muted">
+                                <i class="bi bi-exclamation-circle me-2"></i>
+                                No hay estados disponibles.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Paginación -->
+            <div class="bg-white rounded-3 shadow-sm p-3 mt-4">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+                    <!-- Selector de elementos por página -->
+                    <form method="get" class="d-flex align-items-center gap-2" onsubmit="handleFormSubmit(event)">
+                        <label for="perPage" class="form-label mb-0 small">Elementos por página:</label>
+                        <input type="number" min="1" max="100" class="form-control form-control-sm w-auto" 
+                            id="perPage" name="perPage" th:value="${perPage}" onchange="handleInputChange()">
+                    </form>
+
+                    <div class="text-muted small">
+                        Mostrando <span th:text="${mostrandoAhora}">5</span> <span th:text="${mostrandoAhora == 1 ? 'elemento' : 'elementos'}"></span>
+                    </div>
+
+                    <!-- Navegación de páginas -->
+                    <nav>
+                        <ul class="pagination mb-0 h-auto">
+                            <li class="page-item" th:classappend="${paginaActual == 1} ? 'disabled'">
+                                <a class="page-link d-flex justify-content-center align-items-center h-100" href="#" th:data-page="${paginaActual-1}" onclick="changePage(this)">
+                                    <i class="bi bi-chevron-left"></i>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <span class="page-link text-secondary h-100">
+                                    <input type="number" min="1" th:attr="max=${paginaFinal}" th:data-paginaActual="${paginaActual}"
+                                        class="form-control form-control-sm d-inline-block text-center w-auto"
+                                        id="paginaSeleccionada" th:value="${paginaActual}" onchange="goToPage()">
+                                    de <span th:text="${paginaFinal}">10</span>
+                                </span>
+                            </li>
+                            <li class="page-item" th:classappend="${paginaActual == paginaFinal} ? 'disabled'">
+                                <a class="page-link d-flex justify-content-center align-items-center h-100" href="#" th:data-page="${paginaActual+1}" onclick="changePage(this)">
+                                    <i class="bi bi-chevron-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer th:replace="~{/fragments/footer.html :: footer}"></footer>
+
+    <!-- Javascript -->
+    <!-- Comentarios sobre como funcionan, dentro de cada JS. -->
+    <script src="../../../static/admin/javascript/estados/listar/buscarFiltros.js" th:src="/admin/javascript/estados/listar/buscarFiltros.js"></script>
+</body>
+</html>

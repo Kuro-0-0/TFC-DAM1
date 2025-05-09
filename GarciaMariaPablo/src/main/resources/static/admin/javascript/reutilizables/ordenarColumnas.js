@@ -28,5 +28,3 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     }
 });
-
-// Son las 4:23 de la mañana, no quiero comentar mas codigo :( AYUDA!!!!
