@@ -1,3 +1,7 @@
+function exist(id) {
+    return document.getElementById(id) != null;
+}
+
 function filtrarDropdown(inputId, listaId) {
     const input = document.getElementById(inputId); // almacenamos el input en el que filtramos el contenido de las listas.
     const lista = document.getElementById(listaId); // almacenamos la lista con las opciones que tenemos.
@@ -29,3 +33,8 @@ if (exist("filtroTecnico")) {
     });
 }
 
+if (exist("filtroRol")) {   
+    document.getElementById("filtroRol")?.addEventListener("input", () => {
+        filtrarDropdown("filtroRol", "listaRoles");
+    });
+}

@@ -1,7 +1,3 @@
-function exist(id) {
-    return document.getElementById(ïd) != null;
-}
-
 document.addEventListener('DOMContentLoaded', function () {
     function abrirDropdown(inputId, listaId) {
         const input = document.getElementById(inputId);
