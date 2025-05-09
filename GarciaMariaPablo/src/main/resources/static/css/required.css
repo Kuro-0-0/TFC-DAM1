@@ -1,9 +1,15 @@
+/** Usado en varios ficheros.*/
+
 .bg-main {
-    background-color: #dc001b !important;
+    background-color: var(--mainColor) !important;
 }
 
 .txt-main {
-    color: #dc001b !important;
+    color: var(--mainColor) !important;
+}
+
+.border-main {
+    border-color: var(--mainColor) !important;
 }
 
 .active .nav-link {
@@ -13,11 +19,33 @@
     color: white !important;
 }
 
-/** Usado en verIncidencia.html */
+.h-5vh {
+    height: 5vh;
+}
+
+.mw-50vw {
+    max-width: 50vw
+}
+
+:root {
+    --mainColor: #dc001b;
+}
+
+/** Usado en inspeccionar.html de Incidencias */
 .status-badge {
     font-size: 1rem;
     padding: 0.5rem 1rem;
     border-radius: 50px;
+}
+
+/** Usado en formulario.html de Estados */
+.preview-square {
+    width: 40px; 
+    height: 40px;
+}
+
+.preview-rectangle {
+    min-height: 60px;
 }
 
 /** Usado en filtros */
@@ -25,14 +53,9 @@
     max-height: 11rem; 
 }
 
-/** Usado en index.html */
+/** Usado en paginaPrincipal.html */
 .accordion-button::after {
     filter: brightness(0) invert(1);
-}
-
-
-.h-5vh {
-    height: 5vh;
 }
 
 
