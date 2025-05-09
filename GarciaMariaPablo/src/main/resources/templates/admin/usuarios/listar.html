@@ -283,12 +283,11 @@
 
     <!--JavaScript-->
     <!-- Comentarios sobre como funcionan, dentro de cada JS. -->
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../static/admin/javascript/usuarios/listar/borrarUsuario.js"
+        th:src="@{/admin/javascript/usuarios/listar/borrarUsuario.js}"></script>
+    <script src="../../../static/admin/javascript/usuarios/listar/limpiarFiltros.js"
+        th:src="@{/admin/javascript/usuarios/listar/limpiarFiltros.js}"></script>
 
-    <script src="../../../static/admin/javascript/usuarios/listar/borrarUsuario.js" th:src="@{/admin/javascript/usuarios/listar/borrarUsuario.js}"></script>
-    <script src="../../../static/admin/javascript/usuarios/listar/limpiarFiltros.js" th:src="@{/admin/javascript/usuarios/listar/limpiarFiltros.js}"></script>
-    
     <div th:replace="~{/admin/_fragments/listarJS.html :: import}"></div>
 
 </body>

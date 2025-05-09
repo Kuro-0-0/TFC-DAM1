@@ -38,10 +38,11 @@
                     <i class="bi bi-plus-circle me-2"></i>Crear Nuevo Estado
                 </h2>
             </div>
-            
+
             <div class="card-body p-4">
-                <form th:action="@{/estados}" th:method="${modificar} ? put : post" th:object="${estadoDao}" id="formEstado">
-                    
+                <form th:action="@{/estados}" th:method="${modificar} ? put : post" th:object="${estadoDao}"
+                    id="formEstado">
+
                     <input th:if="${modificar}" type="hidden" th:field="*{id}">
 
                     <!-- Nombre y Estado Activo -->
@@ -50,13 +51,13 @@
                             <label for="nombre" class="form-label fw-medium">
                                 <i class="bi bi-tag me-1"></i>Nombre del Estado <span class="text-main">*</span>
                             </label>
-                            <input th:field="*{nombre}" type="text" class="form-control form-control-lg" 
+                            <input th:field="*{nombre}" type="text" class="form-control form-control-lg"
                                 placeholder="Ej. Pendiente, Resuelto..." required>
                         </div>
-                        
+
                         <div class="col-md-4 mb-3 d-flex align-items-end">
                             <div class="form-check form-switch ps-0">
-                                <input class="form-check-input ms-0 me-2" type="checkbox" role="switch" 
+                                <input class="form-check-input ms-0 me-2" type="checkbox" role="switch"
                                     th:field="*{activo}" id="activoEstado">
                                 <label class="form-check-label fw-medium" for="activoEstado">
                                     <i class="bi bi-power me-1"></i>Estado Activo
@@ -73,26 +74,28 @@
                                 <i class="bi bi-palette me-1"></i>Color de Fondo <span class="text-main">*</span>
                             </label>
                             <div class="input-group position-relative">
-                                <div class="border rounded-1 d-flex align-items-center justify-content-center me-2 preview-square" 
-                                id="colorFondoPreview"></div>
-                                <input type="color" class="form-control form-control-color position-absolute opacity-0 w-100 h-100" 
+                                <div class="border rounded-1 d-flex align-items-center justify-content-center me-2 preview-square"
+                                    id="colorFondoPreview"></div>
+                                <input type="color"
+                                    class="form-control form-control-color position-absolute opacity-0 w-100 h-100"
                                     th:field="*{colorFondo}" id="colorFondo" required>
-                                <input type="text" class="form-control" id="hexFondo" 
+                                <input type="text" class="form-control" id="hexFondo"
                                     th:value="${modificar} ? *{colorFondo}" readonly>
                             </div>
                         </div>
-                        
+
                         <!-- Color de Texto -->
                         <div class="col-md-6 mb-3">
                             <label for="colorTexto" class="form-label fw-medium">
                                 <i class="bi bi-fonts me-1"></i>Color de Texto <span class="text-main">*</span>
                             </label>
                             <div class="input-group position-relative">
-                                <div class="border rounded-1 d-flex align-items-center justify-content-center me-2 preview-square" 
+                                <div class="border rounded-1 d-flex align-items-center justify-content-center me-2 preview-square"
                                     id="colorTextoPreview">Aa</div>
-                                <input type="color" class="form-control form-control-color position-absolute opacity-0 w-100 h-100" 
+                                <input type="color"
+                                    class="form-control form-control-color position-absolute opacity-0 w-100 h-100"
                                     th:field="*{colorTexto}" id="colorTexto" value="#ffffff" required>
-                                <input type="text" class="form-control" id="hexTexto" 
+                                <input type="text" class="form-control" id="hexTexto"
                                     th:value="${modificar} ? *{colorTexto} : '#ffffff'" readonly>
                             </div>
                         </div>
@@ -103,7 +106,8 @@
                         <label class="form-label fw-medium">
                             <i class="bi bi-eye me-1"></i>Vista Previa
                         </label>
-                        <div class="d-flex align-items-center justify-content-center fw-bold rounded-2 p-3 preview-rectangle" id="vistaPreviaEstado">
+                        <div class="d-flex align-items-center justify-content-center fw-bold rounded-2 p-3 preview-rectangle"
+                            id="vistaPreviaEstado">
                             <span th:text="${modificar} ? *{nombre} : 'Texto de ejemplo'"></span>
                         </div>
                     </div>
@@ -129,7 +133,9 @@
 
     <!-- Javascript -->
     <!-- Comentarios sobre como funcionan, dentro de cada JS. -->
-    <script src="../../../static/admin/javascript/estados/formulario/modificarVistaPrevia.js" th:src="@{/admin/javascript/estados/formulario/modificarVistaPrevia.js}"></script>
+    <script src="../../../static/admin/javascript/estados/formulario/modificarVistaPrevia.js"
+        th:src="@{/admin/javascript/estados/formulario/modificarVistaPrevia.js}"></script>
 
 </body>
+
 </html>

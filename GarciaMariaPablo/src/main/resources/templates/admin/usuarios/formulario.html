@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="../../../static/css/required.css" th:href="@{/css/required.css}">
 
 </head>
+
 <body class="d-flex flex-column h-100 bg-light">
 
     <!-- Encabezado -->
@@ -38,7 +39,7 @@
                     <i class="bi bi-plus-circle me-2"></i>Crear Nuevo Usuario
                 </h2>
             </div>
-            
+
             <div class="card-body p-4">
                 <!-- Formulario Usuario -->
                 <form th:action="@{/usuarios}" th:object="${usuarioDAO}" th:method="${modificar} ? put : post"
@@ -57,11 +58,13 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="password" class="form-label fw-medium">
-                                <i class="bi bi-lock me-1"></i>Password <span th:if="!${modificar}" class="text-danger">*</span>
+                                <i class="bi bi-lock me-1"></i>Password <span th:if="!${modificar}"
+                                    class="text-danger">*</span>
                             </label>
                             <input th:field="*{password}" type="password" class="form-control form-control-lg"
                                 placeholder="Contraseña" th:required="!${modificar}">
-                            <small class="text-muted" th:if="${modificar}">Dejar en blanco para mantener la contraseña actual</small>
+                            <small class="text-muted" th:if="${modificar}">Dejar en blanco para mantener la contraseña
+                                actual</small>
                         </div>
                     </div>
 
@@ -90,19 +93,18 @@
                         </label>
                         <div class="input-group mb-2">
                             <span class="input-group-text"><i class="bi bi-search"></i></span>
-                            <input type="text" class="form-control" id="filtroRol"
-                                placeholder="Filtrar roles...">
+                            <input type="text" class="form-control" id="filtroRol" placeholder="Filtrar roles...">
                         </div>
-                        
+
                         <div class="dropdown">
                             <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"
                                 id="dropdownRol" data-bs-toggle="dropdown" aria-expanded="false"
                                 th:text="${modificar} ? *{rol.name()} : 'Selecciona un rol'">
                             </button>
-                            <ul class="dropdown-menu w-100 p-2" aria-labelledby="dropdownRol"
-                                id="listaRoles">
+                            <ul class="dropdown-menu w-100 p-2" aria-labelledby="dropdownRol" id="listaRoles">
                                 <li th:each="rol : ${roles}" th:data-label="${rol.name()}">
-                                    <a class="dropdown-item d-flex align-items-center" href="#" th:data-value="${rol.name()}">
+                                    <a class="dropdown-item d-flex align-items-center" href="#"
+                                        th:data-value="${rol.name()}">
                                         <i class="bi bi-shield-check me-2"></i>
                                         <span th:text="${rol.name()}"></span>
                                     </a>
@@ -131,8 +133,12 @@
     <!-- Footer -->
     <footer th:replace="~{/fragments/footer.html :: footer}"></footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../../static/admin/javascript/reutilizables/buscarDesplegablesFiltros.js" th:src="/admin/javascript/reutilizables/buscarDesplegablesFiltros.js"></script>
-    <script src="../../../static/admin/javascript/usuarios/formulario/seleccionarRoles.js" th:src="/admin/javascript/usuarios/formulario/seleccionarRoles.js"></script>
+    <!--JavaScript-->
+    <!-- Comentarios sobre como funcionan, dentro de cada JS. -->
+    <script src="../../../static/admin/javascript/reutilizables/buscarDesplegablesFiltros.js"
+        th:src="/admin/javascript/reutilizables/buscarDesplegablesFiltros.js"></script>
+    <script src="../../../static/admin/javascript/usuarios/formulario/seleccionarRoles.js"
+        th:src="/admin/javascript/usuarios/formulario/seleccionarRoles.js"></script>
 </body>
+
 </html>
