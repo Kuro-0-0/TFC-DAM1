@@ -247,7 +247,7 @@
                                         data-bs-toggle="dropdown">
                                         <i class="bi bi-people me-1"></i>Seleccionar Reportantes
                                     </button>
-                                    <ul class="dropdown-menu p-2 w-100 overflow-auto max-height-3-items"
+                                    <ul class="dropdown-menu p-2 w-100 overflow-auto scroll-3-items"
                                         id="listaReportantes">
                                         <li th:each="reportante : ${reportantes}" th:data-label="${reportante.nombre}">
                                             <div class="form-check d-flex align-items-center">
@@ -277,7 +277,7 @@
                                         data-bs-toggle="dropdown">
                                         <i class="bi bi-tags me-1"></i>Seleccionar Estados
                                     </button>
-                                    <ul class="dropdown-menu p-2 w-100 overflow-auto max-height-3-items"
+                                    <ul class="dropdown-menu p-2 w-100 overflow-auto scroll-3-items"
                                         id="listaEstados">
                                         <li th:each="estado : ${estados}" th:data-label="${estado.nombre}">
                                             <div class="form-check d-flex align-items-center">

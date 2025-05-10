@@ -2,10 +2,7 @@ package com.salesianostriana.dam.GarciaMariaPablo.servicios;
 
 import com.salesianostriana.dam.GarciaMariaPablo.daos.estado.external.EstadoDao_FiltrarIncidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.daos.estado.external.EstadoDao_Seleccionar;
-import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.IncidenciaDao_Crear;
-import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.IncidenciaDao_Inspeccionar;
-import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.IncidenciaDao_Listar;
-import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.IncidenciaDao_Modificar;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.*;
 import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.external.UsuarioDao_FiltrarIncidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.external.UsuarioDao_FormularioIncidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.modelos.Incidencia;
@@ -219,5 +216,12 @@ public class ServicioIncidencia extends ServicioBase<Incidencia, Long, Repositor
         i.eliminarUsuarios();
         delete(i);
         return "redirect:/incidencias";
+    }
+
+    public String cargarEstadisticas(Model model) {
+        model.addAttribute("incidencias",findAll().stream()
+                .map(IncidenciaDao_Estadisticas::crearDao)
+                .toList());
+        return "admin/incidencia/estadisticas";
     }
 }

@@ -101,7 +101,7 @@
                                 id="dropdownRol" data-bs-toggle="dropdown" aria-expanded="false"
                                 th:text="${modificar} ? *{rol.name()} : 'Selecciona un rol'">
                             </button>
-                            <ul class="dropdown-menu w-100 p-2" aria-labelledby="dropdownRol" id="listaRoles">
+                            <ul class="dropdown-menu w-100 p-2 scroll-3-items" aria-labelledby="dropdownRol" id="listaRoles">
                                 <li th:each="rol : ${roles}" th:data-label="${rol.name()}">
                                     <a class="dropdown-item d-flex align-items-center" href="#"
                                         th:data-value="${rol.name()}">

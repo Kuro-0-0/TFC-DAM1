@@ -100,7 +100,7 @@
                                     id="dropdownReportante" data-bs-toggle="dropdown" aria-expanded="false"
                                     th:text="${modificar} ? *{reportante.nombre} : 'Selecciona una opción'">
                                 </button>
-                                <ul class="dropdown-menu w-100 p-2" aria-labelledby="dropdownReportante"
+                                <ul class="dropdown-menu w-100 p-2 scroll-3-items" aria-labelledby="dropdownReportante"
                                     id="listaReportantes">
                                     <li th:each="reportante : ${reportantes}" th:data-label="${reportante.nombre}">
                                         <a class="dropdown-item d-flex align-items-center" href="#"
@@ -131,7 +131,7 @@
                                     id="dropdownTecnico" data-bs-toggle="dropdown" aria-expanded="false"
                                     th:text="${modificar} ? *{tecnico.nombre} : 'Selecciona una opción'">
                                 </button>
-                                <ul class="dropdown-menu w-100 p-2" aria-labelledby="dropdownTecnico"
+                                <ul class="dropdown-menu w-100 p-2 scroll-3-items" aria-labelledby="dropdownTecnico"
                                     id="listaTecnicos">
                                     <li th:each="tecnico : ${tecnicos}" th:data-label="${tecnico.nombre}">
                                         <a class="dropdown-item d-flex align-items-center" href="#"
@@ -163,7 +163,7 @@
                                     id="dropdownEstado" data-bs-toggle="dropdown" aria-expanded="false"
                                     th:text="${modificar} ? *{estado.nombre} : 'Selecciona una opción'">
                                 </button>
-                                <ul class="dropdown-menu w-100 p-2" aria-labelledby="dropdownEstado" id="listaEstados">
+                                <ul class="dropdown-menu w-100 p-2 scroll-3-items" aria-labelledby="dropdownEstado" id="listaEstados">
                                     <li th:each="estado : ${estados}" th:data-label="${estado.nombre}">
                                         <a class="dropdown-item d-flex align-items-center" href="#"
                                             th:data-value="${estado.valor}">

@@ -39,14 +39,19 @@ public class ControladorIncidencia {
         return servicioIncidencia.listar(model,paginaStr,perPageStr,ordenPor,ordenAsc,reportantes,estados,filtroTitulo,filtroUbicacion,mostrarDesactivados);
     }
 
-    @GetMapping("/inspeccionar/{id}")
-    public String inspeccionar(Model model, @PathVariable int id) {
-        return servicioIncidencia.inspeccionar(model,id);
+    @GetMapping("/estadisticas")
+    public String cargarEstadisticas(Model model) {
+        return servicioIncidencia.cargarEstadisticas(model);
     }
 
     @GetMapping("/crear")
     public String cargarCrear(Model model) {
         return servicioIncidencia.cargarCrear(model);
+    }
+
+    @GetMapping("/inspeccionar/{id}")
+    public String inspeccionar(Model model, @PathVariable int id) {
+        return servicioIncidencia.inspeccionar(model,id);
     }
 
     @GetMapping("/{id}")

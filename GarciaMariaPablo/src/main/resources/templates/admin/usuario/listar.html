@@ -236,7 +236,7 @@
                                         data-bs-toggle="dropdown">
                                         <i class="bi bi-shield-check me-1"></i>Seleccionar Roles
                                     </button>
-                                    <ul class="dropdown-menu p-2 w-100" id="listaRoles">
+                                    <ul class="dropdown-menu p-2 w-100 scroll-3-items" id="listaRoles">
                                         <li th:each="rol : ${roles}" th:data-label="${rol.name}">
                                             <div class="form-check d-flex align-items-center">
                                                 <input class="form-check-input me-2" type="checkbox"

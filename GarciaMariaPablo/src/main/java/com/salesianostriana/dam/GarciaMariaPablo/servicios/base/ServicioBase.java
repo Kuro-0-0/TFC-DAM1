@@ -26,9 +26,9 @@ public abstract class ServicioBase<T, ID, R extends JpaRepository<T,ID>> {
 	 * @param <T> Tipo del elemento almacenado en la pagina
 	 */
 	public static <T> List<T> procesarPaginacion(List<T> lista, Model modelo, String paginaNumStr, String perPageStr) {
-		
+
 		int paginaNum, porPaginaNum, pagMax, pagMin = 1, perPageMin = 0, limit;
-		
+
 		try { // Se realiza en un try - catch para evitar crasheos en caso de que mande un String real y no un String
 			// numérico como parámetro.
 			porPaginaNum = Integer.parseInt(perPageStr);
@@ -39,7 +39,7 @@ public abstract class ServicioBase<T, ID, R extends JpaRepository<T,ID>> {
 			System.out.println(e);
 			porPaginaNum = 10;
 		}
-		
+
 		try { // Exactamente lo mismo que arriba pero con el número de página.
 			paginaNum = Integer.parseInt(paginaNumStr);
 			if (paginaNum <= 0) {
@@ -49,29 +49,28 @@ public abstract class ServicioBase<T, ID, R extends JpaRepository<T,ID>> {
 			System.out.println(e);
 			paginaNum = 1;
 		}
-		
-		
+
+
 		pagMax = lista.size() % porPaginaNum == 0 ? lista.size() / porPaginaNum : (lista.size() / porPaginaNum) + 1;
-		
+
 		pagMax = Math.max(pagMax, pagMin);
         paginaNum = Math.max(paginaNum, pagMin);
 		paginaNum = Math.min(paginaNum, pagMax);
-				
+
 		limit = paginaNum * porPaginaNum;
-		
+
 		modelo.addAttribute("paginaFinal",pagMax);
 		modelo.addAttribute("paginaActual",paginaNum);
 		modelo.addAttribute("perPage",porPaginaNum);
-		
-						
+
+
 		lista = lista.stream()
 				.skip(limit-porPaginaNum)
 				.limit(porPaginaNum)
 				.toList();
-		
+
 		return lista;
 	}
-
 
 	/**
 	 * Almacenamos una nueva entidad a través del repositorio
