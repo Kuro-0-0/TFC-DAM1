@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -31,7 +30,7 @@ public class ServicioIncidencia extends ServicioBase<Incidencia, Long, Repositor
                          List<String> reportantesSTR, List<String> estados, String filtroTitulo, String filtroUbicacion,
                          String mostrarDesactivadosStr) {
 
-        List<Long> reportantes, finalReportantes = new ArrayList<>();
+        List<Long> reportantes = null;
         List<Incidencia> incidencias;
         boolean mostrarDesactivados = mostrarDesactivadosStr.equalsIgnoreCase("on");
 
@@ -45,14 +44,37 @@ public class ServicioIncidencia extends ServicioBase<Incidencia, Long, Repositor
 
         /*Procesar filtros antes de enviar al repositorio.*/
         try {
-            reportantesSTR.forEach(s -> finalReportantes.add(Long.parseLong(s)));
+            if (reportantesSTR != null && !reportantesSTR.isEmpty()) {
+                reportantes = reportantesSTR.stream().map(Long::parseLong).toList();
+            }
         } catch (Exception e) {
-            log.error("e: ", e);
+            log.error("e:", e);
+    }
+
+        reportantes = reportantes == null || reportantes.isEmpty() ? null : reportantes;
+        estados     = estados   == null || estados.isEmpty() ? null : estados;
+
+        if (reportantes != null) {
+            List<Long> reportantesLambda = reportantes;
+            listarReportantes.forEach(
+reportante -> {
+                    if (reportantesLambda.contains(reportante.getId())) {
+                        reportante.setSelected(true);
+                    }
+                }
+            );
         }
 
-        reportantes = finalReportantes; // Evitar que la lambda pete.
-        reportantes = reportantes.isEmpty() ? null : reportantes;
-        estados = estados == null || estados.isEmpty() ? null : estados;
+        if (estados != null) {
+            List<String> estadosLambda = estados.stream().map(String::toLowerCase).toList();
+            listarEstados.forEach(
+estado -> {
+                        if (estadosLambda.contains(estado.getValor().toLowerCase())) {
+                            estado.setSelected(true);
+                        }
+                    }
+            );
+        }
 
         /* Procesar incidencias*/
         incidencias = repositorio.listFilters(reportantes,estados,filtroTitulo,filtroUbicacion, mostrarDesactivados);
