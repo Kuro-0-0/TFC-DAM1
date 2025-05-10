@@ -1,5 +1,7 @@
 package com.salesianostriana.dam.GarciaMariaPablo.controladores;
 
+import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.IncidenciaDao_Crear;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.IncidenciaDao_Modificar;
 import com.salesianostriana.dam.GarciaMariaPablo.servicios.ServicioIncidencia;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,31 +39,34 @@ public class ControladorIncidencia {
         return servicioIncidencia.listar(model,paginaStr,perPageStr,ordenPor,ordenAsc,reportantes,estados,filtroTitulo,filtroUbicacion,mostrarDesactivados);
     }
 
-    ;
+    @GetMapping("/inspeccionar/{id}")
+    public String inspeccionar(Model model, @PathVariable int id) {
+        return servicioIncidencia.inspeccionar(model,id);
+    }
 
     @GetMapping("/crear")
     public String cargarCrear(Model model) {
-        return null;
+        return servicioIncidencia.cargarCrear(model);
     }
 
     @GetMapping("/{id}")
-    public String cargarModificar(Model model) {
-        return null;
+    public String cargarModificar(Model model, @PathVariable long id) {
+        return servicioIncidencia.cargarModificar(model, id);
     }
 
     @PostMapping
-    public String crear(Model model) {
-        return null;
+    public String crear(@ModelAttribute("IncidenciaDAO") IncidenciaDao_Crear incidenciaDao) {
+        return servicioIncidencia.crear(incidenciaDao);
     }
 
     @PutMapping
-    public String modificar(Model model) {
-        return null;
+    public String modificar(@ModelAttribute("IncidenciaDAO") IncidenciaDao_Modificar incidenciaDao) {
+        return servicioIncidencia.modificar(incidenciaDao);
     }
 
-    @DeleteMapping
-    public String eliminar(Model model) {
-        return null;
+    @DeleteMapping("{id}")
+    public String eliminar(@PathVariable long id) {
+        return servicioIncidencia.eliminar(id);
     }
 
 }

@@ -3,8 +3,9 @@ INSERT INTO Estado (id,nombre, valor, activo, color_fondo, color_texto) VALUES (
 INSERT INTO Estado (id,nombre, valor, activo, color_fondo, color_texto) VALUES (2,'En Proceso', 'en-proceso',true,'#0dcaf0','#000')
 INSERT INTO Estado (id,nombre, valor, activo, color_fondo, color_texto) VALUES (3,'Cancelado', 'cancelado',true,'#dc3545','#fff');
 INSERT INTO Estado (id,nombre, valor, activo, color_fondo, color_texto) VALUES (4,'Bloqueado', 'bloqueado',true,'#6c757d','#fff');
+INSERT INTO Estado (id,nombre, valor, activo, color_fondo, color_texto) VALUES (5,'Sin Estado', 'sin-estado',true,'#04c7f5','#fff');
 
-ALTER TABLE Estado ALTER COLUMN id RESTART WITH 5;
+ALTER TABLE Estado ALTER COLUMN id RESTART WITH 6;
 
 INSERT INTO usuario (id, username, password, nombre, apellidos, rol, editable) VALUES (0, 'admin', 'admin', 'admin', '', 0,true);
 INSERT INTO usuario (id, username, password, nombre, apellidos, rol, editable) VALUES (1, 'lar.gon', '1234', 'Laura', 'González', 1, true);

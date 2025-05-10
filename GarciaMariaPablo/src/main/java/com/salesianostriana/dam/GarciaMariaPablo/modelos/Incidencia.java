@@ -35,31 +35,18 @@ public class Incidencia {
 
     /* HELPERS */
 
-    /**
-     * Establecemos el estado recibido en el atributo de la incidencia y añadimos la incidencia al listado que se
-     * encuentra en el estado.
-     * @param estado Estado que se añadira a la incidencia.
-     */
     public void anadirEstado(Estado estado) {
         this.estado = estado;
         estado.getIncidencias().add(this);
     }
 
-    /**
-     * Eliminamos esta incidencia del listado ubicado dentro del estado actual de la incidencia y posteriormente
-     * removemos el estado de la incidencia colocandolo a null
-     */
+
     public void eliminarEstado() {
         estado.getIncidencias().remove(this);
         estado = null;
     }
 
-    /**
-     * En funcion del rol del usuario indicado como parametro, se establecere como uno u otro de los atributos
-     * disponibles para usuario en el objeto.
-     *
-     * @param usuario Usuario que se añadira a la incidencia.
-     */
+
     public void anadirUsuario(Usuario usuario) {
         switch (usuario.getRol()) {
             case reportante -> {
@@ -74,10 +61,6 @@ public class Incidencia {
         }
     }
 
-    /**
-     * Usado para eliminar de los usuarios asociados asi como de la propia incidencia toda la informacion que los
-     * relacione, usado unicamente cuando se prevee eliminar la incidencia al completo
-     */
     public void eliminarUsuarios() {
         tecnico.getIncidenciasGestionadas().remove(this);
         reportante.getIncidenciasGestionadas().remove(this);

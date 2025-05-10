@@ -25,7 +25,7 @@
 <body class="d-flex flex-column h-100 bg-light">
 
     <!-- Encabezado -->
-    <header th:replace="~{/fragments/header.html :: header}"></header>
+    <header th:replace="~{/admin/_fragments/header.html :: header}"></header>
 
     <!-- Contenido principal -->
     <main class="container flex-grow-1 my-4">
@@ -131,14 +131,14 @@
     </main>
 
     <!-- Footer -->
-    <footer th:replace="~{/fragments/footer.html :: footer}"></footer>
+    <footer th:replace="~{/admin/_fragments/footer.html :: footer}"></footer>
 
     <!--JavaScript-->
     <!-- Comentarios sobre como funcionan, dentro de cada JS. -->
     <script src="../../../static/admin/javascript/reutilizables/buscarDesplegablesFiltros.js"
-        th:src="/admin/javascript/reutilizables/buscarDesplegablesFiltros.js"></script>
+        th:src="@{/admin/javascript/reutilizables/buscarDesplegablesFiltros.js}"></script>
     <script src="../../../static/admin/javascript/usuarios/formulario/seleccionarRoles.js"
-        th:src="/admin/javascript/usuarios/formulario/seleccionarRoles.js"></script>
+        th:src="@{/admin/javascript/usuarios/formulario/seleccionarRoles.js}"></script>
 </body>
 
 </html>
