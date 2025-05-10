@@ -233,3 +233,18 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: D:/DAM1/TFC-DAM1
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
 	... 26 more
+2025-05-10 03:19:09.385999+02:00 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM INCIDENCIA \000d\000aWHERE reportante_id =[*]= 3"; se esperaba "ALL (, ANY (, SOME ("
+Syntax error in SQL statement "SELECT * FROM INCIDENCIA \000d\000aWHERE reportante_id =[*]= 3"; expected "ALL (, ANY (, SOME ("; SQL statement:
+SELECT * FROM INCIDENCIA 
+WHERE reportante_id == 3 [42001-232]
+2025-05-10 03:19:27.353064+02:00 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM INCIDENCIA \000d\000aWHERE reportante_id = [*][3,4,5]"; se esperaba "ALL (, ANY (, SOME ("
+Syntax error in SQL statement "SELECT * FROM INCIDENCIA \000d\000aWHERE reportante_id = [*][3,4,5]"; expected "ALL (, ANY (, SOME ("; SQL statement:
+SELECT * FROM INCIDENCIA 
+WHERE reportante_id = [3,4,5] [42001-232]
+2025-05-10 03:19:32.750332+02:00 jdbc[23]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * FROM INCIDENCIA \000d\000aWHERE reportante_id IN [*][3,4,5]"; se esperaba "("
+Syntax error in SQL statement "SELECT * FROM INCIDENCIA \000d\000aWHERE reportante_id IN [*][3,4,5]"; expected "("; SQL statement:
+SELECT * FROM INCIDENCIA 
+WHERE reportante_id IN [3,4,5] [42001-232]

@@ -84,4 +84,8 @@ public class Incidencia {
         tecnico = null;
         reportante = null;
     }
+
+    public String getNombreEstado() {
+        return estado.getNombre();
+    }
 }
