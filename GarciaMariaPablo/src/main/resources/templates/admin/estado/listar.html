@@ -46,7 +46,7 @@
                     <i class="bi bi-search"></i>
                 </button>
                 <button class="btn btn-outline-secondary btn-sm" type="button" onclick="limpiarBusqueda()"
-                    th:if="${param.buscar}">
+                    th:if="${param.buscar != null and not #strings.isEmpty(param.buscar)}">
                     <i class="bi bi-x-lg"></i>
                 </button>
             </div>
@@ -174,6 +174,8 @@
     <!-- Comentarios sobre como funcionan, dentro de cada JS. -->
     <script src="../../../static/admin/javascript/estados/listar/buscarFiltros.js"
         th:src="@{/admin/javascript/estados/listar/buscarFiltros.js}"></script>
+    <div th:replace="~{/admin/_fragments/listarJS.html :: import}"></div>
+
 </body>
 
 </html>

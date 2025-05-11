@@ -35,10 +35,10 @@ public class Usuario implements Comparable<Usuario> {
     private List<Incidencia> incidenciasGestionadas;
 
     @Override
-    public int compareTo(Usuario o) {
+    public int compareTo(Usuario u) {
         String thisNombreCompleto = this.getNombre() + " " + this.getApellidos();
-        String oNombreCompleto = o.getNombre() + " " + o.getApellidos();
-        return thisNombreCompleto.toLowerCase().compareTo(oNombreCompleto.toLowerCase());
+        String uNombreCompleto = u.getNombre() + " " + u.getApellidos();
+        return thisNombreCompleto.toLowerCase().compareTo(uNombreCompleto.toLowerCase());
     }
 
     /* HELPERS */
