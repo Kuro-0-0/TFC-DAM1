@@ -24,7 +24,7 @@
 <body class="d-flex flex-column h-100 bg-light">
 
     <!-- Encabezado -->
-    <header th:replace="~{/admin/_fragments/header.html :: header}"></header>
+    <header th:replace="~{admin/_fragments/header.html :: header}"></header>
 
     <!-- Contenido principal -->
     <main class="container flex-grow-1 my-4">
@@ -168,13 +168,13 @@
     </main>
 
     <!-- Footer -->
-    <footer th:replace="~{/admin/_fragments/footer.html :: footer}"></footer>
+    <footer th:replace="~{admin/_fragments/footer.html :: footer}"></footer>
 
     <!-- Javascript -->
     <!-- Comentarios sobre como funcionan, dentro de cada JS. -->
-    <script src="../../../static/admin/javascript/estados/listar/buscarFiltros.js"
-        th:src="@{/admin/javascript/estados/listar/buscarFiltros.js}"></script>
-    <div th:replace="~{/admin/_fragments/listarJS.html :: import}"></div>
+    <script src="../../../staticadmin/javascript/estados/listar/buscarFiltros.js"
+        th:src="@{admin/javascript/estados/listar/buscarFiltros.js}"></script>
+    <div th:replace="~{admin/_fragments/listarJS.html :: import}"></div>
 
 </body>
 
