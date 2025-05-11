@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.GarciaMariaPablo.servicios.base;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.ui.Model;
@@ -7,6 +8,7 @@ import org.springframework.ui.Model;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 public abstract class ServicioBase<T, ID, R extends JpaRepository<T,ID>> {
 
 	@Autowired
@@ -36,7 +38,7 @@ public abstract class ServicioBase<T, ID, R extends JpaRepository<T,ID>> {
 				throw new Exception("perPage Not Avaible");
 			}
 		} catch (Exception e) {
-			System.out.println(e);
+			log.error("e: ", e);
 			porPaginaNum = 10;
 		}
 
@@ -46,7 +48,7 @@ public abstract class ServicioBase<T, ID, R extends JpaRepository<T,ID>> {
 				throw new Exception("Page Not Avaible");
 			}
 		} catch (Exception e) {
-			System.out.println(e);
+			log.error("e: ", e);
 			paginaNum = 1;
 		}
 

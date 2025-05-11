@@ -199,7 +199,6 @@ public class ServicioIncidencia extends ServicioBase<Incidencia, Long, Repositor
 
 
     public String crear(IncidenciaDao_Crear incidenciaDao) {
-        System.out.println(incidenciaDao);
         save(revertirDao(incidenciaDao));
         return "redirect:/incidencias";
     }

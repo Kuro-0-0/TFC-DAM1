@@ -1,5 +1,7 @@
 package com.salesianostriana.dam.GarciaMariaPablo.controladores;
 
+import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.UsuarioDao_Crear;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.UsuarioDao_Modificar;
 import com.salesianostriana.dam.GarciaMariaPablo.servicios.ServicioUsuario;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,29 +39,29 @@ public class ControladorUsuario {
         return servicioUsuario.listar(model,paginaNum,perPageNum,ordenPor,ordenAsc,filtroUsername,filtroNombre,filtroApellidos,roles,mostrarOcultos);
     };
 
-//    @GetMapping("/crear")
-//    public String cargarCrear(Model model) {
-//        return servicioUsuario.cargarCrear(model);
-//    }
-//
-//    @GetMapping("/{id}")
-//    public String cargarModificar(Model model) {
-//        return servicioUsuario.cargarModificar(model);
-//    }
-//
-//    @PostMapping
-//    public String crear(@ModelAttribute UsuarioDao_Crear usuarioDao) {
-//        return servicioUsuario.crear(usuarioDao);
-//    }
-//
-//    @PutMapping
-//    public String modificar(@ModelAttribute UsuarioDao_Modificar usuarioDao) {
-//        return servicioUsuario.modificar(usuarioDao);
-//    }
-//
-//    @DeleteMapping("{id}")
-//    public String eliminar(@PathVariable long id) {
-//        return servicioUsuario.eliminar(id);
-//    }
+    @GetMapping("/crear")
+    public String cargarCrear(Model model) {
+        return servicioUsuario.cargarCrear(model);
+    }
+
+    @GetMapping("/{id}")
+    public String cargarModificar(Model model, @PathVariable long id) {
+        return servicioUsuario.cargarModificar(model,id);
+    }
+
+    @PostMapping
+    public String crear(@ModelAttribute UsuarioDao_Crear usuarioDao) {
+        return servicioUsuario.crear(usuarioDao);
+    }
+
+    @PutMapping
+    public String modificar(@ModelAttribute UsuarioDao_Modificar usuarioDao) {
+        return servicioUsuario.modificar(usuarioDao);
+    }
+
+    @DeleteMapping("{id}")
+    public String eliminar(@PathVariable long id) {
+        return servicioUsuario.eliminar(id);
+    }
 
 }

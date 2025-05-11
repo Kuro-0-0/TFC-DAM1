@@ -1,7 +1,9 @@
 package com.salesianostriana.dam.GarciaMariaPablo.servicios;
 
 import com.salesianostriana.dam.GarciaMariaPablo.daos.otros.RolDao_ListarUsuarios;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.UsuarioDao_Crear;
 import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.UsuarioDao_Listar;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.UsuarioDao_Modificar;
 import com.salesianostriana.dam.GarciaMariaPablo.modelos.Usuario;
 import com.salesianostriana.dam.GarciaMariaPablo.modelos.utilidades.Rol;
 import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioUsuario;
@@ -15,6 +17,21 @@ import java.util.List;
 
 @Service
 public class ServicioUsuario extends ServicioBase<Usuario, Long, RepositorioUsuario> {
+
+    public Usuario revertirDao(UsuarioDao_Modificar usuarioDao) {
+
+        Usuario original = findById(usuarioDao.getId()).orElseThrow();
+        String password = usuarioDao.getPassword().isEmpty() ? original.getPassword() : usuarioDao.getPassword();
+
+        original.setUsername(usuarioDao.getUsername());
+        original.setPassword(password);
+        original.setNombre(usuarioDao.getNombre());
+        original.setApellidos(usuarioDao.getApellidos());
+        original.setRol(usuarioDao.getRol());
+
+        return original;
+
+    }
 
     public String listar(Model model, String paginaNum, String perPageNum, String ordenPor, boolean ordenAsc, String filtroUsername, String filtroNombre, String filtroApellidos, List<String> rolesName, String mostrarOcultos) {
         List<Long> roles = null;
@@ -75,5 +92,54 @@ public class ServicioUsuario extends ServicioBase<Usuario, Long, RepositorioUsua
 
         return  usuarios;
 
+    }
+
+    public String cargarCrear(Model model) {
+        model.addAttribute("usuarioDao", new UsuarioDao_Crear());
+        model.addAttribute("roles", Rol.values());
+        model.addAttribute("modificar", false);
+        return "admin/usuario/formulario";
+    }
+
+    public String cargarModificar(Model model, long id) {
+        Usuario objetivo = findById(id).orElseThrow();
+        if (!objetivo.isEditable()) {
+            return "redirect:/usuarios";
+        }
+        model.addAttribute("usuarioDao", UsuarioDao_Modificar.crearDao(objetivo));
+        model.addAttribute("roles", Rol.values());
+        model.addAttribute("modificar", true);
+        return  "admin/usuario/formulario";
+    }
+
+    public String eliminar(long id) {
+        Usuario objetivo = findById(id).orElseThrow();
+        Usuario userDefault;
+        if (!objetivo.isEditable()) {
+            return "redirect:/usuarios"; // Con esto evitamos que se editen los sin-tecnico/sin-reportante
+        }
+
+        if (objetivo.getRol().equals(Rol.tecnico)) {
+            userDefault = repositorio.findByUsername("sin-tecnico");
+        } else if (objetivo.getRol().equals(Rol.reportante)) {
+            userDefault = repositorio.findByUsername("sin-reportante");
+        } else {
+            userDefault = null; // NUNCA DEBERA LLEGAR AQUÍ SI NADIE TOCA LA BD PARA MAL O ALGO ASI.
+            return "redirect:/usuarios";
+        }
+
+        objetivo.transferirIncidencias(userDefault);
+        delete(objetivo);
+        return "redirect:/usuarios";
+    }
+
+    public String modificar(UsuarioDao_Modificar usuarioDao) {
+        edit(revertirDao(usuarioDao));
+        return "redirect:/usuarios";
+    }
+
+    public String crear(UsuarioDao_Crear usuarioDao) {
+        save(usuarioDao.revertirDao());
+        return "redirect:/usuarios";
     }
 }

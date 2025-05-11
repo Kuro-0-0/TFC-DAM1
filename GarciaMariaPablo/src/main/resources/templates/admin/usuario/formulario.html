@@ -42,7 +42,7 @@
 
             <div class="card-body p-4">
                 <!-- Formulario Usuario -->
-                <form th:action="@{/usuarios}" th:object="${usuarioDAO}" th:method="${modificar} ? put : post"
+                <form th:action="@{/usuarios}" th:object="${usuarioDao}" th:method="${modificar} ? put : post"
                     name="crearUsuario" id="crearUsuarioForm">
 
                     <input type="hidden" th:if="${modificar}" th:field="*{id}">
