@@ -1,0 +1,91 @@
+/** Usado en varios ficheros.*/
+
+.bg-main {
+    background-color: var(--mainColor) !important;
+}
+
+.txt-main {
+    color: var(--mainColor) !important;
+}
+
+.border-main {
+    border-color: var(--mainColor) !important;
+}
+
+.active .nav-link {
+    font-weight: bold;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    color: white !important;
+}
+
+.h-5vh {
+    height: 5vh;
+}
+
+.mw-50vw {
+    max-width: 50vw
+}
+
+.scroll-3-items {
+    max-height: 5rem;
+    overflow-y: auto;
+}
+
+:root {
+    --mainColor: #dc001b;
+}
+
+/** Usado en inspeccionar.html de Incidencias */
+.status-badge {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+}
+
+/** Usado en formulario.html de Estados */
+.preview-square {
+    width: 40px; 
+    height: 40px;
+}
+
+.preview-rectangle {
+    min-height: 60px;
+}
+
+/** Usado en paginaPrincipal.html */
+.accordion-button::after {
+    filter: brightness(0) invert(1);
+}
+
+/** Usado en estadisticas.html de incidencias */
+.stats-card {
+    transition: transform 0.3s ease;
+    min-width: 200px;
+}
+
+.stats-card:hover {
+    transform: translateY(5px);
+}
+
+.stats-scroll-container {
+    scrollbar-width: thin;
+    scrollbar-color: var(--mainColor) var(--bs-light);
+    padding-bottom: 1rem;
+    gap: 1rem;
+}
+
+.stats-scroll-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.stats-scroll-container::-webkit-scrollbar-track {
+    background: var(--bs-light);
+    border-radius: 10px;
+}
+
+.stats-scroll-container::-webkit-scrollbar-thumb {
+    background-color: var(--mainColor);
+    border-radius: 10px;
+}
+
