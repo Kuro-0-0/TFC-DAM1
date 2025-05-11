@@ -53,7 +53,7 @@ public class ControladorEstado {
         return servicioEstado.modificar(estadoDao);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public String altenarActivo(@PathVariable long id) {
         return servicioEstado.alternarActivo(id);
     }

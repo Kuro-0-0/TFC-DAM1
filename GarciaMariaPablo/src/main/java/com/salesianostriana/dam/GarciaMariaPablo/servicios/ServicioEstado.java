@@ -92,6 +92,6 @@ public class ServicioEstado extends ServicioBase<Estado, Long, RepositorioEstado
         Estado objetivo = findById(id).orElseThrow();
         objetivo.setActivo(!objetivo.isActivo());
         save(objetivo);
-        return "redirect:/estados/";
+        return "redirect:/estados";
     }
 }
