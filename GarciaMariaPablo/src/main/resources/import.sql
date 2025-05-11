@@ -1,9 +1,9 @@
-INSERT INTO Estado (id,nombre, valor, activo, color_fondo, color_texto) VALUES (0,'Resuelto', 'resuelto',true,'#198754','#000')
-    INSERT INTO Estado (id,nombre, valor, activo, color_fondo, color_texto) VALUES (1,'Pendiente', 'pendiente',true,'#ffc107','#000')
-INSERT INTO Estado (id,nombre, valor, activo, color_fondo, color_texto) VALUES (2,'En Proceso', 'en-proceso',true,'#0dcaf0','#000')
-INSERT INTO Estado (id,nombre, valor, activo, color_fondo, color_texto) VALUES (3,'Cancelado', 'cancelado',true,'#dc3545','#fff');
-INSERT INTO Estado (id,nombre, valor, activo, color_fondo, color_texto) VALUES (4,'Bloqueado', 'bloqueado',true,'#6c757d','#fff');
-INSERT INTO Estado (id,nombre, valor, activo, color_fondo, color_texto) VALUES (5,'Sin Estado', 'sin-estado',true,'#04c7f5','#fff');
+INSERT INTO Estado (id,nombre, valor, activo, color_fondo, color_texto) VALUES (0,'Resuelto', 'resuelto',true,'#198754','#000000')
+    INSERT INTO Estado (id,nombre, valor, activo, color_fondo, color_texto) VALUES (1,'Pendiente', 'pendiente',true,'#ffc107','#000000')
+INSERT INTO Estado (id,nombre, valor, activo, color_fondo, color_texto) VALUES (2,'En Proceso', 'en-proceso',true,'#0dcaf0','#000000')
+INSERT INTO Estado (id,nombre, valor, activo, color_fondo, color_texto) VALUES (3,'Cancelado', 'cancelado',true,'#dc3545','#ffffff');
+INSERT INTO Estado (id,nombre, valor, activo, color_fondo, color_texto) VALUES (4,'Bloqueado', 'bloqueado',true,'#6c757d','#ffffff');
+INSERT INTO Estado (id,nombre, valor, activo, color_fondo, color_texto) VALUES (5,'Sin Estado', 'sin-estado',true,'#04c7f5','#ffffff');
 
 ALTER TABLE Estado ALTER COLUMN id RESTART WITH 6;
 
