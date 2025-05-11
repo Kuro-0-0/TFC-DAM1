@@ -148,3 +148,15 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: D:/DAM1/TFC-DAM1
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
 	... 54 more
+2025-05-11 04:37:38.058605+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "USERNAME CHARACTER VARYING(255)": "'Gay quien lea esto                                              .              ... (297)"
+Value too long for column "USERNAME CHARACTER VARYING(255)": "'Gay quien lea esto                                              .              ... (297)"; SQL statement:
+insert into usuario (apellidos,editable,nombre,password,rol,username,id) values (?,?,?,?,?,?,default) [22001-232]
+2025-05-11 04:38:09.262380+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "NOMBRE CHARACTER VARYING(255)": "'Juan                                                                 .         ... (323)"
+Value too long for column "NOMBRE CHARACTER VARYING(255)": "'Juan                                                                 .         ... (323)"; SQL statement:
+insert into usuario (apellidos,editable,nombre,password,rol,username,id) values (?,?,?,?,?,?,default) [22001-232]
+2025-05-11 04:40:27.673517+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "APELLIDOS CHARACTER VARYING(255)": "'                                                                               ... (690)"
+Value too long for column "APELLIDOS CHARACTER VARYING(255)": "'                                                                               ... (690)"; SQL statement:
+insert into usuario (apellidos,editable,nombre,password,rol,username,id) values (?,?,?,?,?,?,default) [22001-232]

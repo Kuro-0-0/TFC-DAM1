@@ -54,14 +54,20 @@
                                 <i class="bi bi-card-heading me-1"></i>Título <span class="text-danger">*</span>
                             </label>
                             <input th:field="*{titulo}" type="text" class="form-control form-control-lg"
-                                placeholder="Ej. Falla en el servidor" required>
+                            placeholder="Ej. Falla en el servidor" required maxlength="100"
+                            pattern="^[\p{L}0-9\s.,:;()\-]{5,100}$"
+                            title="Debe tener entre 5 y 100 caracteres. Solo letras, números y signos básicos.">
+                        
                         </div>
                         <div th:class="${modificar} ? 'col-md-4 mb-3' : 'col-md-6 mb-3'">
                             <label for="ubicacion" class="form-label fw-medium">
                                 <i class="bi bi-geo-alt me-1"></i>Ubicación <span class="text-danger">*</span>
                             </label>
                             <input th:field="*{ubicacion}" type="text" class="form-control form-control-lg"
-                                placeholder="Ej. Sala de servidores - Planta 2" required>
+                            placeholder="Ej. Sala de servidores - Planta 2" required maxlength="100"
+                            pattern="^[\p{L}0-9\s.,:;()\-]{5,100}$"
+                            title="Debe tener entre 5 y 100 caracteres. Solo letras, números y signos básicos.">
+                        
                         </div>
 
                         <div class="col-md-3 mb-3" th:if="${modificar}">
@@ -69,7 +75,8 @@
                                 <i class="bi bi-calendar me-1"></i>Fecha IEA
                             </label>
                             <input type="date" th:field="*{fechaCreacion}" th:data-fecha="*{fechaCreacion}"
-                                class="form-control form-control-lg">
+                            class="form-control form-control-lg" max="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
+                        
                         </div>
                     </div>
 
@@ -79,7 +86,10 @@
                             <i class="bi bi-text-paragraph me-1"></i>Descripción
                         </label>
                         <textarea class="form-control form-control-lg" th:field="*{descripcion}" rows="5"
-                            placeholder="Describe el problema con detalle"></textarea>
+                        placeholder="Describe el problema con detalle" maxlength="500"
+                        pattern="^[\p{L}0-9\s.,:;()\-¿?!¡\'&quot;]{10,500}$"
+                        title="Debe tener entre 10 y 500 caracteres."></textarea>
+                    
                     </div>
 
                     <!-- Reportante, Técnico y Estado -->

@@ -17,6 +17,8 @@ public class Incidencia {
     private long id;
 
     private String titulo;
+
+    @Column(length = 500)
     private String descripcion;
     private String ubicacion;
     private LocalDate fechaCreacion;

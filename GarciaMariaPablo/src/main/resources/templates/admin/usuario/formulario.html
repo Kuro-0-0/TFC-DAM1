@@ -34,7 +34,7 @@
             <i class="bi bi-exclamation-triangle-fill me-2"></i>
             <span th:text="${error}"></span>
         </div>
-        
+
         <!-- Contenedor del formulario -->
         <div class="card border-0 rounded-3 shadow">
             <div class="card-header bg-main text-white rounded-top-3 p-3">
@@ -60,7 +60,9 @@
                                 <i class="bi bi-person-badge me-1"></i>Username <span class="text-danger">*</span>
                             </label>
                             <input th:field="*{username}" type="text" class="form-control form-control-lg"
-                                placeholder="Ej. jperez" required>
+                                placeholder="Ej. jperez" required maxlength="20" pattern="^[a-zA-Z0-9._-]{4,20}$"
+                                title="Debe tener entre 4 y 20 caracteres. Solo letras, números, puntos, guiones o guiones bajos.">
+
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="password" class="form-label fw-medium">
@@ -68,7 +70,9 @@
                                     class="text-danger">*</span>
                             </label>
                             <input th:field="*{password}" type="password" class="form-control form-control-lg"
-                                placeholder="Contraseña" th:required="!${modificar}">
+                                placeholder="Contraseña" th:required="!${modificar}" minlength="8" maxlength="32"
+                                pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,32}$"
+                                title="Debe tener entre 8 y 32 caracteres, con al menos una mayúscula, una minúscula y un número.">
                             <small class="text-muted" th:if="${modificar}">Dejar en blanco para mantener la contraseña
                                 actual</small>
                         </div>
@@ -81,14 +85,16 @@
                                 <i class="bi bi-person me-1"></i>Nombre <span class="text-danger">*</span>
                             </label>
                             <input th:field="*{nombre}" type="text" class="form-control form-control-lg"
-                                placeholder="Ej. Juan" required>
+                                placeholder="Ej. Juan" required maxlength="30" pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,30}$"
+                                title="Solo letras y espacios. Máximo 30 caracteres.">
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="apellidos" class="form-label fw-medium">
                                 <i class="bi bi-people me-1"></i>Apellidos
                             </label>
                             <input th:field="*{apellidos}" type="text" class="form-control form-control-lg"
-                                placeholder="Ej. Pérez García">
+                                placeholder="Ej. Pérez García" maxlength="60" pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,60}$"
+                                title="Solo letras y espacios. Máximo 60 caracteres.">
                         </div>
                     </div>
 
@@ -107,7 +113,8 @@
                                 id="dropdownRol" data-bs-toggle="dropdown" aria-expanded="false"
                                 th:text="${modificar} ? *{rol.name()} : 'Selecciona un rol'">
                             </button>
-                            <ul class="dropdown-menu w-100 p-2 scroll-3-items" aria-labelledby="dropdownRol" id="listaRoles">
+                            <ul class="dropdown-menu w-100 p-2 scroll-3-items" aria-labelledby="dropdownRol"
+                                id="listaRoles">
                                 <li th:each="rol : ${roles}" th:data-label="${rol.name()}">
                                     <a class="dropdown-item d-flex align-items-center" href="#"
                                         th:data-value="${rol.name()}">
