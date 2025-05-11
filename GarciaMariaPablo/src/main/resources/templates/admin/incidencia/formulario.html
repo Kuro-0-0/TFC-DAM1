@@ -218,19 +218,19 @@
 
     <!--JavaScript-->
     <!-- Comentarios sobre como funcionan, dentro de cada JS. -->
-    <script th:if="${modificar}" th:src="@{admin/javascript/incidencias/formulario/ajustarFechaModificar.js}"
+    <script th:if="${modificar}" th:src="@{/admin/javascript/incidencias/formulario/ajustarFechaModificar.js}"
         src="../../../staticadmin/javascript/incidencias/formulario/ajustarFechaModificar.js">
         </script>
 
-    <script th:unless="${modificar}" th:src="@{admin/javascript/incidencias/formulario/establecerFechaHoy.js}"
+    <script th:unless="${modificar}" th:src="@{/admin/javascript/incidencias/formulario/establecerFechaHoy.js}"
         src="../../../staticadmin/javascript/incidencias/formulario/establecerFechaHoy.js">
         </script>
 
-    <script th:src="@{admin/javascript/reutilizables/buscarDesplegablesFiltros.js}"
+    <script th:src="@{/admin/javascript/reutilizables/buscarDesplegablesFiltros.js}"
         src="../../../staticadmin/javascript/reutilizables/buscarDesplegablesFiltros.js">
         </script>
 
-    <script th:src="@{admin/javascript/incidencias/formulario/ajustarDropdows.js}"
+    <script th:src="@{/admin/javascript/incidencias/formulario/ajustarDropdows.js}"
         src="../../../staticadmin/javascript/incidencias/formulario/ajustarDropdows.js">
         </script>
 </body>
