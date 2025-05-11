@@ -19,10 +19,8 @@ public class ServicioEstado extends ServicioBase<Estado, Long, RepositorioEstado
     public Estado revertirDao(EstadoDao_Modificar estadoDao) {
         Estado estado = findById(estadoDao.getId()).orElseThrow();
 
-        String valor = estadoDao.getNombre().toLowerCase()
-                .replace(" ", "-");
-        valor = Normalizer.normalize(valor, Normalizer.Form.NFD)
-                .replaceAll("[^\\p{ASCII}]", "");
+        String valor = estadoDao.getNombre().toLowerCase().replace(" ", "-");
+        valor = Normalizer.normalize(valor, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
 
         estado.setNombre(estadoDao.getNombre());
         estado.setValor(valor);

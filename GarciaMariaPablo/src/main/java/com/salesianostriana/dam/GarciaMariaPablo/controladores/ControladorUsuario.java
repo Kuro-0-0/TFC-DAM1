@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/usuarios")
 public class ControladorUsuario {
@@ -21,33 +23,43 @@ public class ControladorUsuario {
     }
 
     @GetMapping
-    public String listar(Model model) {
-        return null;
+    public String listar(Model model,
+                         @RequestParam(required = false, name = "pagina"		,defaultValue = "1") String paginaNum,
+                         @RequestParam(required = false, name = "perPage"	,defaultValue = "10") String perPageNum,
+                         @RequestParam(required = false, name = "ordenarPor"	, defaultValue = "username") String ordenPor,
+                         @RequestParam(required = false, name = "ordenAsc"	, defaultValue = "false") boolean ordenAsc,
+                         @RequestParam(required = false, name = "filtroUsername"	, defaultValue = "") String filtroUsername,
+                         @RequestParam(required = false, name = "filtroNombre"	, defaultValue = "") String filtroNombre,
+                         @RequestParam(required = false, name = "filtroApellidos", defaultValue = "") String filtroApellidos,
+                         @RequestParam(required = false, name = "rolesSeleccionados") List<String> roles,
+                         @RequestParam(required = false,name = "mostrarOcultos", defaultValue = "") String mostrarOcultos
+                        ) {
+        return servicioUsuario.listar(model,paginaNum,perPageNum,ordenPor,ordenAsc,filtroUsername,filtroNombre,filtroApellidos,roles,mostrarOcultos);
     };
 
-    @GetMapping("/crear")
-    public String cargarCrear(Model model) {
-        return null;
-    }
-
-    @GetMapping("/{id}")
-    public String cargarModificar(Model model) {
-        return null;
-    }
-
-    @PostMapping
-    public String crear(Model model) {
-        return null;
-    }
-
-    @PutMapping
-    public String modificar(Model model) {
-        return null;
-    }
-
-    @DeleteMapping
-    public String eliminar(Model model) {
-        return null;
-    }
+//    @GetMapping("/crear")
+//    public String cargarCrear(Model model) {
+//        return servicioUsuario.cargarCrear(model);
+//    }
+//
+//    @GetMapping("/{id}")
+//    public String cargarModificar(Model model) {
+//        return servicioUsuario.cargarModificar(model);
+//    }
+//
+//    @PostMapping
+//    public String crear(@ModelAttribute UsuarioDao_Crear usuarioDao) {
+//        return servicioUsuario.crear(usuarioDao);
+//    }
+//
+//    @PutMapping
+//    public String modificar(@ModelAttribute UsuarioDao_Modificar usuarioDao) {
+//        return servicioUsuario.modificar(usuarioDao);
+//    }
+//
+//    @DeleteMapping("{id}")
+//    public String eliminar(@PathVariable long id) {
+//        return servicioUsuario.eliminar(id);
+//    }
 
 }
