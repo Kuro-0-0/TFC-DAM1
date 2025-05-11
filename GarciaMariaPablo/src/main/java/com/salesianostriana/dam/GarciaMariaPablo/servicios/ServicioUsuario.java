@@ -18,16 +18,24 @@ import java.util.List;
 @Service
 public class ServicioUsuario extends ServicioBase<Usuario, Long, RepositorioUsuario> {
 
-    public Usuario revertirDao(UsuarioDao_Modificar usuarioDao) {
-
-        Usuario original = findById(usuarioDao.getId()).orElseThrow();
+    public Usuario revertirDao(UsuarioDao_Modificar usuarioDao, Usuario original) {
         String password = usuarioDao.getPassword().isEmpty() ? original.getPassword() : usuarioDao.getPassword();
 
         original.setUsername(usuarioDao.getUsername());
         original.setPassword(password);
         original.setNombre(usuarioDao.getNombre());
         original.setApellidos(usuarioDao.getApellidos());
-        original.setRol(usuarioDao.getRol());
+
+        if (usuarioDao.getRol() != original.getRol()) {
+            if (original.getRol() == Rol.tecnico) {
+                original.transferirIncidencias(repositorio.findByUsername("sin-tecnico"));
+            } else if (original.getRol() == Rol.reportante) {
+                original.transferirIncidencias(repositorio.findByUsername("sin-reportante"));
+            }
+
+            original.setRol(usuarioDao.getRol());
+
+        }
 
         return original;
 
@@ -44,7 +52,7 @@ public class ServicioUsuario extends ServicioBase<Usuario, Long, RepositorioUsua
 
         if (rolesName != null && !rolesName.isEmpty()) {
             List<Long> rolesLambda = new ArrayList<>();
-            List<String> rolesLC = rolesName.stream().map(String::toLowerCase).toList();
+            List<String> rolesLC = rolesName.stream().map(java.lang.String::toLowerCase).toList();
 
             convertedRol.forEach(rol -> {
                 rol.setSelected(rolesLC.contains(rol.getName().toLowerCase()));
@@ -95,7 +103,9 @@ public class ServicioUsuario extends ServicioBase<Usuario, Long, RepositorioUsua
     }
 
     public String cargarCrear(Model model) {
-        model.addAttribute("usuarioDao", new UsuarioDao_Crear());
+        if (!model.containsAttribute("usuarioDao")) {
+            model.addAttribute("usuarioDao", new UsuarioDao_Crear());
+        }
         model.addAttribute("roles", Rol.values());
         model.addAttribute("modificar", false);
         return "admin/usuario/formulario";
@@ -106,7 +116,11 @@ public class ServicioUsuario extends ServicioBase<Usuario, Long, RepositorioUsua
         if (!objetivo.isEditable()) {
             return "redirect:/usuarios";
         }
-        model.addAttribute("usuarioDao", UsuarioDao_Modificar.crearDao(objetivo));
+
+        if (!model.containsAttribute("usuarioDao")) {
+            model.addAttribute("usuarioDao", UsuarioDao_Modificar.crearDao(objetivo));
+        }
+
         model.addAttribute("roles", Rol.values());
         model.addAttribute("modificar", true);
         return  "admin/usuario/formulario";
@@ -133,13 +147,41 @@ public class ServicioUsuario extends ServicioBase<Usuario, Long, RepositorioUsua
         return "redirect:/usuarios";
     }
 
-    public String modificar(UsuarioDao_Modificar usuarioDao) {
-        edit(revertirDao(usuarioDao));
+    public String modificar(UsuarioDao_Modificar usuarioDao,Model model) {
+        Usuario usuarioAntiguo = findById(usuarioDao.getId()).orElseThrow();
+        Usuario nuevoUsuario = revertirDao(usuarioDao,usuarioAntiguo);
+        if (nuevoUsuario != null) {
+            if (repositorio.findByUsername(nuevoUsuario.getUsername()) != null && !usuarioAntiguo.getUsername().equals(nuevoUsuario.getUsername())) {
+                model.addAttribute("usuarioDao", usuarioDao);
+                model.addAttribute("error","El nombre de usuario ya existe.");
+                return cargarCrear(model);
+            }
+            if (nuevoUsuario.getRol() == null) {
+                model.addAttribute("usuarioDao", usuarioDao);
+                model.addAttribute("error","Debe escoger un rol.");
+                return cargarCrear(model);
+            }
+        }
+
+        edit(nuevoUsuario);
         return "redirect:/usuarios";
     }
 
-    public String crear(UsuarioDao_Crear usuarioDao) {
-        save(usuarioDao.revertirDao());
+    public String crear(UsuarioDao_Crear usuarioDao,Model model) {
+        Usuario nuevoUsuario = usuarioDao.revertirDao();
+        if (nuevoUsuario != null) {
+            if (repositorio.findByUsername(nuevoUsuario.getUsername()) != null) {
+                model.addAttribute("usuarioDao", usuarioDao);
+                model.addAttribute("error","El nombre de usuario ya existe.");
+                return cargarCrear(model);
+            };
+            if (nuevoUsuario.getRol() == null) {
+                model.addAttribute("usuarioDao", usuarioDao);
+                model.addAttribute("error","Debe escoger un rol.");
+                return cargarCrear(model);
+            }
+        }
+        save(nuevoUsuario);
         return "redirect:/usuarios";
     }
 }

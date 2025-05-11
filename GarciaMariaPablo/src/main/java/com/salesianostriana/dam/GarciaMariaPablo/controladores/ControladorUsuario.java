@@ -50,13 +50,13 @@ public class ControladorUsuario {
     }
 
     @PostMapping
-    public String crear(@ModelAttribute UsuarioDao_Crear usuarioDao) {
-        return servicioUsuario.crear(usuarioDao);
+    public String crear(@ModelAttribute UsuarioDao_Crear usuarioDao, Model model) {
+        return servicioUsuario.crear(usuarioDao,model);
     }
 
     @PutMapping
-    public String modificar(@ModelAttribute UsuarioDao_Modificar usuarioDao) {
-        return servicioUsuario.modificar(usuarioDao);
+    public String modificar(@ModelAttribute UsuarioDao_Modificar usuarioDao, Model model) {
+        return servicioUsuario.modificar(usuarioDao, model);
     }
 
     @DeleteMapping("{id}")
