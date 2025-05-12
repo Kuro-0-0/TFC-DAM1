@@ -27,6 +27,9 @@
 
     <!-- Contenido principal -->
     <main class="container flex-grow-1 my-4">
+
+        <div th:replace="~{admin/_fragments/errorMessage.html :: errorMessage}"></div>
+
         <div class="card border-0 shadow rounded-3 overflow-hidden">
             <!-- Cabecera con color de marca -->
             <div class="card-header bg-main text-white rounded-top-3 p-3">

@@ -1,5 +1,13 @@
 package com.salesianostriana.dam.GarciaMariaPablo.servicios;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.salesianostriana.dam.GarciaMariaPablo.daos.otros.RolDao_ListarUsuarios;
 import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.UsuarioDao_Crear;
 import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.UsuarioDao_Listar;
@@ -8,12 +16,6 @@ import com.salesianostriana.dam.GarciaMariaPablo.modelos.Usuario;
 import com.salesianostriana.dam.GarciaMariaPablo.modelos.utilidades.Rol;
 import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioUsuario;
 import com.salesianostriana.dam.GarciaMariaPablo.servicios.base.ServicioBase;
-import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 
 @Service
 public class ServicioUsuario extends ServicioBase<Usuario, Long, RepositorioUsuario> {
@@ -111,9 +113,10 @@ public class ServicioUsuario extends ServicioBase<Usuario, Long, RepositorioUsua
         return "admin/usuario/formulario";
     }
 
-    public String cargarModificar(Model model, long id) {
+    public String cargarModificar(Model model, long id,RedirectAttributes redirectAttributes) {
         Usuario objetivo = findById(id).orElseThrow();
         if (!objetivo.isEditable()) {
+        	redirectAttributes.addFlashAttribute("error","No puedes modificar el usuario seleccionado.");
             return "redirect:/usuarios";
         }
 
@@ -126,10 +129,11 @@ public class ServicioUsuario extends ServicioBase<Usuario, Long, RepositorioUsua
         return  "admin/usuario/formulario";
     }
 
-    public String eliminar(long id) {
+    public String eliminar(long id,RedirectAttributes redirectAttributes) {
         Usuario objetivo = findById(id).orElseThrow();
         Usuario userDefault;
         if (!objetivo.isEditable()) {
+        	redirectAttributes.addFlashAttribute("error","No puedes eliminar el usuario seleccionado.");
             return "redirect:/usuarios"; // Con esto evitamos que se editen los sin-tecnico/sin-reportante
         }
 
