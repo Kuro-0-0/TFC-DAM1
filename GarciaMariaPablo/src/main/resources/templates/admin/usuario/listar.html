@@ -83,7 +83,6 @@
                             <td th:text="${usuario.nombre}">Juan</td>
                             <td th:text="${usuario.apellidos}">Pérez García</td>
                             <td>
-                                <!-- <span class="bg-main" style="width: 100px; color: black;" th:text="${usuario.rol}"></span> -->
                                 <span class="badge rounded-pill fw-bold px-3 w-50"
                                     th:classappend="${usuario.rol.name() == 'admin'} ? 'bg-main' : (${usuario.rol.name() == 'tecnico'} ? 'bg-primary' : 'bg-info')"
                                     th:text="${usuario.rol.name()}">REPORTANTE</span>

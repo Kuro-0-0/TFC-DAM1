@@ -36,11 +36,26 @@
     --mainColor: #dc001b;
 }
 
+/** Usado en error.html */
+.limited-width {
+    max-width: 300px;
+}
+
+.limited-width-600 {
+    max-width: 600px;
+}
+
+
 /** Usado en inspeccionar.html de Incidencias */
 .status-badge {
     font-size: 1rem;
     padding: 0.5rem 1rem;
     border-radius: 50px;
+}
+
+/** Usado en el listar.html de Estados */
+.btn-min-width {
+    min-width: 90px;
 }
 
 /** Usado en formulario.html de Estados */
