@@ -35,7 +35,7 @@
                 <h2 class="h5 mb-0" th:if="${modificar}">
                     <i class="bi bi-pencil-square me-2"></i>Modificar Incidencia
                 </h2>
-                <h2 class="h5 mb-0" th:if="!${modificar}">
+                <h2 class="h5 mb-0" th:unless="${modificar}">
                     <i class="bi bi-plus-circle me-2"></i>Crear Nueva Incidencia
                 </h2>
             </div>
@@ -188,7 +188,7 @@
                             </div>
                         </div>
 
-                        <input th:if="!${modificar}" type="hidden" th:field="*{fechaCreacion}">
+                        <input th:unless="${modificar}" type="hidden" th:field="*{fechaCreacion}">
                     </div>
 
                     <!-- Botones -->
@@ -197,7 +197,7 @@
                             class="btn btn-outline-secondary">
                             <i class="bi bi-arrow-left me-1"></i>Cancelar
                         </a>
-                        <a th:if="!${modificar}" href="../paginaPrincipal.html" th:href="@{/}"
+                        <a th:unless="${modificar}" href="../paginaPrincipal.html" th:href="@{/}"
                             class="btn btn-outline-secondary">
                             <i class="bi bi-arrow-left me-1"></i>Cancelar
                         </a>

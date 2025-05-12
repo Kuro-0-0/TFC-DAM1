@@ -41,7 +41,7 @@
                 <h2 class="h5 mb-0" th:if="${modificar}">
                     <i class="bi bi-pencil-square me-2"></i>Modificar Usuario
                 </h2>
-                <h2 class="h5 mb-0" th:if="!${modificar}">
+                <h2 class="h5 mb-0" th:unless="${modificar}">
                     <i class="bi bi-plus-circle me-2"></i>Crear Nuevo Usuario
                 </h2>
             </div>
@@ -66,7 +66,7 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="password" class="form-label fw-medium">
-                                <i class="bi bi-lock me-1"></i>Password <span th:if="!${modificar}"
+                                <i class="bi bi-lock me-1"></i>Password <span th:unless="${modificar}"
                                     class="text-danger">*</span>
                             </label>
                             <input th:field="*{password}" type="password" class="form-control form-control-lg"
