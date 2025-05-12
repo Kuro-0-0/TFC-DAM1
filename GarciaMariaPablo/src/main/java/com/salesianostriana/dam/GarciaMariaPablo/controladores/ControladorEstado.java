@@ -38,7 +38,7 @@ public class ControladorEstado {
         return servicioEstado.cargarCrear(model);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/modificar/{id}")
     public String cargarModificar(Model model, @PathVariable long id) {
         return servicioEstado.cargarModificar(model,id);
     }
@@ -53,7 +53,7 @@ public class ControladorEstado {
         return servicioEstado.modificar(estadoDao);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/alternar/{id}")
     public String altenarActivo(@PathVariable long id) {
         return servicioEstado.alternarActivo(id);
     }

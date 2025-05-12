@@ -44,7 +44,7 @@ public class ControladorUsuario {
         return servicioUsuario.cargarCrear(model);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/modificar/{id}")
     public String cargarModificar(Model model, @PathVariable long id) {
         return servicioUsuario.cargarModificar(model,id);
     }

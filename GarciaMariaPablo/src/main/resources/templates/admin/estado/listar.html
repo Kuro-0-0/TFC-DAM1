@@ -95,11 +95,11 @@
                                     class="btn btn-sm btn-outline-primary px-2 py-1 rounded-1 me-1">
                                     <i class="bi bi-eye"></i>
                                 </a>
-                                <a th:href="@{/estados/{id}(id=${estado.id})}" href="formulario.html"
+                                <a th:href="@{/estados/modificar/{id}(id=${estado.id})}" href="formulario.html"
                                     class="btn btn-sm btn-outline-success px-2 py-1 rounded-1 me-1">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <form class="d-inline" th:action="@{/estados/{id}(id=${estado.id})}" th:method="POST">
+                                <form class="d-inline" th:action="@{/estados/alternar/{id}(id=${estado.id})}" th:method="POST">
                                     <input type="hidden" name="_method" value="PUT">
                                     <button type="submit" class="btn btn-sm px-2 py-1 rounded-1"
                                         style="min-width: 90px;"

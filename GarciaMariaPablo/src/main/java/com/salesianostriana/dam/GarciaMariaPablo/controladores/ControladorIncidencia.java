@@ -54,7 +54,7 @@ public class ControladorIncidencia {
         return servicioIncidencia.inspeccionar(model,id);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/modificar/{id}")
     public String cargarModificar(Model model, @PathVariable long id) {
         return servicioIncidencia.cargarModificar(model, id);
     }
