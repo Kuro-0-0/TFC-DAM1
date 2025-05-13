@@ -12,7 +12,7 @@
     <title th:text="${modificar} ? 'Gestión de Estados - Modificar Estado' : 'Gestión de Estados - Crear Estado'">
         Gestión de Estados</title>
 
-    <div th:replace="~{admin/_fragments/head.html :: head}"></div>
+    <th:block th:replace="~{admin/_fragments/head.html :: head}"></th:block>
 
     <script defer src="../../../static/admin/javascript/estados/formulario/modificarVistaPrevia.js"
         th:src="@{/admin/javascript/estados/formulario/modificarVistaPrevia.js}"></script>
