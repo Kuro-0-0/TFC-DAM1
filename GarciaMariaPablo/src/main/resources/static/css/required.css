@@ -27,8 +27,22 @@
     max-width: 50vw
 }
 
+.w-badge {
+    width: 100%;
+}
+
+@media (max-width: 992px) {
+    .w-badge {
+        width: 50%;
+    }
+}
+
+.min-w-25 {
+    min-width: 25%;
+}
+
 .scroll-3-items {
-    max-height: 5rem;
+    max-height: 10rem;
     overflow-y: auto;
 }
 
@@ -60,7 +74,7 @@
 
 /** Usado en formulario.html de Estados */
 .preview-square {
-    width: 40px; 
+    width: 40px;
     height: 40px;
 }
 
@@ -103,4 +117,3 @@
     background-color: var(--mainColor);
     border-radius: 10px;
 }
-

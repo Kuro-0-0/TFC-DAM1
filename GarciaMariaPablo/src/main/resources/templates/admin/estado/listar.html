@@ -6,18 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Gestión de Estados - Listar Estados</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <div th:replace="~{admin/_fragments/head.html :: head}"></div>
 
-    <!-- Icono Web -->
-    <link rel="shortcut icon" href="../../../static/img/webLogo.png" th:href="@{/img/webLogo.png}" type="image/x-icon">
+    <!-- Javascript -->
+    <!-- Comentarios sobre como funcionan, dentro de cada JS. -->
+    <script defer src="../../../staticadmin/javascript/estados/listar/buscarFiltros.js"
+        th:src="@{/admin/javascript/estados/listar/buscarFiltros.js}"></script>
+    <div th:replace="~{admin/_fragments/listarJS.html :: import}"></div>
 
-    <!-- Required Custom Css -->
-    <link rel="stylesheet" href="../../../static/css/required.css" th:href="@{/css/required.css}">
 </head>
 
 
@@ -81,13 +77,13 @@
                         <tr th:each="estado : ${estados}">
                             <td th:text="${estado.nombre}">Pendiente</td>
                             <td>
-                                <span class="badge rounded-pill fw-bold px-3 w-50"
+                                <span class="badge rounded-pill fw-bold px-3 w-badge"
                                     th:style="'background-color:' + ${estado.colorFondo} + '; color:' + ${estado.colorTexto}">
                                     <span th:text="${estado.nombre}">Pendiente</span>
                                 </span>
                             </td>
                             <td>
-                                <span class="badge rounded-pill w-25"
+                                <span class="badge rounded-pill min-w-25"
                                     th:classappend="${estado.activo} ? 'bg-success' : 'bg-secondary'"
                                     th:text="${estado.activo} ? 'Sí' : 'No'">
                                 </span>
@@ -102,7 +98,8 @@
                                     class="btn btn-sm btn-outline-success px-2 py-1 rounded-1 me-1">
                                     <i class="bi bi-pencil"></i>
                                 </a>
-                                <form class="d-inline" th:action="@{/estados/alternar/{id}(id=${estado.id})}" th:method="POST">
+                                <form class="d-inline" th:action="@{/estados/alternar/{id}(id=${estado.id})}"
+                                    th:method="POST">
                                     <input type="hidden" name="_method" value="PUT">
                                     <button type="submit" class="btn btn-sm px-2 py-1 rounded-1 btn-min-width"
                                         th:classappend="${estado.activo} ? 'btn-outline-danger' : 'btn-outline-secondary'"
@@ -172,11 +169,7 @@
     <!-- Footer -->
     <footer th:replace="~{admin/_fragments/footer.html :: footer}"></footer>
 
-    <!-- Javascript -->
-    <!-- Comentarios sobre como funcionan, dentro de cada JS. -->
-    <script src="../../../staticadmin/javascript/estados/listar/buscarFiltros.js"
-        th:src="@{/admin/javascript/estados/listar/buscarFiltros.js}"></script>
-    <div th:replace="~{admin/_fragments/listarJS.html :: import}"></div>
+
 
 </body>
 
