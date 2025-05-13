@@ -15,10 +15,10 @@ import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.UsuarioDao_Modific
 import com.salesianostriana.dam.GarciaMariaPablo.modelos.Usuario;
 import com.salesianostriana.dam.GarciaMariaPablo.modelos.utilidades.Rol;
 import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioUsuario;
-import com.salesianostriana.dam.GarciaMariaPablo.servicios.base.ServicioBase;
+import com.salesianostriana.dam.GarciaMariaPablo.servicios.base.ServicioBaseImpl;
 
 @Service
-public class ServicioUsuario extends ServicioBase<Usuario, Long, RepositorioUsuario> {
+public class ServicioUsuario extends ServicioBaseImpl<Usuario, Long, RepositorioUsuario> {
 
     public Usuario revertirDao(UsuarioDao_Modificar usuarioDao, Usuario original) {
         String password = usuarioDao.getPassword().isEmpty() ? original.getPassword() : usuarioDao.getPassword();

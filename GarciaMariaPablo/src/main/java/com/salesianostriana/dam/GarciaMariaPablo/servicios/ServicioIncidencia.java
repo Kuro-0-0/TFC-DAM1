@@ -1,8 +1,20 @@
 package com.salesianostriana.dam.GarciaMariaPablo.servicios;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
 import com.salesianostriana.dam.GarciaMariaPablo.daos.estado.external.EstadoDao_FiltrarIncidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.daos.estado.external.EstadoDao_Seleccionar;
-import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.*;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.IncidenciaDao_Crear;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.IncidenciaDao_Estadisticas;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.IncidenciaDao_Inspeccionar;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.IncidenciaDao_Listar;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.IncidenciaDao_Modificar;
 import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.external.UsuarioDao_FiltrarIncidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.external.UsuarioDao_FormularioIncidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.modelos.Incidencia;
@@ -11,19 +23,13 @@ import com.salesianostriana.dam.GarciaMariaPablo.modelos.utilidades.Rol;
 import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioEstado;
 import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioIncidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioUsuario;
-import com.salesianostriana.dam.GarciaMariaPablo.servicios.base.ServicioBase;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
+import com.salesianostriana.dam.GarciaMariaPablo.servicios.base.ServicioBaseImpl;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class ServicioIncidencia extends ServicioBase<Incidencia, Long, RepositorioIncidencia> {
+public class ServicioIncidencia extends ServicioBaseImpl<Incidencia, Long, RepositorioIncidencia> {
 
 
     @Autowired

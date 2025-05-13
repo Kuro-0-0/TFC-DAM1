@@ -1,20 +1,21 @@
 package com.salesianostriana.dam.GarciaMariaPablo.servicios;
 
+import java.text.Normalizer;
+import java.util.Comparator;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
 import com.salesianostriana.dam.GarciaMariaPablo.daos.estado.EstadoDao_Crear;
 import com.salesianostriana.dam.GarciaMariaPablo.daos.estado.EstadoDao_Listar;
 import com.salesianostriana.dam.GarciaMariaPablo.daos.estado.EstadoDao_Modificar;
 import com.salesianostriana.dam.GarciaMariaPablo.modelos.Estado;
 import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioEstado;
-import com.salesianostriana.dam.GarciaMariaPablo.servicios.base.ServicioBase;
-import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-
-import java.text.Normalizer;
-import java.util.Comparator;
-import java.util.List;
+import com.salesianostriana.dam.GarciaMariaPablo.servicios.base.ServicioBaseImpl;
 
 @Service
-public class ServicioEstado extends ServicioBase<Estado, Long, RepositorioEstado> {
+public class ServicioEstado extends ServicioBaseImpl<Estado, Long, RepositorioEstado> {
 
     public Estado revertirDao(EstadoDao_Modificar estadoDao) {
         Estado estado = findById(estadoDao.getId()).orElseThrow();
