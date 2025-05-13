@@ -8,7 +8,7 @@ public class ControladorPrincipal {
 
     @GetMapping("/")
     public String cargarPaginaPrincipal() {
-        return "admin/paginaPrincipal";
+        return "admin/otros/paginaPrincipal";
     }
 
 }

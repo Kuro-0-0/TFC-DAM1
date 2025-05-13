@@ -1,81 +1,54 @@
 <!DOCTYPE html>
 <html lang="es" class="h-100">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Pablo Garcia Maria" />
+    <meta name="description" content="Listado y gestión de usuarios del sistema administrativo." />
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" href="../../../static/img/favicon.ico" th:href="@{/img/favicon.ico}" type="image/x-icon">
     <title>Gestión de Usuarios - Listado</title>
 
-    <div th:replace="~{admin/_fragments/head.html :: head}"></div>
-    
-    <!--JavaScript-->
-    <!-- Comentarios sobre como funcionan, dentro de cada JS. -->
-    <script defer src="../../../staticadmin/javascript/usuarios/listar/borrarUsuario.js"  th:src="@{/admin/javascript/usuarios/listar/borrarUsuario.js}"></script>
-    <script defer src="../../../staticadmin/javascript/usuarios/listar/limpiarFiltros.js" th:src="@{/admin/javascript/usuarios/listar/limpiarFiltros.js}"></script>
+    <th:block th:replace="~{admin/_fragments/head.html :: head}"></th:block>
 
-    <div th:replace="~{admin/_fragments/listarJS.html :: import}"></div>
-
+    <!-- JavaScript -->
+    <script defer src="../../../static/admin/javascript/usuarios/listar/borrarUsuario.js" th:src="@{/admin/javascript/usuarios/listar/borrarUsuario.js}"></script>
+    <script defer src="../../../static/admin/javascript/usuarios/listar/limpiarFiltros.js" th:src="@{/admin/javascript/usuarios/listar/limpiarFiltros.js}"></script>
+    <th:block th:replace="~{admin/_fragments/listarJS.html :: import}"></th:block>
 </head>
 
 <body class="d-flex flex-column h-100 bg-light">
-
-    <!-- Encabezado -->
     <header th:replace="~{admin/_fragments/header.html :: header}"></header>
 
-    <!-- Contenido principal -->
-    <main class="container flex-grow-1 my-4">
-
+    <main class="container flex-grow-1 my-4" role="main">
         <div th:replace="~{admin/_fragments/errorMessage.html :: errorMessage}"></div>
 
-        <div class="d-flex justify-content-between align-items-center mb-4">
+        <section class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="h4 mb-0 txt-main fw-bold">
-                <i class="bi bi-people me-2"></i>Listado de Usuarios
+                <i class="bi bi-people me-2" aria-hidden="true"></i>Listado de Usuarios
             </h1>
             <div class="d-flex gap-2">
-                <a th:href="@{/usuarios/crear}" class="btn btn-success btn-sm">
-                    <i class="bi bi-plus-circle me-1"></i>Nuevo Usuario
+                <a th:href="@{/usuarios/crear}" class="btn btn-success btn-sm" aria-label="Crear nuevo usuario">
+                    <i class="bi bi-plus-circle me-1" aria-hidden="true"></i>Nuevo Usuario
                 </a>
-                <button class="btn btn-outline-secondary btn-sm rounded-2" data-bs-toggle="modal"
-                    data-bs-target="#modalFiltros">
-                    <i class="bi bi-funnel me-1"></i>Filtros
+                <button class="btn btn-outline-secondary btn-sm rounded-2" data-bs-toggle="modal" data-bs-target="#modalFiltros" aria-label="Abrir filtros">
+                    <i class="bi bi-funnel me-1" aria-hidden="true"></i>Filtros
                 </button>
             </div>
-        </div>
+        </section>
 
-        <div class="bg-white rounded-3 shadow-sm p-3 mb-3">
-            <div class="table-responsive">
+        <section class="bg-white rounded-3 shadow-sm p-3 mb-3">
+            <div class="table-responsive" aria-label="Tabla de usuarios">
                 <table class="table table-hover align-middle">
-                    <thead
-                        class="table-light border border-bottom border-main border-top-0 border-start-0 border-end-0 border-2">
+                    <thead class="table-light border border-bottom border-main border-top-0 border-start-0 border-end-0 border-2">
                         <tr>
-                            <th scope="col">
-                                <a href="#" onclick="ordenarPor('username')"
-                                    class="text-decoration-none text-dark d-flex align-items-center gap-1">
-                                    Username <span id="icon-username" class="ms-1"></span>
-                                </a>
-                            </th>
-                            <th scope="col">
-                                <a href="#" onclick="ordenarPor('nombre')"
-                                    class="text-decoration-none text-dark d-flex align-items-center gap-1">
-                                    Nombre <span id="icon-nombre" class="ms-1"></span>
-                                </a>
-                            </th>
-                            <th scope="col">
-                                <a href="#" onclick="ordenarPor('apellidos')"
-                                    class="text-decoration-none text-dark d-flex align-items-center gap-1">
-                                    Apellidos <span id="icon-apellidos" class="ms-1"></span>
-                                </a>
-                            </th>
-                            <th scope="col">
-                                <a href="#" onclick="ordenarPor('rol')"
-                                    class="text-decoration-none text-dark d-flex align-items-center gap-1">
-                                    Rol <span id="icon-rol" class="ms-1"></span>
-                                </a>
-                            </th>
+                            <th scope="col"><a href="#" onclick="ordenarPor('username')" class="text-decoration-none text-dark d-flex align-items-center gap-1">Username <span id="icon-username" class="ms-1"></span></a></th>
+                            <th scope="col"><a href="#" onclick="ordenarPor('nombre')" class="text-decoration-none text-dark d-flex align-items-center gap-1">Nombre <span id="icon-nombre" class="ms-1"></span></a></th>
+                            <th scope="col"><a href="#" onclick="ordenarPor('apellidos')" class="text-decoration-none text-dark d-flex align-items-center gap-1">Apellidos <span id="icon-apellidos" class="ms-1"></span></a></th>
+                            <th scope="col"><a href="#" onclick="ordenarPor('rol')" class="text-decoration-none text-dark d-flex align-items-center gap-1">Rol <span id="icon-rol" class="ms-1"></span></a></th>
                             <th scope="col" class="text-center">Acciones</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         <tr th:each="usuario : ${usuarios}">
                             <td th:text="${usuario.username}">user123</td>
@@ -87,87 +60,38 @@
                                     th:text="${usuario.rol.name()}">REPORTANTE</span>
                             </td>
                             <td class="text-center">
-                                <a th:href="@{/usuarios/modificar/{id}(id=${usuario.id})}" th:if="${usuario.editable}"
-                                    class="btn btn-sm btn-outline-success px-2 py-1 rounded-1 me-1">
-                                    <i class="bi bi-pencil"></i>
+                                <a th:href="@{/usuarios/modificar/{id}(id=${usuario.id})}" th:if="${usuario.editable}" class="btn btn-sm btn-outline-success px-2 py-1 rounded-1 me-1" aria-label="Modificar usuario">
+                                    <i class="bi bi-pencil" aria-hidden="true"></i>
                                 </a>
                                 <button class="btn btn-sm btn-outline-danger px-2 py-1 rounded-1" data-bs-toggle="modal"
-                                    data-bs-target="#confirmarEliminacionModal" th:if="${usuario.editable}"
-                                    th:data-id="${usuario.id}">
-                                    <i class="bi bi-trash"></i>
+                                    data-bs-target="#confirmarEliminacionModal" th:if="${usuario.editable}" th:data-id="${usuario.id}" aria-label="Eliminar usuario">
+                                    <i class="bi bi-trash" aria-hidden="true"></i>
                                 </button>
                             </td>
                         </tr>
-
                         <tr th:if="${usuarios.isEmpty()}">
                             <td colspan="5" class="text-center py-4 text-muted">
-                                <i class="bi bi-exclamation-circle me-2"></i>
-                                No hay usuarios registrados en el sistema.
+                                <i class="bi bi-exclamation-circle me-2" aria-hidden="true"></i>No hay usuarios registrados en el sistema.
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
-            <!-- Paginación -->
-            <div class="bg-white rounded-3 shadow-sm p-3 mt-4">
-                <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
-                    <!-- Selector de elementos por página -->
-                    <form method="get" class="d-flex align-items-center gap-2" onsubmit="handleFormSubmit(event)">
-                        <label for="perPage" class="form-label mb-0 small">Elementos por página:</label>
-                        <input type="number" min="1" max="100" class="form-control form-control-sm w-auto" id="perPage"
-                            name="perPage" th:value="${perPage}" onchange="handleInputChange()">
-                    </form>
+            <section th:replace="~{admin/_fragments/paginacion.html :: paginacion}"></section>
 
-                    <div class="text-muted small">
-                        Mostrando <span th:text="${mostrandoAhora}">5</span> <span
-                            th:text="${mostrandoAhora == 1 ? 'elemento' : 'elementos'}"></span>
-                    </div>
-
-                    <!-- Navegación de páginas -->
-                    <nav>
-                        <ul class="pagination mb-0 h-auto">
-                            <li class="page-item" th:classappend="${paginaActual == 1} ? 'disabled'">
-                                <a class="page-link d-flex justify-content-center align-items-center h-100" href="#"
-                                    th:data-page="${paginaActual-1}" onclick="changePage(this)">
-                                    <i class="bi bi-chevron-left"></i>
-                                </a>
-                            </li>
-                            <li class="page-item">
-                                <span class="page-link text-secondary h-100">
-                                    <input type="number" min="1" th:attr="max=${paginaFinal}"
-                                        th:data-paginaActual="${paginaActual}" value="1"
-                                        class="form-control form-control-sm d-inline-block text-center w-auto"
-                                        id="paginaSeleccionada" th:value="${paginaActual}" onchange="goToPage()">
-                                    de <span th:text="${paginaFinal}">10</span>
-                                </span>
-                            </li>
-                            <li class="page-item" th:classappend="${paginaActual == paginaFinal} ? 'disabled'">
-                                <a class="page-link d-flex justify-content-center align-items-center h-100" href="#"
-                                    th:data-page="${paginaActual+1}" onclick="changePage(this)">
-                                    <i class="bi bi-chevron-right"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
+        </section>
     </main>
 
-    <!-- Modal de Confirmación de Eliminación -->
-    <div class="modal fade" id="confirmarEliminacionModal" tabindex="-1" aria-labelledby="confirmarEliminacionLabel"
-        aria-hidden="true">
+    <!-- Modal Confirmar Eliminación -->
+    <div class="modal fade" id="confirmarEliminacionModal" tabindex="-1" aria-labelledby="confirmarEliminacionLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content" role="alertdialog" aria-modal="true">
                 <div class="modal-header bg-danger text-white">
                     <h5 class="modal-title" id="confirmarEliminacionLabel">Confirmar Eliminación</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Cerrar"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
-                <div class="modal-body">
-                    ¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.
-                </div>
+                <div class="modal-body">¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.</div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     <form th:method="delete" id="borrarUsuario">
@@ -178,18 +102,18 @@
         </div>
     </div>
 
-    <!-- Modal de Filtros -->
+    <!-- Modal Filtros -->
     <div class="modal fade" id="modalFiltros" tabindex="-1" aria-labelledby="modalFiltrosLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content" role="dialog" aria-modal="true">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalFiltrosLabel">
-                        <i class="bi bi-funnel me-2"></i>Filtrar Usuarios
+                        <i class="bi bi-funnel me-2" aria-hidden="true"></i>Filtrar Usuarios
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="filtroForm" th:action="@{/usuarios}" th:method="get">
+                    <form id="filtroForm" th:action="@{/usuarios}" th:method="get" aria-label="Formulario de filtros">
                         <div class="row g-3">
                             <!-- Username -->
                             <div class="col-md-6">
@@ -248,27 +172,17 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Nuevo switch para mostrar usuarios ocultos -->
                         <div class="mt-3 pt-3 border-top">
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch" id="mostrarOcultos"
-                                    name="mostrarOcultos"
-                                    th:checked="${mostrarOcultos != null ? mostrarOcultos : false}">
-                                <label class="form-check-label" for="mostrarOcultos">
-                                    Mostrar usuarios ocultos
-                                </label>
+                                <input class="form-check-input" type="checkbox" role="switch" id="mostrarOcultos" name="mostrarOcultos" th:checked="${mostrarOcultos != null ? mostrarOcultos : false}" />
+                                <label class="form-check-label" for="mostrarOcultos">Mostrar usuarios ocultos</label>
                             </div>
                         </div>
                     </form>
                 </div>
-
-
-
-
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-danger" onclick="resetForm()">
-                        <i class="bi bi-eraser me-1"></i>Limpiar
+                        <i class="bi bi-eraser me-1" aria-hidden="true"></i>Limpiar
                     </button>
                     <input type="submit" form="filtroForm" class="btn btn-primary" value="Aplicar Filtros">
                 </div>
@@ -276,8 +190,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer th:replace="~{admin/_fragments/footer.html :: footer}"></footer>
 </body>
-
 </html>

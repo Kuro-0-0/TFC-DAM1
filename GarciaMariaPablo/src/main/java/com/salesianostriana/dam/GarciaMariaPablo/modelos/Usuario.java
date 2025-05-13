@@ -45,8 +45,8 @@ public class Usuario implements Comparable<Usuario> {
 
     public void transferirIncidencias(Usuario userDefault) {
         switch (userDefault.getRol()) {
-            case tecnico -> this.incidenciasGestionadas.forEach( incidencia -> incidencia.setTecnico(userDefault));
-            case reportante -> this.incidenciasReportadas.forEach( incidencia -> incidencia.setReportante(userDefault));
+            case tecnico -> this.incidenciasGestionadas.forEach( incidencia ->  {incidencia.setTecnico(userDefault);userDefault.getIncidenciasGestionadas().add(incidencia);});
+            case reportante -> this.incidenciasReportadas.forEach( incidencia -> {incidencia.setReportante(userDefault);userDefault.getIncidenciasReportadas().add(incidencia);});
         }
     }
 

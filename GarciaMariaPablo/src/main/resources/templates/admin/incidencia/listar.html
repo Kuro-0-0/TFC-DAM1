@@ -2,182 +2,147 @@
 <html lang="es" class="h-100">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Incidencias - Listar incidencias</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content="Página de administración para listar, filtrar y gestionar incidencias reportadas." />
+    <meta name="keywords" content="Gestión de incidencias, administración, usuarios, estados, sistema, soporte técnico">
+    <link rel="icon" href="../../../static/img/favicon.ico" th:href="@{img/favicon.ico}" type="image/x-icon">
+    <meta name="author" content="Pablo Garcia Maria" />
+    
+    <title>Listado de Incidencias | Gestión de Incidencias</title>
 
-    <div th:replace="~{admin/_fragments/head.html :: head}"></div>
+    <th:block th:replace="~{admin/_fragments/head.html :: head}"></th:block>
 
-    <!--JavaScript-->
-    <!-- Comentarios sobre como funcionan, dentro de cada JS. -->
-    <script defer src="../../../staticadmin/javascript/incidencias/listar/borrarIncidencia.js"
-        th:src="@{/admin/javascript/incidencias/listar/borrarIncidencia.js}"></script>
-    <script defer src="../../../staticadmin/javascript/incidencias/listar/limpiarFiltros.js"
-        th:src="@{/admin/javascript/incidencias/listar/limpiarFiltros.js}"></script>
+    <!-- JavaScript -->
+    <script defer th:src="@{/admin/javascript/incidencias/listar/borrarIncidencia.js}"></script>
+    <script defer th:src="@{/admin/javascript/incidencias/listar/limpiarFiltros.js}"></script>
 
-    <div th:replace="~{admin/_fragments/listarJS.html :: import}"></div>
-
+    <th:block th:replace="~{admin/_fragments/listarJS.html :: import}"></th:block>
 </head>
 
 <body class="d-flex flex-column h-100 bg-light">
-    <!-- Encabezado -->
     <header th:replace="~{admin/_fragments/header.html :: header}"></header>
 
-    <!-- Contenido principal -->
     <main class="container flex-grow-1 my-4">
-
         <div th:replace="~{admin/_fragments/errorMessage.html :: errorMessage}"></div>
 
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="h4 mb-0 txt-main fw-bold">
-                <i class="bi bi-list-task me-2"></i>Listado de Incidencias
-            </h1>
-            <div class="d-flex gap-2">
-                <a th:href="@{/incidencias/crear}" href="formulario.html" class="btn btn-success btn-sm">
-                    <i class="bi bi-plus-circle me-1"></i>Crear Incidencia
-                </a>
-                <button class="btn btn-outline-secondary btn-sm rounded-2" data-bs-toggle="modal"
-                    data-bs-target="#modalFiltros">
-                    <i class="bi bi-funnel me-1"></i>Filtros
-                </button>
-            </div>
-        </div>
-
-        <div class="bg-white rounded-3 shadow-sm p-3 mb-3">
-            <div class="table-responsive">
-                <table class="table table-hover align-middle">
-                    <thead
-                        class="table-light border border-bottom border-main border-top-0 border-start-0 border-end-0 border-2">
-                        <tr>
-                            <th scope="col">
-                                <a href="#" onclick="ordenarPor('id')"
-                                    class="text-decoration-none text-dark d-flex align-items-center gap-1">
-                                    ID <span id="icon-id" class="ms-1"></span>
-                                </a>
-                            </th>
-                            <th scope="col">
-                                <a href="#" onclick="ordenarPor('titulo')"
-                                    class="text-decoration-none text-dark d-flex align-items-center gap-1">
-                                    Título <span id="icon-titulo" class="ms-1"></span>
-                                </a>
-                            </th>
-                            <th scope="col">
-                                <a href="#" onclick="ordenarPor('ubicacion')"
-                                    class="text-decoration-none text-dark d-flex align-items-center gap-1">
-                                    Ubicación <span id="icon-ubicacion" class="ms-1"></span>
-                                </a>
-                            </th>
-                            <th scope="col">
-                                <a href="#" onclick="ordenarPor('reportante')"
-                                    class="text-decoration-none text-dark d-flex align-items-center gap-1">
-                                    Reportante <span id="icon-reportante" class="ms-1"></span>
-                                </a>
-                            </th>
-                            <th scope="col">
-                                <a href="#" onclick="ordenarPor('estado')"
-                                    class="text-decoration-none text-dark d-flex align-items-center gap-1">
-                                    Estado <span id="icon-estado" class="ms-1"></span>
-                                </a>
-                            </th>
-                            <th scope="col">
-                                <a href="#" onclick="ordenarPor('fechaCreacion')"
-                                    class="text-decoration-none text-dark d-flex align-items-center gap-1">
-                                    Fecha IEA <span id="icon-fechaCreacion" class="ms-1"></span>
-                                </a>
-                            </th>
-                            <th scope="col" class="text-center">Acciones</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr th:each="incidencia : ${incidencias}">
-                            <th scope="row" th:text="${incidencia.id}">1</th>
-                            <td th:text="${incidencia.titulo}">Falla en red</td>
-                            <td th:text="${incidencia.ubicacion}">Planta 1</td>
-                            <td th:text="${incidencia.reportante.nombre}">Ana Gómez</td>
-                            <td>
-                                <span class="badge w-100 rounded-pill fw-bold px-3" th:text="${incidencia.estado.nombre}"
-                                    style="background-color: yellowgreen; color: white;"
-                                    th:style="'background-color: '+${incidencia.estado.colorFondo}+';color: '+${incidencia.estado.colorTexto}">
-                                    Pendiente
-                                </span>
-                            </td>
-                            <td th:text="${incidencia.fechaCreacion}">2025-04-23</td>
-                            <td class="text-center">
-                                <a th:href="@{/incidencias/inspeccionar/{id}(id=${incidencia.id})}"
-                                    href="inspeccionar.html"
-                                    class="btn btn-sm btn-outline-primary px-2 py-1 rounded-1 me-1">
-                                    <i class="bi bi-eye"></i>
-                                </a>
-                                <a th:href="@{/incidencias/modificar/{id}(id=${incidencia.id})}" href="formulario.html"
-                                    class="btn btn-sm btn-outline-success px-2 py-1 rounded-1 me-1">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                                <button class="btn btn-sm btn-outline-danger px-2 py-1 rounded-1" data-bs-toggle="modal"
-                                    data-bs-target="#confirmarEliminacionModal" th:data-id="${incidencia.id}">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-
-                        <tr th:if="${incidencias.isEmpty()}">
-                            <td colspan="7" class="text-center py-4 text-muted">
-                                <i class="bi bi-exclamation-circle me-2"></i>
-                                No hay incidencias disponibles, pruebe a modificar los filtros o crear alguna nueva.
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Paginación -->
-            <div class="bg-white rounded-3 shadow-sm p-3 mt-4">
-                <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
-                    <!-- Selector de elementos por página -->
-                    <form method="get" class="d-flex align-items-center gap-2" onsubmit="handleFormSubmit(event)">
-                        <label for="perPage" class="form-label mb-0 small">Elementos por página:</label>
-                        <input type="number" min="1" max="100" class="form-control form-control-sm w-auto" id="perPage"
-                            name="perPage" th:value="${perPage}" onchange="handleInputChange()">
-                    </form>
-
-                    <div class="text-muted small">
-                        Mostrando <span th:text="${mostrandoAhora}">5</span> <span
-                            th:text="${mostrandoAhora == 1 ? 'elemento' : 'elementos'}"></span>
-                    </div>
-
-                    <!-- Navegación de páginas -->
-                    <nav>
-                        <ul class="pagination mb-0 h-auto ">
-                            <li class="page-item" th:classappend="${paginaActual == 1} ? 'disabled'">
-                                <a class="page-link d-flex justify-content-center align-items-center h-100" href="#"
-                                    th:data-page="${paginaActual-1}" onclick="changePage(this)">
-                                    <i class="bi bi-chevron-left"></i>
-                                </a>
-                            </li>
-                            <li class="page-item">
-                                <span class="page-link text-secondary h-100">
-                                    <input type="number" min="1" th:attr="max=${paginaFinal}"
-                                        th:data-paginaActual="${paginaActual}"
-                                        class="form-control form-control-sm d-inline-block text-center w-auto"
-                                        id="paginaSeleccionada" value="1" th:value="${paginaActual}"
-                                        onchange="goToPage()">
-                                    de <span th:text="${paginaFinal}">10</span>
-                                </span>
-                            </li>
-                            <li class="page-item" th:classappend="${paginaActual == paginaFinal} ? 'disabled'">
-                                <a class="page-link d-flex justify-content-center align-items-center h-100" href="#"
-                                    th:data-page="${paginaActual+1}" onclick="changePage(this)">
-                                    <i class="bi bi-chevron-right"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+        <section aria-labelledby="tituloListado">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 id="tituloListado" class="h4 mb-0 txt-main fw-bold">
+                    <i class="bi bi-list-task me-2" aria-hidden="true"></i>Listado de Incidencias
+                </h1>
+                <div class="d-flex gap-2">
+                    <a th:href="@{/incidencias/crear}" class="btn btn-success btn-sm">
+                        <i class="bi bi-plus-circle me-1" aria-hidden="true"></i>Crear Incidencia
+                    </a>
+                    <button class="btn btn-outline-secondary btn-sm rounded-2" data-bs-toggle="modal"
+                        data-bs-target="#modalFiltros">
+                        <i class="bi bi-funnel me-1" aria-hidden="true"></i>Filtros
+                    </button>
                 </div>
             </div>
-        </div>
+
+            <div class="bg-white rounded-3 shadow-sm p-3 mb-3">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead
+                            class="table-light border border-bottom border-main border-top-0 border-start-0 border-end-0 border-2">
+                            <tr>
+                                <th scope="col">
+                                    <button
+                                        class="btn btn-link text-decoration-none text-dark d-flex align-items-center gap-1 p-0"
+                                        onclick="ordenarPor('id')" aria-label="Ordenar por ID">
+                                        ID <span id="icon-id" class="ms-1"></span>
+                                    </button>
+                                </th>
+                                <th scope="col">
+                                    <button
+                                        class="btn btn-link text-decoration-none text-dark d-flex align-items-center gap-1 p-0"
+                                        onclick="ordenarPor('titulo')" aria-label="Ordenar por Título">
+                                        Título <span id="icon-titulo" class="ms-1"></span>
+                                    </button>
+                                </th>
+                                <th scope="col">
+                                    <button
+                                        class="btn btn-link text-decoration-none text-dark d-flex align-items-center gap-1 p-0"
+                                        onclick="ordenarPor('ubicacion')" aria-label="Ordenar por Ubicación">
+                                        Ubicación <span id="icon-ubicacion" class="ms-1"></span>
+                                    </button>
+                                </th>
+                                <th scope="col">
+                                    <button
+                                        class="btn btn-link text-decoration-none text-dark d-flex align-items-center gap-1 p-0"
+                                        onclick="ordenarPor('reportante')" aria-label="Ordenar por Reportante">
+                                        Reportante <span id="icon-reportante" class="ms-1"></span>
+                                    </button>
+                                </th>
+                                <th scope="col">
+                                    <button
+                                        class="btn btn-link text-decoration-none mx-auto text-dark d-flex align-items-center gap-1 p-0"
+                                        onclick="ordenarPor('estado')" aria-label="Ordenar por Estado">
+                                        Estado <span id="icon-estado" class="ms-1"></span>
+                                    </button>
+                                </th>
+                                <th scope="col">
+                                    <button
+                                        class="btn btn-link text-decoration-none mx-auto text-dark d-flex align-items-center gap-1 p-0"
+                                        onclick="ordenarPor('fechaCreacion')"
+                                        aria-label="Ordenar por Fecha de Creación">
+                                        Fecha IEA <span id="icon-fechaCreacion" class="ms-1"></span>
+                                    </button>
+                                </th>
+                                <th scope="col" class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="incidencia : ${incidencias}">
+                                <th scope="row" th:text="${incidencia.id}">1</th>
+                                <td th:text="${incidencia.titulo}">Falla en red</td>
+                                <td th:text="${incidencia.ubicacion}">Planta 1</td>
+                                <td th:text="${incidencia.reportante.nombre}">Ana Gómez</td>
+                                <td>
+                                    <span class="badge w-100 rounded-pill fw-bold px-3"
+                                        th:text="${incidencia.estado.nombre}"
+                                        th:style="'background-color: '+${incidencia.estado.colorFondo}+';color: '+${incidencia.estado.colorTexto}"
+                                        role="status">
+                                        Pendiente
+                                    </span>
+                                </td>
+                                <td class="text-center" th:text="${incidencia.fechaCreacion}">2025-04-23</td>
+                                <td class="text-center">
+                                    <a th:href="@{/incidencias/inspeccionar/{id}(id=${incidencia.id})}"
+                                        class="btn btn-sm btn-outline-primary px-2 py-1 rounded-1 me-1"
+                                        aria-label="Ver detalles de la incidencia">
+                                        <i class="bi bi-eye" aria-hidden="true"></i>
+                                    </a>
+                                    <a th:href="@{/incidencias/modificar/{id}(id=${incidencia.id})}"
+                                        class="btn btn-sm btn-outline-success px-2 py-1 rounded-1 me-1"
+                                        aria-label="Modificar incidencia">
+                                        <i class="bi bi-pencil" aria-hidden="true"></i>
+                                    </a>
+                                    <button class="btn btn-sm btn-outline-danger px-2 py-1 rounded-1"
+                                        data-bs-toggle="modal" data-bs-target="#confirmarEliminacionModal"
+                                        th:data-id="${incidencia.id}" aria-label="Eliminar incidencia">
+                                        <i class="bi bi-trash" aria-hidden="true"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr th:if="${incidencias.isEmpty()}">
+                                <td colspan="7" class="text-center py-4 text-muted">
+                                    <i class="bi bi-exclamation-circle me-2" aria-hidden="true"></i>
+                                    No hay incidencias disponibles. Modifica los filtros o crea una nueva.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section th:replace="~{admin/_fragments/paginacion.html :: paginacion}"></section>
     </main>
 
-    <!-- Modal de Confirmación de Eliminación -->
     <div class="modal fade" id="confirmarEliminacionModal" tabindex="-1" aria-labelledby="confirmarEliminacionLabel"
         aria-hidden="true">
         <div class="modal-dialog">
@@ -202,7 +167,6 @@
         </div>
     </div>
 
-    <!-- Modal de Filtros -->
     <div class="modal fade" id="modalFiltros" tabindex="-1" aria-labelledby="modalFiltrosLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
@@ -279,8 +243,7 @@
                                         data-bs-toggle="dropdown">
                                         <i class="bi bi-tags me-1"></i>Seleccionar Estados
                                     </button>
-                                    <ul class="dropdown-menu p-2 w-100 overflow-auto scroll-3-items"
-                                        id="listaEstados">
+                                    <ul class="dropdown-menu p-2 w-100 overflow-auto scroll-3-items" id="listaEstados">
                                         <li th:each="estado : ${estados}" th:data-label="${estado.nombre}">
                                             <div class="form-check d-flex align-items-center">
                                                 <input class="form-check-input me-2" type="checkbox"
@@ -319,7 +282,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer th:replace="~{admin/_fragments/footer.html :: footer}"></footer>
 </body>
 

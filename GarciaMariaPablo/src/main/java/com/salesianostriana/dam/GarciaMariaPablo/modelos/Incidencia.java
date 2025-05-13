@@ -1,10 +1,7 @@
 package com.salesianostriana.dam.GarciaMariaPablo.modelos;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -24,15 +21,18 @@ public class Incidencia {
     private LocalDate fechaCreacion;
 
     @ManyToOne
+    @ToString.Exclude
     @JoinColumn(name = "reportante_id")
     private Usuario reportante;
 
     @ManyToOne
+    @ToString.Exclude
     @JoinColumn(name = "tecnico_id")
     private Usuario tecnico;
 
     @ManyToOne
     @JoinColumn(name = "estado_id")
+    @ToString.Exclude
     private Estado estado;
 
     /* HELPERS */

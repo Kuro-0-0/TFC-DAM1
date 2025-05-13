@@ -1,5 +1,9 @@
-<footer th:fragment="footer" class="bg-dark text-white py-3 mt-auto">
+<footer th:fragment="footer" class="bg-dark text-white py-3 mt-auto" role="contentinfo" itemscope
+    itemtype="https://schema.org/Organization">
     <div class="container text-center">
-        <small>&copy; <span th:text="${currentYear}">2025</span> Sistema de Gestión de Incidencias</small>
+        <small>
+            &copy;
+            <span itemprop="name">Sistema de Gestión de Incidencias</span>. Todos los derechos reservados.
+        </small>
     </div>
 </footer>
