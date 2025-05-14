@@ -3,7 +3,6 @@ package com.salesianostriana.dam.GarciaMariaPablo.controladores;
 import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.UsuarioDao_Crear;
 import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.UsuarioDao_Modificar;
 import com.salesianostriana.dam.GarciaMariaPablo.servicios.ServicioUsuario;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,8 +49,8 @@ public class ControladorUsuario {
     }
 
     @PutMapping
-    public String modificar(@ModelAttribute UsuarioDao_Modificar usuarioDao, Model model) {
-        return servicioUsuario.modificar(usuarioDao, model);
+    public String modificar(@ModelAttribute UsuarioDao_Modificar usuarioDao, Model model,RedirectAttributes redirectAttributes) {
+        return servicioUsuario.modificar(usuarioDao, model, redirectAttributes);
     }
 
     @DeleteMapping("{id}")

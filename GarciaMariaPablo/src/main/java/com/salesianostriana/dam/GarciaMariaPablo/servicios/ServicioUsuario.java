@@ -138,7 +138,7 @@ public class ServicioUsuario extends ServicioBaseImpl<Usuario, Long, Repositorio
         return "redirect:/usuarios";
     }
 
-    public String modificar(UsuarioDao_Modificar usuarioDao,Model model) {
+    public String modificar(UsuarioDao_Modificar usuarioDao,Model model,RedirectAttributes redirectAttributes) {
         Usuario usuarioAntiguo = findById(usuarioDao.getId()).orElseThrow();
         Usuario nuevoUsuario = revertirDao(usuarioDao,usuarioAntiguo);
         //Usuario nuevoUsuario = revertirDao(usuarioDao);
@@ -146,12 +146,12 @@ public class ServicioUsuario extends ServicioBaseImpl<Usuario, Long, Repositorio
             if (repositorio.findByUsername(nuevoUsuario.getUsername()) != null && !usuarioAntiguo.getUsername().equals(nuevoUsuario.getUsername())) {
                 model.addAttribute("usuarioDao", usuarioDao);
                 model.addAttribute("error","El nombre de usuario ya existe.");
-                return cargarCrear(model);
+                return cargarModificar(model,usuarioDao.getId(),redirectAttributes);
             }
             if (nuevoUsuario.getRol() == null) {
                 model.addAttribute("usuarioDao", usuarioDao);
                 model.addAttribute("error","Debe escoger un rol.");
-                return cargarCrear(model);
+                return cargarModificar(model,usuarioDao.getId(),redirectAttributes);
             }
         }
 

@@ -15,16 +15,21 @@ public class Usuario implements Comparable<Usuario> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
     private long id;
 
+    @Column(unique = true, nullable = false)
     private String username;
+
+    @Column(nullable = false)
     private String password;
 
     private String nombre;
     private String apellidos;
 
     private Rol rol;
-    private boolean editable;
+    @Builder.Default
+    private boolean editable = true;
 
     @OneToMany
     @JoinColumn(name = "reportante_id")
