@@ -16,12 +16,6 @@ public class ControladorEstado {
     @Autowired
     private ServicioEstado servicioEstado;
 
-    public void activeTab(Model model, HttpServletRequest request) {
-        if ("GET".equalsIgnoreCase(request.getMethod())) {
-            model.addAttribute("activeTab", "estados");
-        }
-    }
-
     @GetMapping
     public String listar(Model model,
                          @RequestParam(required = false,name = "pagina",defaultValue = "1") String paginaNum,

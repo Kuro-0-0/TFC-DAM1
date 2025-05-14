@@ -25,6 +25,9 @@
     <header th:replace="~{admin/_fragments/header.html :: header}"></header>
 
     <main class="container my-5" id="main-content">
+
+        <div th:replace="~{admin/_fragments/popUpMessages.html :: popUpMessages}"></div>
+
         <h1 class="mb-4 text-center fw-bold txt-main">Panel de Administración</h1>
 
         <section aria-labelledby="busqueda-label" class="w-100 mx-auto mb-4 limited-width-600">
@@ -201,6 +204,54 @@
                                             sistema.</p>
                                         <a href="../usuario/formulario.html" th:href="@{/usuarios/crear}"
                                             class="btn btn-outline-success px-4">Crear</a>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Sección Otros -->
+            <article class="accordion-item mb-3 border-0 shadow-sm">
+                <h2 class="accordion-header" id="headingOtros">
+                    <button class="accordion-button collapsed bg-secondary text-white fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapseOtros" aria-expanded="false"
+                        aria-controls="collapseOtros">
+                        <i class="bi bi-info-square me-2" aria-hidden="true"></i> Otros
+                    </button>
+                </h2>
+                <div id="collapseOtros" class="accordion-collapse collapse" aria-labelledby="headingOtros"
+                    data-bs-parent="#adminAccordion">
+                    <div class="accordion-body bg-light">
+                        <div class="row g-4">
+                            <!-- Quienes somos -->
+                            <div class="col-md-4">
+                                <section class="card h-100 border-0 shadow-sm" role="region"
+                                    aria-labelledby="quienes-somos-title">
+                                    <div class="card-body text-center p-4">
+                                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                                            <i class="bi bi-people fs-3 text-primary" aria-hidden="true"></i>
+                                        </div>
+                                        <h3 class="card-title mt-2 h5" id="quienes-somos-title">¿Quienes somos?</h3>
+                                        <p class="card-text text-muted mb-4">Consultar informacion sobre la empresa</p>
+                                        <a href="../otros/quienes-somos.html" th:href="@{/nosotros}"
+                                            class="btn btn-outline-primary px-4">Ver</a>
+                                    </div>
+                                </section>
+                            </div>
+                            <!-- Contacto -->
+                            <div class="col-md-4">
+                                <section class="card h-100 border-0 shadow-sm" role="region"
+                                    aria-labelledby="contacto-title">
+                                    <div class="card-body text-center p-4">
+                                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                                            <i class="bi bi-phone fs-3 text-primary" aria-hidden="true"></i>
+                                        </div>
+                                        <h3 class="card-title mt-2 h5" id="contacto-title">Contacto</h3>
+                                        <p class="card-text text-muted mb-4">Consultar informacion de contacto sobre la empresa</p>
+                                        <a href="../otros/contacto.html" th:href="@{/contacto}"
+                                            class="btn btn-outline-primary px-4">Ver</a>
                                     </div>
                                 </section>
                             </div>

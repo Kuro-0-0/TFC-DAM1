@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quiénes somos | Gestión de Incidencias</title>
+    <!-- Metaetiquetas SEO -->
+    <meta name="description"
+        content="Conoce al equipo detrás del Sistema de Gestión de Incidencias. Expertos en desarrollo de software y soporte técnico.">
+    <meta name="keywords" content="gestión de incidencias, equipo técnico, desarrolladores, soporte, misión, valores">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Pablo Garcia Maria">
+
+    <!-- Fragmento HEAD común (Bootstrap, CSS, favicon) -->
+    <th:block th:replace="~{admin/_fragments/head :: head}"></th:block>
+</head>
+
+<body class="d-flex flex-column h-100 bg-light">
+    <!-- Header -->
+    <header th:replace="~{admin/_fragments/header.html :: header}"></header>
+
+    <!-- Contenido principal -->
+    <main class="flex-grow-1 container my-5" role="main">
+
+        <div th:replace="~{admin/_fragments/popUpMessages.html :: popUpMessages}"></div>
+
+        <div class="bg-white shadow-sm rounded-3 p-4 p-md-5">
+            <h1 class="mb-4 border-bottom pb-3 fw-bold text-center txt-main">Quiénes somos</h1>
+
+            <section class="mb-5">
+                <p class="lead text-center">
+                    Somos el equipo detrás del <strong>Sistema de Gestión de Incidencias</strong>, una solución
+                    tecnológica diseñada para optimizar el manejo de fallos técnicos y reportes en entornos
+                    empresariales.
+                </p>
+                <p>
+                    Nuestra plataforma centraliza y automatiza el proceso de seguimiento de incidencias, reduciendo
+                    tiempos de respuesta y mejorando la comunicación entre equipos técnicos y usuarios finales.
+                </p>
+            </section>
+
+            <section class="mb-5">
+                <h2 class="h4 fw-semibold mb-3">Nuestra misión</h2>
+                <p>
+                    Proporcionar herramientas intuitivas y seguras que simplifiquen la gestión de incidencias,
+                    permitiendo a las organizaciones enfocarse en resolver problemas en lugar de perder tiempo en
+                    procesos manuales.
+                </p>
+            </section>
+
+            <section class="mb-5">
+                <h2 class="h4 fw-semibold mb-3">Nuestros valores</h2>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <i class="bi bi-check-circle text-success me-2" aria-hidden="true"></i>
+                        <strong>Innovación:</strong> Mejora continua de nuestras soluciones.
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-check-circle text-success me-2" aria-hidden="true"></i>
+                        <strong>Fiabilidad:</strong> Sistemas estables con uptime del 99.9%.
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-check-circle text-success me-2" aria-hidden="true"></i>
+                        <strong>Soporte proactivo:</strong> Respuesta en menos de 2 horas.
+                    </li>
+                </ul>
+            </section>
+
+            <section class="mb-4">
+                <h2 class="h4 fw-semibold mb-3">Equipo técnico</h2>
+                <div class="row gy-4">
+                    <div class="col-md-6 d-flex align-items-start">
+                        <img src="../../../static/img/dev1.jpg" th:src="@{/img/dev1.jpg}"
+                            alt="Pablo Garcia Maria - Desarrollador Full Stack" class="rounded-circle me-3 shadow-sm"
+                            width="80" height="80" loading="lazy">
+                        <div>
+                            <h3 class="h6 fw-bold mb-1">Pablo Garcia Maria</h3>
+                            <p class="mb-0 small text-muted">Desarrollador Full Stack | Arquitecto del sistema</p>
+                            <p class="small text-muted mt-1">Especializado en Spring Boot, Thymeleaf e infraestructura
+                                informática.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="text-center mt-5">
+                <a th:href="@{/contacto}" href="../contacto.html" class="btn btn-primary">
+                    <i class="bi bi-envelope-fill me-1" aria-hidden="true"></i> Contactar con el equipo
+                </a>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer th:replace="~{admin/_fragments/footer.html :: footer}"></footer>
+</body>
+
+</html>

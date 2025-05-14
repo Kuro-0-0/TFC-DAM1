@@ -26,8 +26,8 @@ public class ServicioUsuario extends ServicioBaseImpl<Usuario, Long, Repositorio
                 .rol(usuarioDao.getRol())
                 .nombre(usuarioDao.getNombre())
                 .username(usuarioDao.getUsername())
-//                .incidenciasReportadas(usuario.getIncidenciasReportadas())
-//                .incidenciasGestionadas(usuario.getIncidenciasGestionadas())
+                .incidenciasReportadas(usuario.getIncidenciasReportadas())
+                .incidenciasGestionadas(usuario.getIncidenciasGestionadas())
                 .password(password)
                 .editable(true)
                 .build();
@@ -154,8 +154,6 @@ public class ServicioUsuario extends ServicioBaseImpl<Usuario, Long, Repositorio
                 return cargarCrear(model);
             }
         }
-
-        usuarioAntiguo.transferirIncidencias(nuevoUsuario);
 
         edit(nuevoUsuario);
         return "redirect:/usuarios";
