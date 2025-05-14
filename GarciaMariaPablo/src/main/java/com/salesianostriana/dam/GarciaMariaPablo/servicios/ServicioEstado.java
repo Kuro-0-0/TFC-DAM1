@@ -65,7 +65,9 @@ public class ServicioEstado extends ServicioBaseImpl<Estado, Long, RepositorioEs
     }
 
     public String cargarCrear(Model model) {
-        model.addAttribute("estadoDao", new EstadoDao_Crear());
+    	if (!model.containsAttribute("estadoDao")) {
+            model.addAttribute("estadoDao", new EstadoDao_Crear());
+		}
         model.addAttribute("modificar", false);
         return "admin/estado/formulario";
     }
@@ -77,8 +79,14 @@ public class ServicioEstado extends ServicioBaseImpl<Estado, Long, RepositorioEs
     }
 
 
-    public String crear(EstadoDao_Crear estadoDao) {
-        save(estadoDao.revertirDao());
+    public String crear(EstadoDao_Crear estadoDao, Model model) {
+        Estado nuevoEstado = estadoDao.revertirDao();
+        if (repositorio.findByNombre(nuevoEstado.getNombre()) != null) {
+        	model.addAttribute("estadoDao", nuevoEstado);
+        	model.addAttribute("error", "No puedes crear dos estados con el mismo nombre.");
+			return cargarCrear(model);
+		}
+    	save(nuevoEstado);
         return "redirect:/estados";
     }
 

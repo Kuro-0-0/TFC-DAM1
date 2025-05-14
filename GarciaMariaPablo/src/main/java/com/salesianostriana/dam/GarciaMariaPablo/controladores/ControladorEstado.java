@@ -38,8 +38,8 @@ public class ControladorEstado {
     }
 
     @PostMapping
-    public String crear(EstadoDao_Crear estadoDao) {
-        return servicioEstado.crear(estadoDao);
+    public String crear(EstadoDao_Crear estadoDao, Model model) {
+        return servicioEstado.crear(estadoDao, model);
     }
 
     @PutMapping
