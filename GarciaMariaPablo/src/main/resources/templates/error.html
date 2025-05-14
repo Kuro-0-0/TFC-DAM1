@@ -10,27 +10,18 @@
 	<meta name="author" content="Pablo Garcia Maria">
     <title>Error 404 - Página no encontrada</title>
 
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- En este no se puede importar por que las rutas son diferentes -->
-    <!-- Icono Web -->
 	<link rel="icon" href="../static/img/favicon.png" th:href="@{/img/favicon.png}" type="image/x-icon">
-    <!-- Required Custom Css -->
     <link rel="stylesheet" href="../static/css/required.css" th:href="@{/css/required.css}">
 
 </head>
 
 <body class="d-flex flex-column h-100 bg-light">
 
-    <!-- Encabezado -->
     <header th:replace="~{admin/_fragments/header.html :: header}"></header>
 
-    <!-- Contenido principal -->
     <main class="container flex-grow-1 my-4 d-flex align-items-center justify-content-center text-center">
         <div class="bg-white rounded-3 shadow-sm p-5 mx-auto limited-width-600">
             <div class="text-danger">
@@ -63,7 +54,6 @@
         </div>
     </main>
 
-    <!-- Footer -->
     <footer th:replace="~{admin/_fragments/footer.html :: footer}"></footer>
 
 </body>
