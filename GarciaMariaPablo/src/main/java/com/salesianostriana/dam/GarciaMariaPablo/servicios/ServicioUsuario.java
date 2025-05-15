@@ -18,20 +18,21 @@ import java.util.List;
 
 @Service
 public class ServicioUsuario extends ServicioBaseImpl<Usuario, Long, RepositorioUsuario> {
-        public Usuario revertirDao(UsuarioDao_Modificar usuarioDao, Usuario usuario) {
-        String password = usuarioDao.getPassword().isEmpty() ? repositorio.findPasswordById(usuarioDao.getId()).orElseThrow() : usuarioDao.getPassword();
-        return Usuario.builder()
-                .id(usuarioDao.getId())
-                .apellidos(usuarioDao.getApellidos())
-                .rol(usuarioDao.getRol())
-                .nombre(usuarioDao.getNombre())
-                .username(usuarioDao.getUsername())
-                .incidenciasReportadas(usuario.getIncidenciasReportadas())
-                .incidenciasGestionadas(usuario.getIncidenciasGestionadas())
-                .password(password)
-                .editable(true)
-                .build();
-    }
+
+        public Usuario revertirDao(UsuarioDao_Modificar usuarioDao) {
+            String password = usuarioDao.getPassword().isEmpty() ? repositorio.findPasswordById(usuarioDao.getId()).orElseThrow() : usuarioDao.getPassword();
+            return Usuario.builder()
+                    .id(usuarioDao.getId())
+                    .apellidos(usuarioDao.getApellidos())
+                    .rol(usuarioDao.getRol())
+                    .nombre(usuarioDao.getNombre())
+                    .username(usuarioDao.getUsername())
+    //                .incidenciasReportadas(usuario.getIncidenciasReportadas())
+    //                .incidenciasGestionadas(usuario.getIncidenciasGestionadas())
+                    .password(password)
+                    .editable(true)
+                    .build();
+        }
 
     public String listar(Model model, String paginaNum, String perPageNum, String ordenPor, boolean ordenAsc, String filtroUsername, String filtroNombre, String filtroApellidos, List<String> rolesName, String mostrarOcultos) {
         List<Long> roles = null;
@@ -140,8 +141,7 @@ public class ServicioUsuario extends ServicioBaseImpl<Usuario, Long, Repositorio
 
     public String modificar(UsuarioDao_Modificar usuarioDao,Model model,RedirectAttributes redirectAttributes) {
         Usuario usuarioAntiguo = findById(usuarioDao.getId()).orElseThrow();
-        Usuario nuevoUsuario = revertirDao(usuarioDao,usuarioAntiguo);
-        //Usuario nuevoUsuario = revertirDao(usuarioDao);
+        Usuario nuevoUsuario = revertirDao(usuarioDao);
         if (nuevoUsuario != null) {
             if (repositorio.findByUsername(nuevoUsuario.getUsername()) != null && !usuarioAntiguo.getUsername().equals(nuevoUsuario.getUsername())) {
                 model.addAttribute("usuarioDao", usuarioDao);

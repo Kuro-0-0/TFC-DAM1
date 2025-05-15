@@ -5,10 +5,12 @@ import com.salesianostriana.dam.GarciaMariaPablo.daos.estado.external.EstadoDao_
 import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.*;
 import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.external.UsuarioDao_FiltrarIncidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.external.UsuarioDao_FormularioIncidencia;
+import com.salesianostriana.dam.GarciaMariaPablo.modelos.HistorialEstados;
 import com.salesianostriana.dam.GarciaMariaPablo.modelos.Incidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.modelos.Usuario;
 import com.salesianostriana.dam.GarciaMariaPablo.modelos.utilidades.Rol;
 import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioEstado;
+import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioHistorialEstados;
 import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioIncidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioUsuario;
 import com.salesianostriana.dam.GarciaMariaPablo.servicios.base.ServicioBaseImpl;
@@ -17,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -31,6 +34,9 @@ public class ServicioIncidencia extends ServicioBaseImpl<Incidencia, Long, Repos
 
     @Autowired
     private RepositorioEstado repositorioEstado;
+
+    @Autowired
+    private RepositorioHistorialEstados repositorioHistorialEstados;
 
 
 
@@ -205,7 +211,30 @@ public class ServicioIncidencia extends ServicioBaseImpl<Incidencia, Long, Repos
 
 
     public String modificar(IncidenciaDao_Modificar incidenciaDao) {
-        edit(revertirDao(incidenciaDao));
+
+        Incidencia antiguaIncidencia = findById(incidenciaDao.getId()).orElseThrow();
+        Incidencia nuevaIncidencia = revertirDao(incidenciaDao);
+
+        if (antiguaIncidencia.getEstado() != nuevaIncidencia.getEstado()) {
+
+            if  (antiguaIncidencia.getFechaCreacion().equals(nuevaIncidencia.getFechaCreacion())) {
+                nuevaIncidencia.setFechaCreacion(LocalDate.now());
+            }
+
+            HistorialEstados nuevaEntrada = HistorialEstados.builder()
+                    .incidencia(nuevaIncidencia)
+                    .fechaComienzo(antiguaIncidencia.getFechaCreacion())
+                    .fechaFinal(nuevaIncidencia.getFechaCreacion())
+                    .estadoActual(nuevaIncidencia.getEstado())
+                    .estadoInicial(antiguaIncidencia.getEstado())
+                    .build();
+
+            nuevaIncidencia.anadirRegistroHistorialEstados(nuevaEntrada);
+
+            repositorioHistorialEstados.save(nuevaEntrada);
+        }
+
+        edit(nuevaIncidencia);
         return "redirect:/incidencias";
     }
 
@@ -221,6 +250,16 @@ public class ServicioIncidencia extends ServicioBaseImpl<Incidencia, Long, Repos
         model.addAttribute("incidencias",findAll().stream()
                 .map(IncidenciaDao_Estadisticas::crearDao)
                 .toList());
+
+        /*
+        Ahora que tenemos historial de estados se pueden hacer estadísticas como por ejemplo:
+            - Tiempo medio de cambio de estado.
+            - Tiempo medio de cambio de estado por usuario
+            - Incidencias por tipos
+            - Incidencia con el tiempo más largo
+            - Incidencia con el tiempo más corto.
+         */
+
         return "admin/incidencia/estadisticas";
     }
 }

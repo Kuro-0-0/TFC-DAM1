@@ -912,3 +912,11 @@ The connection was not closed by the application and is garbage collected [90018
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:690)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	... 16 more
+2025-05-15 02:25:01.059829+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "DROP [*]INCIDENCIA_HISTORIAL_ESTADOS"; se esperaba "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, MATERIALIZED, VIEW, ROLE, ALIAS, SCHEMA, ALL OBJECTS, DOMAIN, TYPE, AGGREGATE, SYNONYM"
+Syntax error in SQL statement "DROP [*]INCIDENCIA_HISTORIAL_ESTADOS"; expected "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, MATERIALIZED, VIEW, ROLE, ALIAS, SCHEMA, ALL OBJECTS, DOMAIN, TYPE, AGGREGATE, SYNONYM"; SQL statement:
+DROP INCIDENCIA_HISTORIAL_ESTADOS [42001-232]
+2025-05-15 02:25:06.324119+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "delete [*]table INCIDENCIA_HISTORIAL_ESTADOS"; se esperaba "identifier"
+Syntax error in SQL statement "delete [*]table INCIDENCIA_HISTORIAL_ESTADOS"; expected "identifier"; SQL statement:
+delete table INCIDENCIA_HISTORIAL_ESTADOS [42001-232]

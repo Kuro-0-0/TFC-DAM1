@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
@@ -35,6 +37,9 @@ public class Incidencia {
     @JoinColumn(name = "estado_id")
     @ToString.Exclude
     private Estado estado;
+
+    @OneToMany(mappedBy = "incidencia")
+    private List<HistorialEstados> historialEstados;
 
     /* HELPERS */
 
@@ -73,5 +78,13 @@ public class Incidencia {
 
     public String getNombreEstado() {
         return estado.getNombre();
+    }
+
+    public void anadirRegistroHistorialEstados(HistorialEstados nuevaEntrada) {
+        if (historialEstados == null) {
+            historialEstados = new ArrayList<>();
+        }
+        this.historialEstados.add(nuevaEntrada);
+        nuevaEntrada.setIncidencia(this);
     }
 }

@@ -63,6 +63,20 @@
                         </div>
                     </section>
 
+                    <section class="mb-4">
+                        <div class="mb-3">
+                            <label for="tipo" class="form-label" id="seccionTipo">Tipo de incidencia</label>
+                            <select id="tipo" name="tipo" th:field="*{tipo}" class="form-select" aria-labelledby="seccionTipo" required>
+                                <option th:if="${!modificar}" value="" disabled selected>Selecciona un tipo</option>
+                                <option th:each="tipoSelec : ${tipos}"
+                                        th:text="${tipoSelec}"
+                                        th:value="${tipoSelec}"
+                                        th:selected="${modificar} ? (${tipoSelec} == ${estadoDao}) : false">
+                                </option>
+                            </select>
+                        </div>
+                    </section>
+
                     <section class="row mb-4" aria-labelledby="seccionColores">
                         <div class="col-md-6 mb-3">
                             <label for="colorFondo" class="form-label fw-medium">

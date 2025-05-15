@@ -31,12 +31,10 @@ public class Usuario implements Comparable<Usuario> {
     @Builder.Default
     private boolean editable = true;
 
-    @OneToMany
-    @JoinColumn(name = "reportante_id")
+    @OneToMany(mappedBy = "reportante")
     private List<Incidencia> incidenciasReportadas;
 
-    @OneToMany
-    @JoinColumn(name = "tecnico_id")
+    @OneToMany(mappedBy = "tecnico")
     private List<Incidencia> incidenciasGestionadas;
 
     @Override
