@@ -35,10 +35,11 @@ La aplicación esconde algunas funcionalidades especiales que se activan en cier
 
 🔧 URLs especiales
 - /usuarios/modificar/5 - Mensaje oculto al intentar editar el técnico "sin-tecnico"
-- /usuarios/modificar/6 - Mensaje secreto al tratar de modificar el reportante "sin-reportante"
+- /usuarios/modificar/6 - Mensaje secreto al intentar editar el reportante "sin-reportante"
+- /nosotros - Agradecimientos y Menciones Honorificas en el apartado del equipo
 
 ⚠️ Protecciones del sistema
-- /usuarios - Intenta eliminar un Admin... ¡no podrás hacerlo! El sistema te lo impedirá
+- /usuarios - Intenta eliminar un Admin...
 
 🤖 Funciones simuladas
 - /contacto - Al enviar un mensaje recibirás una alerta (aunque en realidad no se envía nada)
