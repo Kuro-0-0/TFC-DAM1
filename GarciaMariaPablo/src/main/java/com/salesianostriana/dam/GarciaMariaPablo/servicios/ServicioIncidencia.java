@@ -1,29 +1,38 @@
 package com.salesianostriana.dam.GarciaMariaPablo.servicios;
 
-import com.salesianostriana.dam.GarciaMariaPablo.daos.estado.external.EstadoDao_FiltrarIncidencia;
-import com.salesianostriana.dam.GarciaMariaPablo.daos.estado.external.EstadoDao_Seleccionar;
-import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.*;
-import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.external.UsuarioDao_FiltrarIncidencia;
-import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.external.UsuarioDao_FormularioIncidencia;
-import com.salesianostriana.dam.GarciaMariaPablo.modelos.Incidencia;
-import com.salesianostriana.dam.GarciaMariaPablo.modelos.Usuario;
-import com.salesianostriana.dam.GarciaMariaPablo.modelos.utilidades.Rol;
-import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioEstado;
-import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioIncidencia;
-import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioUsuario;
-import com.salesianostriana.dam.GarciaMariaPablo.servicios.base.ServicioBase;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import com.salesianostriana.dam.GarciaMariaPablo.daos.estado.external.EstadoDao_FiltrarIncidencia;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.estado.external.EstadoDao_Seleccionar;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.IncidenciaDao_Crear;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.IncidenciaDao_Estadisticas;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.IncidenciaDao_Inspeccionar;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.IncidenciaDao_Listar;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.IncidenciaDao_Modificar;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.external.UsuarioDao_FiltrarIncidencia;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.external.UsuarioDao_FormularioIncidencia;
+import com.salesianostriana.dam.GarciaMariaPablo.modelos.HistorialEstados;
+import com.salesianostriana.dam.GarciaMariaPablo.modelos.Incidencia;
+import com.salesianostriana.dam.GarciaMariaPablo.modelos.Usuario;
+import com.salesianostriana.dam.GarciaMariaPablo.modelos.utilidades.Rol;
+import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioEstado;
+import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioHistorialEstados;
+import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioIncidencia;
+import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioUsuario;
+import com.salesianostriana.dam.GarciaMariaPablo.servicios.base.ServicioBaseImpl;
+
+import lombok.extern.slf4j.Slf4j;
+
 @Slf4j
 @Service
-public class ServicioIncidencia extends ServicioBase<Incidencia, Long, RepositorioIncidencia> {
+public class ServicioIncidencia extends ServicioBaseImpl<Incidencia, Long, RepositorioIncidencia> {
 
 
     @Autowired
@@ -31,6 +40,9 @@ public class ServicioIncidencia extends ServicioBase<Incidencia, Long, Repositor
 
     @Autowired
     private RepositorioEstado repositorioEstado;
+
+    @Autowired
+    private RepositorioHistorialEstados repositorioHistorialEstados;
 
 
 
@@ -44,7 +56,7 @@ public class ServicioIncidencia extends ServicioBase<Incidencia, Long, Repositor
                 .reportante(reportante)
                 .tecnico(tecnico)
                 .estado(repositorioEstado.findByValor(incidenciaDao.getEstado()).orElse(repositorioEstado.findByValor("sin-estado").orElseThrow()))
-                .fechaCreacion(incidenciaDao.getFechaCreacion())
+                .fechaCreacion(LocalDateTime.now())
                 .build();
     }
 
@@ -78,7 +90,6 @@ public class ServicioIncidencia extends ServicioBase<Incidencia, Long, Repositor
                 .map(UsuarioDao_FiltrarIncidencia::crearDao)
                 .toList();
 
-        /*Procesar filtros antes de enviar al repositorio.*/
         try {
             if (reportantesSTR != null && !reportantesSTR.isEmpty()) {
                 reportantes = reportantesSTR.stream().map(Long::parseLong).toList();
@@ -112,14 +123,12 @@ public class ServicioIncidencia extends ServicioBase<Incidencia, Long, Repositor
             );
         }
 
-        /* Procesar incidencias*/
         incidencias = repositorio.listFilters(reportantes, estados, filtroTitulo, filtroUbicacion, mostrarDesactivados);
         incidencias = procesarOrden(incidencias, ordenAsc, ordenPor);
         incidencias = procesarPaginacion(incidencias, model, paginaStr, perPageStr);
 
         model.addAttribute("incidencias", incidencias.stream().map(IncidenciaDao_Listar::crearDao).toList());
 
-        /* Atributos extra de la pagina listar */
         model.addAttribute("reportantes", listarReportantes);
         model.addAttribute("estados", listarEstados);
         model.addAttribute("filtroTitulo", filtroTitulo);
@@ -160,7 +169,7 @@ public class ServicioIncidencia extends ServicioBase<Incidencia, Long, Repositor
     public String cargarCrear(Model model) {
         cargarListas(model);
         model.addAttribute("incidenciaDAO", new IncidenciaDao_Crear());
-        model.addAttribute("estados", repositorioEstado.findByActivo(true).stream()
+        model.addAttribute("estados", repositorioEstado.	findByActivo(true).stream()
                 .map(EstadoDao_Seleccionar::crearDao)
                 .toList());
         model.addAttribute("modificar",false);
@@ -205,7 +214,30 @@ public class ServicioIncidencia extends ServicioBase<Incidencia, Long, Repositor
 
 
     public String modificar(IncidenciaDao_Modificar incidenciaDao) {
-        edit(revertirDao(incidenciaDao));
+
+        Incidencia antiguaIncidencia = findById(incidenciaDao.getId()).orElseThrow();
+        Incidencia nuevaIncidencia = revertirDao(incidenciaDao);
+
+        if (antiguaIncidencia.getEstado() != nuevaIncidencia.getEstado()) {
+
+            if  (antiguaIncidencia.getFechaCreacion().equals(nuevaIncidencia.getFechaCreacion())) {
+                nuevaIncidencia.setFechaCreacion(LocalDateTime.now());
+            }
+
+            HistorialEstados nuevaEntrada = HistorialEstados.builder()
+                    .incidencia(nuevaIncidencia)
+                    .fechaComienzo(antiguaIncidencia.getFechaCreacion())
+                    .fechaFinal(nuevaIncidencia.getFechaCreacion())
+                    .estadoActual(nuevaIncidencia.getEstado())
+                    .estadoInicial(antiguaIncidencia.getEstado())
+                    .build();
+
+            nuevaIncidencia.anadirRegistroHistorialEstados(nuevaEntrada);
+
+            repositorioHistorialEstados.save(nuevaEntrada);
+        }
+
+        edit(nuevaIncidencia);
         return "redirect:/incidencias";
     }
 
@@ -213,14 +245,30 @@ public class ServicioIncidencia extends ServicioBase<Incidencia, Long, Repositor
         Incidencia i = findById(id).orElseThrow();
         i.eliminarEstado();
         i.eliminarUsuarios();
-        delete(i);
+		i.getHistorialEstados().forEach(e -> {
+			e.setIncidencia(null);
+			repositorioHistorialEstados.save(e);
+		});
+		i.setHistorialEstados(null);        
+		delete(i);
         return "redirect:/incidencias";
     }
 
     public String cargarEstadisticas(Model model) {
         model.addAttribute("incidencias",findAll().stream()
+        		.filter(i -> i.getEstado().isActivo())
                 .map(IncidenciaDao_Estadisticas::crearDao)
                 .toList());
+
+        /*
+        Ahora que tenemos historial de estados se pueden hacer estadísticas como por ejemplo:
+            - Tiempo medio de cambio de estado.
+            - Tiempo medio de cambio de estado por usuario
+            - Incidencias por tipos
+            - Incidencia con el tiempo más largo
+            - Incidencia con el tiempo más corto.
+         */
+
         return "admin/incidencia/estadisticas";
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface RepositorioUsuario extends JpaRepository<Usuario, Long> {
@@ -27,4 +28,7 @@ public interface RepositorioUsuario extends JpaRepository<Usuario, Long> {
                                 @Param("apellidos") String filtroApellidos,
                                 @Param("ocultos") boolean ocultos,
                                 @Param("roles") List<Long> roles);
+
+    @Query("SELECT u.password FROM Usuario u WHERE u.id = :id")
+    Optional<String> findPasswordById(@Param("id") long id);
 }

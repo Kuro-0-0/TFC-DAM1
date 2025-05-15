@@ -27,14 +27,45 @@
     max-width: 50vw
 }
 
+.w-badge {
+    width: 100%;
+}
+
+.w-badge-r {
+    width: 50%;
+}
+
+@media (max-width: 992px) {
+    .w-badge {
+        width: 50%;
+    }
+    .w-badge-r {
+        width: 100%;
+    }
+}
+
+.min-w-25 {
+    min-width: 25%;
+}
+
 .scroll-3-items {
-    max-height: 5rem;
+    max-height: 10rem;
     overflow-y: auto;
 }
 
 :root {
     --mainColor: #dc001b;
 }
+
+/** Usado en error.html */
+.limited-width {
+    max-width: 300px;
+}
+
+.limited-width-600 {
+    max-width: 600px;
+}
+
 
 /** Usado en inspeccionar.html de Incidencias */
 .status-badge {
@@ -43,9 +74,14 @@
     border-radius: 50px;
 }
 
+/** Usado en el listar.html de Estados */
+.btn-min-width {
+    min-width: 90px;
+}
+
 /** Usado en formulario.html de Estados */
 .preview-square {
-    width: 40px; 
+    width: 40px;
     height: 40px;
 }
 
@@ -88,4 +124,3 @@
     background-color: var(--mainColor);
     border-radius: 10px;
 }
-
