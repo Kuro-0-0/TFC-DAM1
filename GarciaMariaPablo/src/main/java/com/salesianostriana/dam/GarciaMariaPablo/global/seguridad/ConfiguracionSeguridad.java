@@ -32,7 +32,7 @@ public class ConfiguracionSeguridad {
                         .requestMatchers(HttpMethod.GET,"/dashboard","/perfil").authenticated()
 
                         .requestMatchers(HttpMethod.GET,"/admin/**","/ADMIN/**").hasRole("ADMIN")
-//                      .anyRequest().permitAll() // Todo lo demás no requiere autenticación
+                        .anyRequest().permitAll() // Todo lo demás no requiere autenticación
                 )
 //                .formLogin(form -> form
 //                        .loginPage("/login")

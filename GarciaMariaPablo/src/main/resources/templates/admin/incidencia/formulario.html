@@ -13,7 +13,7 @@
     <title th:if="${modificar}">Modificar Incidencia | Gestión de Incidencias</title>
     <title th:unless="${modificar}">Crear Incidencia | Gestión de Incidencias</title>
 
-    <th:block th:replace="~{admin/_fragments/head.html :: head}"></th:block>
+    <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
 
     <!-- JavaScript -->
     <script defer th:if="${modificar}" th:src="@{/admin/javascript/incidencias/formulario/ajustarFechaModificar.js}"

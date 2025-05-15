@@ -11,7 +11,7 @@
     <title th:if="${modificar}">Modificar Usuario | Gestión de Incidencias</title>
     <title th:unless="${modificar}">Crear Usuario | Gestión de Incidencias</title>
 
-    <th:block th:replace="~{admin/_fragments/head.html :: head}"></th:block>
+    <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
 
     <script defer src="../../../static/admin/javascript/reutilizables/buscarDesplegablesFiltros.js"
         th:src="@{/admin/javascript/reutilizables/buscarDesplegablesFiltros.js}"></script>

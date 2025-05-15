@@ -65,7 +65,7 @@
     overflow-y: auto;
 }
 
-/** Usado en error.html */
+/** Usado en 404.html */
 .limited-width {
     max-width: 300px;
 }
