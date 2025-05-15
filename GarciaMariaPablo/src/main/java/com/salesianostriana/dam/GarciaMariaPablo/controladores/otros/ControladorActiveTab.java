@@ -12,6 +12,8 @@ public class ControladorActiveTab {
 	@ModelAttribute
 	public void setActiveTab(Model model, WebRequest request) {
 		String uri = request.getDescription(false);
+
+		System.out.println(uri);
 		
 		if (uri.contains("/usuarios")) {
 			model.addAttribute("activeTab","usuarios");
@@ -19,7 +21,9 @@ public class ControladorActiveTab {
 			model.addAttribute("activeTab","incidencias");
 		} else if (uri.contains("/estados")) {
 			model.addAttribute("activeTab","estados");
-		} else if (uri.contains("/otros")) {
+		} else if (uri.equals("uri=/")) {
+			model.addAttribute("activeTab","");
+		} else {
 			model.addAttribute("activeTab","otros");
 		}
 	}
