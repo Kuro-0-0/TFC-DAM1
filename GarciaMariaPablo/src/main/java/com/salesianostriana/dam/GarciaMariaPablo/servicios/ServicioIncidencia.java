@@ -90,7 +90,6 @@ public class ServicioIncidencia extends ServicioBaseImpl<Incidencia, Long, Repos
                 .map(UsuarioDao_FiltrarIncidencia::crearDao)
                 .toList();
 
-        /*Procesar filtros antes de enviar al repositorio.*/
         try {
             if (reportantesSTR != null && !reportantesSTR.isEmpty()) {
                 reportantes = reportantesSTR.stream().map(Long::parseLong).toList();
@@ -124,14 +123,12 @@ public class ServicioIncidencia extends ServicioBaseImpl<Incidencia, Long, Repos
             );
         }
 
-        /* Procesar incidencias*/
         incidencias = repositorio.listFilters(reportantes, estados, filtroTitulo, filtroUbicacion, mostrarDesactivados);
         incidencias = procesarOrden(incidencias, ordenAsc, ordenPor);
         incidencias = procesarPaginacion(incidencias, model, paginaStr, perPageStr);
 
         model.addAttribute("incidencias", incidencias.stream().map(IncidenciaDao_Listar::crearDao).toList());
 
-        /* Atributos extra de la pagina listar */
         model.addAttribute("reportantes", listarReportantes);
         model.addAttribute("estados", listarEstados);
         model.addAttribute("filtroTitulo", filtroTitulo);
@@ -248,12 +245,18 @@ public class ServicioIncidencia extends ServicioBaseImpl<Incidencia, Long, Repos
         Incidencia i = findById(id).orElseThrow();
         i.eliminarEstado();
         i.eliminarUsuarios();
-        delete(i);
+		i.getHistorialEstados().forEach(e -> {
+			e.setIncidencia(null);
+			repositorioHistorialEstados.save(e);
+		});
+		i.setHistorialEstados(null);        
+		delete(i);
         return "redirect:/incidencias";
     }
 
     public String cargarEstadisticas(Model model) {
         model.addAttribute("incidencias",findAll().stream()
+        		.filter(i -> i.getEstado().isActivo())
                 .map(IncidenciaDao_Estadisticas::crearDao)
                 .toList());
 

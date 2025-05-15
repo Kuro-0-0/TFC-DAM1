@@ -98,4 +98,5 @@ public class Incidencia {
         this.historialEstados.add(nuevaEntrada);
         nuevaEntrada.setIncidencia(this);
     }
+
 }

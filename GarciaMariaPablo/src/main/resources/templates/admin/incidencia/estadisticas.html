@@ -17,10 +17,17 @@
   <script defer src="../../../static/admin/javascript/incidencias/estadisticas/generarEstadisticas.js"
           th:src="@{/admin/javascript/incidencias/estadisticas/generarEstadisticas.js}"></script>
 
-  <script defer th:inline="javascript">
+<script defer th:inline="javascript">
     var incidencias = [[${ incidencias }]];
-    procesarIncidencias(incidencias);
-  </script>
+    
+    window.addEventListener('DOMContentLoaded', function() {
+        if (typeof procesarIncidencias === 'function') {
+            procesarIncidencias(incidencias);
+        } else {
+            console.error('La función procesarIncidencias no está disponible');
+        }
+    });
+</script>
 </head>
 
 <body class="d-flex flex-column h-100 bg-light">

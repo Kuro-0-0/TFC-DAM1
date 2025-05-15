@@ -19,7 +19,7 @@ public class ControladorActiveTab {
 			model.addAttribute("activeTab","incidencias");
 		} else if (uri.contains("/estados")) {
 			model.addAttribute("activeTab","estados");
-		} else {
+		} else if (uri.contains("/otros")) {
 			model.addAttribute("activeTab","otros");
 		}
 	}
