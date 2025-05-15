@@ -120,15 +120,8 @@
                     -->
                 </ul>
 
-                <!-- Botones de acceso -->
-                <div class="d-flex align-items-center">
-                    <a href="/login" th:href="@{/login}" class="btn btn-outline-light me-2" title="Acceder a tu cuenta">
-                        <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i> Log In
-                    </a>
-                    <a href="/register" th:href="@{/register}" class="btn btn-light" title="Crear una cuenta nueva">
-                        <i class="bi bi-person-plus" aria-hidden="true"></i> Register
-                    </a>
-                </div>
+                <th:block th:replace="~{_fragments/headerPerfil.html :: headerPerfil}"></th:block>
+
             </div>
         </div>
     </nav>

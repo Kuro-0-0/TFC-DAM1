@@ -1,11 +1,10 @@
 package com.salesianostriana.dam.GarciaMariaPablo.global.controladores;
 
 import com.salesianostriana.dam.GarciaMariaPablo.global.daos.usuario.UsuarioDao_LogIn;
-import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.Usuario;
+import com.salesianostriana.dam.GarciaMariaPablo.global.daos.usuario.UsuarioDao_Register;
 import com.salesianostriana.dam.GarciaMariaPablo.global.servicios.ServicioPrincipal;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +18,7 @@ public class ControladorPrincipal {
     @Autowired
     private ServicioPrincipal servicioPrincipal;
 
+
     @GetMapping("/login")
     public String cargarLogIn(Model model) {
         return servicioPrincipal.cargarLogIn(model);
@@ -29,14 +29,24 @@ public class ControladorPrincipal {
         return servicioPrincipal.logIn(usuarioDao,model, redirectAttributes, request);
     }
 
+    @GetMapping("/register")
+    public String cargarRegister(Model model) {
+        return servicioPrincipal.cargarRegister(model);
+    }
+
+    @PostMapping("/register")
+    public String register(@ModelAttribute UsuarioDao_Register usuarioDao, Model model, HttpServletRequest request) {
+        return servicioPrincipal.register(usuarioDao, model, request);
+    }
+
     @GetMapping("/dashboard")
     public String redirDashboard(Model model) {
         return servicioPrincipal.redirDashboard(model);
     }
 
     @GetMapping("/perfil")
-    public String cargarPerfil(Model model, @AuthenticationPrincipal Usuario usuario) {
-        return servicioPrincipal.cargarPerfil(model, usuario);
+    public String cargarPerfil(Model model) {
+        return servicioPrincipal.cargarPerfil(model);
     }
 
     @GetMapping("/nosotros")
@@ -52,8 +62,8 @@ public class ControladorPrincipal {
     public String cargarFAQ(Model model) {return servicioPrincipal.cargarFAQ(model);}
 
     @GetMapping()
-    public String cargarIndex(Model model, @AuthenticationPrincipal Usuario usuario) {
-        return servicioPrincipal.cargarIndex(model, usuario);
+    public String cargarIndex(Model model) {
+        return servicioPrincipal.cargarIndex(model);
     }
 
 }

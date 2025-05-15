@@ -1,16 +1,11 @@
 package com.salesianostriana.dam.GarciaMariaPablo.global.servicios;
 
 import com.salesianostriana.dam.GarciaMariaPablo.global.daos.usuario.UsuarioDao_LogIn;
+import com.salesianostriana.dam.GarciaMariaPablo.global.daos.usuario.UsuarioDao_Register;
 import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.Usuario;
+import com.salesianostriana.dam.GarciaMariaPablo.global.seguridad.ServicioSeguridad;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -19,21 +14,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ServicioPrincipal {
 
     @Autowired
-    private AuthenticationManager authenticationManager;
-    @Autowired
-    private ServicioUsuario servicioUsuario;
+    private ServicioSeguridad seguridad;
 
-    public String cargarLogIn(Model model) {
-        if (!model.containsAttribute("usuarioDao")) {
-            model.addAttribute("usuarioDao", new UsuarioDao_LogIn());
-        }
-        return "global/login";
-    }
-
-    public String cargarIndex(Model model, Usuario usuario) {
-        if (usuario != null) {
-            model.addAttribute("usuario", usuario);
-        }
+    public String cargarIndex(Model model) {
         return "global/index";
     }
 
@@ -52,41 +35,34 @@ public class ServicioPrincipal {
     public String cargarFAQ(Model model) {
         return "global/faq";
     }
-
-    public String redirDashboard(Model model) {
-        System.out.println("AAAAAAAAAA"); // ESTO EN UN FUTURO TE REDIRIGIRA A TU DASHBOARD DEPENDIENDO DE TU ROL.
+    
+    public String cargarPerfil(Model model) {
+        Usuario usuario = seguridad.obtenerUsuarioLogado();
+        System.out.println(usuario);
         return "redirect:/";
+    }
+
+    public String cargarLogIn(Model model) {
+        return  seguridad.cargarLogIn(model);
     }
 
     public String logIn(UsuarioDao_LogIn usuarioDao, Model model, RedirectAttributes redirectAttributes, HttpServletRequest request) {
-
-        try {
-            UsernamePasswordAuthenticationToken authRequest =
-                    new UsernamePasswordAuthenticationToken(usuarioDao.getUsername(), usuarioDao.getPassword());
-
-            Authentication authentication = authenticationManager.authenticate(authRequest);
-
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-
-            HttpSession session = request.getSession(true);
-            session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
-                    SecurityContextHolder.getContext());
-
-            return "redirect:/dashboard";
-
-        } catch (AuthenticationException ex) {
-            if (servicioUsuario.findByUsername(usuarioDao.getUsername()).isPresent()) {
-                model.addAttribute("error", ex.getMessage());
-            } else {
-                model.addAttribute("error", "No existe ningun usuario con el nombre '" + usuarioDao.getUsername() + "'");
-            }
-            model.addAttribute("usuarioDao", usuarioDao);
-            return cargarLogIn(model);
-        }
+        return seguridad.logIn(usuarioDao, model, redirectAttributes, request);
     }
 
-    public String cargarPerfil(Model model, Usuario usuario) {
-        System.out.println(usuario);
+    public String redirDashboard(Model model) {
+        Usuario usuario = seguridad.obtenerUsuarioLogado();
+        if (usuario != null) {
+            return "redirect:" + usuario.getRol().name().toLowerCase() + "/dashboard";
+        }
         return "redirect:/";
+    }
+
+    public String cargarRegister(Model model) {
+        return seguridad.cargarRegister(model);
+    }
+
+    public String register(UsuarioDao_Register usuarioDao,Model model, HttpServletRequest request) {
+        return seguridad.register(usuarioDao,model,request);
     }
 }

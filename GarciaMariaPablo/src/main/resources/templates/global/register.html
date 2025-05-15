@@ -4,71 +4,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Regístrate en la plataforma para gestionar tus incidencias de forma eficiente y segura.">
+    <meta name="description"
+        content="Crea una cuenta en el Sistema de Gestión de Incidencias y empieza a reportar y gestionar incidencias de forma sencilla.">
+    <meta name="keywords" content="registro, crear cuenta, gestión de incidencias, sistema de soporte, nuevo usuario">
     <meta name="author" content="Pablo Garcia Maria">
     <meta name="robots" content="index, follow">
-
-    <title>Registro | Plataforma de Gestión de Incidencias</title>
+    <title>Registro | Gestión de Incidencias</title>
 
     <th:block th:replace="~{global/_fragments/head.html :: head}"></th:block>
-    <script th:src="@{/js/login/mostrarContraseña.js}" src="../../static/js/login/mostrarContraseña.js" defer></script>
+    <script th:src="@{/js/register/mostrarContraseña.js}" src="../../static/js/register/mostrarContraseña.js"
+        defer></script>
+    <script th:src="@{/js/register/comprobarContraseñas.js}" src="../../static/js/register/comprobarContraseñas.js"
+        defer></script>
+    <script th:src="@{/js/register/comprobarFormulario.js}" src="../../static/js/register/comprobarFormulario.js"
+        defer></script>
 </head>
 
-<body class="bg-light d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 bg-light">
 
     <th:block th:replace="~{global/_fragments/header.html :: navbar}"></th:block>
+    <th:block th:replace="~{global/_fragments/popUpMessages.html :: popUpMessages}"></th:block>
 
-    <main class="flex-fill d-flex align-items-center justify-content-center py-5">
-        <section class="card shadow p-4 p-md-5 rounded-4" style="max-width: 480px;" aria-labelledby="register-title">
-            <div class="text-center mb-4">
-                <img th:src="@{/img/logo.png}" src="../../static/img/logo.png" alt="Logo de la plataforma" height="60" class="mb-3">
-                <h1 id="register-title" class="h3 fw-bold">Crear una cuenta</h1>
-                <p class="text-muted">Regístrate para comenzar a gestionar tus incidencias</p>
-            </div>
+    <main class="container flex-grow-1 d-flex align-items-center justify-content-center my-5" role="main">
+        <div class="row w-100 shadow-sm bg-white rounded-3 overflow-hidden" style="max-width: 600px;">
+            <div class="col-12 p-5">
+                <h1 class="mb-4 fw-bold text-center txt-main">Crear cuenta</h1>
 
-            <form th:action="@{/register}" method="post" th:object="${usuarioDao}" novalidate>
+                <form th:action="@{/register}" method="post" th:object="${usuarioDao}" role="form"
+                    aria-label="Formulario de registro">
 
-                <div class="mb-3">
-                    <label for="username" class="form-label">Nombre de usuario</label>
-                    <input type="text" id="username" class="form-control" th:field="*{username}" required
-                        aria-label="Nombre de usuario" placeholder="Ej. usuario123">
-                </div>
+                    <!-- Nombre de usuario -->
+                    <div class="mb-3">
+                        <label for="username" class="form-label fw-medium">
+                            <i class="bi bi-person-badge me-1" aria-hidden="true"></i>
+                            Nombre de usuario <span class="text-danger">*</span>
+                        </label>
+                        <input th:field="*{username}" type="text" id="username" class="form-control form-control-lg"
+                            placeholder="Ej. jperez" required maxlength="20" pattern="^[a-zA-Z0-9._-]{4,20}$"
+                            title="Debe tener entre 4 y 20 caracteres. Solo letras, números, puntos, guiones o guiones bajos."
+                            th:classappend="${#fields.hasErrors('username')} ? 'is-invalid'">
+                        <div class="invalid-feedback" th:errors="*{username}"></div>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="email" class="form-label">Correo electrónico</label>
-                    <input type="email" id="email" class="form-control" th:field="*{email}" required
-                        aria-label="Correo electrónico" placeholder="Ej. usuario@correo.com">
-                </div>
+                    <!-- Contraseña -->
+                    <div class="mb-3">
+                        <label for="password" class="form-label fw-medium">
+                            <i class="bi bi-lock me-1" aria-hidden="true"></i>
+                            Contraseña <span class="text-danger">*</span>
+                        </label>
+                        <div class="input-group">
+                            <input th:field="*{password}" type="password" id="password"
+                                class="form-control form-control-lg" placeholder="Contraseña" required minlength="8"
+                                maxlength="32" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,32}$"
+                                title="Debe tener entre 8 y 32 caracteres, con al menos una mayúscula, una minúscula y un número."
+                                th:classappend="${#fields.hasErrors('password')} ? 'is-invalid'">
+                            <button type="button" class="btn btn-outline-secondary" id="togglePassword"
+                                aria-label="Mostrar u ocultar contraseña">
+                                <i class="bi bi-eye" id="togglePasswordIcon"></i>
+                            </button>
+                            <div class="invalid-feedback" th:errors="*{password}"></div>
+                        </div>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="password" class="form-label">Contraseña</label>
-                    <div class="input-group">
-                        <input type="password" id="password" class="form-control" th:field="*{password}" required
-                            aria-label="Contraseña" placeholder="Crea una contraseña segura">
-                        <button type="button" class="btn btn-outline-secondary" id="togglePassword" aria-label="Mostrar u ocultar contraseña">
-                            <i class="bi bi-eye"></i>
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label fw-medium">
+                            <i class="bi bi-shield-lock me-1" aria-hidden="true"></i>
+                            Confirmar contraseña <span class="text-danger">*</span>
+                        </label>
+                        <input th:field="*{password2}" type="password" id="confirmPassword"
+                            class="form-control form-control-lg" placeholder="Repite la contraseña" required
+                            minlength="8" maxlength="32" autocomplete="new-password">
+                        <div class="invalid-feedback d-none" id="confirmPasswordError">Las contraseñas no coinciden.
+                        </div>
+                    </div>
+
+                    <div class="mb-3 d-flex align-items-end">
+                        <div class="form-check mt-4">
+                            <input type="checkbox" class="form-check-input" id="terms" required>
+                            <label class="form-check-label" for="terms">
+                                Acepto los <a th:href="@{/legal}" target="_blank">términos y condiciones</a>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Botón de envío -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-lg bg-main text-white">
+                            <i class="bi bi-person-plus-fill me-1" aria-hidden="true"></i> Registrarse
                         </button>
                     </div>
+
+                </form>
+
+
+                <!-- Enlaces -->
+                <div class="mt-4 text-center small">
+                    <p>¿Ya tienes cuenta?
+                        <a th:href="@{/login}" class="txt-main text-decoration-none">Inicia sesión</a>
+                    </p>
                 </div>
-
-                <div class="mb-3">
-                    <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
-                    <input type="password" id="confirmPassword" class="form-control" name="confirmPassword"
-                        required aria-label="Confirmar contraseña" placeholder="Repite la contraseña">
-                </div>
-
-                <button type="submit" class="btn bg-main text-white w-100">Registrarse</button>
-            </form>
-
-            <div class="text-center mt-4">
-                <p class="mb-0">¿Ya tienes una cuenta? <a th:href="@{/login}" href="login.html"
-                        class="txt-main text-decoration-none">Inicia sesión aquí</a></p>
             </div>
-        </section>
+        </div>
     </main>
 
     <footer th:replace="~{global/_fragments/footer.html :: footer}"></footer>
-
 </body>
+
+<script>
+
+</script>
 
 </html>

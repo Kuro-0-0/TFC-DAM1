@@ -26,10 +26,12 @@ public class ConfiguracionSeguridad {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login","/register").permitAll()
+                        .requestMatchers("/login","/register").not().authenticated()
                         .requestMatchers(HttpMethod.GET, "/", "/css/**", "/js/**", "/img/**","/h2-console/**").permitAll()
                         .requestMatchers(HttpMethod.GET,"/contacto","/nosotros","/politica-privacidad","/faq").permitAll()
                         .requestMatchers(HttpMethod.GET,"/dashboard","/perfil").authenticated()
+
+                        .requestMatchers(HttpMethod.GET,"/admin/**","/ADMIN/**").hasRole("ADMIN")
 //                      .anyRequest().permitAll() // Todo lo demás no requiere autenticación
                 )
 //                .formLogin(form -> form

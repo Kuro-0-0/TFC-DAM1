@@ -12,13 +12,6 @@ public class UsuarioDao_LogIn {
 
     private String username, password;
 
-    /**
-     *
-     * Helper cuya funcion consiste en crear un Dao a partir de un Objeto base.
-     *
-     * @param usuario Usuario a partir del cual se creara el Dao.
-     * @return El Dao Creado
-     */
     public static UsuarioDao_LogIn crearDao(Usuario usuario) {
         return UsuarioDao_LogIn.builder()
                 .username(usuario.getUsername())
