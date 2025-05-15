@@ -1,12 +1,11 @@
-<footer th:fragment="footer" class="bg-dark text-white pt-5 pb-4 mt-auto" role="contentinfo" itemscope
-    itemtype="https://schema.org/Organization">
+<footer th:fragment="footer" class="bg-dark text-white pt-5 pb-4 mt-auto" role="contentinfo">
     <div class="container">
         <div class="row g-4">
 
             <!-- Logo y descripción -->
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="d-flex align-items-center mb-3">
-                    <img src="../../../static/img/logo.png" th:src="@{/img/logo.png}"
+                    <img src="../../static/img/logo.png" th:src="@{/img/logo.png}"
                         alt="Logo de la plataforma Gestión de Incidencias" height="40" class="me-2" loading="lazy">
                     <h4 class="m-0" itemprop="name">Gestión de Incidencias</h4>
                 </div>
@@ -20,15 +19,15 @@
                 <h5 class="text-uppercase mb-4 fw-bold">Navegación</h5>
                 <ul class="list-unstyled" role="list">
                     <li class="mb-2">
-                        <a href="index.html" th:href="@{/}"
+                        <a href="../global/index.html" th:href="@{/}"
                             class="text-white-50 text-decoration-none hover-white">Inicio</a>
                     </li>
                     <li class="mb-2">
-                        <a href="contacto.html" th:href="@{/contacto}"
+                        <a href="../global/contacto.html" th:href="@{/contacto}"
                             class="text-white-50 text-decoration-none hover-white">Contacto</a>
                     </li>
                     <li class="mb-2">
-                        <a href="quienes-somos.html" th:href="@{/nosotros}"
+                        <a href="../global/quienes-somos.html" th:href="@{/nosotros}"
                             class="text-white-50 text-decoration-none hover-white">Quienes somos</a>
                     </li>
                 </ul>
@@ -39,7 +38,7 @@
                 <h5 class="text-uppercase mb-4 fw-bold">Legal</h5>
                 <ul class="list-unstyled" role="list">
                     <li class="mb-2">
-                        <a href="politica-privacidad.html" th:href="@{/politica-privacidad}"
+                        <a href="../global/politica-privacidad.html" th:href="@{/politica-privacidad}"
                             class="text-white-50 text-decoration-none hover-white">Política de privacidad</a>
                     </li>
                 </ul>
@@ -48,8 +47,7 @@
             <!-- Contacto -->
             <div class="col-lg-3 col-md-6 mb-4">
                 <h5 class="text-uppercase mb-4 fw-bold">Contacto</h5>
-                <ul class="list-unstyled text-white-50" itemprop="address" itemscope
-                    itemtype="https://schema.org/PostalAddress">
+                <ul class="list-unstyled text-white-50" itemprop="address">
                     <li class="mb-2">
                         <i class="fas fa-map-marker-alt me-2"></i>
                         <span itemprop="streetAddress">Calle Condes de Bustillo, 17</span>

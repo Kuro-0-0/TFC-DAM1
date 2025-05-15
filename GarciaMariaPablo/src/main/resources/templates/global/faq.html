@@ -10,6 +10,9 @@
     <meta name="keywords" content="FAQ, ayuda, soporte, gestión incidencias, preguntas frecuentes">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Pablo Garcia Maria">
+
+    <script src="../../static/js/faq/buscarFAQs.js" th:src="@{js/faq/buscarFAQs.js}" defer></script>
+
     <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
 </head>
 
@@ -215,35 +218,7 @@
         </div>
     </main>
 
-    <footer th:replace="~{global/_fragments/footer.html :: footer}"></footer>
+    <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
 
-    <!-- Script para funcionalidad de búsqueda -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Función para buscar en FAQs
-            document.getElementById('searchButton').addEventListener('click', function() {
-                const searchTerm = document.getElementById('faqSearch').value.toLowerCase();
-                const accordionItems = document.querySelectorAll('.accordion-item');
-                
-                accordionItems.forEach(item => {
-                    const question = item.querySelector('.accordion-button').textContent.toLowerCase();
-                    const answer = item.querySelector('.accordion-body').textContent.toLowerCase();
-                    
-                    if(question.includes(searchTerm) || answer.includes(searchTerm)) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-            
-            // Permitir búsqueda con Enter
-            document.getElementById('faqSearch').addEventListener('keypress', function(e) {
-                if(e.key === 'Enter') {
-                    document.getElementById('searchButton').click();
-                }
-            });
-        });
-    </script>
 </body>
 </html>

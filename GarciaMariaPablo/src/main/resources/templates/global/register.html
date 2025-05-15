@@ -23,7 +23,7 @@
 <body class="d-flex flex-column min-vh-100 bg-light">
 
     <th:block th:replace="~{global/_fragments/header.html :: navbar}"></th:block>
-    <th:block th:replace="~{global/_fragments/popUpMessages.html :: popUpMessages}"></th:block>
+    <th:block th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></th:block>
 
     <main class="container flex-grow-1 d-flex align-items-center justify-content-center my-5" role="main">
         <div class="row w-100 shadow-sm bg-white rounded-3 overflow-hidden" style="max-width: 600px;">
@@ -107,11 +107,7 @@
         </div>
     </main>
 
-    <footer th:replace="~{global/_fragments/footer.html :: footer}"></footer>
+    <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
 </body>
-
-<script>
-
-</script>
 
 </html>
