@@ -14,7 +14,9 @@ public class EstadoDao_Crear {
 
     private String nombre;
     private boolean activo;
+    @Builder.Default
     private String colorTexto = "#ffffff";
+    @Builder.Default
     private String colorFondo = "#000000";
     private String tipo;
 
