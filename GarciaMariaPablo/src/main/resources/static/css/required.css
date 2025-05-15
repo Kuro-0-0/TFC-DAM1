@@ -12,6 +12,10 @@
     border-color: var(--mainColor) !important;
 }
 
+:root {
+    --mainColor: #dc001b;
+}
+
 .active .nav-link {
     font-weight: bold;
     text-decoration: underline;
@@ -44,17 +48,21 @@
     }
 }
 
+.top-15 {
+    top: 15% !important;
+}
+
 .min-w-25 {
     min-width: 25%;
+}
+
+.font-weight-bold {
+    font-weight: 700 !important;
 }
 
 .scroll-3-items {
     max-height: 10rem;
     overflow-y: auto;
-}
-
-:root {
-    --mainColor: #dc001b;
 }
 
 /** Usado en error.html */
@@ -87,6 +95,15 @@
 
 .preview-rectangle {
     min-height: 60px;
+}
+
+/** Usado en index.html */
+.hero-illustration {
+    font-size: 6rem;
+}
+.step-icon {
+    width: 60px;
+    height: 60px;
 }
 
 /** Usado en paginaPrincipal.html */

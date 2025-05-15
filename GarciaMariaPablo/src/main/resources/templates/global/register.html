@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Regístrate en la plataforma para gestionar tus incidencias de forma eficiente y segura.">
+    <meta name="author" content="Pablo Garcia Maria">
+    <meta name="robots" content="index, follow">
+
+    <title>Registro | Plataforma de Gestión de Incidencias</title>
+
+    <th:block th:replace="~{global/_fragments/head.html :: head}"></th:block>
+    <script th:src="@{/js/login/mostrarContraseña.js}" src="../../static/js/login/mostrarContraseña.js" defer></script>
+</head>
+
+<body class="bg-light d-flex flex-column min-vh-100">
+
+    <th:block th:replace="~{global/_fragments/header.html :: navbar}"></th:block>
+
+    <main class="flex-fill d-flex align-items-center justify-content-center py-5">
+        <section class="card shadow p-4 p-md-5 rounded-4" style="max-width: 480px;" aria-labelledby="register-title">
+            <div class="text-center mb-4">
+                <img th:src="@{/img/logo.png}" src="../../static/img/logo.png" alt="Logo de la plataforma" height="60" class="mb-3">
+                <h1 id="register-title" class="h3 fw-bold">Crear una cuenta</h1>
+                <p class="text-muted">Regístrate para comenzar a gestionar tus incidencias</p>
+            </div>
+
+            <form th:action="@{/register}" method="post" th:object="${usuarioDao}" novalidate>
+
+                <div class="mb-3">
+                    <label for="username" class="form-label">Nombre de usuario</label>
+                    <input type="text" id="username" class="form-control" th:field="*{username}" required
+                        aria-label="Nombre de usuario" placeholder="Ej. usuario123">
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo electrónico</label>
+                    <input type="email" id="email" class="form-control" th:field="*{email}" required
+                        aria-label="Correo electrónico" placeholder="Ej. usuario@correo.com">
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <div class="input-group">
+                        <input type="password" id="password" class="form-control" th:field="*{password}" required
+                            aria-label="Contraseña" placeholder="Crea una contraseña segura">
+                        <button type="button" class="btn btn-outline-secondary" id="togglePassword" aria-label="Mostrar u ocultar contraseña">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
+                    <input type="password" id="confirmPassword" class="form-control" name="confirmPassword"
+                        required aria-label="Confirmar contraseña" placeholder="Repite la contraseña">
+                </div>
+
+                <button type="submit" class="btn bg-main text-white w-100">Registrarse</button>
+            </form>
+
+            <div class="text-center mt-4">
+                <p class="mb-0">¿Ya tienes una cuenta? <a th:href="@{/login}" href="login.html"
+                        class="txt-main text-decoration-none">Inicia sesión aquí</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer th:replace="~{global/_fragments/footer.html :: footer}"></footer>
+
+</body>
+
+</html>

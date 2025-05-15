@@ -1,0 +1,85 @@
+<footer th:fragment="footer"
+        class="bg-dark text-white pt-5 pb-4 mt-auto"
+        role="contentinfo"
+        itemscope itemtype="https://schema.org/Organization">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- Logo y descripción -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="d-flex align-items-center mb-3">
+                    <img src="../../../static/img/logo.png"
+                         th:src="@{/img/logo.png}"
+                         alt="Logo de la plataforma Gestión de Incidencias"
+                         height="40" class="me-2" loading="lazy">
+                    <h4 class="m-0" itemprop="name">Gestión de Incidencias</h4>
+                </div>
+                <p class="text-white-50" itemprop="description">
+                    Plataforma profesional para registrar, asignar y resolver incidencias técnicas de forma eficiente.
+                </p>
+            </div>
+
+            <!-- Navegación -->
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h5 class="text-uppercase mb-4 fw-bold">Navegación</h5>
+                <ul class="list-unstyled" role="list">
+                    <li class="mb-2">
+                        <a href="../otros/paginaPrincipal.html" th:href="@{/}"
+                           class="text-white-50 text-decoration-none hover-white">Inicio</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="../otros/contacto.html" th:href="@{/contacto}"
+                           class="text-white-50 text-decoration-none hover-white">Contacto</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="../otros/quienes-somos.html" th:href="@{/nosotros}"
+                           class="text-white-50 text-decoration-none hover-white">Quienes somos</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Legal -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5 class="text-uppercase mb-4 fw-bold">Legal</h5>
+                <ul class="list-unstyled" role="list">
+                    <li class="mb-2">
+                        <a href="../otros/politica-privacidad.html" th:href="@{/politica-privacidad}"
+                           class="text-white-50 text-decoration-none hover-white">Política de privacidad</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Contacto -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5 class="text-uppercase mb-4 fw-bold">Contacto</h5>
+                <ul class="list-unstyled text-white-50" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                    <li class="mb-2">
+                        <i class="fas fa-map-marker-alt me-2"></i>
+                        <span itemprop="streetAddress">Calle Condes de Bustillo, 17</span>
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-phone me-2"></i>
+                        <span itemprop="telephone">+34 954 33 14 88</span>
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-envelope me-2"></i>
+                        <a href="mailto:garcia.mapab24@triana.salesianos.edu"
+                           class="text-white-50 text-decoration-none"
+                           itemprop="email">garcia.mapab24@triana.salesianos.edu</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="my-4 bg-secondary">
+
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start">
+                <small class="text-white-50">
+                    &copy; <span itemprop="name">Sistema de Gestión de Incidencias</span>
+                    <span>2025</span>. Todos los derechos reservados.
+                </small>
+            </div>
+        </div>
+    </div>
+</footer>

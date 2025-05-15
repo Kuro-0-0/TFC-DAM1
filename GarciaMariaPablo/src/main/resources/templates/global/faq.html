@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Preguntas Frecuentes | Gestión de Incidencias</title>
+    <!-- Metaetiquetas SEO -->
+    <meta name="description" content="Respuestas a las preguntas más comunes sobre nuestro sistema de gestión de incidencias para empresas.">
+    <meta name="keywords" content="FAQ, ayuda, soporte, gestión incidencias, preguntas frecuentes">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Pablo Garcia Maria">
+    <th:block th:replace="~{global/_fragments/head.html :: head}"></th:block>
+</head>
+
+<body class="d-flex flex-column h-100 bg-light">
+
+    <th:block th:replace="~{global/_fragments/header.html :: navbar}"></th:block>
+
+    <main class="flex-grow-1 container my-5" role="main">
+        <div class="bg-white shadow-sm rounded-3 p-4 p-md-5">
+            <h1 class="mb-4 border-bottom pb-3 fw-bold text-center txt-main">
+                <i class="bi bi-question-circle me-2" aria-hidden="true"></i> Preguntas Frecuentes
+            </h1>
+
+            <!-- Barra de búsqueda en FAQs -->
+            <div class="row mb-5">
+                <div class="col-md-8 mx-auto">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="faqSearch" placeholder="Buscar en preguntas frecuentes...">
+                        <button class="btn bg-main text-white" type="button" id="searchButton">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categorías de preguntas -->
+            <div class="row g-4">
+                <!-- Sección para Usuarios -->
+                <div class="col-lg-6">
+                    <div class="card h-100 border-main">
+                        <div class="card-header bg-main text-white">
+                            <h2 class="h4 mb-0">
+                                <i class="bi bi-person me-2"></i> Para Usuarios
+                            </h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="accordion" id="userAccordion">
+                                <!-- Pregunta 1 -->
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#userQ1">
+                                            ¿Cómo reporto una nueva incidencia?
+                                        </button>
+                                    </h3>
+                                    <div id="userQ1" class="accordion-collapse collapse" data-bs-parent="#userAccordion">
+                                        <div class="accordion-body">
+                                            <ol>
+                                                <li>Inicia sesión en el sistema</li>
+                                                <li>Haz clic en "Nueva Incidencia"</li>
+                                                <li>Completa el formulario con los detalles del problema</li>
+                                                <li>Selecciona la categoría adecuada</li>
+                                                <li>Envía el reporte</li>
+                                            </ol>
+                                            <p class="mb-0">Podrás ver el estado de tu incidencia en tu panel de usuario.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Pregunta 2 -->
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#userQ2">
+                                            ¿Cómo sé quién está atendiendo mi incidencia?
+                                        </button>
+                                    </h3>
+                                    <div id="userQ2" class="accordion-collapse collapse" data-bs-parent="#userAccordion">
+                                        <div class="accordion-body">
+                                            <p>Puedes ver esta información:</p>
+                                            <ul>
+                                                <li>En el detalle de tu incidencia</li>
+                                                <li>En tu panel de usuario</li>
+                                            </ul>
+                                            <p class="mb-0">El sistema mostrará el nombre del técnico asignado una vez que alguien del equipo tome tu caso.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Pregunta 3 -->
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#userQ3">
+                                            ¿Qué tipos de incidencias puedo reportar?
+                                        </button>
+                                    </h3>
+                                    <div id="userQ3" class="accordion-collapse collapse" data-bs-parent="#userAccordion">
+                                        <div class="accordion-body">
+                                            <p>Puedes reportar cualquier tipo de problema, incluyendo:</p>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <h4 class="h6 fw-bold">Mantenimiento</h4>
+                                                    <ul>
+                                                        <li>Mobiliario dañado</li>
+                                                        <li>Problemas eléctricos</li>
+                                                        <li>Necesidades de limpieza</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <h4 class="h6 fw-bold">Tecnología</h4>
+                                                    <ul>
+                                                        <li>Fallas en equipos</li>
+                                                        <li>Problemas de software</li>
+                                                        <li>Errores en sistemas</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección para Técnicos -->
+                <div class="col-lg-6">
+                    <div class="card h-100 border-main">
+                        <div class="card-header bg-main text-white">
+                            <h2 class="h4 mb-0">
+                                <i class="bi bi-tools me-2"></i> Para Técnicos
+                            </h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="accordion" id="techAccordion">
+                                <!-- Pregunta 1 -->
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#techQ1">
+                                            ¿Cómo asigno una incidencia a mi equipo?
+                                        </button>
+                                    </h3>
+                                    <div id="techQ1" class="accordion-collapse collapse" data-bs-parent="#techAccordion">
+                                        <div class="accordion-body">
+                                            <p>Para asignarte una incidencia:</p>
+                                            <ol>
+                                                <li>Accede al listado de incidencias disponibles</li>
+                                                <li>Selecciona la incidencia que deseas atender</li>
+                                                <li>Haz clic en el botón "Asignar a mí"</li>
+                                                <li>Actualiza el estado según avances</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Pregunta 2 -->
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#techQ2">
+                                            ¿Cómo cambio el estado de una incidencia?
+                                        </button>
+                                    </h3>
+                                    <div id="techQ2" class="accordion-collapse collapse" data-bs-parent="#techAccordion">
+                                        <div class="accordion-body">
+                                            <p>Cada empresa configura sus propios estados de incidencias. Los pasos para cambiarlos son:</p>
+                                            <ol>
+                                                <li>Accede al detalle de la incidencia</li>
+                                                <li>Localiza el dropdown de estados</li>
+                                                <li>Selecciona el nuevo estado</li>
+                                                <li>Guarda los cambios</li>
+                                            </ol>
+                                            <p class="mb-0">Consulta con tu administrador para conocer los estados específicos de tu organización.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Pregunta 3 -->
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#techQ3">
+                                            ¿Cómo priorizo las incidencias asignadas?
+                                        </button>
+                                    </h3>
+                                    <div id="techQ3" class="accordion-collapse collapse" data-bs-parent="#techAccordion">
+                                        <div class="accordion-body">
+                                            <p>Puedes organizar tu trabajo de la siguiente manera:</p>
+                                            <ul>
+                                                <li><span class="font-weight-bold">Por fecha de creación:</span> Atiende primero las incidencias más antiguas</li>
+                                                <li><span class="font-weight-bold">Por urgencia:</span> Si la empresa ha marcado prioridades</li>
+                                                <li><span class="font-weight-bold">Por tipo:</span> Agrupa incidencias similares para mayor eficiencia</li>
+                                            </ul>
+                                            <p class="mb-0">El sistema te permite filtrar y ordenar las incidencias según estos criterios.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de contacto adicional -->
+            <div class="alert alert-info mt-5">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-life-preserver txt-main fs-3 me-3"></i>
+                    <div>
+                        <h3 class="h5 mb-2">¿No encontraste lo que buscabas?</h3>
+                        <p class="mb-0">Contacta a nuestro equipo de soporte para ayuda personalizada.</p>
+                        <a th:href="@{/contacto}" class="btn bg-main text-white btn-sm mt-2">
+                            <i class="bi bi-headset me-1"></i> Contactar soporte
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{global/_fragments/footer.html :: footer}"></footer>
+
+    <!-- Script para funcionalidad de búsqueda -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Función para buscar en FAQs
+            document.getElementById('searchButton').addEventListener('click', function() {
+                const searchTerm = document.getElementById('faqSearch').value.toLowerCase();
+                const accordionItems = document.querySelectorAll('.accordion-item');
+                
+                accordionItems.forEach(item => {
+                    const question = item.querySelector('.accordion-button').textContent.toLowerCase();
+                    const answer = item.querySelector('.accordion-body').textContent.toLowerCase();
+                    
+                    if(question.includes(searchTerm) || answer.includes(searchTerm)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Permitir búsqueda con Enter
+            document.getElementById('faqSearch').addEventListener('keypress', function(e) {
+                if(e.key === 'Enter') {
+                    document.getElementById('searchButton').click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

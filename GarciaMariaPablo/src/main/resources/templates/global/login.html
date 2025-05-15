@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Inicia sesión en tu cuenta para gestionar incidencias de forma segura y eficiente.">
+    <meta name="author" content="Pablo Garcia Maria">
+    <meta name="robots" content="index, follow">
+
+    <title>Iniciar Sesión | Gestión de Incidencias</title>
+
+    <th:block th:replace="~{global/_fragments/head.html :: head}"></th:block>
+    <script th:src="@{/js/login/mostrarContraseña.js}" src="../../static/js/login/mostrarContraseña.js" defer></script>
+</head>
+
+<body class="bg-light d-flex flex-column min-vh-100">
+
+    <th:block th:replace="~{global/_fragments/header.html :: navbar}"></th:block>
+    <th:block th:replace="~{global/_fragments/popUpMessages.html :: popUpMessages}"></th:block>
+
+    <main class="flex-fill d-flex align-items-center justify-content-center py-5">
+        <section class="card shadow p-4 p-md-5 rounded-4" style="max-width: 420px;" aria-labelledby="login-title">
+            <div class="text-center mb-4">
+                <img th:src="@{/img/logo.png}" src="../../static/img/logo.png" alt="Logo de la plataforma" height="60" class="mb-3">
+                <h1 id="login-title" class="h3 fw-bold">Iniciar Sesión</h1>
+                <p class="text-muted">Accede a tu cuenta</p>
+            </div>
+
+            <form th:action="@{/login}" method="post" th:object="${usuarioDao}" novalidate>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Nombre de usuario</label>
+                    <input type="text" id="username" class="form-control" th:field="*{username}" required
+                        aria-label="Nombre de usuario" placeholder="Ingresa tu usuario">
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <div class="input-group">
+                        <input type="password" id="password" class="form-control" th:field="*{password}" required
+                            aria-label="Contraseña" placeholder="Ingresa tu contraseña">
+                        <button type="button" class="btn btn-outline-secondary" id="togglePassword" aria-label="Mostrar u ocultar contraseña">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="rememberMe" name="remember-me">
+                    <label class="form-check-label" for="rememberMe">Recordar sesión</label>
+                </div>
+
+                <button type="submit" class="btn bg-main text-white w-100">Ingresar</button>
+            </form>
+
+            <div class="text-center mt-4">
+                <!-- <a href="#" class="txt-main text-decoration-none">¿Olvidaste tu contraseña?</a> -->
+                <p class="mb-0">¿No tienes cuenta? <a th:href="@{/register}" href="register.html"
+                        class="txt-main text-decoration-none">Regístrate aquí</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer th:replace="~{global/_fragments/footer.html :: footer}"></footer>
+
+</body>
+
+</html>
