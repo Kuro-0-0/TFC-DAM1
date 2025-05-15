@@ -1,11 +1,11 @@
 package com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia;
 
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -19,6 +19,6 @@ public class IncidenciaDao_Crear {
 	private Long reportante;
 	private Long tecnico;
 	private String estado; // valor Estado
-	private LocalDate fechaCreacion;
+	private LocalDateTime fechaCreacion;
 	
 }

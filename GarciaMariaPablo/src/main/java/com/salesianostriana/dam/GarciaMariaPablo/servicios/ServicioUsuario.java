@@ -131,6 +131,7 @@ public class ServicioUsuario extends ServicioBaseImpl<Usuario, Long, Repositorio
         } else if (objetivo.getRol().equals(Rol.reportante)) {
             userDefault = repositorio.findByUsername("sin-reportante");
         } else {
+        	redirectAttributes.addFlashAttribute("error","No puedes eliminar administradores del sistema.");
             return "redirect:/usuarios";
         }
 

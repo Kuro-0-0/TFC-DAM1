@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
@@ -28,7 +29,7 @@ public class HistorialEstados {
     @JoinColumn(name = "estado_actual_id")
     private Estado estadoActual;
 
-    private LocalDate fechaComienzo; // Fehca cuando puso el estado (Incidencia.IEA)
-    private LocalDate fechaFinal; // Fecha actual, cuadno se a cambiado el estado
+    private LocalDateTime fechaComienzo; // Fehca cuando puso el estado (Incidencia.IEA)
+    private LocalDateTime fechaFinal; // Fecha actual, cuadno se a cambiado el estado
 
 }

@@ -1,8 +1,21 @@
 package com.salesianostriana.dam.GarciaMariaPablo.servicios;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
 import com.salesianostriana.dam.GarciaMariaPablo.daos.estado.external.EstadoDao_FiltrarIncidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.daos.estado.external.EstadoDao_Seleccionar;
-import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.*;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.IncidenciaDao_Crear;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.IncidenciaDao_Estadisticas;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.IncidenciaDao_Inspeccionar;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.IncidenciaDao_Listar;
+import com.salesianostriana.dam.GarciaMariaPablo.daos.incidencia.IncidenciaDao_Modificar;
 import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.external.UsuarioDao_FiltrarIncidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.external.UsuarioDao_FormularioIncidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.modelos.HistorialEstados;
@@ -14,15 +27,8 @@ import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioHistori
 import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioIncidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioUsuario;
 import com.salesianostriana.dam.GarciaMariaPablo.servicios.base.ServicioBaseImpl;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
@@ -50,7 +56,7 @@ public class ServicioIncidencia extends ServicioBaseImpl<Incidencia, Long, Repos
                 .reportante(reportante)
                 .tecnico(tecnico)
                 .estado(repositorioEstado.findByValor(incidenciaDao.getEstado()).orElse(repositorioEstado.findByValor("sin-estado").orElseThrow()))
-                .fechaCreacion(incidenciaDao.getFechaCreacion())
+                .fechaCreacion(LocalDateTime.now())
                 .build();
     }
 
@@ -166,7 +172,7 @@ public class ServicioIncidencia extends ServicioBaseImpl<Incidencia, Long, Repos
     public String cargarCrear(Model model) {
         cargarListas(model);
         model.addAttribute("incidenciaDAO", new IncidenciaDao_Crear());
-        model.addAttribute("estados", repositorioEstado.findByActivo(true).stream()
+        model.addAttribute("estados", repositorioEstado.	findByActivo(true).stream()
                 .map(EstadoDao_Seleccionar::crearDao)
                 .toList());
         model.addAttribute("modificar",false);
@@ -218,7 +224,7 @@ public class ServicioIncidencia extends ServicioBaseImpl<Incidencia, Long, Repos
         if (antiguaIncidencia.getEstado() != nuevaIncidencia.getEstado()) {
 
             if  (antiguaIncidencia.getFechaCreacion().equals(nuevaIncidencia.getFechaCreacion())) {
-                nuevaIncidencia.setFechaCreacion(LocalDate.now());
+                nuevaIncidencia.setFechaCreacion(LocalDateTime.now());
             }
 
             HistorialEstados nuevaEntrada = HistorialEstados.builder()

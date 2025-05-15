@@ -1,11 +1,22 @@
 package com.salesianostriana.dam.GarciaMariaPablo.modelos;
 
-import jakarta.persistence.*;
-import lombok.*;
-
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
@@ -21,7 +32,7 @@ public class Incidencia {
     @Column(length = 500)
     private String descripcion;
     private String ubicacion;
-    private LocalDate fechaCreacion;
+    private LocalDateTime fechaCreacion;
 
     @ManyToOne
     @ToString.Exclude
