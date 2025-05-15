@@ -1,22 +1,44 @@
-# Gestión de Incidencias - Proyecto Final DAM (2024-2025)
+# 🚀 Gestión de Incidencias - Proyecto Final DAM (2024-2025) 
 
-Este repositorio contiene el proyecto final desarrollado durante el primer curso del ciclo **Desarrollo de Aplicaciones Multiplataforma (DAM)** en **Salesianos Triana**.
+![Java](https://img.shields.io/badge/Java-21%2B-orange?style=flat-square&logo=java)
+![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
 
-La aplicación permite gestionar incidencias, asignar técnicos y reportantes, y controlar su estado desde una única vista pensada para el administrador. Todos los datos se generan automáticamente al iniciar, por lo que no se guardan entre ejecuciones.
+🔧 **Sistema de gestión de incidencias** desarrollado como proyecto final del primer curso del ciclo **Desarrollo de Aplicaciones Multiplataforma (DAM)** en **Salesianos Triana**.
 
----
+## 🌟 Características principales
 
-## 🛠 Requisitos
+- 📝 Gestión completa de incidencias
+- 👨‍💻 Asignación de técnicos y reportantes
+- 📊 Panel de administración unificado
+- 🔄 Datos generados automáticamente al iniciar (no persistentes)
+- 🎨 Interfaz intuitiva y fácil de usar
 
-- Java 21 o superior
+## 🛠 Requisitos del sistema
 
----
+| Requisito | Versión |
+|-----------|---------|
+| Java      | 21+     |
 
-## ▶️ Cómo ejecutar
+## 🚀 Cómo ejecutar
 
-1. Descarga el archivo `.jar` desde la sección **Releases**.
-2. Abre una terminal en la carpeta donde hayas guardado el archivo.
-3. Ejecuta el siguiente comando:
+1. Descarga el archivo `.jar` desde la sección [Releases](https://github.com/Kuro-0-0/TFC-DAM1/releases)
+2. Abre una terminal en la carpeta de descarga
+3. Ejecuta:
 
 ```bash
-java -jar GarciaMariaPablo-1.0.0.jar
+java -jar GarciaMariaPablo-VERSION.jar
+```
+
+## 🥚 Easter Eggs (Sorpresas ocultas)
+
+La aplicación esconde algunas funcionalidades especiales que se activan en ciertas situaciones:
+
+🔧 URLs especiales
+- /usuarios/modificar/5 - Mensaje oculto al intentar editar el técnico "sin-tecnico"
+- /usuarios/modificar/6 - Mensaje secreto al tratar de modificar el reportante "sin-reportante"
+
+⚠️ Protecciones del sistema
+- /usuarios - Intenta eliminar un Admin... ¡no podrás hacerlo! El sistema te lo impedirá
+
+🤖 Funciones simuladas
+- /contacto - Al enviar un mensaje recibirás una alerta (aunque en realidad no se envía nada)
