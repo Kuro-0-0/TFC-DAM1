@@ -1,40 +1,43 @@
 <th:block th:fragment="headerPerfil">
-            <div sec:authorize="!isAuthenticated()"  class="d-flex align-items-center">
-                <a href="/login" th:href="@{/login}" class="btn btn-outline-light me-2" title="Acceder a tu cuenta">
-                    <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i> <span>Iniciar sesión</span>
-                </a>
-                <a href="/register" th:href="@{/register}" class="btn btn-light" title="Crear una cuenta nueva">
-                    <i class="bi bi-person-plus" aria-hidden="true"></i> <span>Registrarse</span>
-                </a>
-            </div>
+    <div sec:authorize="!isAuthenticated()" class="d-flex align-items-center">
+        <a href="/login" th:href="@{/login}" class="btn btn-outline-light me-2" title="Acceder a tu cuenta">
+            <i class="bi bi-box-arrow-in-right" aria-hidden="true"></i> <span>Iniciar sesión</span>
+        </a>
+        <a href="/register" th:href="@{/register}" class="btn btn-light" title="Crear una cuenta nueva">
+            <i class="bi bi-person-plus" aria-hidden="true"></i> <span>Registrarse</span>
+        </a>
+    </div>
 
-            <ul sec:authorize="isAuthenticated()" class="navbar-nav text-light">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-light" href="#" id="userDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="bi bi-person-circle me-1"></i>
-                        <span sec:authentication="name">Usuario</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item" th:href="@{/perfil}">
-                                <i class="bi bi-person me-2"></i>Mi perfil
-                            </a></li>
-                        <li><a class="dropdown-item" th:href="@{/ajustes}">
-                                <i class="bi bi-gear me-2"></i>Ajustes
-                            </a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li>
-                            <form th:action="@{/logout}" method="post">
-                                <button class="dropdown-item" type="submit">
-                                    <i class="bi bi-box-arrow-right me-2"></i>Cerrar sesión
-                                </button>
-                            </form>
-                        </li>
-                    </ul>
+    <ul sec:authorize="isAuthenticated()" class="navbar-nav text-light">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="userDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle me-1"></i>
+                <span sec:authentication="name">Usuario</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                <li><a class="dropdown-item" th:href="@{/dashboard}" href="../global/index.html">
+                        <i class="bi bi-briefcase me-2"></i>Mi Dashboard
+                    </a></li>
+                <li><a class="dropdown-item" th:href="@{/perfil}">
+                        <i class="bi bi-person me-2"></i>Mi perfil
+                    </a></li>
+                <li><a class="dropdown-item" th:href="@{/ajustes}">
+                        <i class="bi bi-gear me-2"></i>Ajustes
+                    </a></li>
+                <li>
+                    <hr class="dropdown-divider">
                 </li>
-                <!-- <li class="nav-item">
+                <li>
+                    <form th:action="@{/logout}" method="post">
+                        <button class="dropdown-item" type="submit">
+                            <i class="bi bi-box-arrow-right me-2"></i>Cerrar sesión
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+        <!-- <li class="nav-item">
                     <a class="nav-link position-relative" th:href="@{/notificaciones}">
                         <i class="bi bi-bell"></i>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -43,5 +46,5 @@
                         </span>
                     </a>
                 </li> -->
-            </ul>
+    </ul>
 </th:block>

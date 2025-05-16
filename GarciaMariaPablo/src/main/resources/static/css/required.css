@@ -75,19 +75,19 @@
 }
 
 
-/** Usado en inspeccionar.html de Incidencias */
+/** Usado en inspeccionar.html de Incidencias Admin */
 .status-badge {
     font-size: 1rem;
     padding: 0.5rem 1rem;
     border-radius: 50px;
 }
 
-/** Usado en el listar.html de Estados */
+/** Usado en el listar.html de Estados Admin */
 .btn-min-width {
     min-width: 90px;
 }
 
-/** Usado en formulario.html de Estados */
+/** Usado en formulario.html de Estados Admin */
 .preview-square {
     width: 40px;
     height: 40px;
@@ -106,12 +106,12 @@
     height: 60px;
 }
 
-/** Usado en paginaPrincipal.html */
+/** Usado en paginaPrincipal.html Admin */
 .accordion-button::after {
     filter: brightness(0) invert(1);
 }
 
-/** Usado en estadisticas.html de incidencias */
+/** Usado en estadisticas.html de incidencias Admin */
 .stats-card {
     transition: transform 0.3s ease;
     min-width: 200px;
