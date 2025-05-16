@@ -49,7 +49,7 @@
             </div>
 
             <div class="card-body p-4">
-                <form th:action="@{/incidencias}" th:object="${incidenciaDAO}" th:method="${modificar} ? put : post"
+                <form th:action="@{/admin/incidencias}" th:object="${incidenciaDAO}" th:method="${modificar} ? put : post"
                     name="crearIncidencia" id="crearIncidenciaForm" enctype="multipart/form-data">
                     <input type="hidden" th:if="${modificar}" th:field="*{id}" />
 
@@ -193,7 +193,7 @@
 
                     <!-- Botones -->
                     <div class="d-flex justify-content-between mt-4 pt-3 border-top">
-                        <a th:if="${modificar}" href="listar.html" th:href="@{/incidencias}"
+                        <a th:if="${modificar}" href="listar.html" th:href="@{/admin/incidencias}"
                             class="btn btn-outline-secondary">
                             <i class="bi bi-arrow-left me-1"></i>Cancelar
                         </a>

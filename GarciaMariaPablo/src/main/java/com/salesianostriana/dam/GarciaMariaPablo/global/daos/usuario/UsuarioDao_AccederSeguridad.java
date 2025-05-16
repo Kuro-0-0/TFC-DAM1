@@ -1,7 +1,7 @@
 package com.salesianostriana.dam.GarciaMariaPablo.global.daos.usuario;
 
 import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.Usuario;
-import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.otros.RolesUsuario;
+import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.utilidades.RolesUsuario;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

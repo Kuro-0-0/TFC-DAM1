@@ -28,7 +28,7 @@
                 <i class="bi bi-people me-2" aria-hidden="true"></i>Listado de Usuarios
             </h1>
             <div class="d-flex gap-2">
-                <a th:href="@{/usuarios/crear}" class="btn btn-success btn-sm" aria-label="Crear nuevo usuario">
+                <a th:href="@{/admin/usuarios/crear}" class="btn btn-success btn-sm" aria-label="Crear nuevo usuario">
                     <i class="bi bi-plus-circle me-1" aria-hidden="true"></i>Nuevo Usuario
                 </a>
                 <button class="btn btn-outline-secondary btn-sm rounded-2" data-bs-toggle="modal" data-bs-target="#modalFiltros" aria-label="Abrir filtros">
@@ -56,11 +56,11 @@
                             <td th:text="${usuario.apellidos}">Pérez García</td>
                             <td>
                                 <span class="badge rounded-pill fw-bold px-3 w-badge-r"
-                                    th:classappend="${usuario.rol.name() == 'admin'} ? 'bg-main' : (${usuario.rol.name() == 'tecnico'} ? 'bg-primary' : 'bg-info')"
+                                    th:classappend="${usuario.rol.name() == 'ADMIN'} ? 'bg-main' : (${usuario.rol.name() == 'TECH'} ? 'bg-primary' : 'bg-info')"
                                     th:text="${usuario.rol.name()}">REPORTANTE</span>
                             </td>
                             <td class="text-center">
-                                <a th:href="@{/usuarios/modificar/{id}(id=${usuario.id})}" th:if="${usuario.editable}" class="btn btn-sm btn-outline-success px-2 py-1 rounded-1 me-1" aria-label="Modificar usuario">
+                                <a th:href="@{/admin/usuarios/modificar/{id}(id=${usuario.id})}" th:if="${usuario.editable}" class="btn btn-sm btn-outline-success px-2 py-1 rounded-1 me-1" aria-label="Modificar usuario">
                                     <i class="bi bi-pencil" aria-hidden="true"></i>
                                 </a>
                                 <button class="btn btn-sm btn-outline-danger px-2 py-1 rounded-1" data-bs-toggle="modal"
@@ -113,7 +113,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="filtroForm" th:action="@{/usuarios}" th:method="get" aria-label="Formulario de filtros">
+                    <form id="filtroForm" th:action="@{/admin/usuarios}" th:method="get" aria-label="Formulario de filtros">
                         <div class="row g-3">
                             <!-- Username -->
                             <div class="col-md-6">

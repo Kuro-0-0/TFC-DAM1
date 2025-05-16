@@ -24,20 +24,20 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="incidenciasDropdown">
                             <li>
-                                <a class="dropdown-item" href="../incidencia/listar.html" th:href="@{/incidencias}"
+                                <a class="dropdown-item" href="../incidencia/listar.html" th:href="@{/admin/incidencias}"
                                     title="Listar todas las incidencias">
                                     <i class="bi bi-list-ul me-2" aria-hidden="true"></i> Listar Incidencias
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="../incidencia/formulario.html"
-                                    th:href="@{/incidencias/crear}" title="Crear nueva incidencia">
+                                    th:href="@{/admin/incidencias/crear}" title="Crear nueva incidencia">
                                     <i class="bi bi-plus-circle me-2" aria-hidden="true"></i> Crear Incidencia
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="../incidencia/estadisticas.html"
-                                    th:href="@{/incidencias/estadisticas}" title="Ver estadísticas de incidencias">
+                                    th:href="@{/admin/incidencias/estadisticas}" title="Ver estadísticas de incidencias">
                                     <i class="bi bi-graph-up me-2" aria-hidden="true"></i> Estadísticas
                                 </a>
                             </li>
@@ -52,13 +52,13 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="estadosDropdown">
                             <li>
-                                <a class="dropdown-item" href="../estado/listar.html" th:href="@{/estados}"
+                                <a class="dropdown-item" href="../estado/listar.html" th:href="@{/admin/estados}"
                                     title="Listar estados disponibles">
                                     <i class="bi bi-list-ul me-2" aria-hidden="true"></i> Listar Estados
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="../estado/formulario.html" th:href="@{/estados/crear}"
+                                <a class="dropdown-item" href="../estado/formulario.html" th:href="@{/admin/estados/crear}"
                                     title="Crear nuevo estado">
                                     <i class="bi bi-plus-circle me-2" aria-hidden="true"></i> Crear Estado
                                 </a>
@@ -74,37 +74,15 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="usuariosDropdown">
                             <li>
-                                <a class="dropdown-item" href="../usuario/listar.html" th:href="@{/usuarios}"
+                                <a class="dropdown-item" href="../usuario/listar.html" th:href="@{/admin/usuarios}"
                                     title="Ver usuarios registrados">
                                     <i class="bi bi-list-ul me-2" aria-hidden="true"></i> Listar Usuarios
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="../usuario/formulario.html" th:href="@{/usuarios/crear}"
+                                <a class="dropdown-item" href="../usuario/formulario.html" th:href="@{/admin/usuarios/crear}"
                                     title="Registrar nuevo usuario">
                                     <i class="bi bi-plus-circle me-2" aria-hidden="true"></i> Crear Usuarios
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <!-- Menú Otros -->
-                    <li class="nav-item dropdown" th:classappend="${activeTab == 'otros'} ? 'active'">
-                        <a class="nav-link dropdown-toggle" href="#" id="otrosDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
-                            <i class="bi bi-info-square me-1" aria-hidden="true"></i> Otros
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="otrosDropdown">
-                            <li>
-                                <a class="dropdown-item" href="../otros/quienes-somos.html" th:href="@{/nosotros}"
-                                    title="Ver informacion sobre la empresa">
-                                    <i class="bi bi-people me-2" aria-hidden="true"></i> Quienes somos
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="../otros/contacto.html" th:href="@{/contacto}"
-                                    title="Ver las opciones de contacto de la empresa">
-                                    <i class="bi bi-phone me-2" aria-hidden="true"></i> Contacto
                                 </a>
                             </li>
                         </ul>
@@ -113,7 +91,7 @@
                     <!-- Opción adicional comentada -->
                     <!--
                     <li class="nav-item" th:classappend="${activeTab == 'error'} ? 'active'">
-                        <a class="nav-link" href="../../404.html" th:href="@{/error}" title="Página de error">
+                        <a class="nav-link" href="../../404.html" th:href="@{/admin/error}" title="Página de error">
                             <i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Error
                         </a>
                     </li>

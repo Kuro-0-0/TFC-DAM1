@@ -27,18 +27,17 @@ public class ConfiguracionSeguridad {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login","/register").not().authenticated()
-                        .requestMatchers(HttpMethod.GET, "/", "/css/**", "/js/**", "/img/**","/h2-console/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/", "/css/**", "/js/**", "/img/**").permitAll()
                         .requestMatchers(HttpMethod.GET,"/contacto","/nosotros","/politica-privacidad","/faq").permitAll()
                         .requestMatchers(HttpMethod.GET,"/dashboard","/perfil").authenticated()
 
-                        .requestMatchers(HttpMethod.GET,"/admin/**","/ADMIN/**").hasRole("ADMIN")
-                        .anyRequest().permitAll() // Todo lo demás no requiere autenticación
+                        .requestMatchers("/h2-console/**").hasRole("ADMIN")
+                        .requestMatchers("/admin/**","/ADMIN/**").hasRole("ADMIN")
+                        .requestMatchers("/user/**","/USER/**").hasAnyRole("ADMIN","USER")
+                        .requestMatchers("/tech/**","/TECH/**").hasAnyRole("ADMIN","TECH")
+                        .requestMatchers(HttpMethod.GET,"/autologin").not().authenticated()
+                        .anyRequest().permitAll()
                 )
-//                .formLogin(form -> form
-//                        .loginPage("/login")
-//                        .defaultSuccessUrl("/dashboard")
-//                        .permitAll()
-//                )
                 .formLogin(form -> form.disable()) // Desactiva el login automático
                 .logout(logout -> logout
                         .logoutUrl("/logout")
@@ -48,6 +47,9 @@ public class ConfiguracionSeguridad {
                 .headers(headers -> headers
                         .frameOptions(f -> f
                                 .disable()))
+                .exceptionHandling(exception -> exception
+                        .accessDeniedPage("/error/403")
+                )
                 .build();
     }
 

@@ -36,7 +36,7 @@
             </div>
 
             <div class="card-body p-4">
-                <form th:action="@{/usuarios}" th:object="${usuarioDao}" th:method="${modificar} ? put : post"
+                <form th:action="@{/admin/usuarios}" th:object="${usuarioDao}" th:method="${modificar} ? put : post"
                     name="crearUsuario" id="crearUsuarioForm" aria-describedby="formDescripcion">
                     <p id="formDescripcion" class="visually-hidden">Formulario para crear o modificar un usuario.
                         Incluye campos para nombre, apellidos, usuario, contraseña y rol.</p>
@@ -124,7 +124,7 @@
                     </div>
 
                     <div class="d-flex justify-content-between mt-4 pt-3 border-top">
-                        <a th:href="@{/usuarios}" class="btn btn-outline-secondary"
+                        <a th:href="@{/admin/usuarios}" class="btn btn-outline-secondary"
                             title="Cancelar y volver al listado de usuarios">
                             <i class="bi bi-arrow-left me-1" aria-hidden="true"></i>Cancelar
                         </a>

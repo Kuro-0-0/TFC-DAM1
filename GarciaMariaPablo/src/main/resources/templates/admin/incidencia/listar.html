@@ -33,7 +33,7 @@
                     <i class="bi bi-list-task me-2" aria-hidden="true"></i>Listado de Incidencias
                 </h1>
                 <div class="d-flex gap-2">
-                    <a th:href="@{/incidencias/crear}" class="btn btn-success btn-sm">
+                    <a th:href="@{/admin/incidencias/crear}" class="btn btn-success btn-sm">
                         <i class="bi bi-plus-circle me-1" aria-hidden="true"></i>Crear Incidencia
                     </a>
                     <button class="btn btn-outline-secondary btn-sm rounded-2" data-bs-toggle="modal"
@@ -111,12 +111,12 @@
                                 </td>
                                 <td class="text-center" th:text="${incidencia.fechaCreacion}">2025-04-23</td>
                                 <td class="text-center">
-                                    <a th:href="@{/incidencias/inspeccionar/{id}(id=${incidencia.id})}"
+                                    <a th:href="@{/admin/incidencias/inspeccionar/{id}(id=${incidencia.id})}"
                                         class="btn btn-sm btn-outline-primary px-2 py-1 rounded-1 me-1"
                                         aria-label="Ver detalles de la incidencia">
                                         <i class="bi bi-eye" aria-hidden="true"></i>
                                     </a>
-                                    <a th:href="@{/incidencias/modificar/{id}(id=${incidencia.id})}"
+                                    <a th:href="@{/admin/incidencias/modificar/{id}(id=${incidencia.id})}"
                                         class="btn btn-sm btn-outline-success px-2 py-1 rounded-1 me-1"
                                         aria-label="Modificar incidencia">
                                         <i class="bi bi-pencil" aria-hidden="true"></i>
@@ -177,7 +177,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="filtroForm" th:action="@{/incidencias}" th:method="get">
+                    <form id="filtroForm" th:action="@{/admin/incidencias}" th:method="get">
                         <div class="row g-3">
                             <!-- Título -->
                             <div class="col-md-6">

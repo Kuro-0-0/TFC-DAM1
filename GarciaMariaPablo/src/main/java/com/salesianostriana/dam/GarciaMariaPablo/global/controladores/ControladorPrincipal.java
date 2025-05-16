@@ -18,7 +18,6 @@ public class ControladorPrincipal {
     @Autowired
     private ServicioPrincipal servicioPrincipal;
 
-
     @GetMapping("/login")
     public String cargarLogIn(Model model) {
         return servicioPrincipal.cargarLogIn(model);

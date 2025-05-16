@@ -35,7 +35,7 @@
             </div>
 
             <div class="card-body p-4">
-                <form th:action="@{/estados}" th:method="${modificar} ? put : post" th:object="${estadoDao}"
+                <form th:action="@{/admin/estados}" th:method="${modificar} ? put : post" th:object="${estadoDao}"
                     id="formEstado" aria-label="Formulario de Estado">
 
                     <input th:if="${modificar}" type="hidden" th:field="*{id}">
@@ -126,7 +126,7 @@
                     </section>
 
                     <div class="d-flex justify-content-between mt-4 pt-3 border-top">
-                        <a th:href="@{/estados}" class="btn btn-outline-secondary"
+                        <a th:href="@{/admin/estados}" class="btn btn-outline-secondary"
                             aria-label="Cancelar y volver a la lista de estados">
                             <i class="bi bi-arrow-left me-1" aria-hidden="true"></i>Cancelar
                         </a>
