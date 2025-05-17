@@ -76,7 +76,7 @@ public class ServicioAdminIncidencia extends ServicioBaseImpl<Incidencia, Long, 
         List<Long> reportantes = null;
         List<Incidencia> incidencias;
         boolean mostrarDesactivados = mostrarDesactivadosStr.equalsIgnoreCase("on");
-
+        int incidenciasTotal;
         List<EstadoDao_FiltrarIncidencia> listarEstados = repositorioEstado.findByActivo(true).stream()
                 .map(EstadoDao_FiltrarIncidencia::crearDao)
                 .toList();
@@ -120,10 +120,12 @@ public class ServicioAdminIncidencia extends ServicioBaseImpl<Incidencia, Long, 
 
         incidencias = repositorio.listFilters(reportantes, estados, filtroTitulo, filtroUbicacion, mostrarDesactivados);
         incidencias = procesarOrden(incidencias, ordenAsc, ordenPor);
+        incidenciasTotal = incidencias.size();
         incidencias = procesarPaginacion(incidencias, model, paginaStr, perPageStr);
 
         model.addAttribute("incidencias", incidencias.stream().map(IncidenciaDao_Listar::crearDao).toList());
 
+        model.addAttribute("incidenciasTotal",incidenciasTotal);
         model.addAttribute("reportantes", listarReportantes);
         model.addAttribute("estados", listarEstados);
         model.addAttribute("filtroTitulo", filtroTitulo);

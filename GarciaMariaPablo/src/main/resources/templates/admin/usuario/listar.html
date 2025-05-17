@@ -44,18 +44,22 @@
                     <thead
                         class="table-light border-bottom border-main border-top-0 border-start-0 border-end-0 border-2">
                         <tr>
-                            <th scope="col"><a class="cursor-pointer text-decoration-none text-dark d-flex align-items-center gap-1"
+                            <th scope="col"><a
+                                    class="cursor-pointer text-decoration-none text-dark d-flex align-items-center gap-1"
                                     onclick="ordenarPor('username')"
-                                    title="Ordenar por username"><span>Username</span><span
-                                        id="icon-username" class="ms-1"></span></a></th>
-                            <th scope="col"><a class="cursor-pointer text-decoration-none text-dark d-flex align-items-center gap-1"
+                                    title="Ordenar por username"><span>Username</span><span id="icon-username"
+                                        class="ms-1"></span></a></th>
+                            <th scope="col"><a
+                                    class="cursor-pointer text-decoration-none text-dark d-flex align-items-center gap-1"
                                     onclick="ordenarPor('nombre')" title="Ordenar por nombre"><span>Nombre</span><span
                                         id="icon-nombre" class="ms-1"></span></a></th>
-                            <th scope="col"><a class="cursor-pointer text-decoration-none text-dark d-flex align-items-center gap-1"
+                            <th scope="col"><a
+                                    class="cursor-pointer text-decoration-none text-dark d-flex align-items-center gap-1"
                                     onclick="ordenarPor('apellidos')"
-                                    title="Ordenar por apellidos"><span>Apellidos</span><span
-                                        id="icon-apellidos" class="ms-1"></span></a></th>
-                            <th scope="col"><a class="cursor-pointer text-decoration-none text-dark d-flex align-items-center gap-1"
+                                    title="Ordenar por apellidos"><span>Apellidos</span><span id="icon-apellidos"
+                                        class="ms-1"></span></a></th>
+                            <th scope="col"><a
+                                    class="cursor-pointer text-decoration-none text-dark d-flex align-items-center gap-1"
                                     onclick="ordenarPor('rol')" title="Ordenar por rol"><span>Rol</span><span
                                         id="icon-rol" class="ms-1"></span></a></th>
                             <th scope="col" class="text-center cursor-normal"><span>Acciones</span></th>
@@ -93,6 +97,35 @@
                             </td>
                         </tr>
                     </tbody>
+                    <tfoot
+                        class="table-light border border-top border-main border-bottom-0 border-start-0 border-end-0 border-2">
+                        <tr>
+                            <td colspan="5" class="px-3">
+                                <div class="d-flex justify-content-between align-items-end">
+                                    <div class="my-auto">
+                                        <a th:href="@{/admin/dashboard}" href="../otros/dashboard.html"
+                                            class="btn btn-outline-secondary btn-sm">
+                                            <i class="bi bi-arrow-left-circle me-1"></i><span>Volver al panel</span>
+                                        </a>
+                                    </div>
+                                    <div class="my-auto text-center flex-fill">
+                                        <small class="text-muted fst-italic">
+                                            La paginación se encuentra justo debajo de esta tabla.
+                                        </small>
+                                    </div>
+                                    <div class="my-auto d-inline-flex flex-column align-items-end">
+                                        <span th:text="'Total de usuarios en la web: ' + ${usuariosTotal}">
+                                            Total de usuarios: 0
+                                        </span>
+                                        <small class="text-muted fst-italic">
+                                            Resultados según la página y filtros actuales.
+                                        </small>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+
                 </table>
             </div>
 

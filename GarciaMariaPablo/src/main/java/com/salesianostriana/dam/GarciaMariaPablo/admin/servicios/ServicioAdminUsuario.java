@@ -48,6 +48,7 @@ public class ServicioAdminUsuario extends ServicioBaseImpl<Usuario, Long, Reposi
         List<Long> roles = null;
         List<Usuario> usuarios;
         List<RolDao_ListarUsuarios> convertedRol = new ArrayList<>();
+        int usuariosTotal;
 
         for (RolesUsuario rol : RolesUsuario.values()) {
             convertedRol.add(RolDao_ListarUsuarios.crearDao(rol, false));
@@ -61,11 +62,14 @@ public class ServicioAdminUsuario extends ServicioBaseImpl<Usuario, Long, Reposi
 
         usuarios = repositorio.findByFilters(filtroUsername, filtroNombre, filtroApellidos, mostrarOcultos.equals("on"), rolesName);
         usuarios = procesarOrden(usuarios, ordenPor, ordenAsc);
+        usuariosTotal = usuarios.size();
         usuarios = procesarPaginacion(usuarios, model, paginaNum, perPageNum);
 
         model.addAttribute("filtroUsername", filtroUsername);
         model.addAttribute("filtroNombre", filtroNombre);
         model.addAttribute("filtroApellidos", filtroApellidos);
+
+        model.addAttribute("usuariosTotal",usuariosTotal);
 
         model.addAttribute("mostrandoAhora", usuarios.size());
         model.addAttribute("roles", convertedRol);

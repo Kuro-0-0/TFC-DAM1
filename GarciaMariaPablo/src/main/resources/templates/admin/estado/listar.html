@@ -17,7 +17,7 @@
     <header th:replace="~{admin/_fragments/header.html :: header}"></header>
     <main class="container flex-grow-1 my-4" id="main-content">
         <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
-        
+
         <section>
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h1 class="h4 mb-0 fw-bold">
@@ -86,12 +86,12 @@
                                     <i class="bi bi-pencil"></i>
                                 </a>
                                 <form class="d-inline" th:action="@{/admin/estados/alternar/{id}(id=${estado.id})}"
-                                th:method="POST">
-                                <input type="hidden" name="_method" value="PUT">
+                                    th:method="POST">
+                                    <input type="hidden" name="_method" value="PUT">
                                     <input type="submit" class="btn btn-sm px-2 py-1 rounded-1 btn-min-width"
                                         th:classappend="${estado.activo} ? 'btn-outline-danger' : 'btn-outline-secondary'"
                                         th:value="${estado.activo} ? 'Desactivar' : 'Activar'">
-                                        
+
                                 </form>
                             </td>
                         </tr>
@@ -101,6 +101,38 @@
                             </td>
                         </tr>
                     </tbody>
+                    <tfoot
+                        class="table-light border border-top border-main border-bottom-0 border-start-0 border-end-0 border-2">
+                        <tr>
+                            <td colspan="4" class="px-3">
+                                <div class="d-flex justify-content-between align-items-end">
+                                    <div class="my-auto">
+                                        <a th:href="@{/admin/dashboard}" href="../otros/dashboard.html"
+                                            class="btn btn-outline-secondary btn-sm">
+                                            <i class="bi bi-arrow-left-circle me-1"></i><span>Volver al panel</span>
+                                        </a>
+                                    </div>
+                                    <div class="my-auto text-center flex-fill">
+                                        <small class="text-muted fst-italic">
+                                            La paginación se encuentra justo debajo de esta tabla.
+                                        </small>
+                                    </div>
+                                    <div class="my-auto d-inline-flex flex-column align-items-end">
+                                        <span th:text="'Total de estados en la web: ' + ${estadosTotal}">
+                                            Total de estados: 0
+                                        </span>
+                                        <small class="text-muted fst-italic">
+                                            Resultados según la página y filtros actuales.
+                                        </small>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+
+
+
+
                 </table>
             </div>
             <section th:replace="~{admin/_fragments/paginacion.html :: paginacion}"></section>

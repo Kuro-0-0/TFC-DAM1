@@ -36,9 +36,12 @@ public class ServicioAdminEstado extends ServicioBaseImpl<Estado, Long, Reposito
 
     public String listar(Model model, String paginaNum, String perPageNum, String ordenPor, Boolean ordenAsc, String buscar) {
         List<Estado> estados = repositorio.findByText(buscar);
+        int estadosTotal;
         estados = procesarOrden(estados, model, ordenPor, ordenAsc);
+        estadosTotal = estados.size();
         estados = procesarPaginacion(estados, model, paginaNum, perPageNum);
 
+        model.addAttribute("estadosTotal", estadosTotal);
         model.addAttribute("mostrandoAhora", estados.size());
         model.addAttribute("estados", estados.stream()
                 .map(EstadoDao_Listar::crearDao)
