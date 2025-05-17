@@ -47,26 +47,46 @@
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
         </div>
         <div class="offcanvas-body d-flex flex-column gap-2">
-            <a th:href="@{/}" class="nav-link" title="Volver al inicio">
+            <a th:href="@{/}" href="../index.html" class="nav-link" title="Volver al inicio">
                 <i class="bi bi-house me-2"></i>Inicio
             </a>
-            <a th:href="@{/nosotros}" class="nav-link" title="Ver información sobre el equipo">
+            <a th:href="@{/nosotros}" href="../quienes-somos.html" class="nav-link" title="Ver información sobre el equipo">
                 <i class="bi bi-people me-2"></i>Quiénes somos
             </a>
-            <a th:href="@{/contacto}" class="nav-link" title="Ir a la página de contacto">
+            <a th:href="@{/contacto}" href="../contacto.html" class="nav-link" title="Ir a la página de contacto">
                 <i class="bi bi-envelope me-2"></i>Contacto
             </a>
-            <a th:href="@{/faq}" class="nav-link" title="Consultar preguntas frecuentes">
+            <a th:href="@{/faq}" href="../faq.html" class="nav-link" title="Consultar preguntas frecuentes">
                 <i class="bi bi-question-circle me-2"></i>Preguntas frecuentes
             </a>
-            <a th:href="@{/politica-privacidad}" class="nav-link" title="Ver política de privacidad">
+            <a th:href="@{/politica-privacidad}" href="../politica-privacidad.html" class="nav-link" title="Ver política de privacidad">
                 <i class="bi bi-shield-lock me-2"></i>Política de privacidad
             </a>
 
             <hr class="border-secondary my-3">
 
-            <div>
-                <th:block th:replace="~{_fragments/headerPerfil.html :: headerPerfil}"></th:block>
+            <div class="offcanvas-footer p-3 bg-dark">
+                <div sec:authorize="isAuthenticated()" class="d-grid gap-2">
+                    <a href="#" class="btn btn-outline-info">
+                        <i class="bi bi-people me-2"></i>Perfil
+                    </a>
+                    <form th:action="@{/logout}" method="post" class="d-grid">
+                        <button type="submit" class="btn btn-outline-danger">
+                            <i class="bi bi-box-arrow-left me-2"></i>Cerrar sesión
+                        </button>
+                    </form>
+                </div>
+                <div sec:authorize="!isAuthenticated()" class="d-grid gap-2">
+                    <a href="../global/login.html" th:href="@{/login}" class="btn btn-outline-light"
+                        title="Acceder a tu cuenta">
+                        <i class="bi bi-box-arrow-in-right me-1"></i>
+                        <span>Iniciar sesión</span>
+                    </a>
+                    <a href="/register" th:href="@{/register}" class="btn btn-light" title="Crear una cuenta nueva">
+                        <i class="bi bi-person-plus me-1"></i>
+                        <span>Registrarse</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

@@ -77,6 +77,7 @@
                             </td>
                             <td class="text-center">
                                 <a th:if="${usuario.editable}"
+                                    href="formulario.html"
                                     th:href="@{/admin/usuarios/modificar/{id}(id=${usuario.id})}"
                                     class="btn btn-sm btn-outline-success px-2 py-1 rounded-1 me-1"
                                     title="Modificar usuario">
