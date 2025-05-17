@@ -4,30 +4,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Visualiza estadísticas detalladas de las incidencias registradas en el sistema. Consulta distribuciones, estados, totales y gráficos interactivos." />
-  <meta name="keywords" content="estadísticas, incidencias, distribución, estados, gráficas, resumen, sistema de gestión" />
-  <meta name="robots" content="index, follow" />
+  <meta name="description"
+    content="Visualiza estadísticas detalladas de las incidencias registradas en el sistema. Consulta distribuciones, estados, totales y gráficos interactivos." />
   <meta name="author" content="Pablo Garcia Maria" />
-  <link rel="icon" href="../../../static/img/favicon.ico" th:href="@{/img/favicon.ico}" type="image/x-icon" />
   <title>Estadísticas | Gestión de Incidencias</title>
 
   <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
 
   <!-- JavaScript -->
   <script defer src="../../../static/admin/javascript/incidencias/estadisticas/generarEstadisticas.js"
-          th:src="@{/admin/javascript/incidencias/estadisticas/generarEstadisticas.js}"></script>
+    th:src="@{/admin/javascript/incidencias/estadisticas/generarEstadisticas.js}"></script>
 
-<script defer th:inline="javascript">
+  <script defer th:inline="javascript">
     var incidencias = [[${ incidencias }]];
-    
-    window.addEventListener('DOMContentLoaded', function() {
-        if (typeof procesarIncidencias === 'function') {
-            procesarIncidencias(incidencias);
-        } else {
-            console.error('La función procesarIncidencias no está disponible');
-        }
+
+    window.addEventListener('DOMContentLoaded', function () {
+      procesarIncidencias(incidencias); // Si no le meto el DOMContentLoaded, no funciona porque carga antes que el script.
     });
-</script>
+  </script>
 </head>
 
 <body class="d-flex flex-column h-100 bg-light">

@@ -7,8 +7,6 @@
     <title>Quiénes somos | Gestión de Incidencias</title>
     <meta name="description"
         content="Conoce al equipo detrás del Sistema de Gestión de Incidencias. Expertos en desarrollo de software y soporte técnico.">
-    <meta name="keywords" content="gestión de incidencias, equipo técnico, desarrolladores, soporte, misión, valores">
-    <meta name="robots" content="index, follow">
     <meta name="author" content="Pablo Garcia Maria">
 
     <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
@@ -16,17 +14,18 @@
 
 <body class="d-flex flex-column h-100 bg-light">
 
-    <th:block th:replace="~{global/_fragments/header.html :: navbar}"></th:block>
+    <th:block th:replace="~{global/_fragments/header.html :: headerGlobal}"></th:block>
+    <th:block th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></th:block>
 
-    <main class="flex-grow-1 container my-5" role="main">
+    <main class="flex-grow-1 container my-5">
 
         <div class="bg-white shadow-sm rounded-3 p-4 p-md-5">
             <h1 class="mb-4 border-bottom pb-3 fw-bold text-center txt-main">Quiénes somos</h1>
 
             <section class="mb-5">
                 <p class="lead text-center">
-                    Somos el equipo detrás del <span class="font-weight-bold">Sistema de Gestión de Incidencias</span>, una solución
-                    tecnológica diseñada para optimizar el manejo de fallos técnicos y reportes en entornos
+                    Somos el equipo detrás del <span class="fw-bold">Sistema de Gestión de Incidencias</span>, una
+                    solución tecnológica diseñada para optimizar el manejo de fallos técnicos y reportes en entornos
                     empresariales.
                 </p>
                 <p>
@@ -48,16 +47,16 @@
                 <h2 class="h4 fw-semibold mb-3">Nuestros valores</h2>
                 <ul class="list-unstyled">
                     <li class="mb-2">
-                        <i class="bi bi-check-circle text-success me-2" aria-hidden="true"></i>
-                        <span class="font-weight-bold">Innovación:</span> Mejora continua de nuestras soluciones.
+                        <i class="bi bi-check-circle text-success me-2"></i>
+                        <span class="fw-bold">Innovación:</span> Mejora continua de nuestras soluciones.
                     </li>
                     <li class="mb-2">
-                        <i class="bi bi-check-circle text-success me-2" aria-hidden="true"></i>
-                        <span class="font-weight-bold">Fiabilidad:</span> Sistemas estables con uptime del 99.9%.
+                        <i class="bi bi-check-circle text-success me-2"></i>
+                        <span class="fw-bold">Fiabilidad:</span> Sistemas estables con uptime del 99.9%.
                     </li>
                     <li class="mb-2">
-                        <i class="bi bi-check-circle text-success me-2" aria-hidden="true"></i>
-                        <span class="font-weight-bold">Soporte proactivo:</span> Respuesta en menos de 2 horas.
+                        <i class="bi bi-check-circle text-success me-2"></i>
+                        <span class="fw-bold">Soporte proactivo:</span> Respuesta en menos de 2 horas.
                     </li>
                 </ul>
             </section>
@@ -66,103 +65,96 @@
                 <h2 class="h4 fw-semibold mb-3 text-center">Equipo técnico</h2>
                 <div id="equipoCarrusel" class="carousel slide carousel-fade shadow-sm rounded-3 overflow-hidden"
                     data-bs-ride="carousel">
-
                     <div class="carousel-inner text-center">
                         <div class="carousel-item active">
                             <img src="../../../static/img/banners/GarciaMariaPablo.png"
                                 th:src="@{/img/banners/GarciaMariaPablo.png}" class="d-block mx-auto img-fluid w-75"
-                                alt="Pablo Garcia Maria - Desarrollador y Gestor de la web" loading="lazy">
+                                alt="Pablo Garcia Maria - Desarrollador y Gestor de la web">
                         </div>
                         <div class="carousel-item">
                             <img src="../../../static/img/banners/PerezMarquezGabriel.png"
                                 th:src="@{/img/banners/PerezMarquezGabriel.png}" class="d-block mx-auto img-fluid w-75"
-                                alt="Gabriel Perez Marquez - Tester 1" loading="lazy">
+                                alt="Gabriel Perez Marquez - Tester 1">
                         </div>
                         <div class="carousel-item">
                             <img src="../../../static/img/banners/MontanesRamosRoberto.png"
                                 th:src="@{/img/banners/MontanesRamosRoberto.png}" class="d-block mx-auto img-fluid w-75"
-                                alt="Roberto Montañes Ramos - Tester 2" loading="lazy">
+                                alt="Roberto Montañes Ramos - Tester 2">
                         </div>
                         <div class="carousel-item">
                             <img src="../../../static/img/banners/ZamoranoRodriguezJesus.png"
                                 th:src="@{/img/banners/ZamoranoRodriguezJesus.png}"
-                                class="d-block mx-auto img-fluid w-75" alt="Jesus Zamorano Rodriguez - Tester 3"
-                                loading="lazy">
+                                class="d-block mx-auto img-fluid w-75" alt="Jesús Zamorano Rodríguez - Tester 3">
                         </div>
                         <div class="carousel-item">
                             <img src="../../../static/img/banners/DiazGardunoPedro.png"
                                 th:src="@{/img/banners/DiazGardunoPedro.png}" class="d-block mx-auto img-fluid w-75"
-                                alt="Pedro Diaz Garduño - Tester 4" loading="lazy">
+                                alt="Pedro Díaz Garduño - Tester 4">
                         </div>
                         <div class="carousel-item">
                             <img src="../../../static/img/banners/DiosFiestasGonzaloAntonio.png"
                                 th:src="@{/img/banners/DiosFiestasGonzaloAntonio.png}"
-                                class="d-block mx-auto img-fluid w-75" alt="Gonzalo Antonio Dios Fiestas - Tester 5"
-                                loading="lazy">
+                                class="d-block mx-auto img-fluid w-75" alt="Gonzalo Antonio Dios Fiestas - Tester 5">
                         </div>
                         <div class="carousel-item">
                             <img src="../../../static/img/banners/SerranoRuizMauro.png"
                                 th:src="@{/img/banners/SerranoRuizMauro.png}" class="d-block mx-auto img-fluid w-75"
-                                alt="Mauro Serrano Ruiz - Tester 6" loading="lazy">
+                                alt="Mauro Serrano Ruiz - Tester 6">
                         </div>
-
-                        <!-- Profesores y menciones -->
                         <div class="carousel-item">
                             <img src="../../../static/img/banners/NaranjoGonzalezAngel.png"
                                 th:src="@{/img/banners/NaranjoGonzalezAngel.png}" class="d-block mx-auto img-fluid w-75"
-                                alt="Angel Naranjo Gonzalez - Profesor de Java y Spring Boot" loading="lazy">
+                                alt="Ángel Naranjo González - Profesor de Java y Spring Boot">
                         </div>
                         <div class="carousel-item">
                             <img src="../../../static/img/banners/VillarLinanRafael.png"
                                 th:src="@{/img/banners/VillarLinanRafael.png}" class="d-block mx-auto img-fluid w-75"
-                                alt="Rafael Villar Liñan - Profesor de HTML, CSS y Thymeleaf" loading="lazy">
+                                alt="Rafael Villar Liñán - Profesor de HTML, CSS y Thymeleaf">
                         </div>
                         <div class="carousel-item">
                             <img src="../../../static/img/banners/LopezMaganaLuisMiguel.png"
                                 th:src="@{/img/banners/LopezMaganaLuisMiguel.png}"
                                 class="d-block mx-auto img-fluid w-75"
-                                alt="Luis Miguel Lopez Magaña - Profesor de Spring Security" loading="lazy">
+                                alt="Luis Miguel López Magaña - Profesor de Spring Security">
                         </div>
                         <div class="carousel-item">
                             <img src="../../../static/img/banners/CamposRiveraMiguel.png"
                                 th:src="@{/img/banners/CamposRiveraMiguel.png}" class="d-block mx-auto img-fluid w-75"
-                                alt="Miguel Campos Rivera - Profesor de Expresiones Regulares" loading="lazy">
+                                alt="Miguel Campos Rivera - Profesor de Expresiones Regulares">
                         </div>
                         <div class="carousel-item">
                             <img src="../../../static/img/banners/ChatGPT.png" th:src="@{/img/banners/ChatGPT.png}"
                                 class="d-block mx-auto img-fluid w-75"
-                                alt="ChatGPT - Mención Honorífica 'El creador de Errores' " loading="lazy">
+                                alt="ChatGPT - Mención Honorífica 'El creador de Errores'">
                         </div>
                         <div class="carousel-item">
                             <img src="../../../static/img/banners/DeepSeek.png" th:src="@{/img/banners/DeepSeek.png}"
-                                class="d-block mx-auto img-fluid w-75" alt="DeepSeek - Mención Honorífica "
-                                loading="lazy">
+                                class="d-block mx-auto img-fluid w-75" alt="DeepSeek - Mención Honorífica">
                         </div>
                         <div class="carousel-item">
                             <img src="../../../static/img/banners/StackOverflow.png"
                                 th:src="@{/img/banners/StackOverflow.png}" class="d-block mx-auto img-fluid w-75"
-                                alt="StackOverflow - Mención Honorífica" loading="lazy">
+                                alt="StackOverflow - Mención Honorífica 'Lo que antes era ChatGPT'">
                         </div>
                     </div>
 
                     <button class="carousel-control-prev" type="button" data-bs-target="#equipoCarrusel"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+                        data-bs-slide="prev" title="Ver anterior">
+                        <span class="carousel-control-prev-icon bg-dark rounded-circle p-2"></span>
                         <span class="visually-hidden">Anterior</span>
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#equipoCarrusel"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon bg-dark rounded-circle p-2" aria-hidden="true"></span>
+                        data-bs-slide="next" title="Ver siguiente">
+                        <span class="carousel-control-next-icon bg-dark rounded-circle p-2"></span>
                         <span class="visually-hidden">Siguiente</span>
                     </button>
                 </div>
             </section>
 
-
-
             <section class="text-center mt-5">
-                <a th:href="@{/contacto}" href="contacto.html" class="bg-main btn text-light">
-                    <i class="bi bi-envelope-fill me-1" aria-hidden="true"></i> Contactar con el equipo
+                <a th:href="@{/contacto}" href="contacto.html" class="btn btn-main text-light"
+                    title="Ir al formulario de contacto">
+                    <i class="bi bi-envelope-fill me-1"></i> Contactar con el equipo
                 </a>
             </section>
         </div>

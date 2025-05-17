@@ -16,9 +16,11 @@
 
 <body class="d-flex flex-column h-100 bg-light">
 
-<header th:replace="~{admin/_fragments/header.html :: header}"></header>
+    <header th:replace="~{/global/_fragments/header.html :: headerGlobal}"></header>
+    <th:block th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></th:block>
 
 <main class="container flex-grow-1 my-4 d-flex align-items-center justify-content-center text-center">
+
     <div class="bg-white rounded-3 shadow-sm p-5 mx-auto limited-width-600">
         <div class="text-warning">
             <i class="bi bi-shield-lock display-1"></i>

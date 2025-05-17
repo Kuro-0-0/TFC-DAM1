@@ -4,7 +4,8 @@
     background-color: var(--mainColor) !important;
 }
 
-.txt-main {
+.txt-main,
+.text-main {
     color: var(--mainColor) !important;
 }
 
@@ -12,11 +13,47 @@
     border-color: var(--mainColor) !important;
 }
 
-:root {
-    --mainColor: #dc001b;
+
+.btn-main {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--mainColor);
+    --bs-btn-border-color: var(--mainColor);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--mainColor-dark);
+    --bs-btn-hover-border-color: var(--mainColor-dark);
+    --bs-btn-focus-shadow-rgb: 49, 132, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--mainColor-dark);
+    --bs-btn-active-border-color: var(--mainColor-dark);
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: var(--mainColor);
+    --bs-btn-disabled-border-color: var(--mainColor);
 }
 
-.active .nav-link {
+.btn-outline-main {
+    --bs-btn-color: var(--mainColor);
+    --bs-btn-border-color: var(--mainColor);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--mainColor);
+    --bs-btn-hover-border-color: var(--mainColor);
+    --bs-btn-focus-shadow-rgb: 13, 110, 253;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--mainColor);
+    --bs-btn-active-border-color: var(--mainColor);
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: var(--mainColor);
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: var(--mainColor);
+    --bs-gradient: none;
+}
+
+:root {
+    --mainColor: #dc001b;
+    --mainColor-dark: #b8192c;
+}
+
+.active .nav-link, .nav-link:hover {
     font-weight: bold;
     text-decoration: underline;
     text-underline-offset: 5px;
@@ -43,6 +80,7 @@
     .w-badge {
         width: 50%;
     }
+
     .w-badge-r {
         width: 100%;
     }
@@ -50,6 +88,18 @@
 
 .top-15 {
     top: 15% !important;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.cursor-normal {
+    cursor: default;
+}
+
+.fs-2 {
+    font-size: 2rem !important;
 }
 
 .min-w-25 {
@@ -71,6 +121,7 @@
 }
 
 .limited-width-600 {
+    /** Se usa tambien en login.html y register.html*/
     max-width: 600px;
 }
 
@@ -101,12 +152,13 @@
 .hero-illustration {
     font-size: 6rem;
 }
+
 .step-icon {
     width: 60px;
     height: 60px;
 }
 
-/** Usado en paginaPrincipal.html Admin */
+/** Usado en dashboard.html Admin */
 .accordion-button::after {
     filter: brightness(0) invert(1);
 }
@@ -141,3 +193,4 @@
     background-color: var(--mainColor);
     border-radius: 10px;
 }
+

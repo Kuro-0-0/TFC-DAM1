@@ -1,104 +1,98 @@
-<header th:fragment="header" class="mb-4 bg-main" role="banner">
-    <nav class="navbar navbar-expand-lg navbar-dark container px-3" role="navigation" aria-label="Menú principal">
+<header th:fragment="header" class="mb-4 bg-main">
+    <nav class="navbar navbar-expand-lg navbar-dark container px-3">
         <div class="container-fluid">
-            <!-- Logo y nombre del sistema -->
-            <a class="navbar-brand fw-bold d-flex align-items-center" href="/" title="Ir al inicio">
-                <i class="bi bi-shield-exclamation me-2" aria-hidden="true"></i>
+
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="/" th:href="@{/}"
+                title="Ir a la página principal del sistema">
+                <i class="bi bi-shield-exclamation me-2"></i>
                 <span>Gestor de Incidencias</span>
             </a>
 
-            <!-- Botón hamburguesa para móviles -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-                aria-controls="mainNavbar" aria-expanded="false" aria-label="Alternar navegación">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <!-- Menú principal colapsable -->
             <div class="collapse navbar-collapse" id="mainNavbar">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <!-- Menú Incidencias -->
-                    <li class="nav-item dropdown" th:classappend="${activeTab == 'incidencias'} ? 'active'">
-                        <a class="nav-link dropdown-toggle" href="#" id="incidenciasDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
-                            <i class="bi bi-list-task me-1" aria-hidden="true"></i> Incidencias
+
+                    <li class="nav-item dropdown"
+                        th:classappend="${activeTab.contains('/admin/incidencias')} ? 'active'">
+                        <a class="nav-link dropdown-toggle" href="#" id="incidenciasDropdown" data-bs-toggle="dropdown"
+                            title="Opciones sobre incidencias">
+                            <i class="bi bi-list-task me-1"></i>
+                            <span>Incidencias</span>
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="incidenciasDropdown">
+                        <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" href="../incidencia/listar.html" th:href="@{/admin/incidencias}"
-                                    title="Listar todas las incidencias">
-                                    <i class="bi bi-list-ul me-2" aria-hidden="true"></i> Listar Incidencias
+                                <a class="dropdown-item" href="../incidencia/listar.html"
+                                    th:href="@{/admin/incidencias}" title="Listar todas las incidencias">
+                                    <i class="bi bi-list-ul me-2"></i> <span>Listar Incidencias</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="../incidencia/formulario.html"
                                     th:href="@{/admin/incidencias/crear}" title="Crear nueva incidencia">
-                                    <i class="bi bi-plus-circle me-2" aria-hidden="true"></i> Crear Incidencia
+                                    <i class="bi bi-plus-circle me-2"></i> <span>Crear Incidencia</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="../incidencia/estadisticas.html"
-                                    th:href="@{/admin/incidencias/estadisticas}" title="Ver estadísticas de incidencias">
-                                    <i class="bi bi-graph-up me-2" aria-hidden="true"></i> Estadísticas
+                                    th:href="@{/admin/incidencias/estadisticas}"
+                                    title="Ver estadísticas de incidencias">
+                                    <i class="bi bi-graph-up me-2"></i> <span>Estadísticas</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
 
-                    <!-- Menú Estados -->
-                    <li class="nav-item dropdown" th:classappend="${activeTab == 'estados'} ? 'active'">
-                        <a class="nav-link dropdown-toggle" href="#" id="estadosDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
-                            <i class="bi bi-tags me-1" aria-hidden="true"></i> Estados
+                    <li class="nav-item dropdown" th:classappend="${activeTab.contains('/admin/estados')} ? 'active'">
+                        <a class="nav-link dropdown-toggle" href="#" id="estadosDropdown" data-bs-toggle="dropdown"
+                            title="Opciones sobre estados">
+                            <i class="bi bi-tags me-1"></i>
+                            <span>Estados</span>
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="estadosDropdown">
+                        <ul class="dropdown-menu">
                             <li>
                                 <a class="dropdown-item" href="../estado/listar.html" th:href="@{/admin/estados}"
                                     title="Listar estados disponibles">
-                                    <i class="bi bi-list-ul me-2" aria-hidden="true"></i> Listar Estados
+                                    <i class="bi bi-list-ul me-2"></i> <span>Listar Estados</span>
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="../estado/formulario.html" th:href="@{/admin/estados/crear}"
-                                    title="Crear nuevo estado">
-                                    <i class="bi bi-plus-circle me-2" aria-hidden="true"></i> Crear Estado
+                                <a class="dropdown-item" href="../estado/formulario.html"
+                                    th:href="@{/admin/estados/crear}" title="Crear nuevo estado">
+                                    <i class="bi bi-plus-circle me-2"></i> <span>Crear Estado</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
 
-                    <!-- Menú Usuarios -->
-                    <li class="nav-item dropdown" th:classappend="${activeTab == 'usuarios'} ? 'active'">
-                        <a class="nav-link dropdown-toggle" href="#" id="usuariosDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
-                            <i class="bi bi-people me-1" aria-hidden="true"></i> Usuarios
+                    <li class="nav-item dropdown" th:classappend="${activeTab.contains('/admin/usuarios')} ? 'active'">
+                        <a class="nav-link dropdown-toggle" href="#" id="usuariosDropdown" data-bs-toggle="dropdown"
+                            title="Opciones sobre usuarios">
+                            <i class="bi bi-people me-1"></i>
+                            <span>Usuarios</span>
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="usuariosDropdown">
+                        <ul class="dropdown-menu">
                             <li>
                                 <a class="dropdown-item" href="../usuario/listar.html" th:href="@{/admin/usuarios}"
                                     title="Ver usuarios registrados">
-                                    <i class="bi bi-list-ul me-2" aria-hidden="true"></i> Listar Usuarios
+                                    <i class="bi bi-list-ul me-2"></i> <span>Listar Usuarios</span>
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="../usuario/formulario.html" th:href="@{/admin/usuarios/crear}"
-                                    title="Registrar nuevo usuario">
-                                    <i class="bi bi-plus-circle me-2" aria-hidden="true"></i> Crear Usuarios
+                                <a class="dropdown-item" href="../usuario/formulario.html"
+                                    th:href="@{/admin/usuarios/crear}" title="Registrar nuevo usuario">
+                                    <i class="bi bi-plus-circle me-2"></i> <span>Crear Usuarios</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
-
-                    <!-- Opción adicional comentada -->
-                    <!--
-                    <li class="nav-item" th:classappend="${activeTab == 'error'} ? 'active'">
-                        <a class="nav-link" href="../../404.html" th:href="@{/admin/error}" title="Página de error">
-                            <i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Error
-                        </a>
-                    </li>
-                    -->
                 </ul>
 
-                <th:block th:replace="~{_fragments/headerPerfil.html :: headerPerfil}"></th:block>
+                <div class="d-flex align-items-center">
+                    <th:block th:replace="~{_fragments/headerPerfil.html :: headerPerfil}"></th:block>
+                </div>
 
             </div>
         </div>

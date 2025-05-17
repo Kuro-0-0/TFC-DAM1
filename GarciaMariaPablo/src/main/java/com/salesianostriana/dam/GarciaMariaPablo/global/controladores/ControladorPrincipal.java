@@ -54,6 +54,12 @@ public class ControladorPrincipal {
     @GetMapping("/contacto")
     public String cargarContacto(Model model) {return servicioPrincipal.cargarContacto(model);}
 
+    @GetMapping("/contacto/submit")
+    public String responderFormulario(Model model,RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("info", "Tu mensaje ha sido enviado. En menos de 24 horas, nuestro equipo se pondrá en contacto con usted.");
+        return "redirect:/";
+    }
+
     @GetMapping("/politica-privacidad")
     public String cargarPPrivacidad(Model model) {return servicioPrincipal.cargarPPrivacidad(model);}
 

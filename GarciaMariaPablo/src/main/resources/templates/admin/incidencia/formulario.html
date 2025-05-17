@@ -6,25 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description"
         content="Visualiza, crea o modifica incidencias reportadas en el sistema. Gestiona ubicación, descripción, estado, técnicos y más detalles importantes." />
-    <meta name="keywords" content="incidencia, crear, modificar, gestión de incidencias, técnicos, sistema, IT" />
-    <meta name="robots" content="index, follow" />
     <meta name="author" content="Pablo Garcia Maria" />
-    <link rel="icon" href="../../../static/img/favicon.ico" th:href="@{/img/favicon.ico}" type="image/x-icon">
     <title th:if="${modificar}">Modificar Incidencia | Gestión de Incidencias</title>
     <title th:unless="${modificar}">Crear Incidencia | Gestión de Incidencias</title>
 
     <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
 
-    <!-- JavaScript -->
-    <script defer th:if="${modificar}" th:src="@{/admin/javascript/incidencias/formulario/ajustarFechaModificar.js}"
-        src="../../../static/admin/javascript/incidencias/formulario/ajustarFechaModificar.js"></script>
-
-    <script defer th:unless="${modificar}" th:src="@{/admin/javascript/incidencias/formulario/establecerFechaHoy.js}"
-        src="../../../static/admin/javascript/incidencias/formulario/establecerFechaHoy.js"></script>
-
     <script defer th:src="@{/admin/javascript/reutilizables/buscarDesplegablesFiltros.js}"
         src="../../../static/admin/javascript/reutilizables/buscarDesplegablesFiltros.js"></script>
-
     <script defer th:src="@{/admin/javascript/incidencias/formulario/ajustarDropdows.js}"
         src="../../../static/admin/javascript/incidencias/formulario/ajustarDropdows.js"></script>
     <script defer th:src="@{/admin/javascript/incidencias/formulario/prevenirCreacionSinReportante.js}"
@@ -41,22 +30,24 @@
         <section class="card border-0 rounded-3 shadow">
             <div class="card-header bg-main text-white rounded-top-3 p-3">
                 <h1 class="h5 mb-0" th:if="${modificar}">
-                    <i class="bi bi-pencil-square me-2"></i>Modificar Incidencia
+                    <i class="bi bi-pencil-square me-2"></i><span>Modificar Incidencia</span>
                 </h1>
                 <h1 class="h5 mb-0" th:unless="${modificar}">
-                    <i class="bi bi-plus-circle me-2"></i>Crear Nueva Incidencia
+                    <i class="bi bi-plus-circle me-2"></i><span>Crear Nueva Incidencia</span>
                 </h1>
             </div>
 
             <div class="card-body p-4">
-                <form th:action="@{/admin/incidencias}" th:object="${incidenciaDAO}" th:method="${modificar} ? put : post"
-                    name="crearIncidencia" id="crearIncidenciaForm" enctype="multipart/form-data">
+                <form th:action="@{/admin/incidencias}" th:object="${incidenciaDAO}"
+                    th:method="${modificar} ? put : post" name="crearIncidencia" id="crearIncidenciaForm"
+                    enctype="multipart/form-data">
                     <input type="hidden" th:if="${modificar}" th:field="*{id}" />
 
                     <div class="row mb-4">
                         <div th:class="${modificar} ? 'col-md-5 mb-3' : 'col-md-6 mb-3'">
                             <label for="titulo" class="form-label fw-medium">
-                                <i class="bi bi-card-heading me-1"></i>Título <span class="text-danger">*</span>
+                                <i class="bi bi-card-heading me-1"></i><span>Título</span> <span
+                                    class="text-danger">*</span>
                             </label>
                             <input th:field="*{titulo}" type="text" class="form-control form-control-lg"
                                 placeholder="Ej. Falla en el servidor" required maxlength="100"
@@ -66,7 +57,8 @@
 
                         <div th:class="${modificar} ? 'col-md-4 mb-3' : 'col-md-6 mb-3'">
                             <label for="ubicacion" class="form-label fw-medium">
-                                <i class="bi bi-geo-alt me-1"></i>Ubicación <span class="text-danger">*</span>
+                                <i class="bi bi-geo-alt me-1"></i><span>Ubicación</span> <span
+                                    class="text-danger">*</span>
                             </label>
                             <input th:field="*{ubicacion}" type="text" class="form-control form-control-lg"
                                 placeholder="Ej. Sala de servidores - Planta 2" required maxlength="100"
@@ -75,22 +67,19 @@
                         </div>
 
                         <div class="col-md-3 mb-3" th:if="${modificar}">
-                            <div class="form-label fw-medium" title="IEA significa Inicio del Estado Actual">
-                                <i class="bi bi-calendar me-1"></i>Fecha IEA
-                            </div>
+                            <label class="form-label fw-medium">
+                                <i class="bi bi-calendar me-1"></i><span>Fecha IEA</span>
+                            </label>
                             <span th:text="*{fechaCreacion}" class="form-control form-control-lg pe-none"></span>
-
-                            <input type="hidden" th:field="*{fechaCreacion}" readonly
-                                th:value="*{fechaCreacion}"
+                            <input type="hidden" th:field="*{fechaCreacion}" readonly th:value="*{fechaCreacion}"
                                 th:data-fecha="*{fechaCreacion}"
                                 th:attr="max=${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd''T''HH:mm')}" />
-
                         </div>
                     </div>
 
                     <div class="mb-4">
                         <label for="descripcion" class="form-label fw-medium">
-                            <i class="bi bi-text-paragraph me-1"></i>Descripción
+                            <i class="bi bi-text-paragraph me-1"></i><span>Descripción</span>
                         </label>
                         <textarea class="form-control form-control-lg" th:field="*{descripcion}" rows="5"
                             placeholder="Describe el problema con detalle" maxlength="500"
@@ -102,7 +91,8 @@
                         <!-- Reportante -->
                         <div class="col-md-4 mb-3">
                             <label for="filtroReportante" class="form-label fw-medium">
-                                <i class="bi bi-person me-1"></i>Reportante <span class="text-danger">*</span>
+                                <i class="bi bi-person me-1"></i><span>Reportante</span> <span
+                                    class="text-danger">*</span>
                             </label>
                             <div class="input-group mb-2">
                                 <span class="input-group-text"><i class="bi bi-search"></i></span>
@@ -111,16 +101,15 @@
                             </div>
                             <div class="dropdown">
                                 <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"
-                                    id="dropdownReportante" data-bs-toggle="dropdown" aria-expanded="false"
+                                    id="dropdownReportante" data-bs-toggle="dropdown"
                                     th:text="${modificar} ? *{reportante.nombre} : 'Selecciona una opción'">
                                 </button>
-                                <ul class="dropdown-menu w-100 p-2 scroll-3-items" aria-labelledby="dropdownReportante"
-                                    id="listaReportantes">
+                                <ul class="dropdown-menu w-100 p-2 scroll-3-items" id="listaReportantes">
                                     <li th:each="reportante : ${reportantes}" th:data-label="${reportante.nombre}">
                                         <a class="dropdown-item d-flex align-items-center" href="#"
                                             th:data-value="${reportante.id}">
                                             <i class="bi bi-person-workspace me-2"></i>
-                                            <span th:text="${reportante.nombre}">Carlos Ruiz</span>
+                                            <span th:text="${reportante.nombre}">Nombre</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -132,7 +121,7 @@
                         <!-- Técnico -->
                         <div class="col-md-4 mb-3">
                             <label for="filtroTecnico" class="form-label fw-medium">
-                                <i class="bi bi-person-gear me-1"></i>Técnico Asignado
+                                <i class="bi bi-person-gear me-1"></i><span>Técnico Asignado</span>
                             </label>
                             <div class="input-group mb-2">
                                 <span class="input-group-text"><i class="bi bi-search"></i></span>
@@ -141,16 +130,15 @@
                             </div>
                             <div class="dropdown">
                                 <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"
-                                    id="dropdownTecnico" data-bs-toggle="dropdown" aria-expanded="false"
+                                    id="dropdownTecnico" data-bs-toggle="dropdown"
                                     th:text="${modificar} ? *{tecnico.nombre} : 'Selecciona una opción'">
                                 </button>
-                                <ul class="dropdown-menu w-100 p-2 scroll-3-items" aria-labelledby="dropdownTecnico"
-                                    id="listaTecnicos">
+                                <ul class="dropdown-menu w-100 p-2 scroll-3-items" id="listaTecnicos">
                                     <li th:each="tecnico : ${tecnicos}" th:data-label="${tecnico.nombre}">
                                         <a class="dropdown-item d-flex align-items-center" href="#"
                                             th:data-value="${tecnico.id}">
                                             <i class="bi bi-person-workspace me-2"></i>
-                                            <span th:text="${tecnico.nombre}"></span>
+                                            <span th:text="${tecnico.nombre}">Nombre</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -162,7 +150,7 @@
                         <!-- Estado -->
                         <div class="col-md-4 mb-3">
                             <label for="filtroEstado" class="form-label fw-medium">
-                                <i class="bi bi-tag me-1"></i>Estado
+                                <i class="bi bi-tag me-1"></i><span>Estado</span>
                             </label>
                             <div class="input-group mb-2">
                                 <span class="input-group-text"><i class="bi bi-search"></i></span>
@@ -171,17 +159,16 @@
                             </div>
                             <div class="dropdown">
                                 <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"
-                                    id="dropdownEstado" data-bs-toggle="dropdown" aria-expanded="false"
+                                    id="dropdownEstado" data-bs-toggle="dropdown"
                                     th:text="${modificar} ? *{estado.nombre} : 'Selecciona una opción'">
                                 </button>
-                                <ul class="dropdown-menu w-100 p-2 scroll-3-items" aria-labelledby="dropdownEstado"
-                                    id="listaEstados">
+                                <ul class="dropdown-menu w-100 p-2 scroll-3-items" id="listaEstados">
                                     <li th:each="estado : ${estados}" th:data-label="${estado.nombre}">
                                         <a class="dropdown-item d-flex align-items-center" href="#"
                                             th:data-value="${estado.valor}">
                                             <i class="bi bi-circle-fill me-2"
                                                 th:style="'color: '+${estado.colorFondo}"></i>
-                                            <span th:text="${estado.nombre}"></span>
+                                            <span th:text="${estado.nombre}">Nombre</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -190,17 +177,17 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Botones -->
+                    
                     <div class="d-flex justify-content-between mt-4 pt-3 border-top">
                         <a th:if="${modificar}" href="listar.html" th:href="@{/admin/incidencias}"
                             class="btn btn-outline-secondary">
-                            <i class="bi bi-arrow-left me-1"></i>Cancelar
+                            <i class="bi bi-arrow-left me-1"></i><span>Cancelar</span>
                         </a>
-                        <a th:unless="${modificar}" href="../otros/paginaPrincipal.html" th:href="@{/}"
+                        <a th:unless="${modificar}" href="../otros/dashboard.html" th:href="@{/admin}"
                             class="btn btn-outline-secondary">
-                            <i class="bi bi-arrow-left me-1"></i>Cancelar
+                            <i class="bi bi-arrow-left me-1"></i><span>Cancelar</span>
                         </a>
+                        <!-- No se sustituye por <input type="submit"> porque incluye icono -->
                         <button type="submit" class="btn btn-primary px-4">
                             <i class="bi bi-check-circle me-1" th:if="${modificar}"></i>
                             <i class="bi bi-plus-circle me-1" th:unless="${modificar}"></i>

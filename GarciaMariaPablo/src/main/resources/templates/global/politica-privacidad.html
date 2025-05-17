@@ -7,39 +7,37 @@
     <title>Política de Privacidad | Gestión de Incidencias</title>
     <meta name="description"
         content="Política de Privacidad del Sistema de Gestión de Incidencias. Conoce cómo protegemos tus datos personales según el RGPD.">
-    <meta name="keywords"
-        content="política de privacidad, protección de datos, RGPD, gestión de incidencias, confidencialidad">
-    <meta name="robots" content="index, follow">
     <meta name="author" content="Pablo Garcia Maria">
 
     <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
-
 </head>
 
 <body class="d-flex flex-column h-100 bg-light">
 
-    <th:block th:replace="~{global/_fragments/header.html :: navbar}"></th:block>
+    <th:block th:replace="~{global/_fragments/header.html :: headerGlobal}"></th:block>
+    <th:block th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></th:block>
 
-    <main class="flex-grow-1 container my-5" role="main">
+    <main class="flex-grow-1 container my-5">
+
         <div class="bg-white shadow-sm rounded-3 p-4 p-md-5">
             <h1 class="mb-4 border-bottom pb-3 fw-bold text-center txt-main">
-                <i class="bi bi-shield-lock me-2" aria-hidden="true"></i> Política de Privacidad
+                <i class="bi bi-shield-lock me-2"></i> Política de Privacidad
             </h1>
 
             <section class="mb-5">
-                <p class="lead">En el <span class="font-weight-bold">Sistema de Gestión de Incidencias</span>, protegemos tus datos
-                    personales conforme al Reglamento General de Protección de Datos (RGPD) y la Ley Orgánica 3/2018.
-                </p>
+                <p class="lead">En el <span class="fw-bold">Sistema de Gestión de Incidencias</span>, protegemos tus
+                    datos personales conforme al Reglamento General de Protección de Datos (RGPD) y la Ley Orgánica
+                    3/2018.</p>
                 <p class="text-muted small">Última actualización: 20 de mayo de 2024</p>
             </section>
 
             <section class="mb-5">
                 <h2 class="h4 fw-semibold mb-3">1. Responsable del tratamiento</h2>
                 <p>
-                    <span class="font-weight-bold">Identidad:</span> Sistema de Gestión de Incidencias<br>
-                    <span class="font-weight-bold">Dirección:</span> Calle Condes de Bustillo, 17, 41010 Sevilla<br>
-                    <span class="font-weight-bold">Email:</span> garcia.mapab24@salesianos.triana.edu<br>
-                    <span class="font-weight-bold">Teléfono:</span> +34 954 33 14 88
+                    <span class="fw-bold">Identidad:</span> Sistema de Gestión de Incidencias<br>
+                    <span class="fw-bold">Dirección:</span> Calle Condes de Bustillo, 17, 41010 Sevilla<br>
+                    <span class="fw-bold">Email:</span> garcia.mapab24@salesianos.triana.edu<br>
+                    <span class="fw-bold">Teléfono:</span> +34 954 33 14 88
                 </p>
             </section>
 
@@ -47,18 +45,14 @@
                 <h2 class="h4 fw-semibold mb-3">2. Datos que recopilamos</h2>
                 <p>Tratamos los siguientes tipos de datos:</p>
                 <ul>
-                    <li class="mb-2">
-                        <span class="font-weight-bold">Datos identificativos:</span> Nombre, apellidos, DNI/NIE (solo para empleados).
-                    </li>
-                    <li class="mb-2">
-                        <span class="font-weight-bold">Datos de contacto:</span> Email corporativo, teléfono, dirección de centro de trabajo.
-                    </li>
-                    <li class="mb-2">
-                        <span class="font-weight-bold">Datos profesionales:</span> Puesto, departamento, nivel de acceso al sistema.
-                    </li>
-                    <li>
-                        <span class="font-weight-bold">Datos técnicos:</span> IP, tipo de dispositivo, registros de actividad (logs).
-                    </li>
+                    <li class="mb-2"><span class="fw-bold">Datos identificativos:</span> Nombre, apellidos, DNI/NIE
+                        (solo para empleados).</li>
+                    <li class="mb-2"><span class="fw-bold">Datos de contacto:</span> Email corporativo, teléfono,
+                        dirección de centro de trabajo.</li>
+                    <li class="mb-2"><span class="fw-bold">Datos profesionales:</span> Puesto, departamento, nivel de
+                        acceso al sistema.</li>
+                    <li><span class="fw-bold">Datos técnicos:</span> IP, tipo de dispositivo, registros de actividad
+                        (logs).</li>
                 </ul>
             </section>
 
@@ -104,8 +98,8 @@
                     <li>Otros departamentos de la organización con necesidad legítima de acceso.</li>
                 </ul>
                 <div class="alert alert-info mt-3">
-                    <i class="bi bi-info-circle-fill me-2"></i> No se realizan transferencias internacionales fuera de
-                    la UE.
+                    <i class="bi bi-info-circle-fill me-2"></i><span>No se realizan transferencias internacionales fuera
+                        de la UE.</span>
                 </div>
             </section>
 
@@ -116,7 +110,7 @@
                     <div class="col-md-6">
                         <div class="card h-100 border-0 shadow-sm">
                             <div class="card-body">
-                                <h3 class="h6 fw-bold"><i class="bi bi-eye-fill text-primary me-2"></i>Derecho de acceso
+                                <h3 class="h6 fw-bold"><i class="bi bi-eye-fill text-main me-2"></i>Derecho de acceso
                                 </h3>
                                 <p class="small">Obtener confirmación de si tratamos tus datos.</p>
                             </div>
@@ -125,7 +119,7 @@
                     <div class="col-md-6">
                         <div class="card h-100 border-0 shadow-sm">
                             <div class="card-body">
-                                <h3 class="h6 fw-bold"><i class="bi bi-pencil-fill text-primary me-2"></i>Derecho de
+                                <h3 class="h6 fw-bold"><i class="bi bi-pencil-fill text-main me-2"></i>Derecho de
                                     rectificación</h3>
                                 <p class="small">Modificar datos inexactos o incompletos.</p>
                             </div>
@@ -134,7 +128,7 @@
                     <div class="col-md-6">
                         <div class="card h-100 border-0 shadow-sm">
                             <div class="card-body">
-                                <h3 class="h6 fw-bold"><i class="bi bi-trash-fill text-primary me-2"></i>Derecho de
+                                <h3 class="h6 fw-bold"><i class="bi bi-trash-fill text-main me-2"></i>Derecho de
                                     supresión</h3>
                                 <p class="small">Solicitar la eliminación cuando ya no sean necesarios.</p>
                             </div>
@@ -144,7 +138,7 @@
                         <div class="card h-100 border-0 shadow-sm">
                             <div class="card-body">
                                 <h3 class="h6 fw-bold"><i
-                                        class="bi bi-file-earmark-lock-fill text-primary me-2"></i>Derecho a la
+                                        class="bi bi-file-earmark-lock-fill text-main me-2"></i>Derecho a la
                                     limitación</h3>
                                 <p class="small">Restringir el tratamiento en casos específicos.</p>
                             </div>
@@ -152,11 +146,12 @@
                     </div>
                 </div>
                 <div class="alert bg-light mt-4">
-                    <p class="mb-2"><span class="font-weight-bold">¿Cómo ejercer tus derechos?</span></p>
-                    <p class="mb-0">Envía una solicitud a <a
-                            href="mailto:garcia.mapab24@salesianos.triana.edu">garcia.mapab24@salesianos.triana.edu</a>
-                        con copia de tu DNI
-                        y especificando el derecho que deseas ejercer.</p>
+                    <p class="mb-2"><span class="fw-bold">¿Cómo ejercer tus derechos?</span></p>
+                    <p class="mb-0">Envía una solicitud a
+                        <a href="mailto:garcia.mapab24@salesianos.triana.edu"
+                            title="Enviar correo al DPO">garcia.mapab24@salesianos.triana.edu</a>
+                        con copia de tu DNI y especificando el derecho que deseas ejercer.
+                    </p>
                 </div>
             </section>
 
@@ -172,10 +167,12 @@
             </section>
 
             <section class="text-center mt-5">
-                <a th:href="@{/contacto}" href="contacto.html" class="btn btn-outline-primary me-2">
+                <a th:href="@{/contacto}" href="contacto.html" class="btn btn-outline-main me-2"
+                    title="Ir al formulario de contacto con el DPO">
                     <i class="bi bi-question-circle me-1"></i> Contactar con el DPO
                 </a>
-                <a href="#" class="btn btn-primary" onclick="window.print()">
+                <a href="#" class="btn btn-main" onclick="window.print()"
+                    title="Imprimir esta política de privacidad">
                     <i class="bi bi-printer-fill me-1"></i> Imprimir política
                 </a>
             </section>

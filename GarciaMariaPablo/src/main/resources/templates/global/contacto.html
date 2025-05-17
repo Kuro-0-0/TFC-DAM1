@@ -4,64 +4,63 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Contacto | Gestión de Incidencias</title> <!-- Metaetiquetas SEO -->
-    <meta name="description"
-        content="Formulario de contacto para soporte técnico, consultas comerciales o colaboraciones con nuestro equipo." />
-    <meta name="keywords" content="contacto, soporte técnico, ayuda, consultas, gestión de incidencias" />
-    <meta name="robots" content="index, follow" />
-    <meta name="author" content="Pablo Garcia Maria" /> <!-- Fragmento del head con fallback -->
+    <title>Contacto | Gestión de Incidencias</title>
+    <meta name="description" content="Formulario de contacto para soporte técnico, consultas comerciales o colaboraciones con nuestro equipo." />
+    <meta name="author" content="Pablo Garcia Maria" />
     <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
-
 </head>
 
-<body class="d-flex flex-column h-100 bg-light"> <!-- Encabezado de navegación -->
-    <th:block th:replace="~{global/_fragments/header.html :: navbar}"></th:block>
+<body class="d-flex flex-column h-100 bg-light">
+    <th:block th:replace="~{global/_fragments/header.html :: headerGlobal}"></th:block>
+    <th:block th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></th:block>
 
-    <main class="flex-grow-1 container my-5" role="main">
-        <article class="bg-white shadow-sm rounded-3 p-4 p-md-5" itemscope itemtype="https://schema.org/ContactPage">
+    <main class="flex-grow-1 container my-5">
+
+        <article class="bg-white shadow-sm rounded-3 p-4 p-md-5" >
             <header>
-                <h1 class="mb-4 border-bottom pb-3 fw-bold text-center txt-main"> <i class="bi bi-envelope-paper me-2"
-                        aria-hidden="true"></i> <span itemprop="name">Contacto</span> </h1>
+                <h1 class="mb-4 border-bottom pb-3 fw-bold text-center txt-main">
+                    <i class="bi bi-envelope-paper me-2"></i>
+                    <span>Contacto</span>
+                </h1>
             </header>
+
             <div class="row">
-                <!-- Información de contacto -->
-                <section class="col-lg-6 mb-4 mb-lg-0" aria-labelledby="info-contacto">
+                <section class="col-lg-6 mb-4 mb-lg-0">
                     <h2 id="info-contacto" class="h4 fw-semibold mb-3">Información de contacto</h2>
                     <ul class="list-unstyled">
                         <li class="mb-3 d-flex align-items-start">
-                            <i class="bi bi-geo-alt-fill txt-main fs-5 me-2" aria-hidden="true"></i>
+                            <i class="bi bi-geo-alt-fill txt-main fs-5 me-2"></i>
                             <div>
                                 <h3 class="h6 fw-bold mb-0">Oficina central</h3>
-                                <p class="mb-0 small" itemprop="address" itemscope
-                                    itemtype="https://schema.org/PostalAddress">
-                                    <span itemprop="streetAddress">Calle Condes de Bustillo, 17</span> ·
-                                    <span itemprop="addressLocality">Sevilla</span>,
-                                    <span itemprop="postalCode">41010</span>
+                                <p class="mb-0 small">
+                                    <span>Calle Condes de Bustillo, 17</span> ·
+                                    <span>Sevilla</span>,
+                                    <span>41010</span>
                                 </p>
                             </div>
                         </li>
                         <li class="mb-3 d-flex align-items-start">
-                            <i class="bi bi-telephone-fill txt-main fs-5 me-2" aria-hidden="true"></i>
+                            <i class="bi bi-telephone-fill txt-main fs-5 me-2"></i>
                             <div>
                                 <h3 class="h6 fw-bold mb-0">Soporte técnico</h3>
                                 <p class="mb-0 small">
-                                    <span itemprop="telephone">+34 954 33 14 88</span> (L-V 9:00–18:00)
+                                    <span>+34 954 33 14 88</span> (L-V 9:00–18:00)
                                 </p>
                             </div>
                         </li>
                         <li class="d-flex align-items-start">
-                            <i class="bi bi-envelope-fill txt-main fs-5 me-2" aria-hidden="true"></i>
+                            <i class="bi bi-envelope-fill txt-main fs-5 me-2"></i>
                             <div>
                                 <h3 class="h6 fw-bold mb-0">Email</h3>
                                 <p class="mb-0 small">
-                                    <a href="mailto:garcia.mapab24@salesianos.triana.edu"
-                                        itemprop="email">garcia.mapab24@salesianos.triana.edu</a>
+                                    <a href="mailto:garcia.mapab24@salesianos.triana.edu" 
+                                    title="Escríbenos un correo electrónico">garcia.mapab24@salesianos.triana.edu</a>
                                 </p>
                             </div>
                         </li>
                     </ul>
 
-                    <div class="mt-4" aria-labelledby="horario">
+                    <div class="mt-4">
                         <h2 id="horario" class="h4 fw-semibold mb-3">Horario de atención</h2>
                         <ul class="list-unstyled small">
                             <li class="mb-1 d-flex">
@@ -80,24 +79,21 @@
                     </div>
                 </section>
 
-                <!-- Formulario de contacto -->
-                <section class="col-lg-6" aria-labelledby="formulario-contacto">
+                <section class="col-lg-6">
                     <h2 id="formulario-contacto" class="h4 fw-semibold mb-3">Formulario de contacto</h2>
-                    <form th:action="@{/contacto/submit}" method="get" role="form" aria-label="Formulario de contacto">
+                    <form th:action="@{/contacto/submit}" method="get">
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre completo <span
                                     class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="nombre" name="nombre"
                                 pattern="[A-Za-zÁ-ú\s]{3,50}" title="Mínimo 3 caracteres (solo letras y espacios)"
                                 required autocomplete="name" />
-                            <div class="invalid-feedback">Por favor, introduce un nombre válido.</div>
                         </div>
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
                             <input type="email" class="form-control" id="email" name="email"
                                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required autocomplete="email" />
-                            <div class="invalid-feedback">Introduce un email válido (ej: usuario@dominio.com).</div>
                         </div>
 
                         <div class="mb-3">
@@ -122,19 +118,22 @@
                             <input type="checkbox" class="form-check-input" id="privacidad" required />
                             <label class="form-check-label small" for="privacidad">
                                 Acepto la
-                                <a href="politica-privacidad.html" th:href="@{/politica-privacidad}">Política de
+                                <a href="politica-privacidad.html" th:href="@{/politica-privacidad}" 
+                                title="Redireccionamiento a la politica de privacidad">Política de
                                     Privacidad</a>.
                             </label>
                         </div>
 
-                        <button type="submit" class="bg-main btn text-light w-100">
-                            <i class="bi bi-send-fill me-1" aria-hidden="true"></i> Enviar mensaje
+                        <!-- No se usa <input type="submit"> porque el botón contiene un icono -->
+                        <button type="submit" class="btn btn-main text-light w-100">
+                            <i class="bi bi-send-fill me-1"></i> Enviar mensaje
                         </button>
                     </form>
                 </section>
             </div>
         </article>
-    </main> <!-- Pie de página -->
+    </main>
+
     <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
 </body>
 

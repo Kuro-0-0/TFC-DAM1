@@ -6,80 +6,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Página de administración para gestionar los estados del sistema.">
     <meta name="author" content="Pablo Garcia Maria">
-    <link rel="icon" href="../../../static/img/favicon.ico" th:href="@{/img/favicon.ico}" type="image/x-icon">
-
     <title>Listado de Estados | Gestión de Incidencias</title>
-
     <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
-
-    <!-- Javascript -->
     <script defer src="../../../static/admin/javascript/estados/listar/buscarFiltros.js"
         th:src="@{/admin/javascript/estados/listar/buscarFiltros.js}"></script>
     <th:block th:replace="~{admin/_fragments/listarJS.html :: import}"></th:block>
 </head>
 
 <body class="d-flex flex-column h-100 bg-light">
-
     <header th:replace="~{admin/_fragments/header.html :: header}"></header>
-
     <main class="container flex-grow-1 my-4" id="main-content">
-
-        <section aria-labelledby="titulo-listado">
-            <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
-
+        <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
+        
+        <section>
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1 id="titulo-listado" class="h4 mb-0 fw-bold">
-                    <i class="bi bi-tags me-2" aria-hidden="true"></i>Listado de Estados
+                <h1 class="h4 mb-0 fw-bold">
+                    <i class="bi bi-tags me-2"></i><span>Listado de Estados</span>
                 </h1>
-                <a th:href="@{/admin/estados/crear}" href="formulario.html" class="btn btn-success btn-sm"
-                    aria-label="Crear nuevo estado">
-                    <i class="bi bi-plus-circle me-1" aria-hidden="true"></i>Crear Estado
+                <a th:href="@{/admin/estados/crear}" href="formulario.html" class="btn btn-success btn-sm">
+                    <i class="bi bi-plus-circle me-1"></i><span>Crear Estado</span>
                 </a>
             </div>
         </section>
-
-        <section class="bg-white rounded-3 shadow-sm p-3 mb-3" aria-label="Buscar estados">
-            <form class="input-group" role="search" onsubmit="aplicarBusqueda(); return false;">
+        <section class="bg-white rounded-3 shadow-sm p-3 mb-3">
+            <form class="input-group" onsubmit="aplicarBusqueda(); return false;">
                 <input type="text" class="form-control form-control-sm" id="buscarInput" th:value="${param.buscar}"
-                    placeholder="Buscar por nombre..." aria-label="Buscar por nombre">
-                <button class="btn btn-primary btn-sm" type="submit" aria-label="Buscar">
-                    <i class="bi bi-search" aria-hidden="true"></i>
-                </button>
+                    placeholder="Buscar por nombre...">
+                <input type="submit" class="btn btn-primary btn-sm" value="Buscar">
                 <button class="btn btn-outline-secondary btn-sm" type="button" onclick="limpiarBusqueda()"
-                    th:if="${param.buscar != null and not #strings.isEmpty(param.buscar)}"
-                    aria-label="Limpiar búsqueda">
-                    <i class="bi bi-x-lg" aria-hidden="true"></i>
+                    th:if="${param.buscar != null and not #strings.isEmpty(param.buscar)}">
+                    <i class="bi bi-x-lg"></i>
                 </button>
             </form>
         </section>
-
-        <section class="bg-white rounded-3 shadow-sm p-3 mb-3" aria-label="Listado de estados en tabla">
+        <section class="bg-white rounded-3 shadow-sm p-3 mb-3">
             <div class="table-responsive">
-                <table class="table table-hover align-middle" aria-describedby="titulo-listado">
+                <table class="table table-hover align-middle">
                     <thead
                         class="table-light border border-bottom border-main border-top-0 border-start-0 border-end-0 border-2">
                         <tr>
                             <th scope="col">
                                 <a href="#" onclick="ordenarPor('nombre')"
-                                    class="text-decoration-none text-dark d-flex align-items-center gap-1"
-                                    aria-label="Ordenar por nombre">
-                                    Nombre <span id="icon-nombre" class="ms-1" aria-hidden="true"></span>
+                                    class="text-decoration-none text-dark d-flex align-items-center gap-1">
+                                    <span>Nombre</span> <span id="icon-nombre" class="ms-1"></span>
                                 </a>
                             </th>
-                            <th scope="col">Vista Previa</th>
+                            <th scope="col"><span>Vista Previa</span></th>
                             <th scope="col">
                                 <a href="#" onclick="ordenarPor('activo')"
-                                    class="text-decoration-none text-dark d-flex align-items-center gap-1"
-                                    aria-label="Ordenar por estado activo">
-                                    Activado <span id="icon-activo" class="ms-1" aria-hidden="true"></span>
+                                    class="text-decoration-none text-dark d-flex align-items-center gap-1">
+                                    <span>Activado</span> <span id="icon-activo" class="ms-1"></span>
                                 </a>
                             </th>
-                            <th scope="col" class="text-center">Acciones</th>
+                            <th scope="col" class="text-center"><span>Acciones</span></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="estado : ${estados}">
-                            <td th:text="${estado.nombre}">Pendiente</td>
+                            <td><span th:text="${estado.nombre}">Pendiente</span></td>
                             <td>
                                 <span class="badge rounded-pill fw-bold px-3 w-badge-r"
                                     th:style="'background-color:' + ${estado.colorFondo} + '; color:' + ${estado.colorTexto}">
@@ -89,50 +73,40 @@
                             <td>
                                 <span class="badge rounded-pill min-w-25"
                                     th:classappend="${estado.activo} ? 'bg-success' : 'bg-secondary'"
-                                    th:text="${estado.activo} ? 'Sí' : 'No'">
-                                </span>
+                                    th:text="${estado.activo} ? 'Sí' : 'No'"></span>
                             </td>
                             <td class="text-center">
                                 <a th:href="@{/admin/incidencias?estadosSeleccionados={valor}(valor=${estado.valor})}"
                                     href="../incidencia/listar.html"
-                                    class="btn btn-sm btn-outline-primary px-2 py-1 rounded-1 me-1"
-                                    aria-label="Ver incidencias con estado [[${estado.nombre}]]">
-                                    <i class="bi bi-eye" aria-hidden="true"></i>
+                                    class="btn btn-sm btn-outline-primary px-2 py-1 rounded-1 me-1">
+                                    <i class="bi bi-eye"></i>
                                 </a>
                                 <a th:href="@{/admin/estados/modificar/{id}(id=${estado.id})}" href="formulario.html"
-                                    class="btn btn-sm btn-outline-success px-2 py-1 rounded-1 me-1"
-                                    aria-label="Editar estado [[${estado.nombre}]]">
-                                    <i class="bi bi-pencil" aria-hidden="true"></i>
+                                    class="btn btn-sm btn-outline-success px-2 py-1 rounded-1 me-1">
+                                    <i class="bi bi-pencil"></i>
                                 </a>
                                 <form class="d-inline" th:action="@{/admin/estados/alternar/{id}(id=${estado.id})}"
-                                    th:method="POST">
-                                    <input type="hidden" name="_method" value="PUT">
-                                    <button type="submit" class="btn btn-sm px-2 py-1 rounded-1 btn-min-width"
+                                th:method="POST">
+                                <input type="hidden" name="_method" value="PUT">
+                                    <input type="submit" class="btn btn-sm px-2 py-1 rounded-1 btn-min-width"
                                         th:classappend="${estado.activo} ? 'btn-outline-danger' : 'btn-outline-secondary'"
-                                        th:text="${estado.activo} ? 'Desactivar' : 'Activar'"
-                                        th:aria-label="${estado.activo} ? 'Desactivar estado' : 'Activar estado'">
-                                        Desactivar
-                                    </button>
+                                        th:value="${estado.activo} ? 'Desactivar' : 'Activar'">
+                                        
                                 </form>
                             </td>
                         </tr>
                         <tr th:if="${estados.isEmpty()}">
                             <td colspan="4" class="text-center py-4 text-muted">
-                                <i class="bi bi-exclamation-circle me-2" aria-hidden="true"></i>
-                                No hay estados disponibles.
+                                <i class="bi bi-exclamation-circle me-2"></i><span>No hay estados disponibles.</span>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-
             <section th:replace="~{admin/_fragments/paginacion.html :: paginacion}"></section>
-
         </section>
     </main>
-
     <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
-
 </body>
 
 </html>

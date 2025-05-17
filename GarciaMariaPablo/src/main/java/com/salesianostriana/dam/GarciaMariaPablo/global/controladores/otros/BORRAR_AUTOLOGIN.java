@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.GarciaMariaPablo.global.controladores;
+package com.salesianostriana.dam.GarciaMariaPablo.global.controladores.otros;
 
 import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.Usuario;
 import com.salesianostriana.dam.GarciaMariaPablo.global.servicios.ServicioUsuario;

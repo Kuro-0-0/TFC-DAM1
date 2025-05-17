@@ -10,7 +10,7 @@ public class ControladorAdminPrincipal {
 
     @GetMapping({"/dashboard","/",""})
     public String cargarDashboard() {
-        return "admin/otros/paginaPrincipal";
+        return "admin/otros/dashboard";
     }
 
 }

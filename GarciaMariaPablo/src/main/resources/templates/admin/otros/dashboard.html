@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración | Gestión de Incidencias</title>
+    <meta name="description"
+        content="Accede al panel de administración para gestionar incidencias, estados y usuarios del sistema.">
+    <meta name="author" content="Pablo Garcia Maria">
+
+    <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
+
+    <script defer src="../../../static/admin/javascript/paginaPrincipal/buscarSecciones.js"
+        th:src="@{/admin/javascript/paginaPrincipal/buscarSecciones.js}"></script>
+</head>
+
+<body class="d-flex flex-column h-100 bg-light">
+    <header th:replace="~{admin/_fragments/header.html :: header}"></header>
+
+    <main class="container my-5" id="main-content">
+        <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
+
+        <h1 class="mb-4 text-center fw-bold txt-main"><span>Panel de Administración</span></h1>
+
+        <section class="w-100 mx-auto mb-4 limited-width-600">
+            <label for="busqueda" class="visually-hidden">Buscar sección</label>
+            <div class="input-group shadow-sm">
+                <span class="input-group-text bg-white"><i class="bi bi-search text-muted"></i></span>
+                <input type="search" id="busqueda" class="form-control py-2" placeholder="Buscar sección..."
+                    autocomplete="off">
+            </div>
+        </section>
+
+        <section id="adminAccordion" class="accordion">
+
+            <!-- Incidencias -->
+            <article class="accordion-item mb-3 border-0 shadow-sm">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-primary text-white fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapseIncidencias">
+                        <i class="bi bi-list-task me-2"></i><span>Gestión de Incidencias</span>
+                    </button>
+                </h2>
+                <div id="collapseIncidencias" class="accordion-collapse collapse" data-bs-parent="#adminAccordion">
+                    <div class="accordion-body bg-light">
+                        <div class="row g-4">
+
+                            <!-- Ver Incidencias -->
+                            <div class="col-md-4">
+                                <article class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center p-4">
+                                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                                            <i class="bi bi-eye-fill fs-3 text-primary"></i>
+                                        </div>
+                                        <h3 class="card-title mt-2 h5"><span>Ver Incidencias</span></h3>
+                                        <p class="card-text text-muted mb-4"><span>Consultar todas las incidencias
+                                                registradas.</span></p>
+                                        <a href="../incidencia/listar.html" th:href="@{/admin/incidencias}"
+                                            class="btn btn-outline-primary px-4"
+                                            title="Ver incidencias registradas">Ver</a>
+                                    </div>
+                                </article>
+                            </div>
+
+                            <!-- Crear Incidencia -->
+                            <div class="col-md-4">
+                                <article class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center p-4">
+                                        <div class="bg-success bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                                            <i class="bi bi-plus-circle-fill fs-3 text-success"></i>
+                                        </div>
+                                        <h3 class="card-title mt-2 h5"><span>Crear Incidencia</span></h3>
+                                        <p class="card-text text-muted mb-4"><span>Registrar una nueva incidencia en el
+                                                sistema.</span></p>
+                                        <a href="../incidencia/formulario.html" th:href="@{/admin/incidencias/crear}"
+                                            class="btn btn-outline-success px-4"
+                                            title="Crear nueva incidencia">Crear</a>
+                                    </div>
+                                </article>
+                            </div>
+
+                            <!-- Estadísticas -->
+                            <div class="col-md-4">
+                                <article class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center p-4">
+                                        <div class="bg-info bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                                            <i class="bi bi-bar-chart-fill fs-3 text-info"></i>
+                                        </div>
+                                        <h3 class="card-title mt-2 h5"><span>Estadísticas</span></h3>
+                                        <p class="card-text text-muted mb-4"><span>Ver análisis y reportes de
+                                                incidencias.</span></p>
+                                        <a href="../incidencia/estadisticas.html"
+                                            th:href="@{/admin/incidencias/estadisticas}"
+                                            class="btn btn-outline-info px-4"
+                                            title="Ver estadísticas de incidencias">Ver</a>
+                                    </div>
+                                </article>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Estados -->
+            <article class="accordion-item mb-3 border-0 shadow-sm">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-info text-white fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapseEstados">
+                        <i class="bi bi-tags me-2"></i><span>Gestión de Estados</span>
+                    </button>
+                </h2>
+                <div id="collapseEstados" class="accordion-collapse collapse" data-bs-parent="#adminAccordion">
+                    <div class="accordion-body bg-light">
+                        <div class="row g-4">
+
+                            <div class="col-md-4">
+                                <article class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center p-4">
+                                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                                            <i class="bi bi-eye-fill fs-3 text-primary"></i>
+                                        </div>
+                                        <h3 class="card-title mt-2 h5"><span>Ver Estados</span></h3>
+                                        <p class="card-text text-muted mb-4"><span>Consultar todos los estados
+                                                registrados.</span></p>
+                                        <a href="../estado/listar.html" th:href="@{/admin/estados}"
+                                            class="btn btn-outline-primary px-4" title="Ver estados registrados">Ver</a>
+                                    </div>
+                                </article>
+                            </div>
+
+                            <div class="col-md-4">
+                                <article class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center p-4">
+                                        <div class="bg-success bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                                            <i class="bi bi-plus-circle-fill fs-3 text-success"></i>
+                                        </div>
+                                        <h3 class="card-title mt-2 h5"><span>Crear Estado</span></h3>
+                                        <p class="card-text text-muted mb-4"><span>Registrar un nuevo estado en el
+                                                sistema.</span></p>
+                                        <a href="../estado/formulario.html" th:href="@{/admin/estados/crear}"
+                                            class="btn btn-outline-success px-4" title="Crear nuevo estado">Crear</a>
+                                    </div>
+                                </article>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Usuarios -->
+            <article class="accordion-item mb-3 border-0 shadow-sm">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-main text-white fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapseUsuarios">
+                        <i class="bi bi-people me-2"></i><span>Gestión de Usuarios</span>
+                    </button>
+                </h2>
+                <div id="collapseUsuarios" class="accordion-collapse collapse" data-bs-parent="#adminAccordion">
+                    <div class="accordion-body bg-light">
+                        <div class="row g-4">
+
+                            <div class="col-md-4">
+                                <article class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center p-4">
+                                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                                            <i class="bi bi-eye-fill fs-3 text-primary"></i>
+                                        </div>
+                                        <h3 class="card-title mt-2 h5"><span>Ver Usuarios</span></h3>
+                                        <p class="card-text text-muted mb-4"><span>Consultar todos los usuarios
+                                                registrados.</span></p>
+                                        <a href="../usuario/listar.html" th:href="@{/admin/usuarios}"
+                                            class="btn btn-outline-primary px-4"
+                                            title="Ver usuarios registrados">Ver</a>
+                                    </div>
+                                </article>
+                            </div>
+
+                            <div class="col-md-4">
+                                <article class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center p-4">
+                                        <div class="bg-success bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                                            <i class="bi bi-plus-circle-fill fs-3 text-success"></i>
+                                        </div>
+                                        <h3 class="card-title mt-2 h5"><span>Crear Usuario</span></h3>
+                                        <p class="card-text text-muted mb-4"><span>Registrar un nuevo usuario en el
+                                                sistema.</span></p>
+                                        <a href="../usuario/formulario.html" th:href="@{/admin/usuarios/crear}"
+                                            class="btn btn-outline-success px-4" title="Crear nuevo usuario">Crear</a>
+                                    </div>
+                                </article>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
+</body>
+
+</html>

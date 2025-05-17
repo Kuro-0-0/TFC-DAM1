@@ -63,6 +63,10 @@ public class ServicioAdminUsuario extends ServicioBaseImpl<Usuario, Long, Reposi
         usuarios = procesarOrden(usuarios, ordenPor, ordenAsc);
         usuarios = procesarPaginacion(usuarios, model, paginaNum, perPageNum);
 
+        model.addAttribute("filtroUsername", filtroUsername);
+        model.addAttribute("filtroNombre", filtroNombre);
+        model.addAttribute("filtroApellidos", filtroApellidos);
+
         model.addAttribute("mostrandoAhora", usuarios.size());
         model.addAttribute("roles", convertedRol);
         model.addAttribute("mostrarOcultos", mostrarOcultos.equals("on"));

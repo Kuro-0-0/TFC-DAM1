@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Inicia sesión en tu cuenta para gestionar incidencias de forma segura y eficiente.">
-    <meta name="keywords" content="login, iniciar sesión, gestión de incidencias, sistema de soporte, acceso, autenticación">
+    <meta name="description"
+        content="Inicia sesión en tu cuenta para gestionar incidencias de forma segura y eficiente.">
     <meta name="author" content="Pablo Garcia Maria">
-    <meta name="robots" content="index, follow">
     <title>Iniciar Sesión | Gestión de Incidencias</title>
 
     <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
@@ -16,58 +15,57 @@
 
 <body class="d-flex flex-column min-vh-100 bg-light">
 
-    <th:block th:replace="~{global/_fragments/header.html :: navbar}"></th:block>
+    <th:block th:replace="~{global/_fragments/header.html :: headerGlobal}"></th:block>
     <th:block th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></th:block>
 
-    <main class="container flex-grow-1 d-flex align-items-center justify-content-center my-5" role="main">
-        <div class="row w-100 shadow-sm bg-white rounded-3 overflow-hidden" style="max-width: 600px;">
+    <main class="container flex-grow-1 d-flex align-items-center justify-content-center my-5">
+
+        <div class="row w-100 shadow-sm bg-white rounded-3 overflow-hidden limited-width-600">
             <div class="col-12 p-5">
                 <h1 class="mb-4 fw-bold text-center txt-main">Iniciar sesión</h1>
 
-                <form th:action="@{/login}" method="post" th:object="${usuarioDao}" role="form" aria-label="Formulario de inicio de sesión" novalidate>
-                    <!-- Campo Usuario -->
+                <form th:action="@{/login}" method="post" th:object="${usuarioDao}">
                     <div class="mb-3">
                         <label for="username" class="form-label">Nombre de usuario</label>
                         <input type="text" id="username" class="form-control" th:field="*{username}" required
-                            aria-label="Nombre de usuario" placeholder="Ingresa tu usuario" autocomplete="username">
+                            placeholder="Ingresa tu usuario" autocomplete="username">
                     </div>
 
-                    <!-- Campo Contraseña con botón -->
                     <div class="mb-3">
                         <label for="password" class="form-label">Contraseña</label>
                         <div class="input-group">
                             <input type="password" id="password" class="form-control" th:field="*{password}" required
-                                aria-label="Contraseña" placeholder="••••••••" autocomplete="current-password">
+                                placeholder="••••••••" autocomplete="current-password">
                             <button type="button" class="btn btn-outline-secondary" id="togglePassword"
-                                aria-label="Mostrar u ocultar contraseña">
+                                title="Mostrar u ocultar contraseña">
                                 <i class="bi bi-eye"></i>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Recordar sesión -->
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="rememberMe" name="remember-me">
                         <label class="form-check-label" for="rememberMe">Recordar sesión</label>
                     </div>
 
-                    <!-- Botón -->
                     <div class="d-grid">
-                        <button type="submit" class="btn bg-main text-light">
-                            <i class="bi bi-box-arrow-in-right me-1" aria-hidden="true"></i> <span>Acceder</span>
+                        <!-- No se usa <input type="submit"> porque incluye un icono junto al texto -->
+                        <button type="submit" class="btn btn-main text-light">
+                            <i class="bi bi-box-arrow-in-right me-1"></i> <span>Acceder</span>
                         </button>
                     </div>
                 </form>
 
-                <!-- Enlaces útiles -->
                 <div class="mt-4 text-center small">
                     <p>
                         ¿No tienes cuenta?
-                        <a th:href="@{/register}" href="register.html" class="txt-main text-decoration-none">Regístrate aquí</a>
+                        <a th:href="@{/register}" href="register.html" class="txt-main text-decoration-none"
+                            title="Ir a la página de registro">Regístrate aquí</a>
                     </p>
                     <p>
                         ¿Olvidaste tu contraseña?
-                        <a th:href="@{/recuperar}" href="recuperar.html" class="txt-main text-decoration-none">Recupérala</a>
+                        <a href="#" class="txt-main text-decoration-none"
+                            title="Ir a la página de recuperación de contraseña">Recupérala</a>
                     </p>
                 </div>
             </div>
@@ -77,4 +75,5 @@
     <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
 
 </body>
+
 </html>
