@@ -7,43 +7,36 @@ import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.UsuarioDao_Modific
 import com.salesianostriana.dam.GarciaMariaPablo.modelos.Usuario;
 import com.salesianostriana.dam.GarciaMariaPablo.modelos.utilidades.Rol;
 import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioUsuario;
-import com.salesianostriana.dam.GarciaMariaPablo.servicios.base.ServicioBase;
+import com.salesianostriana.dam.GarciaMariaPablo.servicios.base.ServicioBaseImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 @Service
-public class ServicioUsuario extends ServicioBase<Usuario, Long, RepositorioUsuario> {
+public class ServicioUsuario extends ServicioBaseImpl<Usuario, Long, RepositorioUsuario> {
 
-    public Usuario revertirDao(UsuarioDao_Modificar usuarioDao, Usuario original) {
-        String password = usuarioDao.getPassword().isEmpty() ? original.getPassword() : usuarioDao.getPassword();
-
-        original.setUsername(usuarioDao.getUsername());
-        original.setPassword(password);
-        original.setNombre(usuarioDao.getNombre());
-        original.setApellidos(usuarioDao.getApellidos());
-
-        if (usuarioDao.getRol() != original.getRol()) {
-            if (original.getRol() == Rol.tecnico) {
-                original.transferirIncidencias(repositorio.findByUsername("sin-tecnico"));
-            } else if (original.getRol() == Rol.reportante) {
-                original.transferirIncidencias(repositorio.findByUsername("sin-reportante"));
-            }
-
-            original.setRol(usuarioDao.getRol());
-
+        public Usuario revertirDao(UsuarioDao_Modificar usuarioDao) {
+            String password = usuarioDao.getPassword().isEmpty() ? repositorio.findPasswordById(usuarioDao.getId()).orElseThrow() : usuarioDao.getPassword();
+            return Usuario.builder()
+                    .id(usuarioDao.getId())
+                    .apellidos(usuarioDao.getApellidos())
+                    .rol(usuarioDao.getRol())
+                    .nombre(usuarioDao.getNombre())
+                    .username(usuarioDao.getUsername())
+    //                .incidenciasReportadas(usuario.getIncidenciasReportadas())
+    //                .incidenciasGestionadas(usuario.getIncidenciasGestionadas())
+                    .password(password)
+                    .editable(true)
+                    .build();
         }
-
-        return original;
-
-    }
 
     public String listar(Model model, String paginaNum, String perPageNum, String ordenPor, boolean ordenAsc, String filtroUsername, String filtroNombre, String filtroApellidos, List<String> rolesName, String mostrarOcultos) {
         List<Long> roles = null;
-        List<Usuario> usuarios = new ArrayList<>();
+        List<Usuario> usuarios;
         List<RolDao_ListarUsuarios> convertedRol = new ArrayList<>();
 
         for (Rol rol : Rol.values()) {
@@ -54,15 +47,13 @@ public class ServicioUsuario extends ServicioBase<Usuario, Long, RepositorioUsua
             List<Long> rolesLambda = new ArrayList<>();
             List<String> rolesLC = rolesName.stream().map(java.lang.String::toLowerCase).toList();
 
-            convertedRol.forEach(rol -> {
-                rol.setSelected(rolesLC.contains(rol.getName().toLowerCase()));
-            });
+            convertedRol.forEach(rol -> rol.setSelected(rolesLC.contains(rol.getName().toLowerCase())));
 
             rolesName.forEach(role -> {
                 switch (role) {
                     case "admin" -> rolesLambda.add(0L);
                     case "tecnico" -> rolesLambda.add(1L);
-                    case "reporante" -> rolesLambda.add(2L);
+                    case "reportante" -> rolesLambda.add(2L);
                 }
             });
             roles = rolesLambda;
@@ -85,7 +76,7 @@ public class ServicioUsuario extends ServicioBase<Usuario, Long, RepositorioUsua
     private List<Usuario> procesarOrden(List<Usuario> usuarios, String ordenPor, boolean ordenAsc) {
 
         if (ordenPor != null) {
-            Comparator<Usuario> comparator = null;
+            Comparator<Usuario> comparator;
             switch (ordenPor) {
                 case "nombre" -> comparator = Comparator.comparing(Usuario::getNombre);
                 case "apellidos" -> comparator = Comparator.comparing(Usuario::getApellidos);
@@ -111,9 +102,10 @@ public class ServicioUsuario extends ServicioBase<Usuario, Long, RepositorioUsua
         return "admin/usuario/formulario";
     }
 
-    public String cargarModificar(Model model, long id) {
+    public String cargarModificar(Model model, long id,RedirectAttributes redirectAttributes) {
         Usuario objetivo = findById(id).orElseThrow();
         if (!objetivo.isEditable()) {
+        	redirectAttributes.addFlashAttribute("error","No puedes modificar el usuario seleccionado.");
             return "redirect:/usuarios";
         }
 
@@ -126,10 +118,11 @@ public class ServicioUsuario extends ServicioBase<Usuario, Long, RepositorioUsua
         return  "admin/usuario/formulario";
     }
 
-    public String eliminar(long id) {
+    public String eliminar(long id,RedirectAttributes redirectAttributes) {
         Usuario objetivo = findById(id).orElseThrow();
         Usuario userDefault;
         if (!objetivo.isEditable()) {
+        	redirectAttributes.addFlashAttribute("error","No puedes eliminar el usuario seleccionado.");
             return "redirect:/usuarios"; // Con esto evitamos que se editen los sin-tecnico/sin-reportante
         }
 
@@ -138,7 +131,7 @@ public class ServicioUsuario extends ServicioBase<Usuario, Long, RepositorioUsua
         } else if (objetivo.getRol().equals(Rol.reportante)) {
             userDefault = repositorio.findByUsername("sin-reportante");
         } else {
-            userDefault = null; // NUNCA DEBERA LLEGAR AQUÍ SI NADIE TOCA LA BD PARA MAL O ALGO ASI.
+        	redirectAttributes.addFlashAttribute("error","No puedes eliminar administradores del sistema.");
             return "redirect:/usuarios";
         }
 
@@ -147,19 +140,19 @@ public class ServicioUsuario extends ServicioBase<Usuario, Long, RepositorioUsua
         return "redirect:/usuarios";
     }
 
-    public String modificar(UsuarioDao_Modificar usuarioDao,Model model) {
+    public String modificar(UsuarioDao_Modificar usuarioDao,Model model,RedirectAttributes redirectAttributes) {
         Usuario usuarioAntiguo = findById(usuarioDao.getId()).orElseThrow();
-        Usuario nuevoUsuario = revertirDao(usuarioDao,usuarioAntiguo);
+        Usuario nuevoUsuario = revertirDao(usuarioDao);
         if (nuevoUsuario != null) {
             if (repositorio.findByUsername(nuevoUsuario.getUsername()) != null && !usuarioAntiguo.getUsername().equals(nuevoUsuario.getUsername())) {
                 model.addAttribute("usuarioDao", usuarioDao);
                 model.addAttribute("error","El nombre de usuario ya existe.");
-                return cargarCrear(model);
+                return cargarModificar(model,usuarioDao.getId(),redirectAttributes);
             }
             if (nuevoUsuario.getRol() == null) {
                 model.addAttribute("usuarioDao", usuarioDao);
                 model.addAttribute("error","Debe escoger un rol.");
-                return cargarCrear(model);
+                return cargarModificar(model,usuarioDao.getId(),redirectAttributes);
             }
         }
 
@@ -174,7 +167,7 @@ public class ServicioUsuario extends ServicioBase<Usuario, Long, RepositorioUsua
                 model.addAttribute("usuarioDao", usuarioDao);
                 model.addAttribute("error","El nombre de usuario ya existe.");
                 return cargarCrear(model);
-            };
+            }
             if (nuevoUsuario.getRol() == null) {
                 model.addAttribute("usuarioDao", usuarioDao);
                 model.addAttribute("error","Debe escoger un rol.");

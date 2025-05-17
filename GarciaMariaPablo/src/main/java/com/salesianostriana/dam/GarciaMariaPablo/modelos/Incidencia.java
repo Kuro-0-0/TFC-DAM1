@@ -1,12 +1,22 @@
 package com.salesianostriana.dam.GarciaMariaPablo.modelos;
 
-import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
+import lombok.ToString;
 
 @Entity
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
@@ -14,6 +24,7 @@ public class Incidencia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
     private long id;
 
     private String titulo;
@@ -21,19 +32,25 @@ public class Incidencia {
     @Column(length = 500)
     private String descripcion;
     private String ubicacion;
-    private LocalDate fechaCreacion;
+    private LocalDateTime fechaCreacion;
 
     @ManyToOne
+    @ToString.Exclude
     @JoinColumn(name = "reportante_id")
     private Usuario reportante;
 
     @ManyToOne
+    @ToString.Exclude
     @JoinColumn(name = "tecnico_id")
     private Usuario tecnico;
 
     @ManyToOne
     @JoinColumn(name = "estado_id")
+    @ToString.Exclude
     private Estado estado;
+
+    @OneToMany(mappedBy = "incidencia")
+    private List<HistorialEstados> historialEstados;
 
     /* HELPERS */
 
@@ -73,4 +90,13 @@ public class Incidencia {
     public String getNombreEstado() {
         return estado.getNombre();
     }
+
+    public void anadirRegistroHistorialEstados(HistorialEstados nuevaEntrada) {
+        if (historialEstados == null) {
+            historialEstados = new ArrayList<>();
+        }
+        this.historialEstados.add(nuevaEntrada);
+        nuevaEntrada.setIncidencia(this);
+    }
+
 }

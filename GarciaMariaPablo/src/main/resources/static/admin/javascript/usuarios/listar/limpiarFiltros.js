@@ -14,4 +14,8 @@ function resetForm() {
 
     // Desmarcar el switch de mostrar ocultos
     document.getElementById("mostrarOcultos").checked = false;
+
+    setTimeout(() => {
+        filtrarDropdown("filtroRol", "listaRoles");
+    }, 200);
 }

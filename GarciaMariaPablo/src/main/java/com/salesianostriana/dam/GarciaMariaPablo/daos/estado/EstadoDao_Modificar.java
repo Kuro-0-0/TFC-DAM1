@@ -14,6 +14,7 @@ public class EstadoDao_Modificar {
     private String nombre;
     private boolean activo;
     private String colorTexto;
+    private String tipo;
     private String colorFondo;
 
     public static EstadoDao_Modificar crearDao(Estado estado) {
@@ -23,6 +24,7 @@ public class EstadoDao_Modificar {
                 .activo(estado.isActivo())
                 .colorFondo(estado.getColorFondo())
                 .colorTexto(estado.getColorTexto())
+                .tipo(estado.getTipo().name())
                 .build();
     }
 

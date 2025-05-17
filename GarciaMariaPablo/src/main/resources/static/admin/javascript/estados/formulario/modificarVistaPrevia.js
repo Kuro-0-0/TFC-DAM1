@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Todos los IDs son bastante descriptivos.
     const colorFondo = document.getElementById('colorFondo');
     const colorTexto = document.getElementById('colorTexto');
-    const vistaPrevia = document.getElementById('vistaPreviaEstado');
+    const vistaPrevia = document.getElementById('vistaPreviaEstadoContenido');
     const hexFondo = document.getElementById('hexFondo');
     const hexTexto = document.getElementById('hexTexto');
     const colorFondoPreview = document.getElementById('colorFondoPreview');

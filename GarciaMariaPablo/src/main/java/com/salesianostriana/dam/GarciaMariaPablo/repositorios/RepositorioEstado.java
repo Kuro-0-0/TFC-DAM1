@@ -20,4 +20,6 @@ public interface RepositorioEstado extends JpaRepository<Estado, Long> {
             "WHERE (:buscar IS NULL OR LOWER(e.nombre) like LOWER(CONCAT('%',:buscar,'%')))" +
             "OR (:buscar IS NULL OR LOWER(e.valor) like LOWER(CONCAT('%',:buscar,'%')))")
     List<Estado> findByText(@Param("buscar") String buscar);
+
+	List<Estado> findByNombre(String nombre);
 }

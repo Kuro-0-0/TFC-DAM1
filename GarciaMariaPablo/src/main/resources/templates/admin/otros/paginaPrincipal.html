@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración | Gestión de Incidencias</title>
+
+    <meta name="description"
+        content="Accede al panel de administración para gestionar incidencias, estados y usuarios del sistema.">
+    <meta name="keywords" content="Gestión de incidencias, administración, usuarios, estados, sistema, soporte técnico">
+    <meta name="author" content="Pablo Garcia Maria">
+    <meta name="robots" content="index, follow">
+
+    <link rel="icon" href="../../../static/img/favicon.ico" th:href="@{img/favicon.ico}" type="image/x-icon">
+
+    <th:block th:replace="~{admin/_fragments/head.html :: head}"></th:block>
+
+    <script defer src="../../../static/admin/javascript/paginaPrincipal/buscarSecciones.js"
+        th:src="@{/admin/javascript/paginaPrincipal/buscarSecciones.js}"></script>
+</head>
+
+<body class="d-flex flex-column h-100 bg-light">
+
+    <header th:replace="~{admin/_fragments/header.html :: header}"></header>
+
+    <main class="container my-5" id="main-content">
+
+        <div th:replace="~{admin/_fragments/popUpMessages.html :: popUpMessages}"></div>
+
+        <h1 class="mb-4 text-center fw-bold txt-main">Panel de Administración</h1>
+
+        <section aria-labelledby="busqueda-label" class="w-100 mx-auto mb-4 limited-width-600">
+            <label id="busqueda-label" class="visually-hidden" for="busqueda">Buscar sección</label>
+            <div class="input-group shadow-sm">
+                <span class="input-group-text bg-white">
+                    <i class="bi bi-search text-muted" aria-hidden="true"></i>
+                </span>
+                <input type="search" id="busqueda" class="form-control py-2" placeholder="Buscar sección..."
+                    autocomplete="off">
+            </div>
+        </section>
+
+        <section id="adminAccordion" class="accordion" aria-label="Secciones de administración">
+
+            <!-- Sección Incidencias -->
+            <article class="accordion-item mb-3 border-0 shadow-sm">
+                <h2 class="accordion-header" id="headingIncidencias">
+                    <button class="accordion-button collapsed bg-primary text-white fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapseIncidencias" aria-expanded="false"
+                        aria-controls="collapseIncidencias">
+                        <i class="bi bi-list-task me-2" aria-hidden="true"></i> Gestión de Incidencias
+                    </button>
+                </h2>
+                <div id="collapseIncidencias" class="accordion-collapse collapse" aria-labelledby="headingIncidencias"
+                    data-bs-parent="#adminAccordion">
+                    <div class="accordion-body bg-light">
+                        <div class="row g-4">
+                            <!-- Ver Incidencias -->
+                            <div class="col-md-4">
+                                <section class="card h-100 border-0 shadow-sm" role="region"
+                                    aria-labelledby="ver-incidencias-title">
+                                    <div class="card-body text-center p-4">
+                                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                                            <i class="bi bi-eye-fill fs-3 text-primary" aria-hidden="true"></i>
+                                        </div>
+                                        <h3 class="card-title mt-2 h5" id="ver-incidencias-title">Ver Incidencias</h3>
+                                        <p class="card-text text-muted mb-4">Consultar todas las incidencias
+                                            registradas.</p>
+                                        <a href="../incidencia/listar.html" th:href="@{/incidencias}"
+                                            class="btn btn-outline-primary px-4">Ver</a>
+                                    </div>
+                                </section>
+                            </div>
+
+                            <!-- Crear Incidencia -->
+                            <div class="col-md-4">
+                                <section class="card h-100 border-0 shadow-sm" role="region"
+                                    aria-labelledby="crear-incidencia-title">
+                                    <div class="card-body text-center p-4">
+                                        <div class="bg-success bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                                            <i class="bi bi-plus-circle-fill fs-3 text-success" aria-hidden="true"></i>
+                                        </div>
+                                        <h3 class="card-title mt-2 h5" id="crear-incidencia-title">Crear Incidencia</h3>
+                                        <p class="card-text text-muted mb-4">Registrar una nueva incidencia en el
+                                            sistema.</p>
+                                        <a href="../incidencia/formulario.html" th:href="@{/incidencias/crear}"
+                                            class="btn btn-outline-success px-4">Crear</a>
+                                    </div>
+                                </section>
+                            </div>
+
+                            <!-- Estadísticas -->
+                            <div class="col-md-4">
+                                <section class="card h-100 border-0 shadow-sm" role="region"
+                                    aria-labelledby="estadisticas-title">
+                                    <div class="card-body text-center p-4">
+                                        <div class="bg-info bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                                            <i class="bi bi-bar-chart-fill fs-3 text-info" aria-hidden="true"></i>
+                                        </div>
+                                        <h3 class="card-title mt-2 h5" id="estadisticas-title">Estadísticas</h3>
+                                        <p class="card-text text-muted mb-4">Ver análisis y reportes de incidencias.</p>
+                                        <a href="../incidencia/estadisticas.html" th:href="@{/incidencias/estadisticas}"
+                                            class="btn btn-outline-info px-4">Ver</a>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Sección Estados -->
+            <article class="accordion-item mb-3 border-0 shadow-sm">
+                <h2 class="accordion-header" id="headingEstados">
+                    <button class="accordion-button collapsed bg-info text-white fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapseEstados" aria-expanded="false"
+                        aria-controls="collapseEstados">
+                        <i class="bi bi-tags me-2" aria-hidden="true"></i> Gestión de Estados
+                    </button>
+                </h2>
+                <div id="collapseEstados" class="accordion-collapse collapse" aria-labelledby="headingEstados"
+                    data-bs-parent="#adminAccordion">
+                    <div class="accordion-body bg-light">
+                        <div class="row g-4">
+                            <!-- Ver Estados -->
+                            <div class="col-md-4">
+                                <section class="card h-100 border-0 shadow-sm" role="region"
+                                    aria-labelledby="ver-estados-title">
+                                    <div class="card-body text-center p-4">
+                                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                                            <i class="bi bi-eye-fill fs-3 text-primary" aria-hidden="true"></i>
+                                        </div>
+                                        <h3 class="card-title mt-2 h5" id="ver-estados-title">Ver Estados</h3>
+                                        <p class="card-text text-muted mb-4">Consultar todos los estados
+                                            registrados.</p>
+                                        <a href="../estado/listar.html" th:href="@{/estados}"
+                                            class="btn btn-outline-primary px-4">Ver</a>
+                                    </div>
+                                </section>
+                            </div>
+
+                            <!-- Crear Estado -->
+                            <div class="col-md-4">
+                                <section class="card h-100 border-0 shadow-sm" role="region"
+                                    aria-labelledby="crear-estado-title">
+                                    <div class="card-body text-center p-4">
+                                        <div class="bg-success bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                                            <i class="bi bi-plus-circle-fill fs-3 text-success" aria-hidden="true"></i>
+                                        </div>
+                                        <h3 class="card-title mt-2 h5" id="crear-estado-title">Crear Estado</h3>
+                                        <p class="card-text text-muted mb-4">Registrar un nuevo estado en el
+                                            sistema.</p>
+                                        <a href="../estado/formulario.html" th:href="@{/estados/crear}"
+                                            class="btn btn-outline-success px-4">Crear</a>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Sección Usuarios -->
+            <article class="accordion-item mb-3 border-0 shadow-sm">
+                <h2 class="accordion-header" id="headingUsuarios">
+                    <button class="accordion-button collapsed bg-main text-white fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapseUsuarios" aria-expanded="false"
+                        aria-controls="collapseUsuarios">
+                        <i class="bi bi-people me-2" aria-hidden="true"></i> Gestión de Usuarios
+                    </button>
+                </h2>
+                <div id="collapseUsuarios" class="accordion-collapse collapse" aria-labelledby="headingUsuarios"
+                    data-bs-parent="#adminAccordion">
+                    <div class="accordion-body bg-light">
+                        <div class="row g-4">
+                            <!-- Ver Usuarios -->
+                            <div class="col-md-4">
+                                <section class="card h-100 border-0 shadow-sm" role="region"
+                                    aria-labelledby="ver-usuarios-title">
+                                    <div class="card-body text-center p-4">
+                                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                                            <i class="bi bi-eye-fill fs-3 text-primary" aria-hidden="true"></i>
+                                        </div>
+                                        <h3 class="card-title mt-2 h5" id="ver-usuarios-title">Ver Usuarios</h3>
+                                        <p class="card-text text-muted mb-4">Consultar todos los usuarios
+                                            registrados.</p>
+                                        <a href="../usuario/listar.html" th:href="@{/usuarios}"
+                                            class="btn btn-outline-primary px-4">Ver</a>
+                                    </div>
+                                </section>
+                            </div>
+
+                            <!-- Crear Usuario -->
+                            <div class="col-md-4">
+                                <section class="card h-100 border-0 shadow-sm" role="region"
+                                    aria-labelledby="crear-usuario-title">
+                                    <div class="card-body text-center p-4">
+                                        <div class="bg-success bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                                            <i class="bi bi-plus-circle-fill fs-3 text-success" aria-hidden="true"></i>
+                                        </div>
+                                        <h3 class="card-title mt-2 h5" id="crear-usuario-title">Crear Usuario</h3>
+                                        <p class="card-text text-muted mb-4">Registrar un nuevo usuario en el
+                                            sistema.</p>
+                                        <a href="../usuario/formulario.html" th:href="@{/usuarios/crear}"
+                                            class="btn btn-outline-success px-4">Crear</a>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Sección Otros -->
+            <article class="accordion-item mb-3 border-0 shadow-sm">
+                <h2 class="accordion-header" id="headingOtros">
+                    <button class="accordion-button collapsed bg-secondary text-white fw-bold" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapseOtros" aria-expanded="false"
+                        aria-controls="collapseOtros">
+                        <i class="bi bi-info-square me-2" aria-hidden="true"></i> Otros
+                    </button>
+                </h2>
+                <div id="collapseOtros" class="accordion-collapse collapse" aria-labelledby="headingOtros"
+                    data-bs-parent="#adminAccordion">
+                    <div class="accordion-body bg-light">
+                        <div class="row g-4">
+                            <!-- Quienes somos -->
+                            <div class="col-md-4">
+                                <section class="card h-100 border-0 shadow-sm" role="region"
+                                    aria-labelledby="quienes-somos-title">
+                                    <div class="card-body text-center p-4">
+                                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                                            <i class="bi bi-people fs-3 text-primary" aria-hidden="true"></i>
+                                        </div>
+                                        <h3 class="card-title mt-2 h5" id="quienes-somos-title">Quienes somos</h3>
+                                        <p class="card-text text-muted mb-4">Consultar informacion sobre la empresa</p>
+                                        <a href="../otros/quienes-somos.html" th:href="@{/nosotros}"
+                                            class="btn btn-outline-primary px-4">Ver</a>
+                                    </div>
+                                </section>
+                            </div>
+                            <!-- Contacto -->
+                            <div class="col-md-4">
+                                <section class="card h-100 border-0 shadow-sm" role="region"
+                                    aria-labelledby="contacto-title">
+                                    <div class="card-body text-center p-4">
+                                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
+                                            <i class="bi bi-phone fs-3 text-primary" aria-hidden="true"></i>
+                                        </div>
+                                        <h3 class="card-title mt-2 h5" id="contacto-title">Contacto</h3>
+                                        <p class="card-text text-muted mb-4">Consultar informacion de contacto sobre la empresa</p>
+                                        <a href="../otros/contacto.html" th:href="@{/contacto}"
+                                            class="btn btn-outline-primary px-4">Ver</a>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+
+        </section>
+    </main>
+
+    <footer th:replace="~{admin/_fragments/footer.html :: footer}"></footer>
+
+</body>
+
+</html>

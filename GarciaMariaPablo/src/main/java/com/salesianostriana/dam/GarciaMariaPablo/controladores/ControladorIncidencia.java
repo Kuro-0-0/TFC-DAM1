@@ -18,12 +18,6 @@ public class ControladorIncidencia {
     @Autowired
     private ServicioIncidencia servicioIncidencia;
 
-    public void activeTab(Model model, HttpServletRequest request) {
-        if ("GET".equalsIgnoreCase(request.getMethod())) {
-            model.addAttribute("activeTab", "incidencias");
-        }
-    }
-
     @GetMapping
     public String listar(Model model,
                          @RequestParam(required = false, name = "pagina", defaultValue = "1") String paginaStr,
@@ -54,7 +48,7 @@ public class ControladorIncidencia {
         return servicioIncidencia.inspeccionar(model,id);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/modificar/{id}")
     public String cargarModificar(Model model, @PathVariable long id) {
         return servicioIncidencia.cargarModificar(model, id);
     }

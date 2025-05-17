@@ -1,6 +1,7 @@
 package com.salesianostriana.dam.GarciaMariaPablo.daos.estado;
 
 import com.salesianostriana.dam.GarciaMariaPablo.modelos.Estado;
+import com.salesianostriana.dam.GarciaMariaPablo.modelos.utilidades.TipoEstados;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,8 +14,11 @@ public class EstadoDao_Crear {
 
     private String nombre;
     private boolean activo;
+    @Builder.Default
     private String colorTexto = "#ffffff";
+    @Builder.Default
     private String colorFondo = "#000000";
+    private String tipo;
 
     public static EstadoDao_Crear crearDao(Estado estado) {
         return EstadoDao_Crear.builder()
@@ -22,6 +26,7 @@ public class EstadoDao_Crear {
                 .activo(estado.isActivo())
                 .colorFondo(estado.getColorFondo())
                 .colorTexto(estado.getColorTexto())
+                .tipo(estado.getTipo().name())
                 .build();
     }
 
@@ -41,6 +46,7 @@ public class EstadoDao_Crear {
                 .activo(this.activo)
                 .colorFondo(this.colorFondo)
                 .colorTexto(this.colorTexto)
+                .tipo(TipoEstados.valueOf(this.tipo))
                 .build();
     }
 

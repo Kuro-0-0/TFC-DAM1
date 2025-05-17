@@ -16,12 +16,6 @@ public class ControladorEstado {
     @Autowired
     private ServicioEstado servicioEstado;
 
-    public void activeTab(Model model, HttpServletRequest request) {
-        if ("GET".equalsIgnoreCase(request.getMethod())) {
-            model.addAttribute("activeTab", "estados");
-        }
-    }
-
     @GetMapping
     public String listar(Model model,
                          @RequestParam(required = false,name = "pagina",defaultValue = "1") String paginaNum,
@@ -38,14 +32,14 @@ public class ControladorEstado {
         return servicioEstado.cargarCrear(model);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/modificar/{id}")
     public String cargarModificar(Model model, @PathVariable long id) {
         return servicioEstado.cargarModificar(model,id);
     }
 
     @PostMapping
-    public String crear(EstadoDao_Crear estadoDao) {
-        return servicioEstado.crear(estadoDao);
+    public String crear(EstadoDao_Crear estadoDao, Model model) {
+        return servicioEstado.crear(estadoDao, model);
     }
 
     @PutMapping
@@ -53,7 +47,7 @@ public class ControladorEstado {
         return servicioEstado.modificar(estadoDao);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/alternar/{id}")
     public String altenarActivo(@PathVariable long id) {
         return servicioEstado.alternarActivo(id);
     }

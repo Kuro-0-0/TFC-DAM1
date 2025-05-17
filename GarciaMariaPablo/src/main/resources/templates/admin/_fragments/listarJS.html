@@ -1,7 +1,23 @@
-<div th:fragment="import">
-    <!-- Necesarios para los listar.html -->
-    <script src="../../../staticadmin/javascript/reutilizables/gestionarDesplegablesFiltros.js"    th:src="@{/admin/javascript/reutilizables/gestionarDesplegablesFiltros.js}"  ></script>
-    <script src="../../../staticadmin/javascript/reutilizables/buscarDesplegablesFiltros.js"       th:src="@{/admin/javascript/reutilizables/buscarDesplegablesFiltros.js}"     ></script>
-    <script src="../../../staticadmin/javascript/reutilizables/modificarParams.js"                 th:src="@{/admin/javascript/reutilizables/modificarParams.js}"               ></script>
-    <script src="../../../staticadmin/javascript/reutilizables/ordenarColumnas.js"                 th:src="@{/admin/javascript/reutilizables/ordenarColumnas.js}"               ></script>    
-</div>
+<th:block th:fragment="import">
+        <!-- Scripts necesarios para funcionalidades de los listados (filtros, ordenación, modificación de parámetros) -->
+
+        <script defer src="../../../static/admin/javascript/reutilizables/gestionarDesplegablesFiltros.js"
+                th:src="@{/admin/javascript/reutilizables/gestionarDesplegablesFiltros.js}" type="text/javascript"
+                crossorigin="anonymous">
+                </script>
+
+        <script defer src="../../../static/admin/javascript/reutilizables/buscarDesplegablesFiltros.js"
+                th:src="@{/admin/javascript/reutilizables/buscarDesplegablesFiltros.js}" type="text/javascript"
+                crossorigin="anonymous">
+                </script>
+
+        <script defer src="../../../static/admin/javascript/reutilizables/modificarParams.js"
+                th:src="@{/admin/javascript/reutilizables/modificarParams.js}" type="text/javascript"
+                crossorigin="anonymous">
+                </script>
+
+        <script defer src="../../../static/admin/javascript/reutilizables/ordenarColumnas.js"
+                th:src="@{/admin/javascript/reutilizables/ordenarColumnas.js}" type="text/javascript"
+                crossorigin="anonymous">
+                </script>
+</th:block>

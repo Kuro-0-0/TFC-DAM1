@@ -4,8 +4,9 @@ import com.salesianostriana.dam.GarciaMariaPablo.daos.estado.EstadoDao_Crear;
 import com.salesianostriana.dam.GarciaMariaPablo.daos.estado.EstadoDao_Listar;
 import com.salesianostriana.dam.GarciaMariaPablo.daos.estado.EstadoDao_Modificar;
 import com.salesianostriana.dam.GarciaMariaPablo.modelos.Estado;
+import com.salesianostriana.dam.GarciaMariaPablo.modelos.utilidades.TipoEstados;
 import com.salesianostriana.dam.GarciaMariaPablo.repositorios.RepositorioEstado;
-import com.salesianostriana.dam.GarciaMariaPablo.servicios.base.ServicioBase;
+import com.salesianostriana.dam.GarciaMariaPablo.servicios.base.ServicioBaseImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -14,7 +15,7 @@ import java.util.Comparator;
 import java.util.List;
 
 @Service
-public class ServicioEstado extends ServicioBase<Estado, Long, RepositorioEstado> {
+public class ServicioEstado extends ServicioBaseImpl<Estado, Long, RepositorioEstado> {
 
     public Estado revertirDao(EstadoDao_Modificar estadoDao) {
         Estado estado = findById(estadoDao.getId()).orElseThrow();
@@ -22,12 +23,15 @@ public class ServicioEstado extends ServicioBase<Estado, Long, RepositorioEstado
         String valor = estadoDao.getNombre().toLowerCase().replace(" ", "-");
         valor = Normalizer.normalize(valor, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
 
-        estado.setNombre(estadoDao.getNombre());
-        estado.setValor(valor);
-        estado.setColorFondo(estadoDao.getColorFondo());
-        estado.setColorTexto(estadoDao.getColorTexto());
-        estado.setActivo(estadoDao.isActivo());
-        return estado;
+        return Estado.builder()
+                .id(estadoDao.getId())
+                .nombre(estadoDao.getNombre())
+                .valor(valor)
+                .colorFondo(estadoDao.getColorFondo())
+                .colorTexto(estadoDao.getColorTexto())
+                .activo(estadoDao.isActivo())
+                .tipo(TipoEstados.valueOf(estadoDao.getTipo()))
+                .build();
     }
 
     public String listar(Model model, String paginaNum, String perPageNum, String ordenPor, Boolean ordenAsc, String buscar) {
@@ -64,20 +68,30 @@ public class ServicioEstado extends ServicioBase<Estado, Long, RepositorioEstado
     }
 
     public String cargarCrear(Model model) {
-        model.addAttribute("estadoDao", new EstadoDao_Crear());
+    	if (!model.containsAttribute("estadoDao")) {
+            model.addAttribute("estadoDao", new EstadoDao_Crear());
+		}
+        model.addAttribute("tipos", TipoEstados.values());
         model.addAttribute("modificar", false);
         return "admin/estado/formulario";
     }
 
     public String cargarModificar(Model model, long id) {
         model.addAttribute("estadoDao", EstadoDao_Modificar.crearDao(findById(id).orElseThrow()));
+        model.addAttribute("tipos", TipoEstados.values());
         model.addAttribute("modificar", true);
         return "admin/estado/formulario";
     }
 
 
-    public String crear(EstadoDao_Crear estadoDao) {
-        save(estadoDao.revertirDao());
+    public String crear(EstadoDao_Crear estadoDao, Model model) {
+        Estado nuevoEstado = estadoDao.revertirDao();
+        if (!repositorio.findByNombre(estadoDao.getNombre()).isEmpty()) {
+        	model.addAttribute("estadoDao", nuevoEstado);
+        	model.addAttribute("error", "No puedes crear dos estados con el mismo nombre.");
+			return cargarCrear(model);
+		}
+    	save(nuevoEstado);
         return "redirect:/estados";
     }
 

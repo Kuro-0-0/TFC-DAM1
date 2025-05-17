@@ -3,11 +3,11 @@ package com.salesianostriana.dam.GarciaMariaPablo.controladores;
 import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.UsuarioDao_Crear;
 import com.salesianostriana.dam.GarciaMariaPablo.daos.usuario.UsuarioDao_Modificar;
 import com.salesianostriana.dam.GarciaMariaPablo.servicios.ServicioUsuario;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -17,12 +17,6 @@ public class ControladorUsuario {
 
     @Autowired
     private ServicioUsuario servicioUsuario;
-
-    public void activeTab(Model model, HttpServletRequest request) {
-        if ("GET".equalsIgnoreCase(request.getMethod())) {
-            model.addAttribute("activeTab", "usuarios");
-        }
-    }
 
     @GetMapping
     public String listar(Model model,
@@ -44,9 +38,9 @@ public class ControladorUsuario {
         return servicioUsuario.cargarCrear(model);
     }
 
-    @GetMapping("/{id}")
-    public String cargarModificar(Model model, @PathVariable long id) {
-        return servicioUsuario.cargarModificar(model,id);
+    @GetMapping("/modificar/{id}")
+    public String cargarModificar(Model model, @PathVariable long id,RedirectAttributes redirectAttributes) {
+        return servicioUsuario.cargarModificar(model,id, redirectAttributes);
     }
 
     @PostMapping
@@ -55,13 +49,13 @@ public class ControladorUsuario {
     }
 
     @PutMapping
-    public String modificar(@ModelAttribute UsuarioDao_Modificar usuarioDao, Model model) {
-        return servicioUsuario.modificar(usuarioDao, model);
+    public String modificar(@ModelAttribute UsuarioDao_Modificar usuarioDao, Model model,RedirectAttributes redirectAttributes) {
+        return servicioUsuario.modificar(usuarioDao, model, redirectAttributes);
     }
 
     @DeleteMapping("{id}")
-    public String eliminar(@PathVariable long id) {
-        return servicioUsuario.eliminar(id);
+    public String eliminar(@PathVariable long id,RedirectAttributes redirectAttributes) {
+        return servicioUsuario.eliminar(id, redirectAttributes);
     }
 
 }
