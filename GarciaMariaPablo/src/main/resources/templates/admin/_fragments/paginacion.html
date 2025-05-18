@@ -4,7 +4,7 @@
         <!-- Selector de elementos por página -->
         <form method="get" class="d-flex align-items-center gap-2" onsubmit="handleFormSubmit(event)">
             <label for="perPage" class="form-label mb-0 small">
-                <span>Elementos por página:</span>
+                Elementos por página:
             </label>
             <input type="number" id="perPage" name="perPage" class="form-control form-control-sm w-auto" min="1"
                 max="100" th:value="${perPage}" onchange="handleInputChange()" pattern="\d+">
@@ -12,7 +12,7 @@
 
         <!-- Indicador de elementos actuales -->
         <p class="text-muted small mb-0">
-            <span>Mostrando</span>
+            Mostrando
             <span th:text="${mostrandoAhora}">5</span>
             <span th:text="${mostrandoAhora == 1 ? 'elemento' : 'elementos'}">elementos</span>
         </p>
@@ -37,7 +37,7 @@
                         class="form-control form-control-sm text-center w-auto" th:value="${paginaActual}"
                         onchange="goToPage()" pattern="\d+">
                     <span class="small">
-                        <span>de</span> <span th:text="${paginaFinal}">10</span>
+                        de <span th:text="${paginaFinal}">10</span>
                     </span>
                 </span>
             </li>

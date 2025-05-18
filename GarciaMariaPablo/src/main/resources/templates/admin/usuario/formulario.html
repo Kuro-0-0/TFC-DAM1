@@ -17,34 +17,40 @@
 
 <body class="d-flex flex-column h-100 bg-light">
     <header th:replace="~{admin/_fragments/header.html :: header}"></header>
+
     <main class="container flex-grow-1 my-4">
         <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
+
         <section class="card border-0 rounded-3 shadow">
             <div class="card-header bg-main text-white rounded-top-3 p-3">
                 <h1 class="h5 mb-0" th:if="${modificar}">
-                    <i class="bi bi-pencil-square me-2"></i><span>Modificar Usuario</span>
+                    <i class="bi bi-pencil-square me-2"></i>Modificar Usuario
                 </h1>
                 <h1 class="h5 mb-0" th:unless="${modificar}">
-                    <i class="bi bi-plus-circle me-2"></i><span>Crear Nuevo Usuario</span>
+                    <i class="bi bi-plus-circle me-2"></i>Crear Nuevo Usuario
                 </h1>
             </div>
+
             <div class="card-body p-4">
                 <form th:action="@{/admin/usuarios}" th:object="${usuarioDao}" th:method="${modificar} ? put : post"
                     name="crearUsuario" id="crearUsuarioForm">
+
                     <input type="hidden" th:if="${modificar}" th:field="*{id}">
+
                     <div class="row mb-4">
                         <div class="col-md-6 mb-3">
                             <label for="username" class="form-label fw-medium">
-                                <i class="bi bi-person-badge me-1"></i><span>Nombre de usuario</span> <span
+                                <i class="bi bi-person-badge me-1"></i>Nombre de usuario <span
                                     class="text-danger">*</span>
                             </label>
                             <input th:field="*{username}" type="text" id="username" class="form-control form-control-lg"
                                 placeholder="Ej. jperez" required maxlength="20" pattern="^[a-zA-Z0-9._-]{4,20}$"
                                 title="Debe tener entre 4 y 20 caracteres. Solo letras, números, puntos, guiones o guiones bajos.">
                         </div>
+
                         <div class="col-md-6 mb-3">
                             <label for="password" class="form-label fw-medium">
-                                <i class="bi bi-lock me-1"></i><span>Contraseña</span> <span th:unless="${modificar}"
+                                <i class="bi bi-lock me-1"></i>Contraseña <span th:unless="${modificar}"
                                     class="text-danger">*</span>
                             </label>
                             <input th:field="*{password}" type="password" id="password"
@@ -56,18 +62,20 @@
                                 contraseña actual</span>
                         </div>
                     </div>
+
                     <div class="row mb-4">
                         <div class="col-md-6 mb-3">
                             <label for="nombre" class="form-label fw-medium">
-                                <i class="bi bi-person me-1"></i><span>Nombre</span> <span class="text-danger">*</span>
+                                <i class="bi bi-person me-1"></i>Nombre <span class="text-danger">*</span>
                             </label>
                             <input th:field="*{nombre}" type="text" id="nombre" class="form-control form-control-lg"
                                 placeholder="Ej. Juan" required maxlength="30" pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,30}$"
                                 title="Solo letras y espacios. Máximo 30 caracteres.">
                         </div>
+
                         <div class="col-md-6 mb-3">
                             <label for="apellidos" class="form-label fw-medium">
-                                <i class="bi bi-people me-1"></i><span>Apellidos</span>
+                                <i class="bi bi-people me-1"></i>Apellidos
                             </label>
                             <input th:field="*{apellidos}" type="text" id="apellidos"
                                 class="form-control form-control-lg" placeholder="Ej. Pérez García" maxlength="60"
@@ -75,14 +83,16 @@
                                 title="Solo letras y espacios. Máximo 60 caracteres.">
                         </div>
                     </div>
+
                     <div class="mb-4">
                         <label for="filtroRol" class="form-label fw-medium">
-                            <i class="bi bi-shield me-1"></i><span>Rol</span> <span class="text-danger">*</span>
+                            <i class="bi bi-shield me-1"></i>Rol <span class="text-danger">*</span>
                         </label>
                         <div class="input-group mb-2">
                             <span class="input-group-text" id="filtroRolLabel"><i class="bi bi-search"></i></span>
                             <input type="text" class="form-control" id="filtroRol" placeholder="Filtrar roles...">
                         </div>
+
                         <div class="dropdown">
                             <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"
                                 id="dropdownRol" data-bs-toggle="dropdown"
@@ -98,11 +108,12 @@
                             <input type="hidden" th:field="*{rol}">
                         </div>
                     </div>
+
                     <div class="d-flex justify-content-between mt-4 pt-3 border-top">
                         <a th:href="@{/admin/usuarios}" href="listar.html" class="btn btn-outline-secondary">
-                            <i class="bi bi-arrow-left me-1"></i><span>Cancelar</span>
+                            <i class="bi bi-arrow-left me-1"></i>Cancelar
                         </a>
-                        
+
                         <!-- No se sustituye por <input type="submit"> porque incluye icono -->
                         <button type="submit" class="btn btn-primary px-4">
                             <i class="bi bi-check-circle me-1" th:if="${modificar}"></i>
@@ -114,6 +125,7 @@
             </div>
         </section>
     </main>
+
     <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
 </body>
 

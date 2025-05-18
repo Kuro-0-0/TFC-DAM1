@@ -21,10 +21,10 @@
         <section>
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h1 class="h4 mb-0 fw-bold">
-                    <i class="bi bi-tags me-2"></i><span>Listado de Estados</span>
+                    <i class="bi bi-tags me-2"></i>Listado de Estados
                 </h1>
                 <a th:href="@{/admin/estados/crear}" href="formulario.html" class="btn btn-success btn-sm">
-                    <i class="bi bi-plus-circle me-1"></i><span>Crear Estado</span>
+                    <i class="bi bi-plus-circle me-1"></i>Crear Estado
                 </a>
             </div>
         </section>
@@ -48,17 +48,17 @@
                             <th scope="col">
                                 <a href="#" onclick="ordenarPor('nombre')"
                                     class="text-decoration-none text-dark d-flex align-items-center gap-1">
-                                    <span>Nombre</span> <span id="icon-nombre" class="ms-1"></span>
+                                    Nombre <span id="icon-nombre" class="ms-1"></span>
                                 </a>
                             </th>
-                            <th scope="col"><span>Vista Previa</span></th>
+                            <th scope="col">Vista Previa</th>
                             <th scope="col">
                                 <a href="#" onclick="ordenarPor('activo')"
                                     class="text-decoration-none text-dark d-flex align-items-center gap-1">
-                                    <span>Activado</span> <span id="icon-activo" class="ms-1"></span>
+                                    Activado <span id="icon-activo" class="ms-1"></span>
                                 </a>
                             </th>
-                            <th scope="col" class="text-center"><span>Acciones</span></th>
+                            <th scope="col" class="text-center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -97,7 +97,7 @@
                         </tr>
                         <tr th:if="${estados.isEmpty()}">
                             <td colspan="4" class="text-center py-4 text-muted">
-                                <i class="bi bi-exclamation-circle me-2"></i><span>No hay estados disponibles.</span>
+                                <i class="bi bi-exclamation-circle me-2"></i>No hay estados disponibles.
                             </td>
                         </tr>
                     </tbody>
@@ -109,7 +109,7 @@
                                     <div class="my-auto">
                                         <a th:href="@{/admin/dashboard}" href="../otros/dashboard.html"
                                             class="btn btn-outline-secondary btn-sm">
-                                            <i class="bi bi-arrow-left-circle me-1"></i><span>Volver al panel</span>
+                                            <i class="bi bi-arrow-left-circle me-1"></i>Volver al panel
                                         </a>
                                     </div>
                                     <div class="my-auto text-center flex-fill">

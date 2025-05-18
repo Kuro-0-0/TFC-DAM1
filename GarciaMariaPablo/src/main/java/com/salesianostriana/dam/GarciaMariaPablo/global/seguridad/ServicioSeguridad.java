@@ -35,6 +35,22 @@ public class ServicioSeguridad {
         return null;
     }
 
+    public void forzarInicioSesion(String username, String password, HttpServletRequest request) {
+        Usuario user = servicioUsuario.findByUsername(username).orElseThrow();
+
+        UsernamePasswordAuthenticationToken authReq =
+                new UsernamePasswordAuthenticationToken(user, password, user.getAuthorities());
+
+        Authentication auth = authenticationManager.authenticate(authReq);
+
+        SecurityContextHolder.getContext().setAuthentication(auth);
+
+        // Vincula el contexto de seguridad a la sesión HTTP
+        HttpSession session = request.getSession(true);
+        session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY,
+        SecurityContextHolder.getContext());
+    }
+
     public String logIn(UsuarioDao_LogIn usuarioDao, Model model, RedirectAttributes redirectAttributes, HttpServletRequest request) {
         try {
             UsernamePasswordAuthenticationToken authRequest =

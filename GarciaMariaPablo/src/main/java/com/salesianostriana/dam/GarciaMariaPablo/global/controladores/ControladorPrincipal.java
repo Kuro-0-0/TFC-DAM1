@@ -71,9 +71,4 @@ public class ControladorPrincipal {
         return servicioPrincipal.cargarIndex(model);
     }
 
-    @GetMapping("/user/dashboard")
-    public String cargarDashboard(Model model) {
-        return "user/otros/dashboard";
-    }
-
 }

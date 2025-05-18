@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Contacto | Gestión de Incidencias</title>
-    <meta name="description" content="Formulario de contacto para soporte técnico, consultas comerciales o colaboraciones con nuestro equipo." />
+    <meta name="description"
+        content="Formulario de contacto para soporte técnico, consultas comerciales o colaboraciones con nuestro equipo." />
     <meta name="author" content="Pablo Garcia Maria" />
     <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
 </head>
@@ -16,11 +17,11 @@
 
     <main class="flex-grow-1 container my-5">
 
-        <article class="bg-white shadow-sm rounded-3 p-4 p-md-5" >
+        <article class="bg-white shadow-sm rounded-3 p-4 p-md-5">
             <header>
                 <h1 class="mb-4 border-bottom pb-3 fw-bold text-center txt-main">
                     <i class="bi bi-envelope-paper me-2"></i>
-                    <span>Contacto</span>
+                    Contacto
                 </h1>
             </header>
 
@@ -33,9 +34,7 @@
                             <div>
                                 <h3 class="h6 fw-bold mb-0">Oficina central</h3>
                                 <p class="mb-0 small">
-                                    <span>Calle Condes de Bustillo, 17</span> ·
-                                    <span>Sevilla</span>,
-                                    <span>41010</span>
+                                    Calle Condes de Bustillo, 17 · Sevilla, 41010
                                 </p>
                             </div>
                         </li>
@@ -44,7 +43,7 @@
                             <div>
                                 <h3 class="h6 fw-bold mb-0">Soporte técnico</h3>
                                 <p class="mb-0 small">
-                                    <span>+34 954 33 14 88</span> (L-V 9:00–18:00)
+                                    +34 954 33 14 88  (L-V 9:00–18:00)
                                 </p>
                             </div>
                         </li>
@@ -53,8 +52,8 @@
                             <div>
                                 <h3 class="h6 fw-bold mb-0">Email</h3>
                                 <p class="mb-0 small">
-                                    <a href="mailto:garcia.mapab24@salesianos.triana.edu" 
-                                    title="Escríbenos un correo electrónico">garcia.mapab24@salesianos.triana.edu</a>
+                                    <a href="mailto:garcia.mapab24@salesianos.triana.edu"
+                                        title="Escríbenos un correo electrónico">garcia.mapab24@salesianos.triana.edu</a>
                                 </p>
                             </div>
                         </li>
@@ -64,8 +63,8 @@
                         <h2 id="horario" class="h4 fw-semibold mb-3">Horario de atención</h2>
                         <ul class="list-unstyled small">
                             <li class="mb-1 d-flex">
-                                <span class="me-2">L-V:</span>
-                                <span>9:00 – 18:00</span>
+                                <span class="me-2">L-V:</span> 
+                                9:00 – 18:00
                             </li>
                             <li class="mb-1 d-flex">
                                 <span class="me-2">Sábados:</span>
@@ -118,8 +117,8 @@
                             <input type="checkbox" class="form-check-input" id="privacidad" required />
                             <label class="form-check-label small" for="privacidad">
                                 Acepto la
-                                <a href="politica-privacidad.html" th:href="@{/politica-privacidad}" 
-                                title="Redireccionamiento a la politica de privacidad">Política de
+                                <a href="politica-privacidad.html" th:href="@{/politica-privacidad}"
+                                    title="Redireccionamiento a la politica de privacidad">Política de
                                     Privacidad</a>.
                             </label>
                         </div>

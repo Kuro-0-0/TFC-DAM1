@@ -24,21 +24,21 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <h1 class="h5 mb-0">
                         <i class="bi bi-file-earmark-text me-2"></i>
-                        <span>Detalle de Incidencia</span>
+                        Detalle de Incidencia
                     </h1>
                     <span class="status-badge fw-bold" th:text="${incidencia.estado.nombre}"
                         th:style="'background-color: '+${incidencia.estado.colorFondo}+';color: '+${incidencia.estado.colorTexto}">
-                        <span>Pendiente</span>
+                        Pendiente
                     </span>
                 </div>
             </header>
 
             <div class="card-body p-4">
 
-                <section class="mb-4 pb-3 border-bottom" aria-labelledby="titulo-incidencia">
+                <section class="mb-4 pb-3 border-bottom">
                     <h2 id="titulo-incidencia" class="h4 mb-3 txt-main" th:text="${incidencia.titulo}">
                         <i class="bi bi-file-earmark-text me-2"></i>
-                        <span>Falla en el servidor</span>
+                        Falla en el servidor
                     </h2>
                 </section>
 
@@ -47,8 +47,8 @@
                         <div class="d-flex">
                             <i class="bi bi-geo-alt-fill text-muted mt-1 me-2"></i>
                             <div>
-                                <span class="text-muted small fw-semibold">Ubicación</span>
-                                <div class="ps-2" th:text="${incidencia.ubicacion}"> Planta 2 - Sala de servidores </div>
+                                <div class="text-muted small fw-semibold">Ubicación</div>
+                                <div class="ps-2" th:text="${incidencia.ubicacion}">Planta 2 - Sala de servidores</div>
                             </div>
                         </div>
                     </div>
@@ -56,10 +56,10 @@
                         <div class="d-flex">
                             <i class="bi bi-calendar-event text-muted mt-1 me-2"></i>
                             <div>
-                                <span class="text-muted small fw-semibold">Fecha de Creación</span>
+                                <div class="text-muted small fw-semibold">Fecha de Creación</div>
                                 <div>
                                     <time class="ps-2" th:text="${incidencia.fechaCreacion}"
-                                    datetime="2025-04-23">2025-04-23</time>
+                                        datetime="2025-04-23">2025-04-23</time>
                                 </div>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                         <div class="d-flex">
                             <i class="bi bi-person-fill text-muted mt-1 me-2"></i>
                             <div>
-                                <span class="text-muted small fw-semibold">Reportante</span>
+                                <div class="text-muted small fw-semibold">Reportante</div>
                                 <div class="ps-2" th:text="${incidencia.reportante.nombre}">Ana Gómez</div>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
                         <div class="d-flex">
                             <i class="bi bi-person-gear text-muted mt-1 me-2"></i>
                             <div>
-                                <span class="text-muted small fw-semibold">Técnico Asignado</span>
+                                <div class="text-muted small fw-semibold">Técnico Asignado</div>
                                 <div class="ps-2" th:text="${incidencia.tecnico.nombre}">Carlos Díaz</div>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                     <div class="bg-light rounded-3 p-3 border-start border-4 border-danger">
                         <div class="d-flex mb-2">
                             <i class="bi bi-card-text text-muted mt-1 me-2"></i>
-                            <span class="text-muted small fw-semibold">Descripción</span>
+                            <div class="text-muted small fw-semibold">Descripción</div>
                         </div>
                         <p class="mb-0 ps-2" th:text="${incidencia.descripcion}">
                             El servidor se reinicia constantemente sin motivo aparente.
@@ -101,16 +101,16 @@
 
                 <section class="d-flex justify-content-between align-items-center mt-4">
                     <a th:href="@{/admin/incidencias}" href="listar.html" class="btn btn-outline-secondary">
-                        <i class="bi bi-arrow-left me-1"></i> <span>Volver al listado</span>
+                        <i class="bi bi-arrow-left me-1"></i>Volver al listado
                     </a>
                     <div>
                         <a href="formulario.html" th:href="@{'/admin/incidencias/modificar/' + ${incidencia.id}}"
                             class="btn btn-primary me-2">
-                            <i class="bi bi-pencil me-1"></i> <span>Editar</span>
+                            <i class="bi bi-pencil me-1"></i>Editar
                         </a>
                         <button class="btn btn-danger" data-bs-toggle="modal"
                             data-bs-target="#confirmarEliminacionModal">
-                            <i class="bi bi-trash me-1"></i> <span>Eliminar</span>
+                            <i class="bi bi-trash me-1"></i>Eliminar
                         </button>
                     </div>
                 </section>
@@ -118,8 +118,8 @@
         </article>
     </main>
 
-    <div class="modal fade" id="confirmarEliminacionModal" tabindex="-1" aria-hidden="true"
-        aria-labelledby="modalEliminarLabel">
+    <div class="modal fade" id="confirmarEliminacionModal" tabindex="-1" 
+        >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-danger text-white">
@@ -127,12 +127,10 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <span>¿Estás seguro que deseas eliminar esta incidencia? Esta acción no se puede deshacer.</span>
+                    ¿Estás seguro que deseas eliminar esta incidencia? Esta acción no se puede deshacer.
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                        <span>Cancelar</span>
-                    </button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     <form th:action="@{'/admin/incidencias/' + ${incidencia.id}}" method="post">
                         <input type="hidden" name="_method" value="delete" />
                         <input type="submit" class="btn btn-danger" value="Eliminar">

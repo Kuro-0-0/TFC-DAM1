@@ -10,6 +10,7 @@ import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.utilidades.Roles
 import com.salesianostriana.dam.GarciaMariaPablo.global.repositorios.RepositorioUsuario;
 import com.salesianostriana.dam.GarciaMariaPablo.global.servicios.ServicioUsuario;
 import com.salesianostriana.dam.GarciaMariaPablo.global.servicios.otros.base.ServicioBaseImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -22,12 +23,9 @@ import java.util.Optional;
 @Service
 public class ServicioAdminUsuario extends ServicioBaseImpl<Usuario, Long, RepositorioUsuario> {
 
-    private final ServicioUsuario servicioUsuario;
+    @Autowired
+    private ServicioUsuario servicioUsuario;
 
-    public ServicioAdminUsuario(ServicioUsuario servicioUsuario) {
-        super();
-        this.servicioUsuario = servicioUsuario;
-    }
 
     public Usuario revertirDao(UsuarioDao_Modificar usuarioDao) {
         String password = usuarioDao.getPassword().isEmpty() ? repositorio.findPasswordById(usuarioDao.getId()).orElseThrow() : usuarioDao.getPassword();

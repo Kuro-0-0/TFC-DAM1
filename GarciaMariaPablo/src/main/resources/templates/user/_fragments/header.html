@@ -1,0 +1,180 @@
+<th:block th:fragment="headerOff">
+
+    <header class="navbar navbar-expand-lg navbar-dark bg-main shadow-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="../../global/index.html" th:href="@{/}">
+                <i class="bi bi-shield-check fs-3 me-2"></i>
+                <span class="fw-bold">Gestión de Incidencias</span>
+            </a>
+
+            <!-- Botón para offcanvas en móviles -->
+            <button class="navbar-toggler order-lg-1" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Contenido principal del header -->
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="incidenciasDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-file-earmark-text me-1"></i> Incidencias
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="incidenciasDropdown">
+                            <li><a class="dropdown-item" th:href="@{/user/incidencias}"><i
+                                        class="bi bi-list-ul me-2"></i>Mis Incidencias</a></li>
+                            <li><a class="dropdown-item" th:href="@{/user/incidencias/crear}"><i
+                                        class="bi bi-plus-circle me-2"></i>Nueva Incidencia</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-graph-up me-2"></i>Estadísticas</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="reportesDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-clipboard-data me-1"></i> Reportes
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="reportesDropdown">
+                            <li><a class="dropdown-item" href="#"><i
+                                        class="bi bi-file-earmark-bar-graph me-2"></i>Generar Reporte</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-clock-history me-2"></i>Historial</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="bi bi-question-circle me-1"></i> Ayuda
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Barra de búsqueda -->
+                <form class="d-flex mx-3">
+                    <div class="input-group">
+                        <input class="form-control" type="search" placeholder="Buscar incidencias..."
+                            aria-label="Search">
+                        <button class="btn btn-light" type="submit"><i class="bi bi-search"></i></button>
+                    </div>
+                </form>
+
+                <th:block th:replace="~{_fragments/headerPerfil.html :: headerPerfil}"></th:block>
+            </div>
+        </div>
+    </header>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header bg-main text-white">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+                <i class="bi bi-list me-2"></i>Menú
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active custom-nav-link" aria-current="page" href="#">
+                        <i class="bi bi-house-door me-2"></i>Inicio
+                    </a>
+                </li>
+
+                <!-- Sección Incidencias con acordeón -->
+                <li class="nav-item">
+                    <div class="accordion" id="accordionIncidencias">
+                        <div class="accordion-item border-0">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed bg-transparent shadow-none" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseIncidencias">
+                                    <i class="bi bi-file-earmark-text me-2"></i>Incidencias
+                                </button>
+                            </h2>
+                            <div id="collapseIncidencias" class="accordion-collapse collapse"
+                                aria-labelledby="headingOne">
+                                <div class="accordion-body p-0">
+                                    <ul class="nav flex-column ps-3">
+                                        <li class="nav-item">
+                                            <a class="nav-link custom-nav-link" th:href="@{/user/incidencias}">
+                                                <i class="bi bi-list-ul me-2"></i>Mis Incidencias
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link custom-nav-link" th:href="@{/user/incidencias/crear}">
+                                                <i class="bi bi-plus-circle me-2"></i>Nueva Incidencia
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link custom-nav-link" href="#">
+                                                <i class="bi bi-graph-up me-2"></i>Estadísticas
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Sección Reportes con acordeón -->
+                <li class="nav-item">
+                    <div class="accordion" id="accordionReportes">
+                        <div class="accordion-item border-0">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed bg-transparent shadow-none" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseReportes">
+                                    <i class="bi bi-clipboard-data me-2"></i>Reportes
+                                </button>
+                            </h2>
+                            <div id="collapseReportes" class="accordion-collapse collapse" aria-labelledby="headingTwo">
+                                <div class="accordion-body p-0">
+                                    <ul class="nav flex-column ps-3">
+                                        <li class="nav-item">
+                                            <a class="nav-link custom-nav-link" href="#">
+                                                <i class="bi bi-file-earmark-bar-graph me-2"></i>Generar Reporte
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link custom-nav-link" href="#">
+                                                <i class="bi bi-clock-history me-2"></i>Historial
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" href="#">
+                        <i class="bi bi-question-circle me-2"></i>Ayuda
+                    </a>
+                </li>
+
+                <li class="nav-item mt-3">
+                    <div class="card bg-light border-0">
+                        <div class="card-body">
+                            <h6 class="card-title"><i class="bi bi-info-circle me-2"></i>Información rápida</h6>
+                            <p class="small text-muted">Aquí puedes acceder a todas las opciones del sistema de gestión
+                                de incidencias.</p>
+                            <a href="#" class="btn btn-sm btn-outline-main w-100">Ver tutorial</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="offcanvas-footer p-3 bg-light border-top">
+            <div class="d-grid gap-2">
+                <form th:action="@{/logout}" method="post" class="d-grid">
+                    <button type="submit" class="btn btn-outline-danger">
+                        <i class="bi bi-box-arrow-left me-2"></i>Cerrar sesión
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</th:block>

@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description"
         content="Página de administración para listar, filtrar y gestionar incidencias reportadas." />
-
     <meta name="author" content="Pablo Garcia Maria" />
     <link rel="icon" href="../../../static/img/favicon.ico" th:href="@{/img/favicon.ico}" type="image/x-icon" />
     <title>Listado de Incidencias | Gestión de Incidencias</title>
@@ -25,19 +24,19 @@
     <main class="container flex-grow-1 my-4" role="main">
         <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
 
-        <section aria-labelledby="tituloListado">
+        <section>
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h1 id="tituloListado" class="h4 mb-0 txt-main fw-bold">
-                    <i class="bi bi-list-task me-2" aria-hidden="true"></i><span>Listado de Incidencias</span>
+                    <i class="bi bi-list-task me-2"></i>Listado de Incidencias
                 </h1>
                 <div class="d-flex gap-2">
                     <a th:href="@{/admin/incidencias/crear}" class="btn btn-success btn-sm"
                         title="Crear nueva incidencia" href="formulario.html">
-                        <i class="bi bi-plus-circle me-1" aria-hidden="true"></i><span>Crear Incidencia</span>
+                        <i class="bi bi-plus-circle me-1"></i>Crear Incidencia
                     </a>
                     <button class="btn btn-outline-secondary btn-sm rounded-2" data-bs-toggle="modal"
                         data-bs-target="#modalFiltros" title="Abrir filtros de búsqueda">
-                        <i class="bi bi-funnel me-1" aria-hidden="true"></i><span>Filtros</span>
+                        <i class="bi bi-funnel me-1"></i>Filtros
                     </button>
                 </div>
             </div>
@@ -51,47 +50,46 @@
                                 <th scope="col">
                                     <button
                                         class="btn btn-link text-decoration-none text-dark d-flex align-items-center gap-1 p-0"
-                                        onclick="ordenarPor('id')" aria-label="Ordenar por ID">
-                                        <span>ID</span><span id="icon-id" class="ms-1"></span>
+                                        onclick="ordenarPor('id')">
+                                        ID <span id="icon-id" class="ms-1"></span>
                                     </button>
                                 </th>
                                 <th scope="col">
                                     <button
                                         class="btn btn-link text-decoration-none text-dark d-flex align-items-center gap-1 p-0"
-                                        onclick="ordenarPor('titulo')" aria-label="Ordenar por Título">
-                                        <span>Título</span><span id="icon-titulo" class="ms-1"></span>
+                                        onclick="ordenarPor('titulo')">
+                                        Título <span id="icon-titulo" class="ms-1"></span>
                                     </button>
                                 </th>
                                 <th scope="col">
                                     <button
                                         class="btn btn-link text-decoration-none text-dark d-flex align-items-center gap-1 p-0"
-                                        onclick="ordenarPor('ubicacion')" aria-label="Ordenar por Ubicación">
-                                        <span>Ubicación</span><span id="icon-ubicacion" class="ms-1"></span>
+                                        onclick="ordenarPor('ubicacion')">
+                                        Ubicación <span id="icon-ubicacion" class="ms-1"></span>
                                     </button>
                                 </th>
                                 <th scope="col">
                                     <button
                                         class="btn btn-link text-decoration-none text-dark d-flex align-items-center gap-1 p-0"
-                                        onclick="ordenarPor('reportante')" aria-label="Ordenar por Reportante">
-                                        <span>Reportante</span><span id="icon-reportante" class="ms-1"></span>
+                                        onclick="ordenarPor('reportante')">
+                                        Reportante <span id="icon-reportante" class="ms-1"></span>
                                     </button>
                                 </th>
                                 <th scope="col">
                                     <button
                                         class="btn btn-link text-decoration-none text-dark d-flex align-items-center gap-1 p-0"
-                                        onclick="ordenarPor('estado')" aria-label="Ordenar por Estado">
-                                        <span>Estado</span><span id="icon-estado" class="ms-1"></span>
+                                        onclick="ordenarPor('estado')">
+                                        Estado <span id="icon-estado" class="ms-1"></span>
                                     </button>
                                 </th>
                                 <th scope="col">
                                     <button
                                         class="btn btn-link text-decoration-none text-dark d-flex align-items-center gap-1 p-0"
-                                        onclick="ordenarPor('fechaCreacion')"
-                                        aria-label="Ordenar por Fecha de Creación">
-                                        <span>Fecha IEA</span><span id="icon-fechaCreacion" class="ms-1"></span>
+                                        onclick="ordenarPor('fechaCreacion')">
+                                        Fecha IEA <span id="icon-fechaCreacion" class="ms-1"></span>
                                     </button>
                                 </th>
-                                <th scope="col" class="text-center"><span>Acciones</span></th>
+                                <th scope="col" class="text-center">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -112,25 +110,25 @@
                                         href="inspeccionar.html"
                                         class="btn btn-sm btn-outline-primary px-2 py-1 rounded-1 me-1"
                                         title="Ver detalles">
-                                        <i class="bi bi-eye" aria-hidden="true"></i>
+                                        <i class="bi bi-eye"></i>
                                     </a>
                                     <a th:href="@{/admin/incidencias/modificar/{id}(id=${incidencia.id})}"
                                         href="formulario.html"
                                         class="btn btn-sm btn-outline-success px-2 py-1 rounded-1 me-1"
                                         title="Editar incidencia">
-                                        <i class="bi bi-pencil" aria-hidden="true"></i>
+                                        <i class="bi bi-pencil"></i>
                                     </a>
                                     <button class="btn btn-sm btn-outline-danger px-2 py-1 rounded-1"
                                         data-bs-toggle="modal" data-bs-target="#confirmarEliminacionModal"
                                         th:data-id="${incidencia.id}" title="Eliminar incidencia">
-                                        <i class="bi bi-trash" aria-hidden="true"></i>
+                                        <i class="bi bi-trash"></i>
                                     </button>
                                 </td>
                             </tr>
                             <tr th:if="${incidencias.isEmpty()}">
                                 <td colspan="7" class="text-center py-4 text-muted">
-                                    <i class="bi bi-exclamation-circle me-2" aria-hidden="true"></i>
-                                    <span>No hay incidencias disponibles. Modifica los filtros o crea una nueva.</span>
+                                    <i class="bi bi-exclamation-circle me-2"></i>No hay incidencias
+                                    disponibles. Modifica los filtros o crea una nueva.
                                 </td>
                             </tr>
                         </tbody>
@@ -142,27 +140,24 @@
                                         <div class="my-auto">
                                             <a th:href="@{/admin/dashboard}" href="../otros/dashboard.html"
                                                 class="btn btn-outline-secondary btn-sm">
-                                                <i class="bi bi-arrow-left-circle me-1"></i><span>Volver al panel</span>
+                                                <i class="bi bi-arrow-left-circle me-1"></i>Volver al panel
                                             </a>
                                         </div>
                                         <div class="my-auto text-center flex-fill">
-                                            <small class="text-muted fst-italic">
-                                                La paginación se encuentra justo debajo de esta tabla.
-                                            </small>
+                                            <small class="text-muted fst-italic">La paginación se encuentra justo debajo
+                                                de esta tabla.</small>
                                         </div>
                                         <div class="my-auto d-inline-flex flex-column align-items-end">
-                                            <span th:text="'Total de incidencias en la web: ' + ${incidenciasTotal}">
-                                                Total de incidencias: 0
-                                            </span>
-                                            <small class="text-muted fst-italic">
-                                                Resultados según la página y filtros actuales.
-                                            </small>
+                                            <span
+                                                th:text="'Total de incidencias en la web: ' + ${incidenciasTotal}">Total
+                                                de incidencias: 0</span>
+                                            <small class="text-muted fst-italic">Resultados según la página y filtros
+                                                actuales.</small>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
                         </tfoot>
-
                     </table>
                 </div>
             </div>
@@ -171,21 +166,18 @@
         <section th:replace="~{admin/_fragments/paginacion.html :: paginacion}"></section>
     </main>
 
-    <div class="modal fade" id="confirmarEliminacionModal" tabindex="-1" aria-labelledby="confirmarEliminacionLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="confirmarEliminacionModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-danger text-white">
-                    <h5 class="modal-title" id="confirmarEliminacionLabel"><span>Confirmar Eliminación</span></h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Cerrar"></button>
+                    <h5 class="modal-title" id="confirmarEliminacionLabel">Confirmar Eliminación</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <span>¿Estás seguro de que deseas eliminar esta incidencia? Esta acción no se puede deshacer.</span>
+                    ¿Estás seguro de que deseas eliminar esta incidencia? Esta acción no se puede deshacer.
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal"><span>Cancelar</span></button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     <form th:method="delete" name="borrarIncidencia" id="borrarIncidencia">
                         <input type="submit" class="btn btn-danger" value="Eliminar" />
                     </form>
@@ -194,15 +186,14 @@
         </div>
     </div>
 
-
-    <div class="modal fade" id="modalFiltros" tabindex="-1" aria-labelledby="modalFiltrosLabel" aria-hidden="true">
+    <div class="modal fade" id="modalFiltros" tabindex="-1">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalFiltrosLabel">
-                        <i class="bi bi-funnel me-2" aria-hidden="true"></i><span>Filtrar Incidencias</span>
+                        <i class="bi bi-funnel me-2"></i>Filtrar Incidencias
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <form id="filtroForm" th:action="@{/admin/incidencias}" th:method="get">
@@ -291,7 +282,7 @@
                                     name="mostrarDesactivados"
                                     th:checked="${mostrarDesactivados != null ? mostrarDesactivados : false}" />
                                 <label class="form-check-label" for="mostrarDesactivados">
-                                    <span>Mostrar estados desactivados</span>
+                                    Mostrar estados desactivados
                                 </label>
                             </div>
                         </div>
@@ -299,14 +290,13 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-danger" onclick="resetForm()">
-                        <i class="bi bi-eraser me-1" aria-hidden="true"></i><span>Limpiar</span>
+                        <i class="bi bi-eraser me-1"></i>Limpiar
                     </button>
                     <input type="submit" form="filtroForm" class="btn btn-primary" value="Aplicar Filtros" />
                 </div>
             </div>
         </div>
     </div>
-
     <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
 </body>
 

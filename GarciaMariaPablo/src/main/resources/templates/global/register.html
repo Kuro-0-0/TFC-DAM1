@@ -33,7 +33,7 @@
                     <div class="mb-3">
                         <label for="username" class="form-label fw-medium">
                             <i class="bi bi-person-badge me-1"></i>
-                            <span>Nombre de usuario <span class="text-danger">*</span></span>
+                            Nombre de usuario <span class="text-danger">*</span>
                         </label>
                         <input th:field="*{username}" type="text" id="username" class="form-control form-control-lg"
                             placeholder="Ej. jperez" required maxlength="20" pattern="^[a-zA-Z0-9._-]{4,20}$"
@@ -43,7 +43,7 @@
                     <div class="mb-3">
                         <label for="password" class="form-label fw-medium">
                             <i class="bi bi-lock me-1"></i>
-                            <span>Contraseña <span class="text-danger">*</span></span>
+                            Contraseña <span class="text-danger">*</span>
                         </label>
                         <div class="input-group">
                             <input th:field="*{password}" type="password" id="password"
@@ -59,7 +59,7 @@
                     <div class="mb-3">
                         <label for="confirmPassword" class="form-label fw-medium">
                             <i class="bi bi-shield-lock me-1"></i>
-                            <span>Confirmar contraseña <span class="text-danger">*</span></span>
+                            Confirmar contraseña <span class="text-danger">*</span>
                         </label>
                         <input th:field="*{password2}" type="password" id="confirmPassword"
                             class="form-control form-control-lg" placeholder="Repite la contraseña" required
@@ -72,7 +72,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="nombre" class="form-label fw-medium">
                                 <i class="bi bi-person me-1"></i>
-                                <span>Nombre <span class="text-danger">*</span></span>
+                                Nombre <span class="text-danger">*</span>
                             </label>
                             <input th:field="*{nombre}" type="text" id="nombre" class="form-control form-control-lg"
                                 placeholder="Ej. Juan" required maxlength="30" pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,30}$"
@@ -82,7 +82,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="apellidos" class="form-label fw-medium">
                                 <i class="bi bi-people me-1"></i>
-                                <span>Apellidos</span>
+                                Apellidos
                             </label>
                             <input th:field="*{apellidos}" type="text" id="apellidos"
                                 class="form-control form-control-lg" placeholder="Ej. Pérez García" maxlength="60"
@@ -105,7 +105,7 @@
                     <div class="d-grid">
                         <!-- Este botón contiene un icono, por eso no se reemplaza por <input type="submit"> -->
                         <button type="submit" class="btn btn-lg btn-main text-white">
-                            <i class="bi bi-person-plus-fill me-1"></i> <span>Registrarse</span>
+                            <i class="bi bi-person-plus-fill me-1"></i> Registrarse
                         </button>
                     </div>
                 </form>

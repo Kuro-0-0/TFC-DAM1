@@ -37,7 +37,7 @@ public class Usuario
     @Builder.Default
     private boolean editable = true;
 
-    @OneToMany(mappedBy = "reportante")
+    @OneToMany(mappedBy = "reportante", fetch = FetchType.EAGER)
     private List<Incidencia> incidenciasReportadas;
 
     @OneToMany(mappedBy = "tecnico")

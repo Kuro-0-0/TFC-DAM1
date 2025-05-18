@@ -30,10 +30,10 @@
         <section class="card border-0 rounded-3 shadow">
             <div class="card-header bg-main text-white rounded-top-3 p-3">
                 <h1 class="h5 mb-0" th:if="${modificar}">
-                    <i class="bi bi-pencil-square me-2"></i><span>Modificar Incidencia</span>
+                    <i class="bi bi-pencil-square me-2"></i>Modificar Incidencia
                 </h1>
                 <h1 class="h5 mb-0" th:unless="${modificar}">
-                    <i class="bi bi-plus-circle me-2"></i><span>Crear Nueva Incidencia</span>
+                    <i class="bi bi-plus-circle me-2"></i>Crear Nueva Incidencia
                 </h1>
             </div>
 
@@ -46,7 +46,7 @@
                     <div class="row mb-4">
                         <div th:class="${modificar} ? 'col-md-5 mb-3' : 'col-md-6 mb-3'">
                             <label for="titulo" class="form-label fw-medium">
-                                <i class="bi bi-card-heading me-1"></i><span>Título</span> <span
+                                <i class="bi bi-card-heading me-1"></i>Título<span
                                     class="text-danger">*</span>
                             </label>
                             <input th:field="*{titulo}" type="text" class="form-control form-control-lg"
@@ -57,7 +57,7 @@
 
                         <div th:class="${modificar} ? 'col-md-4 mb-3' : 'col-md-6 mb-3'">
                             <label for="ubicacion" class="form-label fw-medium">
-                                <i class="bi bi-geo-alt me-1"></i><span>Ubicación</span> <span
+                                <i class="bi bi-geo-alt me-1"></i>Ubicación<span
                                     class="text-danger">*</span>
                             </label>
                             <input th:field="*{ubicacion}" type="text" class="form-control form-control-lg"
@@ -68,7 +68,7 @@
 
                         <div class="col-md-3 mb-3" th:if="${modificar}">
                             <label class="form-label fw-medium">
-                                <i class="bi bi-calendar me-1"></i><span>Fecha IEA</span>
+                                <i class="bi bi-calendar me-1"></i>Fecha IEA
                             </label>
                             <span th:text="*{fechaCreacion}" class="form-control form-control-lg pe-none"></span>
                             <input type="hidden" th:field="*{fechaCreacion}" readonly th:value="*{fechaCreacion}"
@@ -79,7 +79,7 @@
 
                     <div class="mb-4">
                         <label for="descripcion" class="form-label fw-medium">
-                            <i class="bi bi-text-paragraph me-1"></i><span>Descripción</span>
+                            <i class="bi bi-text-paragraph me-1"></i>Descripción
                         </label>
                         <textarea class="form-control form-control-lg" th:field="*{descripcion}" rows="5"
                             placeholder="Describe el problema con detalle" maxlength="500"
@@ -91,7 +91,7 @@
                         <!-- Reportante -->
                         <div class="col-md-4 mb-3">
                             <label for="filtroReportante" class="form-label fw-medium">
-                                <i class="bi bi-person me-1"></i><span>Reportante</span> <span
+                                <i class="bi bi-person me-1"></i>Reportante <span
                                     class="text-danger">*</span>
                             </label>
                             <div class="input-group mb-2">
@@ -121,8 +121,7 @@
                         <!-- Técnico -->
                         <div class="col-md-4 mb-3">
                             <label for="filtroTecnico" class="form-label fw-medium">
-                                <i class="bi bi-person-gear me-1"></i><span>Técnico Asignado</span>
-                            </label>
+                                <i class="bi bi-person-gear me-1"></i>Técnico Asignado
                             <div class="input-group mb-2">
                                 <span class="input-group-text"><i class="bi bi-search"></i></span>
                                 <input type="text" class="form-control" id="filtroTecnico"
@@ -150,7 +149,7 @@
                         <!-- Estado -->
                         <div class="col-md-4 mb-3">
                             <label for="filtroEstado" class="form-label fw-medium">
-                                <i class="bi bi-tag me-1"></i><span>Estado</span>
+                                <i class="bi bi-tag me-1"></i>Estado
                             </label>
                             <div class="input-group mb-2">
                                 <span class="input-group-text"><i class="bi bi-search"></i></span>
@@ -181,11 +180,11 @@
                     <div class="d-flex justify-content-between mt-4 pt-3 border-top">
                         <a th:if="${modificar}" href="listar.html" th:href="@{/admin/incidencias}"
                             class="btn btn-outline-secondary">
-                            <i class="bi bi-arrow-left me-1"></i><span>Cancelar</span>
+                            <i class="bi bi-arrow-left me-1"></i>Cancelar
                         </a>
                         <a th:unless="${modificar}" href="../otros/dashboard.html" th:href="@{/admin}"
                             class="btn btn-outline-secondary">
-                            <i class="bi bi-arrow-left me-1"></i><span>Cancelar</span>
+                            <i class="bi bi-arrow-left me-1"></i>Cancelar
                         </a>
                         <!-- No se sustituye por <input type="submit"> porque incluye icono -->
                         <button type="submit" class="btn btn-primary px-4">

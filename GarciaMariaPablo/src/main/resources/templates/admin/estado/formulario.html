@@ -8,7 +8,8 @@
     <meta name="description" content="Formulario para crear o modificar un estado en la plataforma de administración.">
     <title
         th:text="${modificar} ? 'Modificar Estado | Gestión de Incidencias' : 'Crear Estado | Gestión de Incidencias'">
-        Gestión de Estados</title>
+        Gestión de Estados
+    </title>
     <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
     <script defer src="../../../static/admin/javascript/estados/formulario/modificarVistaPrevia.js"
         th:src="@{/admin/javascript/estados/formulario/modificarVistaPrevia.js}"></script>
@@ -21,10 +22,10 @@
         <section class="card border-0 rounded-3 shadow mx-auto mw-50vw">
             <div class="card-header bg-main text-white rounded-top-3 p-3">
                 <h1 class="h5 mb-0" th:if="${modificar}">
-                    <i class="bi bi-pencil-square me-2"></i><span>Modificar Estado</span>
+                    <i class="bi bi-pencil-square me-2"></i>Modificar Estado
                 </h1>
                 <h1 class="h5 mb-0" th:unless="${modificar}">
-                    <i class="bi bi-plus-circle me-2"></i><span>Crear Nuevo Estado</span>
+                    <i class="bi bi-plus-circle me-2"></i>Crear Nuevo Estado
                 </h1>
             </div>
             <div class="card-body p-4">
@@ -34,8 +35,7 @@
                     <section class="row mb-4">
                         <div class="col-md-8 mb-3">
                             <label for="nombre" class="form-label fw-medium">
-                                <i class="bi bi-tag me-1"></i><span>Nombre del Estado</span> <span
-                                    class="text-main">*</span>
+                                <i class="bi bi-tag me-1"></i>Nombre del Estado <span class="text-main">*</span>
                             </label>
                             <input th:field="*{nombre}" type="text" class="form-control form-control-lg" id="nombre"
                                 placeholder="Ej. Pendiente, Resuelto..." required maxlength="50"
@@ -47,27 +47,27 @@
                                 <input class="form-check-input ms-0 me-2" type="checkbox" th:field="*{activo}"
                                     id="activoEstado">
                                 <label class="form-check-label fw-medium" for="activoEstado">
-                                    <i class="bi bi-power me-1"></i><span>Estado Activo</span>
+                                    <i class="bi bi-power me-1"></i>Estado Activo
                                 </label>
                             </div>
                         </div>
                     </section>
+
                     <section class="mb-4">
                         <div class="mb-3">
-                            <label for="tipo" class="form-label"><span>Tipo de incidencia</span></label>
+                            <label for="tipo" class="form-label">Tipo de incidencia</label>
                             <select id="tipo" name="tipo" th:field="*{tipo}" class="form-select" required>
-                                <option th:if="${!modificar}" value="" disabled selected><span>Selecciona un tipo</span>
-                                </option>
+                                <option th:if="${!modificar}" value="" disabled selected>Selecciona un tipo</option>
                                 <option th:each="tipoSelec : ${tipos}" th:text="${tipoSelec}" th:value="${tipoSelec}"
                                     th:selected="${modificar} ? (${tipoSelec} == ${estadoDao}) : false"></option>
                             </select>
                         </div>
                     </section>
+
                     <section class="row mb-4">
                         <div class="col-md-6 mb-3">
                             <label for="colorFondo" class="form-label fw-medium">
-                                <i class="bi bi-palette me-1"></i><span>Color de Fondo</span> <span
-                                    class="text-main">*</span>
+                                <i class="bi bi-palette me-1"></i>Color de Fondo <span class="text-main">*</span>
                             </label>
                             <div class="input-group position-relative">
                                 <div class="border rounded-1 d-flex align-items-center justify-content-center me-2 preview-square"
@@ -79,14 +79,14 @@
                                     th:value="${modificar} ? *{colorFondo}" readonly>
                             </div>
                         </div>
+
                         <div class="col-md-6 mb-3">
                             <label for="colorTexto" class="form-label fw-medium">
-                                <i class="bi bi-fonts me-1"></i><span>Color de Texto</span> <span
-                                    class="text-main">*</span>
+                                <i class="bi bi-fonts me-1"></i>Color de Texto <span class="text-main">*</span>
                             </label>
                             <div class="input-group position-relative">
                                 <div class="border rounded-1 d-flex align-items-center justify-content-center me-2 preview-square"
-                                    id="colorTextoPreview"><span>Aa</span></div>
+                                    id="colorTextoPreview">Aa</div>
                                 <input type="color"
                                     class="form-control form-control-color position-absolute opacity-0 w-100 h-100"
                                     th:field="*{colorTexto}" id="colorTexto" value="#ffffff" required>
@@ -95,18 +95,20 @@
                             </div>
                         </div>
                     </section>
+
                     <section class="mb-4">
                         <label class="form-label fw-medium">
-                            <i class="bi bi-eye me-1"></i><span>Vista Previa</span>
+                            <i class="bi bi-eye me-1"></i>Vista Previa
                         </label>
                         <div class="d-flex align-items-center justify-content-center fw-bold rounded-2 p-3 preview-rectangle"
                             id="vistaPreviaEstadoContenido">
                             <span th:text="${modificar} ? *{nombre} : 'Texto de ejemplo'">Texto de ejemplo</span>
                         </div>
                     </section>
+
                     <div class="d-flex justify-content-between mt-4 pt-3 border-top">
                         <a th:href="@{/admin/estados}" href="listar.html" class="btn btn-outline-secondary">
-                            <i class="bi bi-arrow-left me-1"></i><span>Cancelar</span>
+                            <i class="bi bi-arrow-left me-1"></i>Cancelar
                         </a>
                         <!-- No se sustituye por <input type="submit"> porque incluye icono -->
                         <button type="submit" class="btn btn-primary px-4">
@@ -119,6 +121,7 @@
             </div>
         </section>
     </main>
+
     <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
 </body>
 

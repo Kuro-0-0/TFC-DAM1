@@ -33,7 +33,7 @@ public class ConfiguracionSeguridad {
 
                         .requestMatchers("/h2-console/**").hasRole("ADMIN")
                         .requestMatchers("/admin/**","/ADMIN/**").hasRole("ADMIN")
-                        //.requestMatchers("/user/**","/USER/**").hasAnyRole("ADMIN","USER")
+                        .requestMatchers("/user/**","/USER/**").hasAnyRole("ADMIN","USER")
                         .requestMatchers("/tech/**","/TECH/**").hasAnyRole("ADMIN","TECH")
                         .requestMatchers(HttpMethod.GET,"/autologin").not().authenticated()
                         .anyRequest().permitAll()
