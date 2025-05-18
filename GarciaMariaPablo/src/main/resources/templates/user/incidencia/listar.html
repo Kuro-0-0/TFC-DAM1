@@ -10,7 +10,7 @@
     <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
 
     <script defer src="../../../static/user/javascript/incidencia/listar/eliminarIncidencia.js"
-        th:src="@{user/javascript/incidencia/listar/eliminarIncidencia.js}"></script>
+        th:src="@{/user/javascript/incidencia/listar/eliminarIncidencia.js}"></script>
 
 </head>
 
@@ -77,7 +77,7 @@
                             </div>
                             <div>
                                 <h3 class="h6 mb-0">Pendientes</h3>
-                                <p class="fs-4 fw-bold mb-0" th:text="${datosIncidencias[1]}">0</p>
+                                <p class="fs-4 fw-bold mb-0" th:text="${datosIncidencias[1] + datosIncidencias[0]}">0</p>
                             </div>
                         </div>
                     </div>
@@ -162,7 +162,7 @@
                                         </li>
                                         <li th:if="${incidencia.estado.tipo != 'Final'}">
                                             <a class="dropdown-item"
-                                                th:href="@{/user/incidencias/editar/} + ${incidencia.id}"
+                                                th:href="@{/user/incidencias/modificar/} + ${incidencia.id}"
                                                 href="formulario.html">
                                                 <i class="bi bi-pencil me-2"></i>Editar
                                             </a>
@@ -205,9 +205,9 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                             <i class="bi bi-x-circle me-2"></i>Cancelar
                         </button>
-                        <form id="formEliminarIncidencia" method="post">
-                            <input type="hidden" name="_method" value="delete">
+                        <form id="formEliminarIncidencia" th:method="delete">
                             <button type="submit" class="btn btn-danger">
+                                <!-- No se usa input submit porque tiene un icono -->
                                 <i class="bi bi-trash me-2"></i>Eliminar
                             </button>
                         </form>

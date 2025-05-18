@@ -35,7 +35,7 @@ public class IncidenciaDao_Inspeccionar {
 				.reportante(UsuarioDao_InspeccionarIncidencia.crearDao(incidencia.getReportante()))
 				.estado(EstadoDao_InspeccionarIncidencia.crearDao(incidencia.getEstado()))
 				.tecnico(UsuarioDao_InspeccionarIncidencia.crearDao(incidencia.getTecnico()))
-				.fechaCreacion(incidencia.getFechaCreacion().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
+				.fechaCreacion(incidencia.getFechaIEA().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
 				.build();
 	}
 	

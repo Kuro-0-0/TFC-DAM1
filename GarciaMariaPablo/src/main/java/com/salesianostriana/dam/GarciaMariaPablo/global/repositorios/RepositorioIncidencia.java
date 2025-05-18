@@ -24,4 +24,9 @@ public interface RepositorioIncidencia extends JpaRepository<Incidencia, Long> {
                                  @Param("titulo")String filtroTitulo,
                                  @Param("ubicacion")String filtroUbicacion,
                                  @Param("desactivados")Boolean mostrarDesactivados);
+
+    @Query("""
+    SELECT i FROM Incidencia  i
+        WHERE i.reportante.id = :idUsuario""")
+    List<Incidencia> getIncidenciasPorIdReportante(@Param("idUsuario") Long idUsuario);
 }

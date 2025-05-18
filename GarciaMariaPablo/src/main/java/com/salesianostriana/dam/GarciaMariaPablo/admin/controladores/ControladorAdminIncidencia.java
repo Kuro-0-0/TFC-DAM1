@@ -1,12 +1,13 @@
 package com.salesianostriana.dam.GarciaMariaPablo.admin.controladores;
 
-import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.incidencia.IncidenciaDao_Crear;
-import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.incidencia.IncidenciaDao_Modificar;
+import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.incidencia.IncidenciaAdminDao_Crear;
+import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.incidencia.IncidenciaAdminDao_Modificar;
 import com.salesianostriana.dam.GarciaMariaPablo.admin.servicios.ServicioAdminIncidencia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -53,18 +54,18 @@ public class ControladorAdminIncidencia {
     }
 
     @PostMapping
-    public String crear(@ModelAttribute("IncidenciaDAO") IncidenciaDao_Crear incidenciaDao) {
+    public String crear(@ModelAttribute("IncidenciaDAO") IncidenciaAdminDao_Crear incidenciaDao) {
         return servicioIncidencia.crear(incidenciaDao);
     }
 
     @PutMapping
-    public String modificar(@ModelAttribute("IncidenciaDAO") IncidenciaDao_Modificar incidenciaDao) {
+    public String modificar(@ModelAttribute("IncidenciaDAO") IncidenciaAdminDao_Modificar incidenciaDao) {
         return servicioIncidencia.modificar(incidenciaDao);
     }
 
-    @DeleteMapping("{id}")
-    public String eliminar(@PathVariable long id) {
-        return servicioIncidencia.eliminar(id);
+    @DeleteMapping("/{id}")
+    public String eliminar(@PathVariable long id, RedirectAttributes redirectAttributes) {
+        return servicioIncidencia.eliminar(id,redirectAttributes);
     }
 
 }

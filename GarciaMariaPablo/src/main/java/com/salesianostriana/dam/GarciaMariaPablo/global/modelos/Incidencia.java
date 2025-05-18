@@ -21,7 +21,8 @@ public class Incidencia {
     @Column(length = 500)
     private String descripcion;
     private String ubicacion;
-    private LocalDateTime fechaCreacion;
+    private LocalDateTime fechaIEA;
+    private LocalDateTime fechaModificacion;
 
     @ManyToOne
     @ToString.Exclude
@@ -39,6 +40,7 @@ public class Incidencia {
     private Estado estado;
 
     @OneToMany(mappedBy = "incidencia")
+    @ToString.Exclude
     private List<HistorialEstados> historialEstados = new ArrayList<>();
 
     /* HELPERS */

@@ -22,7 +22,7 @@ public class IncidenciaDao_RecientesDashboard {
                 .id(incidencia.getId())
                 .titulo(incidencia.getTitulo())
                 .estado(EstadoDao_IncidenciasRecientesDashboard.crearDao(incidencia.getEstado()))
-                .fecha(incidencia.getFechaCreacion())
+                .fecha(incidencia.getFechaModificacion())
                 .build();
     }
 

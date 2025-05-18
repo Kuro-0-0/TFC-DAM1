@@ -23,4 +23,8 @@ public class ServicioUsuario extends ServicioBaseImpl<Usuario,Long, RepositorioU
         usuario.setPassword(codificadorContrasenas.passwordEncoder().encode(usuario.getPassword()));
         return usuario;
     }
+
+    public Usuario getSinTecnico() {
+        return repositorio.findByUsername("sin-tecnico").orElseThrow();
+    }
 }

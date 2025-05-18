@@ -35,7 +35,7 @@ public class Usuario
     @Builder.Default
     private boolean editable = true;
 
-    @OneToMany(mappedBy = "reportante", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "reportante")
     @ToString.Exclude @Builder.Default
     private List<Incidencia> incidenciasReportadas = new ArrayList<>();
 

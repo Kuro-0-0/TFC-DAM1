@@ -38,7 +38,7 @@ public class ServicioPrincipal {
     
     public String cargarPerfil(Model model) {
         Usuario usuario = seguridad.obtenerUsuarioLogado();
-        System.out.println(usuario);
+        System.out.println(usuario); // Se borrara.
         return "redirect:/";
     }
 

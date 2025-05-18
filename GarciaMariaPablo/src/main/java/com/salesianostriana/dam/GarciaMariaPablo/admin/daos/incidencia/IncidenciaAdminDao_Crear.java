@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class IncidenciaDao_Crear {
+public class IncidenciaAdminDao_Crear {
 	
 	private String titulo;
 	private String ubicacion;

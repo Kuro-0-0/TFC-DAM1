@@ -25,9 +25,6 @@
                                     Incidencias</a></li>
                             <li><a class="dropdown-item" th:href="@{/user/incidencias/crear}"><i
                                         class="bi bi-plus-circle me-2"></i>Nueva Incidencia</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -40,6 +37,7 @@
                 <form class="d-flex mx-3">
                     <div class="input-group">
                         <input class="form-control" type="search" placeholder="Buscar incidencias...">
+                        <!-- No se pone input submit porque tiene un icono -->
                         <button class="btn btn-light" type="submit"><i class="bi bi-search"></i></button>
                     </div>
                 </form>
@@ -86,11 +84,6 @@
                                                 <i class="bi bi-plus-circle me-2"></i>Nueva Incidencia
                                             </a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link custom-nav-link" href="#">
-                                                <i class="bi bi-graph-up me-2"></i>Estadísticas
-                                            </a>
-                                        </li>
                                     </ul>
                                 </div>
                             </div>
@@ -119,6 +112,7 @@
         <div class="offcanvas-footer p-3 bg-light border-top">
             <div class="d-grid gap-2">
                 <form th:action="@{/logout}" method="post" class="d-grid">
+                    <!-- No se usa input submit porque tiene un icono* -->
                     <button type="submit" class="btn btn-outline-danger">
                         <i class="bi bi-box-arrow-left me-2"></i>Cerrar sesión
                     </button>

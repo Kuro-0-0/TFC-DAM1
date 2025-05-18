@@ -31,11 +31,11 @@ public class ConfiguracionSeguridad {
                         .requestMatchers(HttpMethod.GET,"/contacto","/nosotros","/politica-privacidad","/faq").permitAll()
                         .requestMatchers(HttpMethod.GET,"/dashboard","/perfil").authenticated()
 
-                        .requestMatchers("/h2-console/**").hasRole("ADMIN")
+                        //.requestMatchers("/h2-console/**").hasRole("ADMIN")
+                        .requestMatchers("/h2-console/**").authenticated()
                         .requestMatchers("/admin/**","/ADMIN/**").hasRole("ADMIN")
                         .requestMatchers("/user/**","/USER/**").hasAnyRole("ADMIN","USER")
                         .requestMatchers("/tech/**","/TECH/**").hasAnyRole("ADMIN","TECH")
-                        .requestMatchers(HttpMethod.GET,"/autologin").not().authenticated()
                         .anyRequest().permitAll()
                 )
                 .formLogin(form -> form.disable()) // Desactiva el login automático

@@ -22,17 +22,17 @@ INSERT INTO usuario (id, username, password, nombre, apellidos, rol, editable) V
 ALTER TABLE usuario ALTER COLUMN id RESTART WITH 11;
 
 
-INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fecha_creacion) VALUES ('Actualización requerida', 'Oficina B', 'Computadora no enciende', 3, 1, 1, '2024-05-02');
-INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fecha_creacion) VALUES ('Fallo de red', 'Sala de servidores', 'Sin conexión a Internet', 4, 1, 2, '2024-05-01');
-INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fecha_creacion) VALUES ('Problema de impresora', 'Departamento Legal', 'La impresora no responde', 10, 8, 1, '2024-05-03');
-INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fecha_creacion) VALUES ('Pantalla azul', 'Puesto 21', 'Error crítico de Windows', 9, 7, 0, '2024-05-04');
-INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fecha_creacion) VALUES ('Actualización de software', 'Sala de formación', 'Actualizar a la última versión', 3, 7, 1, '2024-05-05');
-INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fecha_creacion) VALUES ('Virus detectado', 'Puesto 5', 'Antivirus ha bloqueado amenazas', 10, 8, 0, '2024-05-06');
-INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fecha_creacion) VALUES ('Correo no funciona', 'Planta 2', 'No se envían correos', 4, 2, 2, '2024-05-02');
-INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fecha_creacion) VALUES ('Cambio de contraseña', 'Recepción', 'Usuario olvidó contraseña', 9, 1, 3, '2024-05-03');
-INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fecha_creacion) VALUES ('Teclado dañado', 'Puesto 18', 'No funcionan varias teclas', 10, 7, 4, '2024-05-04');
-INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fecha_creacion) VALUES ('Error en SAP', 'Contabilidad', 'Falla en login de SAP', 3, 8, 2, '2024-05-05');
-INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fecha_creacion) VALUES ('Equipo bloqueado', 'Almacén', 'No se puede iniciar sesión', 8, 2, 4, '2024-05-06');
+INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fechaiea, fecha_modificacion) VALUES ('Actualización requerida', 'Oficina B', 'Computadora no enciende', 3, 1, 1, '2024-05-02','2024-05-02');
+INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fechaiea, fecha_modificacion) VALUES ('Fallo de red', 'Sala de servidores', 'Sin conexión a Internet', 4, 1, 2, '2024-05-01','2024-05-01');
+INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fechaiea, fecha_modificacion) VALUES ('Problema de impresora', 'Departamento Legal', 'La impresora no responde', 10, 8, 1, '2024-05-03','2024-05-03');
+INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fechaiea, fecha_modificacion) VALUES ('Pantalla azul', 'Puesto 21', 'Error crítico de Windows', 9, 7, 0, '2024-05-04','2024-05-04');
+INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fechaiea, fecha_modificacion) VALUES ('Actualización de software', 'Sala de formación', 'Actualizar a la última versión', 3, 7, 1, '2024-05-05','2024-05-05');
+INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fechaiea, fecha_modificacion) VALUES ('Virus detectado', 'Puesto 5', 'Antivirus ha bloqueado amenazas', 10, 8, 0, '2024-05-06','2024-05-06');
+INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fechaiea, fecha_modificacion) VALUES ('Correo no funciona', 'Planta 2', 'No se envían correos', 4, 2, 2, '2024-05-02','2024-05-02');
+INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fechaiea, fecha_modificacion) VALUES ('Cambio de contraseña', 'Recepción', 'Usuario olvidó contraseña', 9, 1, 3, '2024-05-03','2024-05-03');
+INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fechaiea, fecha_modificacion) VALUES ('Teclado dañado', 'Puesto 18', 'No funcionan varias teclas', 10, 7, 4, '2024-05-04','2024-05-04');
+INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fechaiea, fecha_modificacion) VALUES ('Error en SAP', 'Contabilidad', 'Falla en login de SAP', 3, 8, 2, '2024-05-05','2024-05-05');
+INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fechaiea, fecha_modificacion) VALUES ('Equipo bloqueado', 'Almacén', 'No se puede iniciar sesión', 8, 2, 4, '2024-05-06','2024-05-06');
 
 
 INSERT INTO Usuario (username,password,rol,editable, nombre, apellidos) VALUES ('user','$2a$10$P.INQOjXA6Krg12MKDl3ne0jZKqQPwjdNd9LfzYl9m2GTwm1nfm3y','USER',true,'user','');

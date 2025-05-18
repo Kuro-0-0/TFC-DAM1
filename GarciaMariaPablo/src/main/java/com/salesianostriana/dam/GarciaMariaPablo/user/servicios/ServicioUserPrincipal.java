@@ -5,6 +5,8 @@ import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.Incidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.Usuario;
 import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.utilidades.TipoEstados;
 import com.salesianostriana.dam.GarciaMariaPablo.global.seguridad.ServicioSeguridad;
+import com.salesianostriana.dam.GarciaMariaPablo.global.servicios.ServicioIncidencia;
+import com.salesianostriana.dam.GarciaMariaPablo.global.servicios.ServicioUsuario;
 import com.salesianostriana.dam.GarciaMariaPablo.user.daos.incidencia.external.IncidenciaDao_RecientesDashboard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,10 @@ public class ServicioUserPrincipal {
     private ServicioSeguridad seguridad;
     @Autowired
     private ServicioUserIncidencias servicioUserIncidencias;
+    @Autowired
+    private ServicioUsuario servicioUsuario;
+    @Autowired
+    private ServicioIncidencia servicioIncidencia;
 
     //private Usuario usuarioLogueado;
 
@@ -36,10 +42,10 @@ public class ServicioUserPrincipal {
 
     public String cargarDashboard(Model model, RedirectAttributes redirectAttributes, int  limiteRecientes ) {
         Usuario usuario  = seguridad.obtenerUsuarioLogado();
-        List<Incidencia> incidencias = usuario.getIncidenciasReportadas();
+        List<Incidencia> incidencias = servicioIncidencia.getIncidenciasPorIdReportante(usuario.getId());
         List<IncidenciaDao_RecientesDashboard> incidenciasRecientes = incidencias
                 .stream()
-                .sorted(Comparator.comparing(Incidencia::getFechaCreacion).reversed())
+                .sorted(Comparator.comparing(Incidencia::getFechaIEA).reversed())
                 .limit(limiteRecientes)
                 .map(IncidenciaDao_RecientesDashboard::crearDao)
                 .toList();
@@ -56,7 +62,7 @@ public class ServicioUserPrincipal {
                         case TipoEstados.Proceso -> estadisticasRapidas[1]++;
                         case TipoEstados.Final -> estadisticasRapidas[2]++;
                         default -> {
-                            System.out.println("Tipo no valido");
+                            System.out.println("Tipo no valido" + t);
                         }
                     }
                 });

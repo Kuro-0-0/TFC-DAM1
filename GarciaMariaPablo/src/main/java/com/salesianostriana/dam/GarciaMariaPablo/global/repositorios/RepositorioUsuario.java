@@ -28,4 +28,6 @@ public interface RepositorioUsuario extends JpaRepository<Usuario, Long> {
     @Query("SELECT u.password FROM Usuario u WHERE u.id = :id")
     Optional<String> findPasswordById(@Param("id") long id);
     List<Usuario> findByRol(RolesUsuario rol);
+
+
 }
