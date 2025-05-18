@@ -1,7 +1,6 @@
 <section th:fragment="paginacion" class="bg-white rounded-3 shadow-sm p-3 mt-4">
     <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
 
-        <!-- Selector de elementos por página -->
         <form method="get" class="d-flex align-items-center gap-2" onsubmit="handleFormSubmit(event)">
             <label for="perPage" class="form-label mb-0 small">
                 Elementos por página:
@@ -10,17 +9,14 @@
                 max="100" th:value="${perPage}" onchange="handleInputChange()" pattern="\d+">
         </form>
 
-        <!-- Indicador de elementos actuales -->
         <p class="text-muted small mb-0">
             Mostrando
             <span th:text="${mostrandoAhora}">5</span>
             <span th:text="${mostrandoAhora == 1 ? 'elemento' : 'elementos'}">elementos</span>
         </p>
 
-        <!-- Navegación entre páginas -->
         <ul class="pagination mb-0 h-auto">
 
-            <!-- Página anterior -->
             <li class="page-item" th:classappend="${paginaActual == 1} ? 'disabled'">
                 <button type="button" class="page-link d-flex justify-content-center align-items-center h-100"
                     th:data-page="${paginaActual-1}" onclick="changePage(this)" th:disabled="${paginaActual == 1}">
@@ -29,7 +25,6 @@
                 </button>
             </li>
 
-            <!-- Página actual editable -->
             <li class="page-item">
                 <span class="page-link text-secondary h-100 d-flex align-items-center gap-1">
                     <input type="number" id="paginaSeleccionada" name="paginaSeleccionada" min="1"
@@ -42,7 +37,6 @@
                 </span>
             </li>
 
-            <!-- Página siguiente -->
             <li class="page-item" th:classappend="${paginaActual == paginaFinal} ? 'disabled'">
                 <button type="button" class="page-link d-flex justify-content-center align-items-center h-100"
                     th:data-page="${paginaActual+1}" onclick="changePage(this)"

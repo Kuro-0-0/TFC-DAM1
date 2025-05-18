@@ -12,7 +12,7 @@ public class ControladorActiveTab {
     public void setActiveTab(Model model, WebRequest request) {
         String uri = request.getDescription(false);
         uri = uri.replace("uri=","");
-        System.out.println("Estamos encontrado: " + uri);
+        System.out.println("u: " + uri);
         model.addAttribute("activeTab", uri);
     }
 }

@@ -11,7 +11,6 @@
 
   <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
 
-  <!-- JavaScript -->
   <script defer src="../../../static/admin/javascript/incidencias/estadisticas/generarEstadisticas.js"
     th:src="@{/admin/javascript/incidencias/estadisticas/generarEstadisticas.js}"></script>
 
@@ -26,10 +25,8 @@
 
 <body class="d-flex flex-column h-100 bg-light">
 
-  <!-- Encabezado -->
   <header th:replace="~{admin/_fragments/header.html :: header}"></header>
 
-  <!-- Contenido principal -->
   <main class="container flex-grow-1 my-4">
     <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
 
@@ -39,7 +36,6 @@
       </h1>
     </section>
 
-    <!-- Tarjeta de resumen total -->
     <section class="row mb-4">
       <div class="col-12">
         <div class="card bg-white rounded-3 shadow-sm p-3">
@@ -53,41 +49,34 @@
       </div>
     </section>
 
-    <!-- Estados -->
     <section class="card bg-white rounded-3 shadow-sm p-3 mb-3">
       <h2 class="h5 fw-semibold mb-3 txt-main">
         <i class="bi bi-tags me-2"></i>Estados de Incidencias
       </h2>
       <div class="d-flex overflow-x-auto stats-scroll-container" id="estadosContainer">
-        <!-- Dinámico -->
       </div>
       <div id="scrollIndicator" class="text-center text-muted small mt-1 mb-2">
         <i class="bi bi-arrow-left-right"></i> Desliza para ver más estados
       </div>
     </section>
 
-    <!-- Gráficos -->
     <section class="card bg-white rounded-3 shadow-sm p-3 mb-3">
       <h2 class="h5 fw-semibold mb-3 txt-main">
         <i class="bi bi-speedometer2 me-2"></i>Distribución por Estados
       </h2>
       <div id="progressBarsContainer">
-        <!-- Dinámico -->
       </div>
     </section>
 
-    <!-- Leyenda -->
     <section class="card bg-white rounded-3 shadow-sm p-3">
       <h2 class="h5 fw-semibold mb-3 txt-main">
         <i class="bi bi-tags me-2"></i>Leyenda de Estados
       </h2>
       <div id="leyendaEstados" class="d-flex flex-wrap gap-2">
-        <!-- Dinámico -->
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
 </body>
 

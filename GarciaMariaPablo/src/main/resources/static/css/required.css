@@ -58,7 +58,8 @@
     --mainColor-dark: #b8192c;
 }
 
-.active .nav-link, .nav-link:hover {
+.active .nav-link,
+.nav-link:hover {
     font-weight: bold;
     text-decoration: underline;
     text-underline-offset: 5px;
@@ -122,6 +123,11 @@
 .font-weight-bold {
     font-weight: 700 !important;
 }
+
+.font-weight-semi-bold {
+    font-weight: 500 !important;
+}
+
 
 .scroll-3-items {
     max-height: 10rem;
@@ -207,3 +213,25 @@
     border-radius: 10px;
 }
 
+.incidencia-card {
+    transition: all 0.3s ease;
+}
+
+.incidencia-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.badge-estado {
+    padding: 0.5em 0.8em;
+}
+
+.filtros-container {
+    background-color: #f8f9fa;
+    border-radius: 0.5rem;
+}
+
+.empty-state {
+    background-color: #f8f9fa;
+    border-radius: 0.5rem;
+}

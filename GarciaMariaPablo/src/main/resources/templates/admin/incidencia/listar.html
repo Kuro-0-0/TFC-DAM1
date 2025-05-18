@@ -7,7 +7,6 @@
     <meta name="description"
         content="Página de administración para listar, filtrar y gestionar incidencias reportadas." />
     <meta name="author" content="Pablo Garcia Maria" />
-    <link rel="icon" href="../../../static/img/favicon.ico" th:href="@{/img/favicon.ico}" type="image/x-icon" />
     <title>Listado de Incidencias | Gestión de Incidencias</title>
 
     <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
@@ -163,7 +162,7 @@
             </div>
         </section>
 
-        <section th:replace="~{admin/_fragments/paginacion.html :: paginacion}"></section>
+        <section th:replace="~{_fragments/paginacion.html :: paginacion}"></section>
     </main>
 
     <div class="modal fade" id="confirmarEliminacionModal" tabindex="-1">
@@ -198,7 +197,6 @@
                 <div class="modal-body">
                     <form id="filtroForm" th:action="@{/admin/incidencias}" th:method="get">
                         <div class="row g-3">
-                            <!-- Título -->
                             <div class="col-md-6">
                                 <label for="filtroTitulo" class="form-label">Título</label>
                                 <div class="input-group">
@@ -208,7 +206,6 @@
                                 </div>
                             </div>
 
-                            <!-- Ubicación -->
                             <div class="col-md-6">
                                 <label for="filtroUbicacion" class="form-label">Ubicación</label>
                                 <div class="input-group">
@@ -218,7 +215,6 @@
                                 </div>
                             </div>
 
-                            <!-- Reportante -->
                             <div class="col-md-6">
                                 <label for="filtroReportante" class="form-label">Reportante</label>
                                 <div class="input-group mb-2">
@@ -248,7 +244,6 @@
                                 </div>
                             </div>
 
-                            <!-- Estado -->
                             <div class="col-md-6">
                                 <label for="filtroEstado" class="form-label">Estado</label>
                                 <div class="input-group mb-2">

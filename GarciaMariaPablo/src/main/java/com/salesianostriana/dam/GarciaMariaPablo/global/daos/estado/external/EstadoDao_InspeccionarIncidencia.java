@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.GarciaMariaPablo.admin.daos.estado.external;
+package com.salesianostriana.dam.GarciaMariaPablo.global.daos.estado.external;
 
 
 import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.Estado;

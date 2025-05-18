@@ -19,8 +19,8 @@ public class ControladorPrincipal {
     private ServicioPrincipal servicioPrincipal;
 
     @GetMapping("/login")
-    public String cargarLogIn(Model model) {
-        return servicioPrincipal.cargarLogIn(model);
+    public String cargarLogIn(Model model, RedirectAttributes redirectAttributes) {
+        return servicioPrincipal.cargarLogIn(model,redirectAttributes);
     }
 
     @PostMapping("/login")
@@ -29,8 +29,8 @@ public class ControladorPrincipal {
     }
 
     @GetMapping("/register")
-    public String cargarRegister(Model model) {
-        return servicioPrincipal.cargarRegister(model);
+    public String cargarRegister(Model model, RedirectAttributes redirectAttributes) {
+        return servicioPrincipal.cargarRegister(model, redirectAttributes);
     }
 
     @PostMapping("/register")

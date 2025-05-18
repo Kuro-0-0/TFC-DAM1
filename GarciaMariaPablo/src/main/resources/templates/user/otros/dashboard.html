@@ -18,7 +18,7 @@
         <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
 
         <header class="text-center mb-5">
-            <h1 class="mb-3 fw-bold txt-main">Bienvenido al Panel de Usuario</h1>
+            <h1 class="mb-3 fw-bold txt-main">Bienvenido <span th:text="${nombre}">Jose Luis</span></h1>
             <p class="lead text-muted">Gestiona todas tus incidencias en un solo lugar</p>
         </header>
 
@@ -41,7 +41,14 @@
                     </div>
                     <div class="card-footer bg-transparent border-top-0 text-center py-3">
                         <small class="text-muted">
-                            <i class="bi bi-clock-history me-1"></i> Última actualización: DINAMICO
+                            <i class="bi bi-clock-history me-1"></i> Última actualización: 
+                            <th:block th:if="${ultimaActualizacion == 'NUNCA'}">
+                                <span th:text="${ultimaActualizacion}">Nunca</span>
+                            </th:block>
+                            <th:block th:unless="${ultimaActualizacion == 'NUNCA'}">
+                                <span th:text="${ultimaActualizacion}">13</span> 
+                                <span th:text="${ultimaActualizacion} == 1 ? 'dia' : 'dias'">dias</span>
+                            </th:block>
                         </small>
                     </div>
                 </section>
@@ -100,7 +107,7 @@
             <div class="col-lg-6">
                 <div class="card border-0 shadow-sm">
                     <div class="card-header bg-white border-0">
-                        <h2 class="h5 mb-0"><i class="bi bi-graph-up me-2"></i>Estadísticas Rápidas></h2>
+                        <h2 class="h5 mb-0"><i class="bi bi-graph-up me-2"></i>Estadísticas Rápidas</h2>
                     </div>
                     <div class="card-body">
                         <div class="row text-center">
@@ -108,21 +115,21 @@
                                 <div class="p-3">
                                     <h3 class="text-main fw-bold"><span th:text="${estadisticasRapidas[0]}">12</span>
                                     </h3>
-                                    <p class="text-muted small mb-0">Abiertas</p>
+                                    <p class="text-muted small mb-0">Sin comenzar</p>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="p-3">
-                                    <h3 class="text-success fw-bold"><span th:text="${estadisticasRapidas[1]}">24</span>
-                                    </h3>
-                                    <p class="text-muted small mb-0">Resueltas</p>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="p-3">
-                                    <h3 class="text-warning fw-bold"><span th:text="${estadisticasRapidas[2]}">3</span>
+                                    <h3 class="text-warning fw-bold"><span th:text="${estadisticasRapidas[1]}">3</span>
                                     </h3>
                                     <p class="text-muted small mb-0">En progreso</p>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="p-3">
+                                    <h3 class="text-success fw-bold"><span th:text="${estadisticasRapidas[2]}">24</span>
+                                    </h3>
+                                    <p class="text-muted small mb-0">Finalizadas</p>
                                 </div>
                             </div>
                         </div>
@@ -141,7 +148,7 @@
                     <div class="card-body">
                         <ul class="list-group list-group-flush" th:each="incidencia : ${incidenciasRecientes}">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span th:text="${incidencia.titulo}">Error al iniciar sesión</span>
+                                <a  class="text-decoration-none text-dark" th:href="@{/user/incidencias/inspeccionar/} + ${incidencia.id}" th:text="${incidencia.titulo}">Error al iniciar sesión</a>
                                 <span class="badge"
                                     th:style="'background-color:' + ${incidencia.estado.colorFondo} + '; color:' + ${incidencia.estado.colorTexto}"
                                     th:text="${incidencia.estado.nombre}">Resuelto</span>

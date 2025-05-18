@@ -42,7 +42,11 @@ public class ServicioPrincipal {
         return "redirect:/";
     }
 
-    public String cargarLogIn(Model model) {
+    public String cargarLogIn(Model model,RedirectAttributes redirectAttributes) {
+        if (seguridad.obtenerUsuarioLogado() != null) {
+            redirectAttributes.addFlashAttribute("info", "No  puedes Iniciar sesion en un perfil con una sesion ya iniciada.");
+            return "redirect:/";
+        }
         return  seguridad.cargarLogIn(model);
     }
 
@@ -58,7 +62,11 @@ public class ServicioPrincipal {
         return "redirect:/";
     }
 
-    public String cargarRegister(Model model) {
+    public String cargarRegister(Model model,RedirectAttributes redirectAttributes) {
+        if (seguridad.obtenerUsuarioLogado() != null) {
+            redirectAttributes.addFlashAttribute("info", "No  puedes registrar un nuevo perfil con una sesion iniciada.");
+            return "redirect:/";
+        }
         return seguridad.cargarRegister(model);
     }
 

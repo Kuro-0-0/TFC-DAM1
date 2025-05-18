@@ -39,7 +39,7 @@ public class Incidencia {
     private Estado estado;
 
     @OneToMany(mappedBy = "incidencia")
-    private List<HistorialEstados> historialEstados;
+    private List<HistorialEstados> historialEstados = new ArrayList<>();
 
     /* HELPERS */
 

@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.GarciaMariaPablo.admin.daos.usuario.external;
+package com.salesianostriana.dam.GarciaMariaPablo.global.daos.usuario.external;
 
 
 import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.Usuario;

@@ -16,12 +16,14 @@ public class EstadoDao_ListarIncidencia {
     private String nombre;
     private String colorTexto;
     private String colorFondo;
+    private String tipo;
 
     public static EstadoDao_ListarIncidencia crearDao(Estado estado) {
         return EstadoDao_ListarIncidencia.builder()
                 .nombre(estado.getNombre())
                 .colorFondo(estado.getColorFondo())
                 .colorTexto(estado.getColorTexto())
+                .tipo(estado.getTipo().name())
                 .build();
     }
 

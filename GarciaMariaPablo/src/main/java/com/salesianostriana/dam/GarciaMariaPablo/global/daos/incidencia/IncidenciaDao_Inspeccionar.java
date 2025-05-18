@@ -1,8 +1,8 @@
-package com.salesianostriana.dam.GarciaMariaPablo.admin.daos.incidencia;
+package com.salesianostriana.dam.GarciaMariaPablo.global.daos.incidencia;
 
 
-import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.estado.external.EstadoDao_InspeccionarIncidencia;
-import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.usuario.external.UsuarioDao_InspeccionarIncidencia;
+import com.salesianostriana.dam.GarciaMariaPablo.global.daos.estado.external.EstadoDao_InspeccionarIncidencia;
+import com.salesianostriana.dam.GarciaMariaPablo.global.daos.usuario.external.UsuarioDao_InspeccionarIncidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.Incidencia;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

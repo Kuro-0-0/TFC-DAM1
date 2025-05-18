@@ -2,15 +2,13 @@ package com.salesianostriana.dam.GarciaMariaPablo.global.modelos;
 
 import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.utilidades.RolesUsuario;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -38,10 +36,12 @@ public class Usuario
     private boolean editable = true;
 
     @OneToMany(mappedBy = "reportante", fetch = FetchType.EAGER)
-    private List<Incidencia> incidenciasReportadas;
+    @ToString.Exclude @Builder.Default
+    private List<Incidencia> incidenciasReportadas = new ArrayList<>();
 
     @OneToMany(mappedBy = "tecnico")
-    private List<Incidencia> incidenciasGestionadas;
+    @ToString.Exclude @Builder.Default
+    private List<Incidencia> incidenciasGestionadas = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

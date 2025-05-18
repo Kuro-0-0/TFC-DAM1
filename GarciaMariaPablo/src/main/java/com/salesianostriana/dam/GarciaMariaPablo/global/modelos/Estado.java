@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,14 +29,14 @@ public class Estado {
 
     private TipoEstados tipo;
 
-    @OneToMany(mappedBy = "estado")
-    private List<Incidencia> incidencias;
+    @OneToMany(mappedBy = "estado") @Builder.Default
+    private List<Incidencia> incidencias = new ArrayList<>();
 
-    @OneToMany(mappedBy = "estadoInicial")
-    private List<HistorialEstados> historialComienzos;
+    @OneToMany(mappedBy = "estadoInicial") @Builder.Default
+    private List<HistorialEstados> historialComienzos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "estadoActual")
-    private List<HistorialEstados> historialActuales;
+    @OneToMany(mappedBy = "estadoActual") @Builder.Default
+    private List<HistorialEstados> historialActuales = new ArrayList<>();
 
 
 }

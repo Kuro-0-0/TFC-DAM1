@@ -2,6 +2,7 @@ package com.salesianostriana.dam.GarciaMariaPablo.user.servicios;
 
 import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.Estado;
 import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.Incidencia;
+import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.Usuario;
 import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.utilidades.TipoEstados;
 import com.salesianostriana.dam.GarciaMariaPablo.global.seguridad.ServicioSeguridad;
 import com.salesianostriana.dam.GarciaMariaPablo.user.daos.incidencia.external.IncidenciaDao_RecientesDashboard;
@@ -10,8 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 @Controller
 public class ServicioUserPrincipal {
@@ -31,8 +35,15 @@ public class ServicioUserPrincipal {
 
 
     public String cargarDashboard(Model model, RedirectAttributes redirectAttributes, int  limiteRecientes ) {
-        List<Incidencia> incidencias = seguridad.obtenerUsuarioLogado().getIncidenciasReportadas();
-        int estadisticasRapidas[] = {0,0,0};
+        Usuario usuario  = seguridad.obtenerUsuarioLogado();
+        List<Incidencia> incidencias = usuario.getIncidenciasReportadas();
+        List<IncidenciaDao_RecientesDashboard> incidenciasRecientes = incidencias
+                .stream()
+                .sorted(Comparator.comparing(Incidencia::getFechaCreacion).reversed())
+                .limit(limiteRecientes)
+                .map(IncidenciaDao_RecientesDashboard::crearDao)
+                .toList();
+        int[] estadisticasRapidas = {0,0,0};
 
 
         incidencias
@@ -50,15 +61,13 @@ public class ServicioUserPrincipal {
                     }
                 });
 
-        model.addAttribute("incidenciasRecientes",incidencias
-                .stream()
-                .sorted(Comparator.comparing(Incidencia::getFechaCreacion))
-                .limit(limiteRecientes)
-                .map(IncidenciaDao_RecientesDashboard::crearDao)
-                .toList());
+        model.addAttribute("incidenciasRecientes",incidenciasRecientes);
 
+        model.addAttribute("ultimaActualizacion", incidenciasRecientes.isEmpty() ? "NUNCA" :
+                DAYS.between(incidenciasRecientes.getFirst().getFecha(),LocalDateTime.now()));
 
         model.addAttribute("estadisticasRapidas", estadisticasRapidas);
+        model.addAttribute("nombre", usuario.getNombre() + ' ' + usuario.getApellidos());
 
         return "user/otros/dashboard";
     }

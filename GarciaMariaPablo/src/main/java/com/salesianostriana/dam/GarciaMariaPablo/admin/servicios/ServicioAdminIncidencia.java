@@ -2,10 +2,12 @@ package com.salesianostriana.dam.GarciaMariaPablo.admin.servicios;
 
 
 import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.estado.external.EstadoDao_FiltrarIncidencia;
-import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.estado.external.EstadoDao_Seleccionar;
+import com.salesianostriana.dam.GarciaMariaPablo.global.daos.estado.external.EstadoDao_Seleccionar;
 import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.incidencia.*;
 import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.usuario.external.UsuarioDao_FiltrarIncidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.usuario.external.UsuarioDao_FormularioIncidencia;
+import com.salesianostriana.dam.GarciaMariaPablo.global.daos.incidencia.IncidenciaDao_Inspeccionar;
+import com.salesianostriana.dam.GarciaMariaPablo.global.daos.incidencia.IncidenciaDao_Listar;
 import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.HistorialEstados;
 import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.Incidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.Usuario;
@@ -159,6 +161,7 @@ public class ServicioAdminIncidencia extends ServicioBaseImpl<Incidencia, Long, 
 
     public String inspeccionar(Model model, long id) {
         model.addAttribute("incidencia", IncidenciaDao_Inspeccionar.crearDao(findById(id).orElseThrow()));
+        model.addAttribute("usuarioRol", "ADMIN");
         return "admin/incidencia/inspeccionar";
     }
 

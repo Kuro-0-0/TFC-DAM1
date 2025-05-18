@@ -26,7 +26,7 @@ public class ConfiguracionSeguridad {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login","/register").not().authenticated()
+                        .requestMatchers("/login","/register").permitAll()
                         .requestMatchers(HttpMethod.GET, "/", "/css/**", "/js/**", "/img/**").permitAll()
                         .requestMatchers(HttpMethod.GET,"/contacto","/nosotros","/politica-privacidad","/faq").permitAll()
                         .requestMatchers(HttpMethod.GET,"/dashboard","/perfil").authenticated()

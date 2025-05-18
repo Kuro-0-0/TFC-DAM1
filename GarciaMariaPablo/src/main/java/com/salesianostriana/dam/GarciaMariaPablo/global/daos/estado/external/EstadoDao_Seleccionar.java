@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.GarciaMariaPablo.admin.daos.estado.external;
+package com.salesianostriana.dam.GarciaMariaPablo.global.daos.estado.external;
 
 
 import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.Estado;
@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EstadoDao_Seleccionar {
-	
+
 	private String nombre;
 	private String valor;
 	private String colorFondo;
