@@ -83,10 +83,10 @@ java -jar GarciaMariaPablo-VERSION.jar
 ### 🥚 Easter Eggs
 #### 🔧 URLs especiales:
 - /admin/usuarios/modificar/5  → Mensaje oculto
-- /admin/usuarios/modificar/6  → Mensaje secreto
-- /admin/nosotros             → Agradecimientos
+- /admin/usuarios/modificar/6  → Mensaje oculto
+- /nosotros                    → Agradecimientos
 #### ⚠️ Protecciones del sistema:
-- Intento de eliminar admin → Mensaje de error especial
+- Intento de eliminar un admin → Mensaje de error especial
 
 #### 🤖 Funciones simuladas:
 - Envío de mensajes en /contacto → Alerta simulada
