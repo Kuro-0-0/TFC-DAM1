@@ -47,7 +47,7 @@ Técnico: tech / tech
 | Componente | Versión requerida |
 |------------|------------------|
 | Java       | JDK 21+          |
-| RAM        | Mínimo 2GB       |
+| RAM        | Mínimo 700MB       |
 
 ## 🚀 Instalación y ejecución
 
