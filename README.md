@@ -1,7 +1,10 @@
 # 🚀 Gestión de Incidencias - Proyecto Final DAM (2024-2025)
 
 ![Java](https://img.shields.io/badge/Java-21%2B-orange?style=flat-square&logo=java)
-![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
+![Thymeleaf](https://img.shields.io/badge/Thymeleaf-3.1-%23005C0F?style=flat-square&logo=thymeleaf)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 
 🔧 **Sistema de gestión de incidencias** desarrollado como proyecto final del primer curso del ciclo **Desarrollo de Aplicaciones Multiplataforma (DAM)** en **Salesianos Triana**.
 
