@@ -72,17 +72,15 @@ java -jar GarciaMariaPablo-VERSION.jar
 - Ver y Editar su perfil
 
 
-Configuración del sistema
+# Detalles del sistema
 
-# 🥚 Easter Eggs
-### 🔧 URLs especiales:
-
+### 🥚 Easter Eggs
+#### 🔧 URLs especiales:
 - /admin/usuarios/modificar/5  → Mensaje oculto
 - /admin/usuarios/modificar/6  → Mensaje secreto
 - /admin/nosotros             → Agradecimientos
-### ⚠️ Protecciones del sistema:
-
+#### ⚠️ Protecciones del sistema:
 - Intento de eliminar admin → Mensaje de error especial
 
-### 🤖 Funciones simuladas:
+#### 🤖 Funciones simuladas:
 - Envío de mensajes en /contacto → Alerta simulada
