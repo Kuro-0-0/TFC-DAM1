@@ -1,4 +1,4 @@
-# 🚀 Gestión de Incidencias - Proyecto Final DAM (2024-2025) 
+# 🚀 Gestión de Incidencias - Proyecto Final DAM (2024-2025)
 
 ![Java](https://img.shields.io/badge/Java-21%2B-orange?style=flat-square&logo=java)
 ![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
@@ -7,39 +7,82 @@
 
 ## 🌟 Características principales
 
+- 🔒 **Sistema de seguridad por roles** con interfaces específicas para:
+  - 👤 **USER** (Usuario estándar)
+  - 🛠️ **TECH** (Técnico)
+  - 👑 **ADMIN** (Administrador)
 - 📝 Gestión completa de incidencias
 - 👨‍💻 Asignación de técnicos y reportantes
 - 📊 Panel de administración unificado
 - 🔄 Datos generados automáticamente al iniciar (no persistentes)
 - 🎨 Interfaz intuitiva y fácil de usar
 
-## 🛠 Requisitos del sistema
+## 👥 Usuarios de prueba
 
-| Requisito | Versión |
-|-----------|---------|
-| Java      | 21+     |
+El sistema incluye **23 usuarios predefinidos** para testing:
 
-## 🚀 Cómo ejecutar
+### 🔹 Usuarios estándar (10)
+Username: user01, user02, ..., user10
+Password: 1234
 
-1. Descarga el archivo `.jar` desde la sección [Releases](https://github.com/Kuro-0-0/TFC-DAM1/releases)
-2. Abre una terminal en la carpeta de descarga
-3. Ejecuta:
 
+### 🔧 Técnicos (10)
+Username: tech01, tech02, ..., tech10
+Password: 1234
+
+
+### 👑 Cuentas especiales (3)
+Admin: admin / admin
+Usuario: user / user
+Técnico: tech / tech
+
+
+## 🛠 Requisitos técnicos
+
+| Componente | Versión requerida |
+|------------|------------------|
+| Java       | JDK 21+          |
+| RAM        | Mínimo 2GB       |
+
+## 🚀 Instalación y ejecución
+
+1. Descargar el archivo `.jar` desde [Releases](https://github.com/Kuro-0-0/TFC-DAM1/releases)
+2. Ejecutar desde terminal:
 ```bash
 java -jar GarciaMariaPablo-VERSION.jar
 ```
+# 🎮 Funcionalidades por rol
+### 👤 USER
+- Reportar incidencias
+- Ver historial
+- Ver y Editar su perfil
 
-## 🥚 Easter Eggs (Sorpresas ocultas)
+### 🛠️ TECH
+- Ver incidencias
+- Ver sus estadisticas
+- Asignarse incidencias
+- Gestionar incidencias asignadas
+- Ver y Editar su perfil
 
-La aplicación esconde algunas funcionalidades especiales que se activan en ciertas situaciones:
+### 👑 ADMIN
+- Gestión completa de usuarios
+- Gestión completa de incidencias
+- Gestión completa de estados
+- Estadísticas avanzadas
+- Ver y Editar su perfil
 
-🔧 URLs especiales
-- /usuarios/modificar/5 - Mensaje oculto al intentar editar el técnico "sin-tecnico"
-- /usuarios/modificar/6 - Mensaje secreto al intentar editar el reportante "sin-reportante"
-- /nosotros - Agradecimientos y Menciones Honorificas en el apartado del equipo
 
-⚠️ Protecciones del sistema
-- /usuarios - Intenta eliminar un Admin...
+Configuración del sistema
 
-🤖 Funciones simuladas
-- /contacto - Al enviar un mensaje recibirás una alerta (aunque en realidad no se envía nada)
+# 🥚 Easter Eggs
+### 🔧 URLs especiales:
+
+- /admin/usuarios/modificar/5  → Mensaje oculto
+- /admin/usuarios/modificar/6  → Mensaje secreto
+- /admin/nosotros             → Agradecimientos
+### ⚠️ Protecciones del sistema:
+
+- Intento de eliminar admin → Mensaje de error especial
+
+### 🤖 Funciones simuladas:
+- Envío de mensajes en /contacto → Alerta simulada
