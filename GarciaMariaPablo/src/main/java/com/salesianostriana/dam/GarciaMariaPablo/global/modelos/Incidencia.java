@@ -22,6 +22,7 @@ public class Incidencia {
     private String descripcion;
     private String ubicacion;
     private LocalDateTime fechaIEA;
+    private LocalDateTime fechaCreacion;
     private LocalDateTime fechaModificacion;
 
     @ManyToOne

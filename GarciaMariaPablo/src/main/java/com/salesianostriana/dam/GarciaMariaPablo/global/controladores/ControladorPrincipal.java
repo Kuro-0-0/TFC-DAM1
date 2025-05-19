@@ -1,6 +1,8 @@
 package com.salesianostriana.dam.GarciaMariaPablo.global.controladores;
 
+import com.salesianostriana.dam.GarciaMariaPablo.global.daos.otros.ContrasenaDao_Modificar;
 import com.salesianostriana.dam.GarciaMariaPablo.global.daos.usuario.UsuarioDao_LogIn;
+import com.salesianostriana.dam.GarciaMariaPablo.global.daos.usuario.UsuarioDao_Modificar;
 import com.salesianostriana.dam.GarciaMariaPablo.global.daos.usuario.UsuarioDao_Register;
 import com.salesianostriana.dam.GarciaMariaPablo.global.servicios.ServicioPrincipal;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -46,6 +49,16 @@ public class ControladorPrincipal {
     @GetMapping("/perfil")
     public String cargarPerfil(Model model) {
         return servicioPrincipal.cargarPerfil(model);
+    }
+
+    @PutMapping("/perfil/password")
+    public String modificarContrasena(@ModelAttribute ContrasenaDao_Modificar contrasenaDao_Modificar, Model model, RedirectAttributes redirectAttributes) {
+        return servicioPrincipal.modificarContrasena(contrasenaDao_Modificar, model, redirectAttributes);
+    }
+
+    @PutMapping("/perfil/modificar")
+    public String modificarUsuario(@ModelAttribute UsuarioDao_Modificar usuarioDao, Model model, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+        return servicioPrincipal.modificarUsuario(usuarioDao,model,redirectAttributes, request);
     }
 
     @GetMapping("/nosotros")

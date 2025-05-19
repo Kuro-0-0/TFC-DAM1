@@ -4,7 +4,7 @@ package com.salesianostriana.dam.GarciaMariaPablo.admin.servicios;
 import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.otros.RolDao_ListarUsuarios;
 import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.usuario.UsuarioDao_Crear;
 import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.usuario.UsuarioDao_Listar;
-import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.usuario.UsuarioDao_Modificar;
+import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.usuario.UsuarioAdminDao_Modificar;
 import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.Usuario;
 import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.utilidades.RolesUsuario;
 import com.salesianostriana.dam.GarciaMariaPablo.global.repositorios.RepositorioUsuario;
@@ -27,7 +27,8 @@ public class ServicioAdminUsuario extends ServicioBaseImpl<Usuario, Long, Reposi
     private ServicioUsuario servicioUsuario;
 
 
-    public Usuario revertirDao(UsuarioDao_Modificar usuarioDao) {
+    public Usuario revertirDao(UsuarioAdminDao_Modificar usuarioDao) {
+        Usuario original = repositorio.findById(usuarioDao.getId()).orElseThrow();
         String password = usuarioDao.getPassword().isEmpty() ? repositorio.findPasswordById(usuarioDao.getId()).orElseThrow() : usuarioDao.getPassword();
         return Usuario.builder()
                 .id(usuarioDao.getId())
@@ -35,9 +36,9 @@ public class ServicioAdminUsuario extends ServicioBaseImpl<Usuario, Long, Reposi
                 .rol(usuarioDao.getRol())
                 .nombre(usuarioDao.getNombre())
                 .username(usuarioDao.getUsername())
-                //                .incidenciasReportadas(usuario.getIncidenciasReportadas())
-                //                .incidenciasGestionadas(usuario.getIncidenciasGestionadas())
                 .password(password)
+                .email(original.getEmail())
+                .telefono(original.getTelefono())
                 .editable(true)
                 .build();
     }
@@ -114,7 +115,7 @@ public class ServicioAdminUsuario extends ServicioBaseImpl<Usuario, Long, Reposi
         }
 
         if (!model.containsAttribute("usuarioDao")) {
-            model.addAttribute("usuarioDao", UsuarioDao_Modificar.crearDao(objetivo));
+            model.addAttribute("usuarioDao", UsuarioAdminDao_Modificar.crearDao(objetivo));
         }
 
         model.addAttribute("roles", RolesUsuario.values());
@@ -144,7 +145,7 @@ public class ServicioAdminUsuario extends ServicioBaseImpl<Usuario, Long, Reposi
         return "redirect:/admin/usuarios";
     }
 
-    public String modificar(UsuarioDao_Modificar usuarioDao, Model model, RedirectAttributes redirectAttributes) {
+    public String modificar(UsuarioAdminDao_Modificar usuarioDao, Model model, RedirectAttributes redirectAttributes) {
         Usuario usuarioAntiguo = findById(usuarioDao.getId()).orElseThrow();
         Usuario nuevoUsuario = revertirDao(usuarioDao);
         if (nuevoUsuario != null) {

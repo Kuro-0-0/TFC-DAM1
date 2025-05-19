@@ -30,4 +30,5 @@ public interface RepositorioUsuario extends JpaRepository<Usuario, Long> {
     List<Usuario> findByRol(RolesUsuario rol);
 
 
+    Usuario findByEmail(String email);
 }

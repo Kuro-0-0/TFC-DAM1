@@ -21,7 +21,7 @@ public class HistorialEstados {
     private Incidencia incidencia;
 
     @ManyToOne
-    @JoinColumn(name = "estado_incial_id")
+    @JoinColumn(name = "estado_inicial_id")
     private Estado estadoInicial;
 
     @ManyToOne

@@ -63,7 +63,6 @@
     font-weight: bold;
     text-decoration: underline;
     text-underline-offset: 5px;
-    color: white !important;
 }
 
 .custom-nav-link {
@@ -74,16 +73,9 @@
     color: var(--mainColor-dark) !important;
 }
 
-.h-5vh {
-    height: 5vh;
-}
 
 .mw-50vw {
     max-width: 50vw
-}
-
-.w-badge {
-    width: 100%;
 }
 
 .w-badge-r {
@@ -91,17 +83,10 @@
 }
 
 @media (max-width: 992px) {
-    .w-badge {
-        width: 50%;
-    }
 
     .w-badge-r {
         width: 100%;
     }
-}
-
-.top-15 {
-    top: 15% !important;
 }
 
 .cursor-pointer {
@@ -118,10 +103,6 @@
 
 .min-w-25 {
     min-width: 25%;
-}
-
-.font-weight-bold {
-    font-weight: 700 !important;
 }
 
 .font-weight-semi-bold {
@@ -183,15 +164,8 @@
 }
 
 /** Usado en estadisticas.html de incidencias Admin */
-.stats-card {
-    transition: transform 0.3s ease;
-    min-width: 200px;
-}
 
-.stats-card:hover {
-    transform: translateY(5px);
-}
-
+/*noinspection CssUnresolvedCustomProperty*/
 .stats-scroll-container {
     scrollbar-width: thin;
     scrollbar-color: var(--mainColor) var(--bs-light);
@@ -203,6 +177,7 @@
     height: 8px;
 }
 
+/*noinspection CssUnresolvedCustomProperty*/
 .stats-scroll-container::-webkit-scrollbar-track {
     background: var(--bs-light);
     border-radius: 10px;

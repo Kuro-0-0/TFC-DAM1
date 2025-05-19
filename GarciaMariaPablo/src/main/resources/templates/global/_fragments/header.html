@@ -68,10 +68,11 @@
 
             <div class="offcanvas-footer p-3 bg-dark">
                 <div sec:authorize="isAuthenticated()" class="d-grid gap-2">
-                    <a href="#" class="btn btn-outline-info">
+                    <a href="../perfil.html" th:href="@{/perfil}" class="btn btn-outline-info">
                         <i class="bi bi-people me-2"></i>Perfil
                     </a>
                     <form th:action="@{/logout}" method="post" class="d-grid">
+                        <!-- No se pone input por que tiene un icono -->
                         <button type="submit" class="btn btn-outline-danger">
                             <i class="bi bi-box-arrow-left me-2"></i>Cerrar sesión
                         </button>

@@ -34,9 +34,9 @@
                     </li>
                 </ul>
 
-                <form class="d-flex mx-3">
+                <form class="d-flex mx-3" method="get" th:action="@{/user/incidencias}">
                     <div class="input-group">
-                        <input class="form-control" type="search" placeholder="Buscar incidencias...">
+                        <input class="form-control" name="q" type="search" placeholder="Buscar incidencias...">
                         <!-- No se pone input submit porque tiene un icono -->
                         <button class="btn btn-light" type="submit"><i class="bi bi-search"></i></button>
                     </div>

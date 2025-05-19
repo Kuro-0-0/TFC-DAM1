@@ -2,7 +2,7 @@ package com.salesianostriana.dam.GarciaMariaPablo.admin.controladores;
 
 
 import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.usuario.UsuarioDao_Crear;
-import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.usuario.UsuarioDao_Modificar;
+import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.usuario.UsuarioAdminDao_Modificar;
 import com.salesianostriana.dam.GarciaMariaPablo.admin.servicios.ServicioAdminUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,7 +50,7 @@ public class ControladorAdminUsuario {
     }
 
     @PutMapping
-    public String modificar(@ModelAttribute UsuarioDao_Modificar usuarioDao, Model model, RedirectAttributes redirectAttributes) {
+    public String modificar(@ModelAttribute UsuarioAdminDao_Modificar usuarioDao, Model model, RedirectAttributes redirectAttributes) {
         return servicioUsuario.modificar(usuarioDao, model, redirectAttributes);
     }
 

@@ -17,8 +17,6 @@ import org.springframework.security.web.SecurityFilterChain;
 public class ConfiguracionSeguridad {
 
     @Autowired
-    private CodificadorContrasenas codificadorContrasenas;
-    @Autowired
     private ServicioCustomUserDetails servicioCustomUserDetails;
 
     @Bean
@@ -31,8 +29,8 @@ public class ConfiguracionSeguridad {
                         .requestMatchers(HttpMethod.GET,"/contacto","/nosotros","/politica-privacidad","/faq").permitAll()
                         .requestMatchers(HttpMethod.GET,"/dashboard","/perfil").authenticated()
 
-                        //.requestMatchers("/h2-console/**").hasRole("ADMIN")
-                        .requestMatchers("/h2-console/**").authenticated()
+                        .requestMatchers("/h2-console/**").hasRole("ADMIN")
+//                        .requestMatchers("/h2-console/**").authenticated()
                         .requestMatchers("/admin/**","/ADMIN/**").hasRole("ADMIN")
                         .requestMatchers("/user/**","/USER/**").hasAnyRole("ADMIN","USER")
                         .requestMatchers("/tech/**","/TECH/**").hasAnyRole("ADMIN","TECH")

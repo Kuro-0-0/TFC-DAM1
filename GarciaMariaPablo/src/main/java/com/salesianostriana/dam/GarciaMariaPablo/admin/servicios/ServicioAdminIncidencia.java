@@ -61,6 +61,7 @@ public class ServicioAdminIncidencia extends ServicioBaseImpl<Incidencia, Long, 
                 .tecnico(tecnico)
                 .estado(repositorioEstado.findByValor(incidenciaDao.getEstado()).orElse(repositorioEstado.findByValor("sin-estado").orElseThrow()))
                 .fechaIEA(LocalDateTime.now())
+                .fechaCreacion(LocalDateTime.now())
                 .fechaModificacion(LocalDateTime.now())
                 .build();
     }
@@ -76,6 +77,7 @@ public class ServicioAdminIncidencia extends ServicioBaseImpl<Incidencia, Long, 
                 .tecnico(repositorioUsuario.findById(incidenciaDao.getTecnico().getId()).orElse(repositorioUsuario.findByUsername("sin-tecnico").orElseThrow()))
                 .estado(repositorioEstado.findByValor(incidenciaDao.getEstado().getValor()).orElse(repositorioEstado.findByValor("sin-estado").orElseThrow()))
                 .fechaIEA(incidenciaDao.getFechaCreacion())
+                .fechaCreacion(incidenciaDao.getFechaCreacion())
                 .fechaModificacion(LocalDateTime.now())
                 .build();
     }
