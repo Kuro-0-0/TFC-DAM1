@@ -24,22 +24,23 @@
 
 ## 👥 Usuarios de prueba
 
-El sistema incluye **23 usuarios predefinidos** para testing:
+- El sistema incluye **23 usuarios predefinidos** para testing:
 
 ### 🔹 Usuarios estándar (10)
-Username: user01, user02, ..., user10
-Password: 1234
+- Username: user01, user02, ..., user10
+- Password: 1234
 
 
 ### 🔧 Técnicos (10)
-Username: tech01, tech02, ..., tech10
-Password: 1234
+- Username: tech01, tech02, ..., tech10
+- Password: 1234
 
 
 ### 👑 Cuentas especiales (3)
-Admin: admin / admin
-Usuario: user / user
-Técnico: tech / tech
+- Rol: Username : Password
+  - Admin: admin : admin
+  - Usuario: user : user
+  - Técnico: tech : tech
 
 
 ## 🛠 Requisitos técnicos
