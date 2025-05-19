@@ -72,9 +72,9 @@ java -jar GarciaMariaPablo-VERSION.jar
 - Ver y Editar su perfil
 
 
-Configuración del sistema
+# Detalles del sistema
 
-# 🥚 Easter Eggs
+## 🥚 Easter Eggs
 ### 🔧 URLs especiales:
 
 - /admin/usuarios/modificar/5  → Mensaje oculto
