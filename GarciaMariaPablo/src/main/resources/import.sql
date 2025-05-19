@@ -11,8 +11,8 @@ INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, tele
 INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (2, 'user02', '$2a$12$Ur0Am.HjJ0WseHbtWuZLjuJ2yBbyQU5MJPORmweLEEd5ip2C05IYq', 'USER', 'Carlos', 'Jiménez', 'carlos.jimenez@example.com', '622345679', '2024-12-10', true);
 INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (3, 'user03', '$2a$12$qiHV.kWZWYJXcpQWUwJME.c4o2bZxgINRb8jQCghvK5MrMRD0kNCy', 'USER', 'Lucía', 'Navarro', 'lucia.navarro@example.com', '632345680', '2025-01-05', true);
 INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (4, 'user04', '$2a$12$Z9N.3Njv.bBXFfui5ysesu6Oc39oXfGs8n7V45ae/QIMunErTl3Fy', 'USER', 'David', 'Fernández', 'david.fernandez@example.com', '642345681', '2025-02-12', true);
-INSERT INTO usuario (id, username, password, nombre, apellidos, rol, editable) VALUES (5, 'sin-tecnico', 'sin-tecnico', 'Sin Tecnico', '', 1,false);
-INSERT INTO usuario (id, username, password, nombre, apellidos, rol, editable) VALUES (6, 'sin-reportante', 'sin-reportante', 'Sin Reportante', '',2,false);
+INSERT INTO usuario (id, username, password, nombre, apellidos, rol, editable) VALUES (5, 'sin-tecnico', 'sin-tecnico', 'Sin Tecnico', '', 'TECH',false);
+INSERT INTO usuario (id, username, password, nombre, apellidos, rol, editable) VALUES (6, 'sin-reportante', 'sin-reportante', 'Sin Reportante', '','USER',false);
 INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (7, 'user05', '$2a$12$BxOL/W6prcl10mPFM8sTlOudTdxmw/mNqYsINIkw5Ze1otkt58X0q', 'USER', 'Elena', 'Romero', 'elena.romero@example.com', '652345682', '2025-03-18', true);
 INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (8, 'user06', '$2a$12$wcv3W3nrkedYQM1py43D5OyoxU6WOmPqrwDmnR7CnOtkzO2M44fhG', 'USER', 'Javier', 'Ortiz', 'javier.ortiz@example.com', '662345683', '2025-03-21', true);
 INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (9, 'user07', '$2a$12$.Xv5w.qDf964rO.2x8TBJOu.Yq6xR7kXLOQUrwcHdpS8lYsfQB5yq', 'USER', 'Sara', 'Cano', 'sara.cano@example.com', '672345684', '2025-03-27', true);
@@ -29,11 +29,15 @@ INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, tele
 INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (20, 'tech08', '$2a$12$obaRrurahwkaCtabLacxg.rVgpJO9Bo2jaEPvmrK1EP/xiF/tNS1m', 'TECH', 'Andrés', 'Ruiz', 'andres.ruiz@example.com', '688888888', '2025-04-27', true);
 INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (21, 'tech09', '$2a$12$obaRrurahwkaCtabLacxg.rVgpJO9Bo2jaEPvmrK1EP/xiF/tNS1m', 'TECH', 'Laura', 'Suárez', 'laura.suarez@example.com', '699999999', '2025-04-28', true);
 INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (22, 'tech10', '$2a$12$obaRrurahwkaCtabLacxg.rVgpJO9Bo2jaEPvmrK1EP/xiF/tNS1m', 'TECH', 'Sergio', 'Bermúdez', 'sergio.bermudez@example.com', '600000000', '2025-04-29', true);
-
 ALTER TABLE usuario ALTER COLUMN id RESTART WITH 23;
+INSERT INTO Usuario (username,password,rol,editable, nombre, apellidos) VALUES ('user','$2a$10$P.INQOjXA6Krg12MKDl3ne0jZKqQPwjdNd9LfzYl9m2GTwm1nfm3y','USER',false,'user','');
+INSERT INTO usuario (username, password, nombre, apellidos, rol, editable) VALUES ( 'admin', '$2a$12$fMCbeiD5ulJd0HVupQClOeUglGpw9z2UphGQPI3ANsiEtGP.TA67K', 'admin', '', 'ADMIN',false);
+INSERT INTO usuario (username, password, nombre, apellidos, rol, editable) VALUES ( 'tech', '$2a$12$cVbhu2H9QtaWAA8zmXs7luqThZjcKrBTLd5upkgn.SFRPEVo76OKm', 'tech', '', 'TECH',false);
+
+
 
 INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fecha_creacion, fechaiea, fecha_modificacion) VALUES ('Fallo en proyector del aula', 'Aula 15', 'El proyector del aula no responde al encender.', 9, 19, 0, '2025-02-11', '2025-02-12', '2025-02-14');
-INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fecha_creacion, fechaiea, fecha_modificacion) VALUES ('Ordenador no enciende', 'Aula 1', 'El equipo no arranca al pulsar el botón de encendido.', 5, 11, 4, '2025-03-24', '2025-03-25', '2025-03-27');
+INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fecha_creacion, fechaiea, fecha_modificacion) VALUES ('Ordenador no enciende', 'Aula 1', 'El equipo no arranca al pulsar el botón de encendido.', 6, 11, 4, '2025-03-24', '2025-03-25', '2025-03-27');
 INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fecha_creacion, fechaiea, fecha_modificacion) VALUES ('Problemas con la red Wi-Fi', 'Aula 9', 'No hay señal de red en ninguno de los dispositivos del aula.', 9, 14, 3, '2025-03-22', '2025-03-23', '2025-03-25');
 INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fecha_creacion, fechaiea, fecha_modificacion) VALUES ('Pantalla táctil descalibrada', 'Aula 5', 'La pantalla táctil se activa sola o no responde.', 1, 16, 3, '2025-01-08', '2025-01-09', '2025-01-11');
 INSERT INTO Incidencia (titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fecha_creacion, fechaiea, fecha_modificacion) VALUES ('Altavoces no funcionan', 'Aula 13', 'No se escucha ningún sonido en el sistema de audio.', 4, 11, 2, '2025-04-13', '2025-04-14', '2025-04-15');
@@ -206,7 +210,3 @@ INSERT INTO historial_estados (incidencia_id, estado_inicial_id , estado_actual_
 INSERT INTO historial_estados (incidencia_id, estado_inicial_id , estado_actual_id, fecha_comienzo, fecha_final) VALUES (NULL, NULL, 1, '2025-03-05', '2025-03-06');
 INSERT INTO historial_estados (incidencia_id, estado_inicial_id , estado_actual_id, fecha_comienzo, fecha_final) VALUES (NULL, 1, 2, '2025-03-06', '2025-03-07');
 INSERT INTO historial_estados (incidencia_id, estado_inicial_id , estado_actual_id, fecha_comienzo, fecha_final) VALUES (50, 2, 0, '2025-03-07', '2025-03-08');
-
-INSERT INTO Usuario (username,password,rol,editable, nombre, apellidos) VALUES ('user','$2a$10$P.INQOjXA6Krg12MKDl3ne0jZKqQPwjdNd9LfzYl9m2GTwm1nfm3y','USER',false,'user','');
-INSERT INTO usuario (username, password, nombre, apellidos, rol, editable) VALUES ( 'admin', '$2a$12$fMCbeiD5ulJd0HVupQClOeUglGpw9z2UphGQPI3ANsiEtGP.TA67K', 'admin', '', 'ADMIN',false);
-INSERT INTO usuario (username, password, nombre, apellidos, rol, editable) VALUES ( 'tech', '$2a$12$cVbhu2H9QtaWAA8zmXs7luqThZjcKrBTLd5upkgn.SFRPEVo76OKm', 'tech', '', 'TECH',false);

@@ -36,8 +36,7 @@
                             Nombre de usuario <span class="text-danger">*</span>
                         </label>
                         <input th:field="*{username}" type="text" id="username" class="form-control form-control-lg"
-                            placeholder="Ej. jperez" required maxlength="20" pattern="^[a-zA-Z0-9._-]{4,20}$"
-                            title="Debe tener entre 4 y 20 caracteres. Solo letras, números, puntos, guiones o guiones bajos.">
+                            placeholder="Ej. jperez" required maxlength="20">
                     </div>
 
                     <div class="mb-3">
@@ -47,7 +46,7 @@
                         </label>
                         <div class="input-group">
                             <input th:field="*{password}" type="password" id="password"
-                                class="form-control form-control-lg" placeholder="Contraseña" required minlength="8"
+                                class="form-control form-control-lg" placeholder="Contraseña" required
                                 maxlength="32"
                                 title="Debe tener entre 8 y 32 caracteres, con al menos una mayúscula, una minúscula y un número.">
                             <button type="button" class="btn btn-outline-secondary" id="togglePassword">
@@ -75,8 +74,7 @@
                                 Nombre <span class="text-danger">*</span>
                             </label>
                             <input th:field="*{nombre}" type="text" id="nombre" class="form-control form-control-lg"
-                                placeholder="Ej. Juan" required maxlength="30" pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,30}$"
-                                title="Solo letras y espacios. Máximo 30 caracteres.">
+                                placeholder="Ej. Juan" required maxlength="30">
                         </div>
 
                         <div class="col-md-6 mb-3">
@@ -85,9 +83,7 @@
                                 Apellidos
                             </label>
                             <input th:field="*{apellidos}" type="text" id="apellidos"
-                                class="form-control form-control-lg" placeholder="Ej. Pérez García" maxlength="60"
-                                pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,60}$"
-                                title="Solo letras y espacios. Máximo 60 caracteres.">
+                                class="form-control form-control-lg" placeholder="Ej. Pérez García" maxlength="60">
                         </div>
                     </div>
 
@@ -95,9 +91,8 @@
                         <div class="form-check mt-4">
                             <input type="checkbox" class="form-check-input" id="terms" required>
                             <label class="form-check-label" for="terms">
-                                Acepto los
-                                <a th:href="@{/legal}" target="_blank" title="Ver términos y condiciones">términos y
-                                    condiciones</a>
+                                Acepto la
+                                <a th:href="@{/politica-privacidad}" href="../global/politica-privacidad.html" target="_blank" title="Ver Política de privacidad">Política de privacidad</a>
                             </label>
                         </div>
                     </div>

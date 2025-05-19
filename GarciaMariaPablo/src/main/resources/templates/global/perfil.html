@@ -27,8 +27,9 @@
                     <div class="profile-header rounded-top text-center p-4">
                         <div
                             class="mx-auto mb-3 rounded-circle bg-white d-flex align-items-center justify-content-center overflow-hidden border border-3 border-white shadow">
-                            <img th:src="@{'https://robohash.org/ ' + ${usuario.username} + '?set=set4&size=120x120'}" src="https://robohash.org/noFoto?set=set4&size=120x120"
-                                alt="Foto de perfil" class="img-fluid">
+                            <img th:src="@{'https://robohash.org/ ' + ${usuario.username} + '?set=set4&size=120x120'}"
+                                src="https://robohash.org/noFoto?set=set4&size=120x120" alt="Foto de perfil"
+                                class="img-fluid">
                         </div>
                         <h2 class="h4 mb-1" th:text="${usuario.nombre} + ' ' + ${usuario.apellidos}">Nombre Usuario</h2>
                         <span class="badge bg-main text-white" th:text="${usuario.rol.name}">ROL</span>
@@ -53,7 +54,8 @@
                             </li>
                             <li class="mb-2">
                                 <span class="fw-bold"><i class="bi bi-calendar me-2"></i>Registro:</span>
-                                <span th:text="${#temporals.format(usuario.fechaRegistro, 'dd/MM/yyyy')}">01/01/2023</span>
+                                <span
+                                    th:text="${#temporals.format(usuario.fechaRegistro, 'dd/MM/yyyy')}">01/01/2023</span>
                             </li>
                         </ul>
                     </div>
@@ -71,7 +73,8 @@
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation" th:if="${usuario.rol.name == 'USER'}">
-                                <a class="nav-link" id="incidencias-tab" href="../user/incidencia/listar.html" th:href="@{/user/incidencias}">
+                                <a class="nav-link" id="incidencias-tab" href="../user/incidencia/listar.html"
+                                    th:href="@{/user/incidencias}">
                                     <i class="bi bi-file-earmark-text me-2"></i>Mis incidencias
                                 </a>
                             </li>
@@ -92,16 +95,18 @@
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <label for="nombre" class="form-label">Nombre</label>
-                                            <input type="text" class="form-control" th:field="*{nombre}" required>
+                                            <input type="text" class="form-control" th:field="*{nombre}"
+                                                placeholder="Ej. Juan" required maxlength="30">
                                         </div>
                                         <div class="col-md-6">
                                             <label for="apellidos" class="form-label">Apellidos</label>
-                                            <input type="text" class="form-control" th:field="*{apellidos}">
+                                            <input type="text" class="form-control" th:field="*{apellidos}"
+                                                placeholder="Ej. Pérez García" maxlength="60">
                                         </div>
                                         <div class="col-md-6">
                                             <label for="email" class="form-label">Email</label>
                                             <input type="email" class="form-control" th:field="*{email}">
-                                        </div> 
+                                        </div>
                                         <div class="col-md-6">
                                             <label for="telefono" class="form-label">Teléfono</label>
                                             <input type="tel" class="form-control" th:field="*{telefono}">
@@ -129,7 +134,8 @@
                                                         <i class="bi bi-check-lg fs-2 text-success"></i>
                                                     </div>
                                                     <div>
-                                                        <h4 class="mb-0 fw-bold" th:text="${estadisticas.resueltas}">0</h4>
+                                                        <h4 class="mb-0 fw-bold" th:text="${estadisticas.resueltas}">0
+                                                        </h4>
                                                         <small class="text-muted">en los últimos 30 días</small>
                                                     </div>
                                                 </div>
@@ -146,7 +152,8 @@
                                                         <i class="bi bi-speedometer2 fs-2 text-info"></i>
                                                     </div>
                                                     <div>
-                                                        <h4 class="mb-0 fw-bold" th:text="${estadisticas.tiempoPromedio}">0</h4>
+                                                        <h4 class="mb-0 fw-bold"
+                                                            th:text="${estadisticas.tiempoPromedio}">0</h4>
                                                         <small class="text-muted">horas por incidencia</small>
                                                     </div>
                                                 </div>
@@ -172,13 +179,11 @@
                         <form th:action="@{/perfil/password}" th:object="${contrasena}" th:method="put">
                             <div class="mb-3">
                                 <label for="passwordActual" class="form-label">Contraseña actual</label>
-                                <input type="password" class="form-control" th:field="*{actual}"
-                                    required>
+                                <input type="password" class="form-control" th:field="*{actual}" required>
                             </div>
                             <div class="mb-3">
                                 <label for="nuevaPassword" class="form-label">Nueva contraseña</label>
-                                <input type="password" class="form-control" th:field="*{nueva}"
-                                    required>
+                                <input type="password" class="form-control" th:field="*{nueva}" required>
                             </div>
                             <div class="mb-3">
                                 <label for="confirmarPassword" class="form-label">Confirmar nueva contraseña</label>

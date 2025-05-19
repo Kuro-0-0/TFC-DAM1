@@ -44,8 +44,7 @@
                                     class="text-danger">*</span>
                             </label>
                             <input th:field="*{username}" type="text" id="username" class="form-control form-control-lg"
-                                placeholder="Ej. jperez" required maxlength="20" pattern="^[a-zA-Z0-9._-]{4,20}$"
-                                title="Debe tener entre 4 y 20 caracteres. Solo letras, números, puntos, guiones o guiones bajos.">
+                                placeholder="Ej. jperez" required maxlength="20">
                         </div>
 
                         <div class="col-md-6 mb-3">
@@ -68,18 +67,15 @@
                                 <i class="bi bi-person me-1"></i>Nombre <span class="text-danger">*</span>
                             </label>
                             <input th:field="*{nombre}" type="text" id="nombre" class="form-control form-control-lg"
-                                placeholder="Ej. Juan" required maxlength="30" pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,30}$"
-                                title="Solo letras y espacios. Máximo 30 caracteres.">
+                                placeholder="Ej. Juan" required maxlength="30">
                         </div>
 
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-6 mb-3"> 
                             <label for="apellidos" class="form-label fw-medium">
                                 <i class="bi bi-people me-1"></i>Apellidos
                             </label>
                             <input th:field="*{apellidos}" type="text" id="apellidos"
-                                class="form-control form-control-lg" placeholder="Ej. Pérez García" maxlength="60"
-                                pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,60}$"
-                                title="Solo letras y espacios. Máximo 60 caracteres.">
+                                class="form-control form-control-lg" placeholder="Ej. Pérez García" maxlength="60">
                         </div>
                     </div>
 

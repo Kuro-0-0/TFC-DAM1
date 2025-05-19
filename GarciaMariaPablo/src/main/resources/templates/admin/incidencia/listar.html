@@ -49,13 +49,6 @@
                                 <th scope="col">
                                     <button
                                         class="btn btn-link text-decoration-none text-dark d-flex align-items-center gap-1 p-0"
-                                        onclick="ordenarPor('id')">
-                                        ID <span id="icon-id" class="ms-1"></span>
-                                    </button>
-                                </th>
-                                <th scope="col">
-                                    <button
-                                        class="btn btn-link text-decoration-none text-dark d-flex align-items-center gap-1 p-0"
                                         onclick="ordenarPor('titulo')">
                                         Título <span id="icon-titulo" class="ms-1"></span>
                                     </button>
@@ -93,7 +86,6 @@
                         </thead>
                         <tbody>
                             <tr th:each="incidencia : ${incidencias}">
-                                <th scope="row" th:text="${incidencia.id}"></th>
                                 <td th:text="${incidencia.titulo}"></td>
                                 <td th:text="${incidencia.ubicacion}"></td>
                                 <td th:text="${incidencia.reportante.nombre}"></td>

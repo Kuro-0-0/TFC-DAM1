@@ -32,8 +32,8 @@ public class ConfiguracionSeguridad {
                         .requestMatchers("/h2-console/**").hasRole("ADMIN")
 //                        .requestMatchers("/h2-console/**").authenticated()
                         .requestMatchers("/admin/**","/ADMIN/**").hasRole("ADMIN")
-                        .requestMatchers("/user/**","/USER/**").hasAnyRole("ADMIN","USER")
-                        .requestMatchers("/tech/**","/TECH/**").hasAnyRole("ADMIN","TECH")
+                        .requestMatchers("/user/**","/USER/**").hasAnyRole("USER")
+                        .requestMatchers("/tech/**","/TECH/**").hasAnyRole("TECH")
                         .anyRequest().permitAll()
                 )
                 .formLogin(form -> form.disable()) // Desactiva el login automático

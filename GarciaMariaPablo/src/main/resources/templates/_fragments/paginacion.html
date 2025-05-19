@@ -30,7 +30,7 @@
                 <span class="page-link text-secondary h-100 d-flex align-items-center gap-1">
                     <input type="number" id="paginaSeleccionada" name="paginaSeleccionada" min="1"
                         th:attr="max=${paginaFinal}" th:data-paginaActual="${paginaActual}"
-                        class="form-control form-control-sm text-center w-auto" th:value="${paginaActual}"
+                        class="form-control form-control-sm text-center w-auto me-2" th:value="${paginaActual}"
                         onchange="goToPage()" pattern="\d+">
                     <span class="small">
                         de <span th:text="${paginaFinal}">10</span>

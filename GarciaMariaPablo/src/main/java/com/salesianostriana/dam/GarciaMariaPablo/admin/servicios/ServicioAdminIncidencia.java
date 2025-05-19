@@ -151,14 +151,14 @@ public class ServicioAdminIncidencia extends ServicioBaseImpl<Incidencia, Long, 
 
 
     private List<Incidencia> procesarOrden(List<Incidencia> incidencias, Boolean ordenAsc, String ordenPor) {
-        if (ordenPor != null) {
-            Comparator<Incidencia> comparator = switch (ordenPor) {
+    	if (ordenPor != null) {
+    		Comparator<Incidencia> comparator = switch (ordenPor) {
                 case "titulo" -> Comparator.comparing(Incidencia::getTitulo);
                 case "ubicacion" -> Comparator.comparing(Incidencia::getUbicacion);
                 case "reportante" -> Comparator.comparing(Incidencia::getReportante);
                 case "estado" -> Comparator.comparing(Incidencia::getNombreEstado);
                 case "fechaCreacion" -> Comparator.comparing(Incidencia::getFechaIEA);
-                default -> Comparator.comparing(Incidencia::getId);
+                default -> Comparator.comparing(Incidencia::getFechaIEA).reversed();
             };
 
             if (!ordenAsc) {

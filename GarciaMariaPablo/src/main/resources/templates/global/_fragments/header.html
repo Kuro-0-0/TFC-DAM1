@@ -68,6 +68,9 @@
 
             <div class="offcanvas-footer p-3 bg-dark">
                 <div sec:authorize="isAuthenticated()" class="d-grid gap-2">
+                    <a href="../../user/otros/dashboard.html" th:href="@{/dashboard}" class="btn btn-outline-main">
+                        <i class="bi bi-people me-2"></i>Volver al dashboard.
+                    </a>
                     <a href="../perfil.html" th:href="@{/perfil}" class="btn btn-outline-info">
                         <i class="bi bi-people me-2"></i>Perfil
                     </a>

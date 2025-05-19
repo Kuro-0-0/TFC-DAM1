@@ -19,7 +19,7 @@
     <header th:replace="~{admin/_fragments/header.html :: header}"></header>
     <main class="container flex-grow-1 my-4">
         <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
-        <section class="card border-0 rounded-3 shadow mx-auto mw-50vw">
+        <section class="card border-0 rounded-3 shadow mx-auto">
             <div class="card-header bg-main text-white rounded-top-3 p-3">
                 <h1 class="h5 mb-0" th:if="${modificar}">
                     <i class="bi bi-pencil-square me-2"></i>Modificar Estado
@@ -38,9 +38,7 @@
                                 <i class="bi bi-tag me-1"></i>Nombre del Estado <span class="text-main">*</span>
                             </label>
                             <input th:field="*{nombre}" type="text" class="form-control form-control-lg" id="nombre"
-                                placeholder="Ej. Pendiente, Resuelto..." required maxlength="50"
-                                pattern="^[\p{L}0-9\s,.-]{3,50}$"
-                                title="Debe tener entre 3 y 50 caracteres. Solo letras, números y signos básicos.">
+                                placeholder="Ej. Pendiente, Resuelto..." required maxlength="15">
                         </div>
                         <div class="col-md-4 mb-3 d-flex align-items-end">
                             <div class="form-check form-switch ps-0">
