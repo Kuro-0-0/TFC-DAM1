@@ -144,7 +144,6 @@ public class ServicioAdminIncidencia extends ServicioBaseImpl<Incidencia, Long, 
         model.addAttribute("filtroTitulo", filtroTitulo);
         model.addAttribute("filtroUbicacion", filtroUbicacion);
         model.addAttribute("mostrarDesactivados", mostrarDesactivados);
-        model.addAttribute("mostrandoAhora", incidencias.size());
 
         return "admin/incidencia/listar";
     }

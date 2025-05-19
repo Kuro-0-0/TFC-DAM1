@@ -65,6 +65,10 @@
     text-underline-offset: 5px;
 }
 
+.badge-estado {
+    min-width: 80px;
+}
+
 .custom-nav-link {
     color: var(--mainColor) !important;
 }
@@ -186,15 +190,6 @@
 .stats-scroll-container::-webkit-scrollbar-thumb {
     background-color: var(--mainColor);
     border-radius: 10px;
-}
-
-.incidencia-card {
-    transition: all 0.3s ease;
-}
-
-.incidencia-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .badge-estado {

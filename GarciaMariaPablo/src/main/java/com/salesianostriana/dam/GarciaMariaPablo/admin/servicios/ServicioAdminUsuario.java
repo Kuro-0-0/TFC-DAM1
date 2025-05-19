@@ -70,7 +70,6 @@ public class ServicioAdminUsuario extends ServicioBaseImpl<Usuario, Long, Reposi
 
         model.addAttribute("usuariosTotal",usuariosTotal);
 
-        model.addAttribute("mostrandoAhora", usuarios.size());
         model.addAttribute("roles", convertedRol);
         model.addAttribute("mostrarOcultos", mostrarOcultos.equals("on"));
         model.addAttribute("usuarios", usuarios.stream().map(UsuarioDao_Listar::crearDao).toList());

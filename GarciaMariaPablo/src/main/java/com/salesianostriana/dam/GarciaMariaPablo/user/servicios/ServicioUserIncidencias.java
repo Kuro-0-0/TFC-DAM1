@@ -21,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -28,9 +29,6 @@ public class ServicioUserIncidencias extends ServicioBaseImpl<Incidencia,Long, R
 
     @Autowired
     private ServicioSeguridad seguridad;
-
-    @Autowired
-    private ServicioUserEstado servicioUserEstado;
 
     @Autowired
     ServicioUsuario servicioUsuario;
@@ -94,7 +92,6 @@ public class ServicioUserIncidencias extends ServicioBaseImpl<Incidencia,Long, R
         List<Incidencia> incidencias = servicioIncidencia.getIncidenciasPorIdReportante(usuario.getId());
         List <IncidenciaDao_Listar> listaFinal;
 
-        model.addAttribute("totalIncidencias", incidencias.size());
         incidencias
                 .stream()
                 .map(Incidencia::getEstado)
@@ -110,21 +107,23 @@ public class ServicioUserIncidencias extends ServicioBaseImpl<Incidencia,Long, R
                     }
                 });
 
+        model.addAttribute("totalIncidencias", incidencias.size());
+        incidencias = procesarPaginacion(incidencias,model,paginaNum,perPage);
+
         listaFinal = incidencias.stream()
                 .filter(i -> buscar != null ? i.getTitulo().toLowerCase().contains(buscar.toLowerCase()) : true)
                 .filter(i -> estadoValue != null && !estadoValue.isBlank() ? i.getEstado().getValor().equals(estadoValue) : true)
+                .sorted(Comparator.comparing(Incidencia::getFechaModificacion).reversed())
                 .map(IncidenciaDao_Listar::crearDao)
                 .toList();
 
-        model.addAttribute("estados", servicioUserEstado
+        model.addAttribute("estados", servicioEstado
                 .findAll()
                 .stream()
                 .map(EstadoDao_Seleccionar::crearDao)
                 .toList());
 
         model.addAttribute("datosIncidencias", estadisticasRapidas);
-
-        incidencias = procesarPaginacion(incidencias,model,paginaNum,perPage);
         model.addAttribute("mostrandoAhora",incidencias.size());
         model.addAttribute("incidencias",listaFinal);
 

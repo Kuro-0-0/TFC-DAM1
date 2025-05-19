@@ -42,7 +42,6 @@ public class ServicioAdminEstado extends ServicioBaseImpl<Estado, Long, Reposito
         estados = procesarPaginacion(estados, model, paginaNum, perPageNum);
 
         model.addAttribute("estadosTotal", estadosTotal);
-        model.addAttribute("mostrandoAhora", estados.size());
         model.addAttribute("estados", estados.stream()
                 .map(EstadoDao_Listar::crearDao)
                 .toList());

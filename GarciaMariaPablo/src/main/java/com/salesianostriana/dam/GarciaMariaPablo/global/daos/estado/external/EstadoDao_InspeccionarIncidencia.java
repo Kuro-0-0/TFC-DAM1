@@ -17,6 +17,7 @@ public class EstadoDao_InspeccionarIncidencia {
 	private String colorTexto;
 	private String colorFondo;
 	private String tipo;
+	private String valor;
 	
 	public static EstadoDao_InspeccionarIncidencia crearDao(Estado estado) {
 		return EstadoDao_InspeccionarIncidencia.builder()
@@ -24,6 +25,7 @@ public class EstadoDao_InspeccionarIncidencia {
 				.colorFondo(estado.getColorFondo())
 				.colorTexto(estado.getColorTexto())
 				.tipo(estado.getTipo().name())
+				.valor(estado.getValor())
 				.build();
 	}
 	

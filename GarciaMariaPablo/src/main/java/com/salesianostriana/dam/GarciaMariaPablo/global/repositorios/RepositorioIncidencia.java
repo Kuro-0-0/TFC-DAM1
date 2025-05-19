@@ -39,4 +39,10 @@ public interface RepositorioIncidencia extends JpaRepository<Incidencia, Long> {
 
     @Query("SELECT i FROM Incidencia i WHERE i.estado.tipo = 2")
     List<Incidencia> getIncidenciasResueltas();
+
+    @Query("SELECT i FROM Incidencia i Where i.tecnico.id = :id")
+    List<Incidencia> getIncidenciasPorIdTecnico(@Param("id") Long id);
+
+    @Query("SELECT i FROM Incidencia i Where i.tecnico IS NULL OR i.tecnico.id = 5")
+    List<Incidencia> getIncidenciasSinAsignar();
 }

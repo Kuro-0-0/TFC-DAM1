@@ -39,4 +39,16 @@ public class ServicioIncidencia extends ServicioBaseImpl<Incidencia,Long, Reposi
     public List<Incidencia> getIncidenciasResueltas() {
         return repositorio.getIncidenciasResueltas();
     }
+
+    public List<Incidencia> getIncidenciasPorIdTecnico(Long id) {
+        return repositorio.getIncidenciasPorIdTecnico(id);
+    }
+
+    public List<Incidencia> getIncidenciasSinAsignar() {
+        return repositorio.getIncidenciasSinAsignar();
+    }
+
+    public long countAll() {
+        return repositorio.count();
+    }
 }

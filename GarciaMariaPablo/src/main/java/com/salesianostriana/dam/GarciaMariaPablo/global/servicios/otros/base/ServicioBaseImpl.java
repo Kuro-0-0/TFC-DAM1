@@ -84,11 +84,11 @@ public abstract class
 		modelo.addAttribute("paginaActual",paginaNum);
 		modelo.addAttribute("perPage",porPaginaNum);
 
-
 		lista = lista.stream()
 				.skip(limit-porPaginaNum)
 				.limit(porPaginaNum)
 				.toList();
+		modelo.addAttribute("mostrandoAhora",lista.size());
 
 		return lista;
 	}

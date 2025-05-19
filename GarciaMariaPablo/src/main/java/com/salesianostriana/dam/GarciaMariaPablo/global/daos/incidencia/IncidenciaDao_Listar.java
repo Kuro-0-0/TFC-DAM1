@@ -25,6 +25,7 @@ public class IncidenciaDao_Listar {
     private UsuarioDao_ListarIncidencia reportante;
     private EstadoDao_ListarIncidencia estado;
     private String fechaCreacion;
+    private LocalDateTime fechaModificacion;
     private LocalDateTime fecha;
 
     public static IncidenciaDao_Listar crearDao(Incidencia incidencia) {
@@ -35,8 +36,8 @@ public class IncidenciaDao_Listar {
                 .ubicacion(incidencia.getUbicacion())
                 .reportante(UsuarioDao_ListarIncidencia.crearDao(incidencia.getReportante()))
                 .estado(EstadoDao_ListarIncidencia.crearDao(incidencia.getEstado()))
-                .fechaCreacion(incidencia.getFechaIEA().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
-                .fecha(incidencia.getFechaIEA())
+                .fechaCreacion(incidencia.getFechaCreacion().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
+                .fechaModificacion(incidencia.getFechaModificacion())
                 .build();
     }
 

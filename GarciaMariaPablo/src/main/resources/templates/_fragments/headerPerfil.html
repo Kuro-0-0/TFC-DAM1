@@ -1,42 +1,49 @@
 <th:block th:fragment="headerPerfil">
-    <div sec:authorize="!isAuthenticated()" class="d-flex align-items-center">
-        <a href="../global/login.html" th:href="@{/login}" class="btn btn-outline-light me-2" title="Acceder a tu cuenta">
+    <div sec:authorize="!isAuthenticated()" class="d-flex align-items-center gap-2">
+        <a th:href="@{/login}" class="btn btn-outline-light" title="Acceder a tu cuenta">
             <i class="bi bi-box-arrow-in-right me-1"></i>
-            Iniciar sesión
+            <span>Iniciar sesión</span>
         </a>
-        <a href="/register" th:href="@{/register}" class="btn btn-light" title="Crear una cuenta nueva">
+        <a th:href="@{/register}" class="btn btn-light" title="Crear una cuenta nueva">
             <i class="bi bi-person-plus me-1"></i>
-            Registrarse
+            <span>Registrarse</span>
         </a>
     </div>
 
-    <ul sec:authorize="isAuthenticated()" class="navbar-nav text-light">
+    <ul sec:authorize="isAuthenticated()" class="navbar-nav">
         <li class="nav-item dropdown">
-            <span class="nav-link dropdown-toggle text-light cursor-pointer" id="userDropdown"
-                data-bs-toggle="dropdown">
-                <i class="bi bi-person-circle me-1 cursor-pointer"></i>
-                <span sec:authentication="name" class="cursor-pointer">Usuario</span>
-            </span>
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" data-bs-toggle="dropdown">
+                <div class="me-2 d-flex align-items-center">
+                    <i class="bi bi-person-circle fs-4"></i>
+                </div>
+                <div class="d-none d-lg-flex flex-column">
+                    <span sec:authentication="name" class="fw-bold">Usuario</span>
+                    <small class="text-white-50" th:text="${#authentication.principal.rol}">Rol</small>
+                </div>
+            </a>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li>
-                    <a class="dropdown-item" th:href="@{/dashboard}" href="../global/index.html" title="Ir a tu dashboard">
-                        <i class="bi bi-briefcase me-2"></i>
-                        Mi Dashboard
+                    <a class="dropdown-item" th:href="@{/perfil}">
+                        <i class="bi bi-person me-2"></i>
+                        <span>Mi perfil</span>
                     </a>
                 </li>
                 <li>
-                    <a class="dropdown-item" th:href="@{/perfil}" href="../global/perfil.html" title="Ir a tu perfil">
-                        <i class="bi bi-person me-2"></i>
-                        Mi perfil
+                    <a class="dropdown-item" th:href="@{/dashboard}">
+                        <i class="bi bi-speedometer2 me-2"></i>
+                        <span>Dashboard</span>
                     </a>
                 </li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>
                 <li>
-                    <form th:action="@{/logout}" method="post">
-                        <input class="dropdown-item" type="submit" value="Cerrar sesión">
-                    </form>                
+                    <form th:action="@{/logout}" method="post" class="dropdown-item">
+                        <button type="submit" class="btn btn-link p-0 text-decoration-none w-100 text-start">
+                            <i class="bi bi-box-arrow-left me-2"></i>
+                            <span>Cerrar sesión</span>
+                        </button>
+                    </form>
                 </li>
             </ul>
         </li>

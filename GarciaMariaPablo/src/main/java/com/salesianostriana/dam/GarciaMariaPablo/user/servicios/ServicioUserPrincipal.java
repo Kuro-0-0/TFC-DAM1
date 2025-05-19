@@ -31,15 +31,6 @@ public class ServicioUserPrincipal {
     @Autowired
     private ServicioIncidencia servicioIncidencia;
 
-    //private Usuario usuarioLogueado;
-
-//    @PostConstruct
-//    public void init() {
-//        usuarioLogueado = seguridad.obtenerUsuarioLogado();
-//    }
-
-
-
     public String cargarDashboard(Model model, RedirectAttributes redirectAttributes, int  limiteRecientes ) {
         Usuario usuario  = seguridad.obtenerUsuarioLogado();
         List<Incidencia> incidencias = servicioIncidencia.getIncidenciasPorIdReportante(usuario.getId());

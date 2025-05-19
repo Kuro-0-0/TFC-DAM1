@@ -81,7 +81,11 @@ public class ServicioPrincipal {
 
                 horasMedias = horasMedias/incidencias.size();
 
-                model.addAttribute("estadisticas", new EstadisticasDao(incidencias.size(),horasMedias));
+                model.addAttribute("estadisticas", new EstadisticasDao(incidencias
+                        .stream()
+                        .filter(i -> i.getFechaIEA().isAfter(LocalDateTime.now().minusDays(30)) && i.getFechaIEA().isBefore(LocalDateTime.now()))
+                        .toList()
+                        .size(),horasMedias));
             }
             case ADMIN -> {
                 List<Incidencia> incidencias = servicioIncidencia.getIncidenciasResueltas()

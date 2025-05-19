@@ -1,0 +1,100 @@
+<th:block th:fragment="headerTecnico">
+    <header class="bg-main shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-dark container px-3">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex align-items-center gap-2" th:href="@{/tech/dashboard}">
+                    <i class="bi bi-tools fs-4 me-2"></i>
+                    <span class="fw-bold">Panel Técnico</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#tecnicoMenuLateral">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarTecnico">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-lg-2">
+                        <li class="nav-item dropdown"
+                            th:classappend="${activeTab.contains('/tech/incidencias')} ? 'active'">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                                <i class="bi bi-file-earmark-text me-1"></i> Incidencias
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" th:href="@{/tech/incidencias/sin-asignar}">
+                                        <i class="bi bi-hourglass-split me-2"></i>Sin asignar
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" th:href="@{/tech/incidencias/asignadas}">
+                                        <i class="bi bi-person-check me-2"></i>Asignadas a mí
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" th:href="@{/tech/incidencias/resueltas}">
+                                        <i class="bi bi-patch-check-fill me-2"></i>Finalizadas
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/Kuro-0-0/TFC-DAM1">
+                                <i class="bi bi-question-circle me-1"></i> Ayuda
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="d-flex align-items-center">
+                        <th:block th:replace="~{_fragments/headerPerfil.html :: headerPerfil}"></th:block>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Offcanvas Técnico -->
+        <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="tecnicoMenuLateral">
+            <div class="offcanvas-header border-bottom border-secondary">
+                <h5 class="offcanvas-title fw-bold d-flex align-items-center">
+                    <i class="bi bi-tools me-2"></i>Menú Técnico
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body d-flex flex-column">
+                <div class="nav flex-column gap-2 mb-auto">
+                    <a class="nav-link d-flex align-items-center" th:href="@{/tech/dashboard}">
+                        <i class="bi bi-speedometer2 me-2"></i>Dashboard
+                    </a>
+                    <div class="accordion" id="accordionTecnico">
+                        <div class="accordion-item border-0 bg-transparent">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed bg-transparent text-white"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseTecnicoIncidencias">
+                                    <i class="bi bi-file-earmark-text me-2"></i>Incidencias
+                                </button>
+                            </h2>
+                            <div id="collapseTecnicoIncidencias" class="accordion-collapse collapse">
+                                <div class="accordion-body p-0">
+                                    <div class="nav flex-column ps-3">
+                                        <a class="nav-link" th:href="@{/tech/incidencias/sin-asignar}">
+                                            <i class="bi bi-hourglass-split me-2"></i>Sin asignar
+                                        </a>
+                                        <a class="nav-link" th:href="@{/tech/incidencias/asignadas}">
+                                            <i class="bi bi-person-check me-2"></i>Asignadas a mí
+                                        </a>
+                                        <a class="nav-link" th:href="@{/tech/incidencias/resueltas}">
+                                            <i class="bi bi-patch-check-fill me-2"></i>Finalizadas
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-auto pt-3 border-top border-secondary">
+                    <th:block th:replace="~{_fragments/headerPerfil.html :: headerPerfil}"></th:block>
+                </div>
+            </div>
+        </div>
+    </header>
+</th:block>

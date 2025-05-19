@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--suppress Annotator -->
+
 <html lang="es" class="h-100">
 
 <head>
@@ -12,6 +12,10 @@
 
     <script defer src="../../../static/user/javascript/incidencia/listar/eliminarIncidencia.js"
         th:src="@{/user/javascript/incidencia/listar/eliminarIncidencia.js}"></script>
+
+    <script defer src="../../../static/js/params/modificarParams.js" th:src="@{/js/params/modificarParams.js}"
+        type="text/javascript" crossorigin="anonymous">
+        </script>
 
 </head>
 
@@ -78,7 +82,8 @@
                             </div>
                             <div>
                                 <h3 class="h6 mb-0">Pendientes</h3>
-                                <p class="fs-4 fw-bold mb-0" th:text="${datosIncidencias[1] + datosIncidencias[0]}">0</p>
+                                <p class="fs-4 fw-bold mb-0" th:text="${datosIncidencias[1] + datosIncidencias[0]}">0
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -117,7 +122,7 @@
 
             <div th:unless="${incidencias.empty}" class="list-group">
                 <div th:each="incidencia : ${incidencias}" class="list-group-item p-0 mb-3">
-                    <div class="card shadow-sm mb-3">
+                    <div class="card shadow-sm">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-start">
                                 <div class="flex-grow-1 pe-3">
@@ -140,10 +145,15 @@
                                         Descripción breve de la incidencia que describe el problema...
                                     </p>
                                     <div class="d-flex flex-wrap gap-2">
-                                        <small class="text-muted">
-                                            <i class="bi bi-calendar me-1"></i>
+                                        <small class="text-muted me-2">
+                                            <i class="bi bi-calendar"></i>
                                             <span
-                                                th:text="${#temporals.format(incidencia.fecha, 'dd/MM/yyyy HH:mm')}">15/03/2023
+                                                th:text="'Creada el: ' + ${incidencia.fechaCreacion  + ' | '}">15/03/2023
+                                                10:30</span>
+                                        </small>
+                                        <small class="text-muted">
+                                            <span
+                                                th:text="'Modificada el: ' + ${#temporals.format(incidencia.fechaModificacion, 'dd/MM/yyyy HH:mm')}">15/03/2023
                                                 10:30</span>
                                         </small>
                                     </div>
