@@ -230,7 +230,6 @@ public class ServicioAdminIncidencia extends ServicioBaseImpl<Incidencia, Long, 
 
         Incidencia antiguaIncidencia = findById(incidenciaDao.getId()).orElseThrow();
         Incidencia nuevaIncidencia = revertirDao(incidenciaDao);
-        System.out.println(nuevaIncidencia);
         if (antiguaIncidencia.getEstado() != nuevaIncidencia.getEstado()) {
 
             nuevaIncidencia.setFechaIEA(LocalDateTime.now());
@@ -248,7 +247,6 @@ public class ServicioAdminIncidencia extends ServicioBaseImpl<Incidencia, Long, 
             repositorioHistorialEstados.save(nuevaEntrada);
         }
 
-        System.out.println(nuevaIncidencia);
         edit(nuevaIncidencia);
         return "redirect:/admin/incidencias";
     }

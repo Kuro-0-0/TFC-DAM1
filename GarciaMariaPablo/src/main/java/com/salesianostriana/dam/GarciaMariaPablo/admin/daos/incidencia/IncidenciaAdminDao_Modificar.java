@@ -29,7 +29,6 @@ public class IncidenciaAdminDao_Modificar {
 	private  LocalDateTime fechaIEA;
 
 	public static IncidenciaAdminDao_Modificar crearDao(Incidencia incidencia) {
-		System.out.println(incidencia);
 		return IncidenciaAdminDao_Modificar.builder()
 				.id(incidencia.getId())
 				.titulo(incidencia.getTitulo())

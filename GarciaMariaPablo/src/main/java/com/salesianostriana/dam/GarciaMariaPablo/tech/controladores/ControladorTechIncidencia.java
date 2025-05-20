@@ -62,7 +62,6 @@ public class ControladorTechIncidencia {
 
     @PutMapping("/modificar/{id}")
     public String modificarIncidencia(Model model, RedirectAttributes redirectAttributes, @ModelAttribute EstadoTechDao_ModificarIncidencia estadoDao, @PathVariable long id) {
-        System.out.println(estadoDao);
         return servicioTechIncidencia.modificarIncidencia(model,redirectAttributes,estadoDao,id);
     }
 

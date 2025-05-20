@@ -104,8 +104,6 @@ public class ServicioAdminEstado extends ServicioBaseImpl<Estado, Long, Reposito
     }
 
     public String modificar(EstadoDao_Modificar estadoDao) {
-        System.out.println(estadoDao);
-        System.out.println(revertirDao(estadoDao));
         edit(revertirDao(estadoDao));
         return "redirect:/admin/estados";
     }

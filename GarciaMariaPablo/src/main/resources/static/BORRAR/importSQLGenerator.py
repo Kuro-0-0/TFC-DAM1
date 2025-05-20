@@ -1,3 +1,5 @@
+# Robado de ChatGPT y modificado ligeramente.
+
 import random
 from datetime import datetime, timedelta
 
@@ -384,7 +386,7 @@ resultado_final += [f"ALTER TABLE Incidencia ALTER COLUMN id RESTART WITH {id_in
 resultado_final += historial
 
 # Guardar a archivo
-path = "static/BORRAR/incidencias.sql"
+path = "static/BORRAR/import.sql"
 with open(path, "w", encoding="utf-8") as f:
     f.write('\n'.join(resultado_final))
 

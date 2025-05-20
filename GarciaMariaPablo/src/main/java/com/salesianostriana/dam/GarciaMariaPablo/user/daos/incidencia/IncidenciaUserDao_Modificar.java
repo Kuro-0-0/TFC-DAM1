@@ -13,7 +13,6 @@ public class IncidenciaUserDao_Modificar {
     private String titulo, descripcion,ubicacion;
 
     public static IncidenciaUserDao_Modificar crearDao(Incidencia incidencia) {
-        System.out.println(incidencia);
         return IncidenciaUserDao_Modificar.builder()
                 .id(incidencia.getId())
                 .titulo(incidencia.getTitulo())

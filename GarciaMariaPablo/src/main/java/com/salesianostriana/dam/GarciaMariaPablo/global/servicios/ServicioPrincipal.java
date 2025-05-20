@@ -103,8 +103,6 @@ public class ServicioPrincipal {
 
                 model.addAttribute("estadisticas", new EstadisticasDao(incidencias.size(),horasMedias));
             }
-            case USER -> System.out.println("USER");
-            default -> System.out.println("NUEVO");
         }
         model.addAttribute("usuarioDao", UsuarioDao_Modificar.crearDao(usuario));
         model.addAttribute("contrasena",new ContrasenaDao_Modificar());
