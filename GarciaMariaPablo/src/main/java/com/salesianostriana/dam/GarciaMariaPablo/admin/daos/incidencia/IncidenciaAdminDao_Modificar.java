@@ -25,8 +25,11 @@ public class IncidenciaAdminDao_Modificar {
 	private UsuarioDao_FormularioIncidencia tecnico;
 	private EstadoDao_ModificarIncidencia estado;
 	private LocalDateTime fechaCreacion;
-	
+	private  LocalDateTime fechaModificacion;
+	private  LocalDateTime fechaIEA;
+
 	public static IncidenciaAdminDao_Modificar crearDao(Incidencia incidencia) {
+		System.out.println(incidencia);
 		return IncidenciaAdminDao_Modificar.builder()
 				.id(incidencia.getId())
 				.titulo(incidencia.getTitulo())
@@ -36,6 +39,8 @@ public class IncidenciaAdminDao_Modificar {
 				.tecnico(UsuarioDao_FormularioIncidencia.crearDao(incidencia.getTecnico()))
 				.estado(EstadoDao_ModificarIncidencia.crearDao(incidencia.getEstado()))
 				.fechaCreacion(incidencia.getFechaIEA())
+				.fechaModificacion(incidencia.getFechaModificacion())
+				.fechaIEA(incidencia.getFechaIEA())
 				.build();
 	}
 }

@@ -80,7 +80,7 @@
                                     th:classappend="${estado.activo} ? 'bg-success' : 'bg-secondary'"
                                     th:text="${estado.activo} ? 'Sí' : 'No'">Sí</span>
                             </td>
-                            <td class="text-center">
+                            <td th:if="${estado.valor != 'sin-estado'}" class="text-center">
                                 <a th:href="@{/admin/incidencias?estadosSeleccionados={valor}(valor=${estado.valor})}"
                                     href="../incidencia/listar.html"
                                     class="btn btn-sm btn-outline-primary px-2 py-1 rounded-1 me-1"
@@ -100,6 +100,7 @@
                                         th:value="${estado.activo} ? 'Desactivar' : 'Activar'">
                                 </form>
                             </td>
+                            <td th:unless="${estado.valor} != 'sin-estado'"></td>
                         </tr>
                         <tr th:if="${estados.isEmpty()}">
                             <td colspan="4" class="text-center py-4 text-muted">

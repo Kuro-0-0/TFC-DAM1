@@ -94,7 +94,7 @@
                                         th:text="${incidencia.estado.nombre}"
                                         th:style="'background-color: '+${incidencia.estado.colorFondo}+';color: '+${incidencia.estado.colorTexto}"></span>
                                 </td>
-                                <td class="text-center" th:text="${incidencia.fechaCreacion}"></td>
+                                <td class="text-center" th:text="${incidencia.fechaIEA}"></td>
                                 <td class="text-center">
                                     <a th:href="@{/admin/incidencias/inspeccionar/{id}(id=${incidencia.id})}"
                                         href="inspeccionar.html"

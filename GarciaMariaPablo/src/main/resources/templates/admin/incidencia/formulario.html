@@ -63,10 +63,9 @@
                             <label class="form-label fw-medium">
                                 <i class="bi bi-calendar me-1"></i>Fecha IEA
                             </label>
-                            <span th:text="*{fechaCreacion}" class="form-control form-control-lg pe-none"></span>
-                            <input type="hidden" th:field="*{fechaCreacion}" readonly th:value="*{fechaCreacion}"
-                                th:data-fecha="*{fechaCreacion}"
-                                th:attr="max=${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd''T''HH:mm')}" />
+                            <span th:text="*{fechaIEA}" class="form-control form-control-lg pe-none"></span>
+                            <input type="hidden" th:field="*{fechaIEA}" readonly th:value="*{fechaIEA}" th:data-fecha="*{fechaIEA}">
+                            <input type="hidden" th:field="*{fechaCreacion}" readonly>
                         </div>
                     </div>
 

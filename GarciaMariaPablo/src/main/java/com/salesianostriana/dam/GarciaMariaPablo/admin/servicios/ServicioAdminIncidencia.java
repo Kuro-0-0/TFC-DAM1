@@ -80,7 +80,7 @@ public class ServicioAdminIncidencia extends ServicioBaseImpl<Incidencia, Long, 
                 .reportante(repositorioUsuario.findById(incidenciaDao.getReportante().getId()).orElse(repositorioUsuario.findByUsername("sin-reportante").orElseThrow()))
                 .tecnico(repositorioUsuario.findById(incidenciaDao.getTecnico().getId()).orElse(repositorioUsuario.findByUsername("sin-tecnico").orElseThrow()))
                 .estado(repositorioEstado.findByValor(incidenciaDao.getEstado().getValor()).orElse(repositorioEstado.findByValor("sin-estado").orElseThrow()))
-                .fechaIEA(incidenciaDao.getFechaCreacion())
+                .fechaIEA(incidenciaDao.getFechaIEA())
                 .fechaCreacion(incidenciaDao.getFechaCreacion())
                 .fechaModificacion(LocalDateTime.now())
                 .build();
@@ -230,12 +230,10 @@ public class ServicioAdminIncidencia extends ServicioBaseImpl<Incidencia, Long, 
 
         Incidencia antiguaIncidencia = findById(incidenciaDao.getId()).orElseThrow();
         Incidencia nuevaIncidencia = revertirDao(incidenciaDao);
-
+        System.out.println(nuevaIncidencia);
         if (antiguaIncidencia.getEstado() != nuevaIncidencia.getEstado()) {
 
-            if  (antiguaIncidencia.getFechaIEA().equals(nuevaIncidencia.getFechaIEA())) {
-                nuevaIncidencia.setFechaIEA(LocalDateTime.now());
-            }
+            nuevaIncidencia.setFechaIEA(LocalDateTime.now());
 
             HistorialEstados nuevaEntrada = HistorialEstados.builder()
                     .incidencia(nuevaIncidencia)
@@ -250,6 +248,7 @@ public class ServicioAdminIncidencia extends ServicioBaseImpl<Incidencia, Long, 
             repositorioHistorialEstados.save(nuevaEntrada);
         }
 
+        System.out.println(nuevaIncidencia);
         edit(nuevaIncidencia);
         return "redirect:/admin/incidencias";
     }

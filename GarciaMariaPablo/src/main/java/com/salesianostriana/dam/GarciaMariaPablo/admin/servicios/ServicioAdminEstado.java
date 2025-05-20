@@ -9,6 +9,7 @@ import com.salesianostriana.dam.GarciaMariaPablo.global.repositorios.Repositorio
 import com.salesianostriana.dam.GarciaMariaPablo.global.servicios.otros.base.ServicioBaseImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.Normalizer;
 import java.util.Comparator;
@@ -78,10 +79,15 @@ public class ServicioAdminEstado extends ServicioBaseImpl<Estado, Long, Reposito
         return "admin/estado/formulario";
     }
 
-    public String cargarModificar(Model model, long id) {
-        model.addAttribute("estadoDao", EstadoDao_Modificar.crearDao(findById(id).orElseThrow()));
+    public String cargarModificar(Model model, long id, RedirectAttributes redirectAttributes) {
+        Estado estado = repositorio.findById(id).orElseThrow();
+        model.addAttribute("estadoDao", EstadoDao_Modificar.crearDao(estado));
         model.addAttribute("tipos", TipoEstados.values());
         model.addAttribute("modificar", true);
+        if (estado.getValor().equals("sin-estado")) {
+            redirectAttributes.addFlashAttribute("error","No puedes editar esta incidencia.");
+            return "redirect:/admin/estados";
+        }
         return "admin/estado/formulario";
     }
 
@@ -98,12 +104,18 @@ public class ServicioAdminEstado extends ServicioBaseImpl<Estado, Long, Reposito
     }
 
     public String modificar(EstadoDao_Modificar estadoDao) {
+        System.out.println(estadoDao);
+        System.out.println(revertirDao(estadoDao));
         edit(revertirDao(estadoDao));
         return "redirect:/admin/estados";
     }
 
-    public String alternarActivo(long id) {
+    public String alternarActivo(long id, RedirectAttributes redirectAttributes) {
         Estado objetivo = findById(id).orElseThrow();
+        if (objetivo.getValor().equals("sin-estado")) {
+            redirectAttributes.addFlashAttribute("error","No puedes editar esta incidencia.");
+            return "redirect:/admin/estados";
+        }
         objetivo.setActivo(!objetivo.isActivo());
         save(objetivo);
         return "redirect:/admin/estados";

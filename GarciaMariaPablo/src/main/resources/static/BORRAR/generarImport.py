@@ -3,14 +3,14 @@ from datetime import datetime, timedelta
 
 
 bloque_obligatorio = """
-INSERT INTO Estado (id, nombre, valor, activo, color_fondo, color_texto, tipo) VALUES (0, 'Resuelto', 'resuelto', true, '#198754', '#000000', 2);
+INSERT INTO Estado (id, nombre, valor, activo, color_fondo, color_texto, tipo) VALUES (1, 'Resuelto', 'resuelto', true, '#198754', '#000000', 2);
 INSERT INTO Estado (id, nombre, valor, activo, color_fondo, color_texto, tipo) VALUES (2, 'En Proceso', 'en-proceso', true, '#0dcaf0', '#000000', 1);
 INSERT INTO Estado (id, nombre, valor, activo, color_fondo, color_texto, tipo) VALUES (3, 'Cancelado', 'cancelado', true, '#dc3545', '#ffffff', 2);
 INSERT INTO Estado (id, nombre, valor, activo, color_fondo, color_texto, tipo) VALUES (4, 'Bloqueado', 'bloqueado', true, '#6c757d', '#ffffff', 1);
-INSERT INTO Estado (id, nombre, valor, activo, color_fondo, color_texto, tipo) VALUES (1, 'Pendiente', 'pendiente', true, '#ffc107', '#000000', 0);
+INSERT INTO Estado (id, nombre, valor, activo, color_fondo, color_texto, tipo) VALUES (6, 'Pendiente', 'pendiente', true, '#ffc107', '#000000', 0);
 INSERT INTO Estado (id, nombre, valor, activo, color_fondo, color_texto, tipo) VALUES (5, 'Sin Estado', 'sin-estado', true, '#04c7f5', '#ffffff', 0);
 
-ALTER TABLE Estado ALTER COLUMN id RESTART WITH 6;
+ALTER TABLE Estado ALTER COLUMN id RESTART WITH 7;
 
 INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (1, 'user01', '$2a$12$7.MmeCKa9h.4u2uC31zOgOKFEyXQmIWKswTbNu4.MQedYyvQ2pgzW', 'USER', 'Ana', 'Martínez', 'ana.martinez@example.com', '612345678', '2024-11-03', true);
 INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (2, 'user02', '$2a$12$Ur0Am.HjJ0WseHbtWuZLjuJ2yBbyQU5MJPORmweLEEd5ip2C05IYq', 'USER', 'Carlos', 'Jiménez', 'carlos.jimenez@example.com', '622345679', '2024-12-10', true);
@@ -337,7 +337,7 @@ for _ in range(len(valid_reportantes) * 10):
     if tecnico_id == 5:
         estado_id = 5
     else:
-        estado_id = random.randint(0, 5)
+        estado_id = random.randint(1, 6)
     fecha_creacion, fechaiea, fecha_modificacion = rand_datetime(start_date, end_date)
     categoria = random.choice(list(incidencias_por_categoria.keys()))
     titulo = random.choice(incidencias_por_categoria[categoria]["titulos"])
@@ -362,9 +362,9 @@ for _ in range(len(valid_reportantes) * 10):
                 f"VALUES ({id_incidencia}, {estado_inicial}, {estado_id}, '{fecha_comienzo.strftime('%Y-%m-%d %H:%M:%S')}', '{fecha_final.strftime('%Y-%m-%d %H:%M:%S')}');"
             )
         else:
-            nuevo_estado = random.randint(0, 5)
+            nuevo_estado = random.randint(1, 6)
             while nuevo_estado == estado_inicial:
-                nuevo_estado = random.randint(0, 5)
+                nuevo_estado = random.randint(1, 6)
             nueva_fecha = fecha_comienzo + timedelta(hours=random.randint(1, 24), minutes=random.randint(1, 59))
             while nueva_fecha > fecha_modificacion:
                 print(fecha_comienzo, nueva_fecha, fecha_modificacion)
@@ -380,7 +380,7 @@ for _ in range(len(valid_reportantes) * 10):
 resultado_final = []
 resultado_final += bloque_obligatorio.strip().splitlines()
 resultado_final += incidencias
-resultado_final += [f"ALTER TABLE Incidencia ALTER COLUMN id RESTART WITH {id_incidencia};"]
+resultado_final += [f"ALTER TABLE Incidencia ALTER COLUMN id RESTART WITH {id_incidencia+1};"]
 resultado_final += historial
 
 # Guardar a archivo
