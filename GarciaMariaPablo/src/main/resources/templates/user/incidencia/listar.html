@@ -30,7 +30,7 @@
                 <h1 class="h3 mb-1 fw-bold txt-main"><i class="bi bi-file-earmark-text me-2"></i>Mis Incidencias</h1>
                 <p class="text-muted mb-0">Aquí puedes ver y gestionar todas las incidencias que has reportado</p>
             </div>
-            <a th:href="@{/user/incidencias/crear}" href="formulario.html" class="btn btn-success">
+            <a th:href="@{/user/incidencias/crear}" href="formulario.html" class="btn btn-success" title="Crear nueva incidencia">
                 <i class="bi bi-plus-lg me-2"></i>Nueva Incidencia
             </a>
         </header>
@@ -115,7 +115,7 @@
                 <i class="bi bi-file-earmark-excel fs-1 text-muted mb-3"></i>
                 <h3 class="h5">No hay incidencias para mostrar</h3>
                 <p class="text-muted">Parece que no hay incidencias.</p>
-                <a th:href="@{/user/incidencias/crear}" href="formulario.html" class="btn btn-success mt-2">
+                <a th:href="@{/user/incidencias/crear}" href="formulario.html" class="btn btn-success mt-2" title="Crear una nueva incidencia">
                     <i class="bi bi-plus-lg me-2"></i>Crear una incidencia
                 </a>
             </div>
@@ -130,6 +130,7 @@
                                         <h3 class="h5 mb-0 me-3">
                                             <a th:href="@{/user/incidencias/inspeccionar/} + ${incidencia.id}"
                                                 href="inspeccionar.html" th:text="${incidencia.titulo}"
+                                                title="Ver detalles de la incidencia"
                                                 class="text-decoration-none text-dark">
                                                 Error
                                             </a>
@@ -167,14 +168,14 @@
                                         <li>
                                             <a class="dropdown-item"
                                                 th:href="@{/user/incidencias/inspeccionar/} + ${incidencia.id}"
-                                                href="inspeccionar.html">
+                                                href="inspeccionar.html" title="Ver detalles de la incidencia">
                                                 <i class="bi bi-eye me-2"></i>Ver detalles
                                             </a>
                                         </li>
                                         <li th:if="${incidencia.estado.tipo != 'Final'}">
                                             <a class="dropdown-item"
                                                 th:href="@{/user/incidencias/modificar/} + ${incidencia.id}"
-                                                href="formulario.html">
+                                                href="formulario.html" title="Modificar incidencia">
                                                 <i class="bi bi-pencil me-2"></i>Editar
                                             </a>
                                         </li>

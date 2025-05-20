@@ -8,7 +8,7 @@
     <meta name="description" content="Listado de incidencias para técnicos">
     <title th:text="${tituloPagina} + ' | Gestión de Incidencias'">Listado | Gestión de Incidencias</title>
     <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
-    <script src="../../../static/tech/javascript/incidencia/listar/eliminarIncidencia.js"
+    <script defer src="../../../static/tech/javascript/incidencia/listar/eliminarIncidencia.js"
         th:src="@{/tech/javascript/incidencia/listar/eliminarIncidencia.js}"></script>
     <script defer src="../../../static/js/params/modificarParams.js" th:src="@{/js/params/modificarParams.js}"
         type="text/javascript" crossorigin="anonymous">
@@ -110,7 +110,7 @@
                         <i class="bi bi-file-earmark-excel fs-1 text-muted mb-3"></i>
                         <h3 class="h5">No se encontraron incidencias</h3>
                         <p class="text-muted" th:text="${mensajeNoResultados} ?: 'No hay incidencias que mostrar'"></p>
-                        <a th:href="@{/tech/incidencias/sin-asignar}" class="btn btn-sm btn-success"
+                        <a th:href="@{/tech/incidencias/sin-asignar}" href="listar.html" title="Ver sin asignar" class="btn btn-sm btn-success"
                             th:if="${mostrarBotonSinAsignar}">
                             <i class="bi bi-hourglass-split me-2"></i>Ver incidencias sin asignar
                         </a>
@@ -126,6 +126,8 @@
                                             <div class="d-flex align-items-center mb-2">
                                                 <h3 class="h5 mb-0 me-3">
                                                     <a th:href="@{/tech/incidencias/inspeccionar/} + ${incidencia.id}"
+                                                        href="inspeccionar.html" 
+                                                        title="Ver detalles de la incidencia"
                                                         class="text-decoration-none"
                                                         th:text="${incidencia.titulo}">Título
                                                         incidencia</a>
@@ -164,13 +166,14 @@
                                         </div>
                                         <div class="dropdown dropstart z-3">
                                             <button class="btn btn-sm btn-outline-secondary" type="button"
-                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                data-bs-toggle="dropdown">
                                                 <i class="bi bi-three-dots-vertical"></i>
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <li th:unless="${mostrarAsignar}">
                                                     <a class="dropdown-item"
-                                                        th:href="@{/tech/incidencias/inspeccionar/} + ${incidencia.id}">
+                                                        th:href="@{/tech/incidencias/inspeccionar/} + ${incidencia.id}"
+                                                        href="inspeccionar.html" title="Ver detalles de la incidencia">
                                                         <i class="bi bi-eye me-2"></i>Ver detalles
                                                     </a>
                                                 </li>
@@ -191,7 +194,7 @@
                                                                 class="bi bi-person-check me-2"></i>Asignarme</button>
                                                     </form>
                                                 </li>
-                                                <li>
+                                                <li th:unless="${mostrarAsignar}">
                                                     <hr class="dropdown-divider">
                                                 </li>
                                                 <li th:unless="${mostrarAsignar}">
@@ -214,9 +217,8 @@
             </div>
         </section>
 
-        <!-- Modal para editar estado -->
-        <div class="modal fade" id="editarEstadoModal" tabindex="-1" aria-labelledby="editarEstadoModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="editarEstadoModal" tabindex="-1"
+            >
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header bg-main text-white">
@@ -224,7 +226,7 @@
                             <i class="bi bi-pencil-square me-2"></i>Cambiar Estado
                         </h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                            ></button>
                     </div>
                     <form id="formEditarEstado" th:object="${estadoNuevo}" method="post">
                         <input type="hidden" name="_method" value="put">
@@ -252,7 +254,7 @@
         </div>
 
         <!-- Modal de Confirmación de Eliminación -->
-        <div class="modal fade" id="confirmarEliminacionModal" tabindex="-1" aria-hidden="true">
+        <div class="modal fade" id="confirmarEliminacionModal" tabindex="-1" >
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header bg-danger text-white">
@@ -260,7 +262,7 @@
                             <i class="bi bi-exclamation-triangle me-2"></i>Confirmar Eliminación
                         </h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                            ></button>
                     </div>
                     <div class="modal-body">
                         <p>¿Estás seguro de que deseas eliminar esta incidencia?</p>
@@ -285,7 +287,7 @@
 
     <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
 
-    <script>
+    <script> <!--revisarlo-->
         // Script para manejar el modal de edición en el listado
         document.addEventListener('DOMContentLoaded', function () {
             var editarEstadoModal = document.getElementById('editarEstadoModal');

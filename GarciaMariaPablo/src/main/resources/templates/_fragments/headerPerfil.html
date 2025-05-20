@@ -1,10 +1,10 @@
 <th:block th:fragment="headerPerfil">
     <div sec:authorize="!isAuthenticated()" class="d-flex align-items-center gap-2">
-        <a th:href="@{/login}" class="btn btn-outline-light" title="Acceder a tu cuenta">
+        <a th:href="@{/login}" href="../global/login.html" class="btn btn-outline-light" title="Acceder a tu cuenta">
             <i class="bi bi-box-arrow-in-right me-1"></i>
             <span>Iniciar sesión</span>
         </a>
-        <a th:href="@{/register}" class="btn btn-light" title="Crear una cuenta nueva">
+        <a th:href="@{/register}" href="../global/register.html" class="btn btn-light" title="Crear una cuenta nueva">
             <i class="bi bi-person-plus me-1"></i>
             <span>Registrarse</span>
         </a>
@@ -23,13 +23,13 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
                 <li>
-                    <a class="dropdown-item" th:href="@{/perfil}">
+                    <a class="dropdown-item" href="../global/perfil.html" th:href="@{/perfil}">
                         <i class="bi bi-person me-2"></i>
                         <span>Mi perfil</span>
                     </a>
                 </li>
                 <li>
-                    <a class="dropdown-item" th:href="@{/dashboard}">
+                    <a class="dropdown-item" href="../global/index.html" th:href="@{/dashboard}">
                         <i class="bi bi-speedometer2 me-2"></i>
                         <span>Dashboard</span>
                     </a>

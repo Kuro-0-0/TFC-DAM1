@@ -10,7 +10,7 @@
     <title th:unless="${modificar}">Nueva Incidencia | Gestión de Incidencias</title>
     <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
 
-    <script src="../../../static/user/javascript/incidencia/formulario/revisarFormulario.js"
+    <script defer src="../../../static/user/javascript/incidencia/formulario/revisarFormulario.js"
         th:src="@{/user/javascript/incidencia/formulario/revisarFormulario.js}"></script>
 
 </head>
@@ -29,7 +29,7 @@
                             <h1 class="h4 mb-0 fw-bold txt-main">
                                 <i class="bi bi-plus-circle me-2"></i>Nueva Incidencia
                             </h1>
-                            <a th:href="@{/user/incidencias}" class="btn btn-outline-secondary btn-sm">
+                            <a th:href="@{/user/incidencias}" class="btn btn-outline-secondary btn-sm" href="../incidencia/listar.html" title="Volver a las incidencias">
                                 <i class="bi bi-arrow-left me-1"></i>Volver
                             </a>
                         </div>

@@ -114,7 +114,7 @@ function generarBarrasProgreso() {
                     </span>
                     <small class="text-muted">${estado.porcentaje}%</small>
                 </div>
-                <div class="progress" style="height: 10px;" role="progressbar">
+                <div class="progress" style="height: 10px;">
                     <div class="progress-bar rounded" 
                         style="width: ${estado.porcentaje}%; background-color: ${estado.colorFondo}; color: ${estado.colorTexto}"
                         title="Progreso de ${estado.nombre}: ${estado.porcentaje}%">

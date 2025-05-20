@@ -15,7 +15,7 @@
 
     <header th:replace="~{user/_fragments/header.html :: headerOff}"></header>
 
-    <main class="container flex-grow-1 my-4" role="main">
+    <main class="container flex-grow-1 my-4" >
         <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
 
         <article class="card border-0 shadow rounded-3 overflow-hidden">
@@ -99,11 +99,11 @@
                 </section>
 
                 <section class="d-flex justify-content-between align-items-center mt-4">
-                    <a th:href="@{/user/incidencias}" href="listar.html" class="btn btn-outline-secondary">
+                    <a th:href="@{/user/incidencias}" href="listar.html" class="btn btn-outline-secondary" title="Volver a las incidencias">
                         <i class="bi bi-arrow-left me-1"></i>Volver al listado
                     </a>
                     <div>
-                        <a th:unless="${incidencia.estado.tipo == 'Final'}" href="formulario.html" th:href="@{'/user/incidencias/modificar/' + ${incidencia.id}}"
+                        <a th:unless="${incidencia.estado.tipo == 'Final'}" href="formulario.html" th:href="@{'/user/incidencias/modificar/' + ${incidencia.id}}" title="Modificar incidencia"
                             class="btn btn-primary me-2">
                             <i class="bi bi-pencil me-1"></i>Editar
                         </a>

@@ -7,7 +7,6 @@
     <meta name="description"
         content="Visualiza y gestiona los detalles de una incidencia reportada en el sistema. Consulta ubicación, reportante, técnico asignado y más." />
     <meta name="author" content="Pablo Garcia Maria" />
-    <link rel="icon" href="../../../static/img/favicon.ico" th:href="@{/img/favicon.ico}" type="image/x-icon">
     <title>Detalle de Incidencia | Gestión de Incidencias</title>
     <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
 </head>
@@ -16,7 +15,7 @@
 
     <header th:replace="~{admin/_fragments/header.html :: header}"></header>
 
-    <main class="container flex-grow-1 my-4" role="main">
+    <main class="container flex-grow-1 my-4" >
         <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
 
         <article class="card border-0 shadow rounded-3 overflow-hidden">
