@@ -195,6 +195,7 @@ incidencias_por_categoria = {
             "Los enchufes no funcionan correctamente.",
             "La corriente eléctrica se corta intermitentemente.",
             "Se huele a quemado cerca de los enchufes."
+            "Javi ha tumbado la red electrica nacional."
         ]
     },
     "calor":{
@@ -224,7 +225,8 @@ incidencias_por_categoria = {
             "El sistema de calefacción hace ruidos extraños.",
             "Hace mas frio que en la comunion de pingu",
             "Mas frio que pescando pinguinos",
-            "Aqui hace mucho frio, OTRO MES QUE NO COBRAS."
+            "Aqui hace mucho frio, OTRO MES QUE NO COBRAS.",
+            "Lleva todo el dia el aire puesto, me estoy muriendo"
         ]
     },
     "ruido": {
@@ -239,6 +241,10 @@ incidencias_por_categoria = {
             "Parece que alguien taladra constantemente en el aula.",
             "El zumbido es tan constante que se sincroniza con mis pensamientos.",
             "Hay más ruido que en una boda gitana con altavoces Bose.",
+            "Llevamos 3 horas en clase con luismi, no hay mas que decir.",
+            "Hay un chaval que no para de hacer ruido comiendo.",
+            "German lleva desde las ocho de la mañana sin callarse.",
+            "El pablo no para quiero, que se calle.",
         ]
     },
     "pantalla": {
@@ -253,7 +259,7 @@ incidencias_por_categoria = {
             "Parece que ha entrado en modo arte moderno.",
             "La imagen está tan torcida que parece arte cubista.",
             "Se ve como si Gollum hubiese ajustado el brillo y contraste.",
-            "Creo que algun gracioso esta apagando pantallas"
+            "Creo que algun gracioso esta apagando pantallas",
         ]
     },
     "ordenadores": {
