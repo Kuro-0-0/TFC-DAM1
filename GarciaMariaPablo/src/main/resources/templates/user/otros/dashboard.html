@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="es" class="h-100">
 
 <head>
@@ -19,8 +18,8 @@
         <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
 
         <header class="text-center mb-5">
-            <h1 class="mb-3 fw-bold txt-main">Bienvenido <span th:text="${nombre}">Jose Luis</span></h1>
-            <p class="lead text-muted">Gestiona todas tus incidencias en un solo lugar</p>
+            <h1 class="mb-3 fw-bold txt-main"><span>Bienvenido</span> <span th:text="${nombre}">Jose Luis</span></h1>
+            <p class="lead text-muted"><span>Gestiona todas tus incidencias en un solo lugar</span></p>
         </header>
 
         <section id="userDashboard" class="row g-4 mb-5">
@@ -30,25 +29,25 @@
                         <div class="bg-main-transparence bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
                             <i class="bi bi-file-earmark-text fs-3 text-light"></i>
                         </div>
-                        <h2 class="card-title mt-2 h5">Mis Incidencias</h2>
+                        <h2 class="card-title mt-2 h5"><span>Mis Incidencias</span></h2>
                         <p class="card-text text-muted mb-4">
-                            Visualiza y revisa el estado de tus incidencias registradas. Mantén un seguimiento de
-                            todas tus solicitudes en un solo lugar.
+                            <span>Visualiza y revisa el estado de tus incidencias registradas. Mantén un seguimiento de
+                                todas tus solicitudes en un solo lugar.</span>
                         </p>
                         <a href="../incidencia/listar.html" th:href="@{/user/incidencias}" title="Ver mis incidencias"
                             class="btn btn-main px-4">
-                            <i class="bi bi-list-ul me-2"></i>Ver todas
+                            <i class="bi bi-list-ul me-2"></i><span>Ver todas</span>
                         </a>
                     </div>
                     <div class="card-footer bg-transparent border-top-0 text-center py-3">
                         <small class="text-muted">
-                            <i class="bi bi-clock-history me-1"></i> Última actualización: 
+                            <i class="bi bi-clock-history me-1"></i> <span>Última actualización:</span>
                             <th:block th:if="${ultimaActualizacion == 'NUNCA'}">
                                 <span th:text="${ultimaActualizacion}">Nunca</span>
                             </th:block>
                             <th:block th:unless="${ultimaActualizacion == 'NUNCA'}">
-                                <span th:text="${ultimaActualizacion}">13</span> 
-                                <span th:text="${ultimaActualizacion} == 1 ? 'dia' : 'dias'">dias</span>
+                                <span th:text="${ultimaActualizacion}">13</span>
+                                <span th:text="${ultimaActualizacion} == 1 ? 'día' : 'días'">días</span>
                             </th:block>
                         </small>
                     </div>
@@ -61,19 +60,19 @@
                         <div class="bg-success bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
                             <i class="bi bi-plus-circle fs-3 text-success"></i>
                         </div>
-                        <h2 class="card-title mt-2 h5">Nueva Incidencia</h2>
+                        <h2 class="card-title mt-2 h5"><span>Nueva Incidencia</span></h2>
                         <p class="card-text text-muted mb-4">
-                            Reporta una nueva incidencia al equipo técnico. Describe detalladamente el problema
-                            para una solución más rápida.
+                            <span>Reporta una nueva incidencia al equipo técnico. Describe detalladamente el problema
+                                para una solución más rápida.</span>
                         </p>
                         <a href="../incidencia/formulario.html" th:href="@{/user/incidencias/crear}"
                             title="Crear nueva incidencia" class="btn btn-success px-4">
-                            <i class="bi bi-plus-lg me-2"></i>Crear
+                            <i class="bi bi-plus-lg me-2"></i><span>Crear</span>
                         </a>
                     </div>
                     <div class="card-footer bg-transparent border-top-0 text-center py-3">
                         <small class="text-muted">
-                            <i class="bi bi-lightbulb me-1"></i> Proporciona todos los detalles necesarios
+                            <i class="bi bi-lightbulb me-1"></i> <span>Proporciona todos los detalles necesarios</span>
                         </small>
                     </div>
                 </section>
@@ -85,19 +84,19 @@
                         <div class="bg-info bg-opacity-10 p-3 rounded-circle d-inline-block mb-3">
                             <i class="bi bi-person fs-3 text-info"></i>
                         </div>
-                        <h2 class="card-title mt-2 h5">Mi Perfil</h2>
+                        <h2 class="card-title mt-2 h5"><span>Mi Perfil</span></h2>
                         <p class="card-text text-muted mb-4">
-                            Consulta o edita tu información personal y contraseña. Mantén tus datos actualizados
-                            para una mejor comunicación.
+                            <span>Consulta o edita tu información personal y contraseña. Mantén tus datos actualizados
+                                para una mejor comunicación.</span>
                         </p>
                         <a href="../../global/perfil.html" th:href="@{/perfil}" title="Ir a mi perfil"
                             class="btn btn-info px-4 text-light">
-                            <i class="bi bi-person-circle me-2"></i>Perfil
+                            <i class="bi bi-person-circle me-2"></i><span>Perfil</span>
                         </a>
                     </div>
                     <div class="card-footer bg-transparent border-top-0 text-center py-3">
                         <small class="text-muted">
-                            <i class="bi bi-shield-lock me-1"></i> Tus datos están protegidos
+                            <i class="bi bi-shield-lock me-1"></i> <span>Tus datos están protegidos</span>
                         </small>
                     </div>
                 </section>
@@ -108,7 +107,7 @@
             <div class="col-lg-6">
                 <div class="card border-0 shadow-sm">
                     <div class="card-header bg-white border-0">
-                        <h2 class="h5 mb-0"><i class="bi bi-graph-up me-2"></i>Estadísticas Rápidas</h2>
+                        <h2 class="h5 mb-0"><i class="bi bi-graph-up me-2"></i><span>Estadísticas Rápidas</span></h2>
                     </div>
                     <div class="card-body">
                         <div class="row text-center">
@@ -116,21 +115,21 @@
                                 <div class="p-3">
                                     <h3 class="text-main fw-bold"><span th:text="${estadisticasRapidas[0]}">12</span>
                                     </h3>
-                                    <p class="text-muted small mb-0">Sin comenzar</p>
+                                    <p class="text-muted small mb-0"><span>Sin comenzar</span></p>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="p-3">
                                     <h3 class="text-warning fw-bold"><span th:text="${estadisticasRapidas[1]}">3</span>
                                     </h3>
-                                    <p class="text-muted small mb-0">En progreso</p>
+                                    <p class="text-muted small mb-0"><span>En progreso</span></p>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="p-3">
                                     <h3 class="text-success fw-bold"><span th:text="${estadisticasRapidas[2]}">24</span>
                                     </h3>
-                                    <p class="text-muted small mb-0">Finalizadas</p>
+                                    <p class="text-muted small mb-0"><span>Finalizadas</span></p>
                                 </div>
                             </div>
                         </div>
@@ -141,15 +140,18 @@
             <div class="col-lg-6">
                 <div class="card border-0 shadow-sm">
                     <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
-                        <h2 class="h5 mb-0"><i class="bi bi-clock-history me-2"></i>Incidencias Recientes
+                        <h2 class="h5 mb-0"><i class="bi bi-clock-history me-2"></i><span>Incidencias Recientes</span>
                         </h2>
                         <a href="../incidencia/listar.html" th:href="@{/user/incidencias}"
-                            title="Ver todas tus incidencias" class="btn btn-sm btn-outline-secondary">Ver todas</a>
+                            title="Ver todas tus incidencias" class="btn btn-sm btn-outline-secondary"><span>Ver
+                                todas</span></a>
                     </div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush" th:each="incidencia : ${incidenciasRecientes}">
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <a  class="text-decoration-none text-dark" th:href="@{/user/incidencias/inspeccionar/} + ${incidencia.id}" th:text="${incidencia.titulo}">Error al iniciar sesión</a>
+                                <a class="text-decoration-none text-dark"
+                                    th:href="@{/user/incidencias/inspeccionar/} + ${incidencia.id}"
+                                    th:text="${incidencia.titulo}">Error al iniciar sesión</a>
                                 <span class="badge"
                                     th:style="'background-color:' + ${incidencia.estado.colorFondo} + '; color:' + ${incidencia.estado.colorTexto}"
                                     th:text="${incidencia.estado.nombre}">Resuelto</span>
@@ -162,23 +164,23 @@
 
         <section class="card border-0 shadow-sm mb-5">
             <div class="card-header bg-white border-0">
-                <h2 class="h5 mb-0"><i class="bi bi-question-circle me-2"></i>¿Necesitas ayuda?</h2>
+                <h2 class="h5 mb-0"><i class="bi bi-question-circle me-2"></i><span>¿Necesitas ayuda?</span></h2>
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <h3 class="h6"><i class="bi bi-telephone me-2"></i>Soporte técnico</h3>
-                        <p class="text-muted">Contacta con nuestro equipo de soporte para asistencia
-                            inmediata.</p>
+                        <h3 class="h6"><i class="bi bi-telephone me-2"></i><span>Soporte técnico</span></h3>
+                        <p class="text-muted"><span>Contacta con nuestro equipo de soporte para asistencia
+                                inmediata.</span></p>
                         <a href="../../global/contacto.html" th:href="@{/contacto}" title="Contactar con soporte"
-                            class="btn btn-sm btn-outline-main">Contactar</a>
+                            class="btn btn-sm btn-outline-main"><span>Contactar</span></a>
                     </div>
                     <div class="col-md-6">
-                        <h3 class="h6"><i class="bi bi-book me-2"></i>Centro de ayuda</h3>
-                        <p class="text-muted">Consulta nuestra base de conocimiento para soluciones
-                            rápidas.</p>
+                        <h3 class="h6"><i class="bi bi-book me-2"></i><span>Centro de ayuda</span></h3>
+                        <p class="text-muted"><span>Consulta nuestra base de conocimiento para soluciones
+                                rápidas.</span></p>
                         <a href="https://github.com/Kuro-0-0?tab=repositories" title="Ver guías de usuario"
-                            class="btn btn-sm btn-outline-main">Ver guías</a>
+                            class="btn btn-sm btn-outline-main"><span>Ver guías</span></a>
                     </div>
                 </div>
             </div>

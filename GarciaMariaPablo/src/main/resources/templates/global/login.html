@@ -14,21 +14,21 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100 bg-light">
-
     <th:block th:replace="~{global/_fragments/header.html :: headerGlobal}"></th:block>
     <th:block th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></th:block>
 
     <main class="container flex-grow-1 d-flex align-items-center justify-content-center my-5">
-
         <div class="row w-100 shadow-sm bg-white rounded-3 overflow-hidden limited-width-600">
             <div class="col-12 p-5">
-                <h1 class="mb-4 fw-bold text-center txt-main">Iniciar sesión</h1>
+                <h1 class="mb-4 fw-bold text-center txt-main">
+                    <span>Iniciar sesión</span>
+                </h1>
 
                 <form th:action="@{/login}" method="post" th:object="${usuarioDao}">
                     <div class="mb-3">
                         <label for="username" class="form-label fw-medium">
-                            <i class="bi bi-person-badge me-1"></i>
-                            Nombre de usuario <span class="text-danger">*</span>
+                            <i class="bi bi-person-badge me-1"></i><span>Nombre de usuario</span><span
+                                class="text-danger">*</span>
                         </label>
                         <input type="text" id="username" class="form-control form-control-lg" th:field="*{username}"
                             placeholder="Ingresa tu usuario" required maxlength="20"
@@ -38,8 +38,7 @@
 
                     <div class="mb-3">
                         <label for="password" class="form-label fw-medium">
-                            <i class="bi bi-lock me-1"></i>
-                            Contraseña <span class="text-danger">*</span>
+                            <i class="bi bi-lock me-1"></i><span>Contraseña</span><span class="text-danger">*</span>
                         </label>
                         <div class="input-group">
                             <input type="password" id="password" class="form-control form-control-lg"
@@ -55,20 +54,21 @@
 
                     <div class="mb-3 form-check">
                         <input type="checkbox" class="form-check-input" id="rememberMe" name="remember-me">
-                        <label class="form-check-label" for="rememberMe">Recordar sesión</label>
+                        <label class="form-check-label" for="rememberMe"><span>Recordar sesión</span></label>
                     </div>
 
                     <div class="d-grid">
+                        <!-- No se sustituye por <input type="submit"> porque incluye icono -->
                         <button type="submit" class="btn btn-lg btn-main text-light">
-                            <i class="bi bi-box-arrow-in-right me-1"></i> Acceder
+                            <i class="bi bi-box-arrow-in-right me-1"></i><span>Acceder</span>
                         </button>
                     </div>
                 </form>
 
                 <div class="mt-4 text-center small">
-                    <p>¿No tienes cuenta?
+                    <p><span>¿No tienes cuenta?</span>
                         <a th:href="@{/register}" href="register.html" class="txt-main text-decoration-none"
-                            title="Ir a la página de registro">Regístrate aquí</a>
+                            title="Ir a la página de registro"><span>Regístrate aquí</span></a>
                     </p>
                 </div>
             </div>
@@ -76,7 +76,6 @@
     </main>
 
     <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
-
 </body>
 
 </html>

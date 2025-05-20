@@ -7,18 +7,16 @@
     <meta name="description"
         content="Sistema de gestión de incidencias para empresas. Solución completa para reportar y administrar problemas técnicos, de mantenimiento y más.">
     <meta name="author" content="Pablo Garcia Maria">
-    <title>Pagina principal | Gestión de Incidencias</title>
-
+    <title>Página principal | Gestión de Incidencias</title>
     <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
 </head>
 
 <body class="bg-light">
-
     <th:block th:replace="~{global/_fragments/header.html :: headerGlobal}"></th:block>
     <th:block th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></th:block>
 
     <main>
-        
+
         <section class="py-5 bg-white">
             <div class="container">
                 <div class="row align-items-center">
@@ -231,14 +229,15 @@
                             <div class="row g-3 justify-content-center">
                                 <div class="col-md-6">
                                     <div class="d-grid">
-                                        <a th:href="@{/register}" href="register.html" class="btn btn-main text-white btn-lg"
-                                            title="Solicitar acceso al sistema">
+                                        <a th:href="@{/register}" href="register.html"
+                                            class="btn btn-main text-white btn-lg" title="Solicitar acceso al sistema">
                                             <i class="bi bi-person-plus me-2"></i>Solicitar Registro
                                         </a>
                                     </div>
                                 </div>
                             </div>
-                            <p class="mt-4 mb-0 small text-muted">* El acceso de tecnico debe ser autorizado por el administrador de tu empresa</p>
+                            <p class="mt-4 mb-0 small text-muted">* El acceso de tecnico debe ser autorizado por el
+                                administrador de tu empresa</p>
                         </div>
                     </div>
                 </div>
@@ -329,7 +328,7 @@
         </section>
     </main>
 
-    <div th:replace="~{_fragments/footer.html :: footer}"></div>
+    <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
 </body>
 
 </html>

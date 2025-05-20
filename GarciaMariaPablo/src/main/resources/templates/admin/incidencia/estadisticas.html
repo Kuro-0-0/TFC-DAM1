@@ -16,7 +16,6 @@
 
   <script defer th:inline="javascript">
     var incidencias = [[${ incidencias }]];
-
     window.addEventListener('DOMContentLoaded', function () {
       procesarIncidencias(incidencias);
     });
@@ -24,7 +23,6 @@
 </head>
 
 <body class="d-flex flex-column h-100 bg-light">
-
   <header th:replace="~{admin/_fragments/header.html :: header}"></header>
 
   <main class="container flex-grow-1 my-4">
@@ -49,7 +47,6 @@
       </div>
     </section>
 
-    <!-- Nueva sección de Top 3 -->
     <section class="row mb-4">
       <div class="col-md-4 mb-3">
         <div class="card bg-white rounded-3 shadow-sm h-100">
@@ -59,7 +56,8 @@
             </h3>
             <p class="text-muted small mb-3">Con más incidencias resueltas</p>
             <div class="d-flex flex-column gap-2">
-              <div th:each="usuario, iterStat : ${estadisticasJAVA.topResueltas}" class="d-flex justify-content-between align-items-center">
+              <div th:each="usuario, iterStat : ${estadisticasJAVA.topResueltas}"
+                class="d-flex justify-content-between align-items-center">
                 <span th:text="${iterStat.index + 1} + '. ' + ${usuario.nombreCompleto}">1. Juan Pérez</span>
                 <span class="badge bg-success" th:text="${usuario.numeroResueltas} + ' resueltas'">42 resueltas</span>
               </div>
@@ -67,7 +65,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="col-md-4 mb-3">
         <div class="card bg-white rounded-3 shadow-sm h-100">
           <div class="card-body">
@@ -76,7 +74,8 @@
             </h3>
             <p class="text-muted small mb-3">Menor tiempo promedio de resolución</p>
             <div class="d-flex flex-column gap-2">
-              <div th:each="usuario, iterStat : ${estadisticasJAVA.topRapidos}" class="d-flex justify-content-between align-items-center">
+              <div th:each="usuario, iterStat : ${estadisticasJAVA.topRapidos}"
+                class="d-flex justify-content-between align-items-center">
                 <span th:text="${iterStat.index + 1} + '. ' + ${usuario.nombreCompleto}">1. Ana López</span>
                 <span class="badge bg-primary" th:text="${usuario.horasMedias} + ' horas'">2.5 horas</span>
               </div>
@@ -84,7 +83,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="col-md-4 mb-3">
         <div class="card bg-white rounded-3 shadow-sm h-100">
           <div class="card-body">
@@ -93,7 +92,8 @@
             </h3>
             <p class="text-muted small mb-3">Con más incidencias reportadas</p>
             <div class="d-flex flex-column gap-2">
-              <div th:each="usuario, iterStat : ${estadisticasJAVA.topReportantes}" class="d-flex justify-content-between align-items-center">
+              <div th:each="usuario, iterStat : ${estadisticasJAVA.topReportantes}"
+                class="d-flex justify-content-between align-items-center">
                 <span th:text="${iterStat.index + 1} + '. ' + ${usuario.nombreCompleto}">1. Departamento IT</span>
                 <span th:text="${usuario.numeroReportes} + ' reportes'" class="badge bg-info">78 reportes</span>
               </div>
@@ -102,13 +102,12 @@
         </div>
       </div>
     </section>
-    
+
     <section class="card bg-white rounded-3 shadow-sm p-3 mb-3">
       <h2 class="h5 fw-semibold mb-3 txt-main">
         <i class="bi bi-tags me-2"></i>Estados de Incidencias
       </h2>
-      <div class="d-flex overflow-x-auto stats-scroll-container" id="estadosContainer">
-      </div>
+      <div class="d-flex overflow-x-auto stats-scroll-container" id="estadosContainer"></div>
       <div id="scrollIndicator" class="text-center text-muted small mt-1 mb-2">
         <i class="bi bi-arrow-left-right"></i> Desliza para ver más estados
       </div>
@@ -118,16 +117,14 @@
       <h2 class="h5 fw-semibold mb-3 txt-main">
         <i class="bi bi-speedometer2 me-2"></i>Distribución por Estados
       </h2>
-      <div id="progressBarsContainer">
-      </div>
+      <div id="progressBarsContainer"></div>
     </section>
 
     <section class="card bg-white rounded-3 shadow-sm p-3">
       <h2 class="h5 fw-semibold mb-3 txt-main">
         <i class="bi bi-tags me-2"></i>Leyenda de Estados
       </h2>
-      <div id="leyendaEstados" class="d-flex flex-wrap gap-2">
-      </div>
+      <div id="leyendaEstados" class="d-flex flex-wrap gap-2"></div>
     </section>
   </main>
 

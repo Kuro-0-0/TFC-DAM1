@@ -10,30 +10,26 @@
     <title>Registro | Gestión de Incidencias</title>
 
     <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
-    <script defer th:src="@{/js/register/mostrarContraseña.js}" src="../../static/js/register/mostrarContraseña.js"
-        ></script>
-    <script defer th:src="@{/js/register/comprobarContraseñas.js}" src="../../static/js/register/comprobarContraseñas.js"
-        ></script>
-    <script defer th:src="@{/js/register/comprobarFormulario.js}" src="../../static/js/register/comprobarFormulario.js"
-        ></script>
+    <script defer src="/js/register/mostrarContraseña.js" th:src="@{/js/register/mostrarContraseña.js}"></script>
+    <script defer src="/js/register/comprobarContraseñas.js" th:src="@{/js/register/comprobarContraseñas.js}"></script>
+    <script defer src="/js/register/comprobarFormulario.js" th:src="@{/js/register/comprobarFormulario.js}"></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100 bg-light">
 
-    <th:block th:replace="~{global/_fragments/header.html :: headerGlobal}"></th:block>
-    <th:block th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></th:block>
+    <header th:replace="~{global/_fragments/header.html :: headerGlobal}"></header>
+    <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
 
     <main class="container flex-grow-1 d-flex align-items-center justify-content-center my-5">
-
         <div class="row w-100 shadow-sm bg-white rounded-3 overflow-hidden limited-width-600">
             <div class="col-12 p-5">
-                <h1 class="mb-4 fw-bold text-center txt-main">Crear cuenta</h1>
+                <h1 class="mb-4 fw-bold text-center txt-main"><span>Crear cuenta</span></h1>
 
                 <form th:action="@{/register}" method="post" th:object="${usuarioDao}">
                     <div class="mb-3">
                         <label for="username" class="form-label fw-medium">
                             <i class="bi bi-person-badge me-1"></i>
-                            Nombre de usuario <span class="text-danger">*</span>
+                            <span>Nombre de usuario</span> <span class="text-danger">*</span>
                         </label>
                         <input th:field="*{username}" type="text" id="username" class="form-control form-control-lg"
                             placeholder="Ej. jperez" required maxlength="20">
@@ -42,14 +38,14 @@
                     <div class="mb-3">
                         <label for="password" class="form-label fw-medium">
                             <i class="bi bi-lock me-1"></i>
-                            Contraseña <span class="text-danger">*</span>
+                            <span>Contraseña</span> <span class="text-danger">*</span>
                         </label>
                         <div class="input-group">
                             <input th:field="*{password}" type="password" id="password"
-                                class="form-control form-control-lg" placeholder="Contraseña" required
-                                maxlength="32"
+                                class="form-control form-control-lg" placeholder="Contraseña" required maxlength="32"
                                 title="Debe tener entre 8 y 32 caracteres, con al menos una mayúscula, una minúscula y un número.">
-                            <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                            <button type="button" class="btn btn-outline-secondary" id="togglePassword"
+                                title="Mostrar u ocultar contraseña">
                                 <i class="bi bi-eye" id="togglePasswordIcon"></i>
                             </button>
                         </div>
@@ -58,20 +54,20 @@
                     <div class="mb-3">
                         <label for="confirmPassword" class="form-label fw-medium">
                             <i class="bi bi-shield-lock me-1"></i>
-                            Confirmar contraseña <span class="text-danger">*</span>
+                            <span>Confirmar contraseña</span> <span class="text-danger">*</span>
                         </label>
                         <input th:field="*{password2}" type="password" id="confirmPassword"
                             class="form-control form-control-lg" placeholder="Repite la contraseña" required
                             minlength="8" maxlength="32" autocomplete="new-password">
-                        <div class="invalid-feedback d-none" id="confirmPasswordError">Las contraseñas no coinciden.
-                        </div>
+                        <div class="invalid-feedback d-none" id="confirmPasswordError"><span>Las contraseñas no
+                                coinciden.</span></div>
                     </div>
 
                     <div class="row mb-4">
                         <div class="col-md-6 mb-3">
                             <label for="nombre" class="form-label fw-medium">
                                 <i class="bi bi-person me-1"></i>
-                                Nombre <span class="text-danger">*</span>
+                                <span>Nombre</span> <span class="text-danger">*</span>
                             </label>
                             <input th:field="*{nombre}" type="text" id="nombre" class="form-control form-control-lg"
                                 placeholder="Ej. Juan" required maxlength="30">
@@ -80,7 +76,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="apellidos" class="form-label fw-medium">
                                 <i class="bi bi-people me-1"></i>
-                                Apellidos
+                                <span>Apellidos</span>
                             </label>
                             <input th:field="*{apellidos}" type="text" id="apellidos"
                                 class="form-control form-control-lg" placeholder="Ej. Pérez García" maxlength="60">
@@ -91,8 +87,9 @@
                         <div class="form-check mt-4">
                             <input type="checkbox" class="form-check-input" id="terms" required>
                             <label class="form-check-label" for="terms">
-                                Acepto la
-                                <a th:href="@{/politica-privacidad}" href="../global/politica-privacidad.html" target="_blank" title="Ver Política de privacidad">Política de privacidad</a>
+                                <span>Acepto la </span>
+                                <a th:href="@{/politica-privacidad}" href="/politica-privacidad.html" target="_blank"
+                                    title="Ver Política de privacidad">Política de privacidad</a>
                             </label>
                         </div>
                     </div>
@@ -100,14 +97,15 @@
                     <div class="d-grid">
                         <!-- Este botón contiene un icono, por eso no se reemplaza por <input type="submit"> -->
                         <button type="submit" class="btn btn-lg btn-main text-white">
-                            <i class="bi bi-person-plus-fill me-1"></i> Registrarse
+                            <i class="bi bi-person-plus-fill me-1"></i><span>Registrarse</span>
                         </button>
                     </div>
                 </form>
 
                 <div class="mt-4 text-center small">
-                    <p>¿Ya tienes cuenta?
-                        <a th:href="@{/login}" href="login.html" class="txt-main text-decoration-none"
+                    <p>
+                        <span>¿Ya tienes cuenta?</span>
+                        <a th:href="@{/login}" href="/login.html" class="txt-main text-decoration-none"
                             title="Ir a la página de inicio de sesión">Inicia sesión</a>
                     </p>
                 </div>

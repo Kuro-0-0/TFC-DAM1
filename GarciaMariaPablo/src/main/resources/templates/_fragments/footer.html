@@ -1,8 +1,8 @@
 <footer th:fragment="footer" class="bg-dark text-white pt-5 pb-4 mt-auto">
     <div class="container">
-        <div class="row g-4">
+        <section class="row g-4">
 
-            <div class="col-lg-4 col-md-6 mb-4">
+            <article class="col-lg-4 col-md-6 mb-4">
                 <div class="d-flex align-items-center mb-3">
                     <img src="../../static/img/logo.png" th:src="@{/img/logo.png}"
                         alt="Logo de la plataforma Gestión de Incidencias" height="40" class="me-2">
@@ -11,30 +11,27 @@
                 <p class="text-white-50">
                     Plataforma profesional para registrar, asignar y resolver incidencias técnicas de forma eficiente.
                 </p>
-            </div>
+            </article>
 
-            <div class="col-lg-2 col-md-6 mb-4">
+            <article class="col-lg-2 col-md-6 mb-4">
                 <h5 class="text-uppercase mb-4 fw-bold">Navegación</h5>
                 <ul class="list-unstyled">
                     <li class="mb-2">
-                        <a href="../global/index.html" th:href="@{/}"
-                            title="Volver a la página de inicio"
+                        <a href="../global/index.html" th:href="@{/}" title="Volver a la página de inicio"
                             class="text-white-50 text-decoration-none hover-white">Inicio</a>
                     </li>
                     <li class="mb-2">
-                        <a href="../global/contacto.html" th:href="@{/contacto}"
-                            title="Contacta con nosotros"
+                        <a href="../global/contacto.html" th:href="@{/contacto}" title="Contacta con nosotros"
                             class="text-white-50 text-decoration-none hover-white">Contacto</a>
                     </li>
                     <li class="mb-2">
-                        <a href="../global/quienes-somos.html" th:href="@{/nosotros}"
-                            title="Conoce más sobre nosotros"
+                        <a href="../global/quienes-somos.html" th:href="@{/nosotros}" title="Conoce más sobre nosotros"
                             class="text-white-50 text-decoration-none hover-white">Quienes somos</a>
                     </li>
                 </ul>
-            </div>
+            </article>
 
-            <div class="col-lg-3 col-md-6 mb-4">
+            <article class="col-lg-3 col-md-6 mb-4">
                 <h5 class="text-uppercase mb-4 fw-bold">Legal</h5>
                 <ul class="list-unstyled">
                     <li class="mb-2">
@@ -43,33 +40,29 @@
                             class="text-white-50 text-decoration-none hover-white">Política de privacidad</a>
                     </li>
                 </ul>
-            </div>
+            </article>
 
-            <div class="col-lg-3 col-md-6 mb-4">
+            <article class="col-lg-3 col-md-6 mb-4">
                 <h5 class="text-uppercase mb-4 fw-bold">Contacto</h5>
                 <ul class="list-unstyled text-white-50">
+                    <li class="mb-2 d-flex align-items-start">Calle Condes de Bustillo, 17</li>
+                    <li class="mb-2 d-flex align-items-start">+34 954 33 14 88</li>
                     <li class="mb-2 d-flex align-items-start">
-                        <span>Calle Condes de Bustillo, 17</span>
-                    </li>
-                    <li class="mb-2 d-flex align-items-start">
-                        <span>+34 954 33 14 88</span>
-                    </li>
-                    <li class="mb-2 d-flex align-items-start">
-                        <a href="mailto:garcia.mapab24@triana.salesianos.edu"
-                            title="Escríbenos un correo electrónico"
+                        <a href="mailto:garcia.mapab24@triana.salesianos.edu" title="Escríbenos un correo electrónico"
                             class="text-white-50 text-decoration-none">garcia.mapab24@triana.salesianos.edu</a>
                     </li>
                 </ul>
-            </div>
-        </div>
+            </article>
+
+        </section>
 
         <hr class="my-4 bg-secondary">
-        <div class="row align-items-center">
+        <section class="row">
             <div class="col-md-6 text-center text-md-start">
                 <small class="text-white-50">
-                    <span>&copy; Sistema de Gestión de Incidencias 2025 Todos los derechos reservados.</span>
+                    &copy; Sistema de Gestión de Incidencias 2025 Todos los derechos reservados.
                 </small>
             </div>
-        </div>
+        </section>
     </div>
 </footer>

@@ -16,7 +16,7 @@
 <body class="d-flex flex-column h-100 bg-light">
     <header th:replace="~{admin/_fragments/header.html :: header}"></header>
 
-    <main class="container my-5" id="main-content">
+    <main class="container my-5">
         <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
 
         <h1 class="mb-4 text-center fw-bold txt-main">Panel de Administración</h1>
@@ -31,6 +31,7 @@
         </section>
 
         <section id="adminAccordion" class="accordion">
+
             <article class="accordion-item mb-3 border-0 shadow-sm">
                 <h2 class="accordion-header">
                     <button class="accordion-button collapsed bg-primary text-white fw-bold" type="button"
@@ -41,6 +42,7 @@
                 <div id="collapseIncidencias" class="accordion-collapse collapse" data-bs-parent="#adminAccordion">
                     <div class="accordion-body bg-light">
                         <div class="row g-4">
+
                             <div class="col-md-4">
                                 <article class="card h-100 border-0 shadow-sm">
                                     <div class="card-body text-center p-4">
@@ -88,6 +90,7 @@
                                     </div>
                                 </article>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -103,6 +106,7 @@
                 <div id="collapseEstados" class="accordion-collapse collapse" data-bs-parent="#adminAccordion">
                     <div class="accordion-body bg-light">
                         <div class="row g-4">
+
                             <div class="col-md-4">
                                 <article class="card h-100 border-0 shadow-sm">
                                     <div class="card-body text-center p-4">
@@ -132,6 +136,7 @@
                                     </div>
                                 </article>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -147,6 +152,7 @@
                 <div id="collapseUsuarios" class="accordion-collapse collapse" data-bs-parent="#adminAccordion">
                     <div class="accordion-body bg-light">
                         <div class="row g-4">
+
                             <div class="col-md-4">
                                 <article class="card h-100 border-0 shadow-sm">
                                     <div class="card-body text-center p-4">
@@ -177,10 +183,12 @@
                                     </div>
                                 </article>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </article>
+
         </section>
     </main>
 

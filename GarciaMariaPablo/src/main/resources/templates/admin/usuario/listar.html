@@ -19,7 +19,7 @@
 <body class="d-flex flex-column h-100 bg-light">
     <header th:replace="~{admin/_fragments/header.html :: header}"></header>
 
-    <main class="container flex-grow-1 my-4" >
+    <main class="container flex-grow-1 my-4">
         <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
 
         <section class="d-flex justify-content-between align-items-center mb-4">
@@ -29,11 +29,11 @@
             <div class="d-flex gap-2">
                 <a th:href="@{/admin/usuarios/crear}" href="formulario.html" class="btn btn-success btn-sm"
                     title="Crear nuevo usuario">
-                    <i class="bi bi-plus-circle me-1"></i>Nuevo Usuario
+                    <i class="bi bi-plus-circle me-1"></i><span>Nuevo Usuario</span>
                 </a>
                 <button class="btn btn-outline-secondary btn-sm rounded-2" data-bs-toggle="modal"
                     data-bs-target="#modalFiltros" title="Abrir filtros">
-                    <i class="bi bi-funnel me-1"></i>Filtros
+                    <i class="bi bi-funnel me-1"></i><span>Filtros</span>
                 </button>
             </div>
         </section>
@@ -45,41 +45,41 @@
                         class="table-light border-bottom border-main border-top-0 border-start-0 border-end-0 border-2">
                         <tr>
                             <th scope="col">
-                                <a class="cursor-pointer text-decoration-none text-dark d-flex align-items-center gap-1"
+                                <a class="text-decoration-none text-dark d-flex align-items-center gap-1"
                                     onclick="ordenarPor('username')" title="Ordenar por username">
-                                    Username <span id="icon-username" class="ms-1"></span>
+                                    <span>Username</span> <span id="icon-username" class="ms-1"></span>
                                 </a>
                             </th>
                             <th scope="col">
-                                <a class="cursor-pointer text-decoration-none text-dark d-flex align-items-center gap-1"
+                                <a class="text-decoration-none text-dark d-flex align-items-center gap-1"
                                     onclick="ordenarPor('nombre')" title="Ordenar por nombre">
-                                    Nombre <span id="icon-nombre" class="ms-1"></span>
+                                    <span>Nombre</span> <span id="icon-nombre" class="ms-1"></span>
                                 </a>
                             </th>
                             <th scope="col">
-                                <a class="cursor-pointer text-decoration-none text-dark d-flex align-items-center gap-1"
+                                <a class="text-decoration-none text-dark d-flex align-items-center gap-1"
                                     onclick="ordenarPor('apellidos')" title="Ordenar por apellidos">
-                                    Apellidos <span id="icon-apellidos" class="ms-1"></span>
+                                    <span>Apellidos</span> <span id="icon-apellidos" class="ms-1"></span>
                                 </a>
                             </th>
                             <th scope="col">
-                                <a class="cursor-pointer text-decoration-none text-dark d-flex align-items-center gap-1"
+                                <a class="text-decoration-none text-dark d-flex align-items-center gap-1"
                                     onclick="ordenarPor('rol')" title="Ordenar por rol">
-                                    Rol <span id="icon-rol" class="ms-1"></span>
+                                    <span>Rol</span> <span id="icon-rol" class="ms-1"></span>
                                 </a>
                             </th>
-                            <th scope="col" class="text-center cursor-normal">Acciones</th>
+                            <th scope="col" class="text-center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="usuario : ${usuarios}">
-                            <td th:text="${usuario.username}"></td>
-                            <td th:text="${usuario.nombre}"></td>
-                            <td th:text="${usuario.apellidos}"></td>
+                            <td><span th:text="${usuario.username}">usuario</span></td>
+                            <td><span th:text="${usuario.nombre}">nombre</span></td>
+                            <td><span th:text="${usuario.apellidos}">apellidos</span></td>
                             <td>
                                 <span class="badge rounded-pill fw-bold px-3 w-badge-r"
                                     th:classappend="${usuario.rol.name() == 'ADMIN'} ? 'bg-main' : (${usuario.rol.name() == 'TECH'} ? 'bg-primary' : 'bg-info')"
-                                    th:text="${usuario.rol.name()}"></span>
+                                    th:text="${usuario.rol.name()}">ROL</span>
                             </td>
                             <td class="text-center">
                                 <a th:if="${usuario.editable}" href="formulario.html"
@@ -98,7 +98,8 @@
                         </tr>
                         <tr th:if="${usuarios.isEmpty()}">
                             <td colspan="5" class="text-center py-4 text-muted">
-                                <i class="bi bi-exclamation-circle me-2"></i>No hay usuarios registrados en el sistema.
+                                <i class="bi bi-exclamation-circle me-2"></i><span>No hay usuarios registrados en el
+                                    sistema.</span>
                             </td>
                         </tr>
                     </tbody>
@@ -108,9 +109,9 @@
                             <td colspan="5" class="px-3">
                                 <div class="d-flex justify-content-between align-items-end">
                                     <div class="my-auto">
-                                        <a th:href="@{/admin/dashboard}" href="../otros/dashboard.html" title="Volver al panel de control"
-                                            class="btn btn-outline-secondary btn-sm">
-                                            <i class="bi bi-arrow-left-circle me-1"></i>Volver al panel
+                                        <a th:href="@{/admin/dashboard}" href="../otros/dashboard.html"
+                                            title="Volver al panel de control" class="btn btn-outline-secondary btn-sm">
+                                            <i class="bi bi-arrow-left-circle me-1"></i><span>Volver al panel</span>
                                         </a>
                                     </div>
                                     <div class="my-auto text-center flex-fill">
@@ -142,7 +143,7 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    ¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.
+                    <span>¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.</span>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -159,7 +160,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalFiltrosLabel">
-                        <i class="bi bi-funnel me-2"></i>Filtrar Usuarios
+                        <i class="bi bi-funnel me-2"></i><span>Filtrar Usuarios</span>
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
@@ -199,7 +200,7 @@
                                 <div class="dropdown">
                                     <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"
                                         data-bs-toggle="dropdown">
-                                        <i class="bi bi-shield-check me-1"></i>Seleccionar Roles
+                                        <i class="bi bi-shield-check me-1"></i><span>Seleccionar Roles</span>
                                     </button>
                                     <ul class="dropdown-menu p-2 w-100 scroll-3-items" id="listaRoles">
                                         <li th:each="rol : ${roles}" th:data-label="${rol.name}">
@@ -227,7 +228,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-danger" onclick="resetForm()">
-                        <i class="bi bi-eraser me-1"></i>Limpiar
+                        <i class="bi bi-eraser me-1"></i><span>Limpiar</span>
                     </button>
                     <input type="submit" form="filtroForm" class="btn btn-primary" value="Aplicar Filtros">
                 </div>

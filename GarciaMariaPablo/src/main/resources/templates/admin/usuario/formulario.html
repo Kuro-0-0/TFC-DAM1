@@ -56,8 +56,8 @@
                                 class="form-control form-control-lg" placeholder="Contraseña"
                                 th:required="!${modificar}" minlength="8" maxlength="32"
                                 title="Debe tener entre 8 y 32 caracteres, con al menos una mayúscula, una minúscula y un número.">
-                            <span class="text-muted small" th:if="${modificar}">Dejar en blanco para mantener la
-                                contraseña actual</span>
+                            <div class="text-muted small mt-1" th:if="${modificar}">Dejar en blanco para mantener la
+                                contraseña actual</div>
                         </div>
                     </div>
 
@@ -70,7 +70,7 @@
                                 placeholder="Ej. Juan" required maxlength="30">
                         </div>
 
-                        <div class="col-md-6 mb-3"> 
+                        <div class="col-md-6 mb-3">
                             <label for="apellidos" class="form-label fw-medium">
                                 <i class="bi bi-people me-1"></i>Apellidos
                             </label>
@@ -84,7 +84,7 @@
                             <i class="bi bi-shield me-1"></i>Rol <span class="text-danger">*</span>
                         </label>
                         <div class="input-group mb-2">
-                            <span class="input-group-text" id="filtroRolLabel"><i class="bi bi-search"></i></span>
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
                             <input type="text" class="form-control" id="filtroRol" placeholder="Filtrar roles...">
                         </div>
 
@@ -96,7 +96,7 @@
                                 <li th:each="rol : ${roles}" th:data-label="${rol.name()}">
                                     <a class="dropdown-item d-flex align-items-center" href="#"
                                         th:data-value="${rol.name()}">
-                                        <i class="bi bi-shield-check me-2"></i><span th:text="${rol.name()}"></span>
+                                        <i class="bi bi-shield-check me-2"></i><span th:text="${rol.name()}">ROL</span>
                                     </a>
                                 </li>
                             </ul>
@@ -105,7 +105,8 @@
                     </div>
 
                     <div class="d-flex justify-content-between mt-4 pt-3 border-top">
-                        <a th:href="@{/admin/usuarios}" href="listar.html" title="Volver al menu de usuarios." class="btn btn-outline-secondary">
+                        <a th:href="@{/admin/usuarios}" href="listar.html" title="Volver al menú de usuarios"
+                            class="btn btn-outline-secondary">
                             <i class="bi bi-arrow-left me-1"></i>Cancelar
                         </a>
 
@@ -113,7 +114,7 @@
                         <button type="submit" class="btn btn-primary px-4">
                             <i class="bi bi-check-circle me-1" th:if="${modificar}"></i>
                             <i class="bi bi-plus-circle me-1" th:unless="${modificar}"></i>
-                            <span th:text="${modificar} ? 'Actualizar Usuario' : 'Crear Usuario'"></span>
+                            <span th:text="${modificar} ? 'Actualizar Usuario' : 'Crear Usuario'">Crear Usuario</span>
                         </button>
                     </div>
                 </form>

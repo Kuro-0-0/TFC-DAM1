@@ -54,7 +54,8 @@ incidencias_por_categoria = {
             "No responde al intentar imprimir.",
             "Falta papel en la impresora.",
             "La impresora muestra un error de conexión.",
-            "El controlador de la impresora no está instalado correctamente."
+            "El controlador de la impresora no está instalado correctamente.",
+            "Es mas antigua que el puente del sillo"
         ]
     },
     "tablet": {
@@ -244,7 +245,8 @@ incidencias_por_categoria = {
             "Llevamos 3 horas en clase con luismi, no hay mas que decir.",
             "Hay un chaval que no para de hacer ruido comiendo.",
             "German lleva desde las ocho de la mañana sin callarse.",
-            "El pablo no para quiero, que se calle.",
+            "El pablo no para quieto, que se calle.",
+            "Se escucha la moto de Fernando desde la otra punta del edificio.",
         ]
     },
     "pantalla": {

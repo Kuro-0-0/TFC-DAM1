@@ -12,32 +12,28 @@
 </head>
 
 <body class="d-flex flex-column h-100 bg-light">
-
     <th:block th:replace="~{tech/_fragments/headerTecnico.html :: headerTecnico}"></th:block>
 
-    <main class="container flex-grow-1 my-4" >
+    <main class="container flex-grow-1 my-4">
         <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
 
         <article class="card border-0 shadow rounded-3 overflow-hidden">
             <header class="card-header bg-main text-white rounded-top-3 p-3">
                 <div class="d-flex justify-content-between align-items-center">
                     <h1 class="h5 mb-0">
-                        <i class="bi bi-file-earmark-text me-2"></i>
-                        Detalle de Incidencia
+                        <i class="bi bi-file-earmark-text me-2"></i><span>Detalle de Incidencia</span>
                     </h1>
                     <span class="status-badge fw-bold" th:text="${incidencia.estado.nombre}"
                         th:style="'background-color: '+${incidencia.estado.colorFondo}+';color: '+${incidencia.estado.colorTexto}">
-                        Pendiente
+                        <span>Pendiente</span>
                     </span>
                 </div>
             </header>
 
             <div class="card-body p-4">
-
                 <section class="mb-4 pb-3 border-bottom">
                     <h2 id="titulo-incidencia" class="h4 mb-3 txt-main" th:text="${incidencia.titulo}">
-                        <i class="bi bi-file-earmark-text me-2"></i>
-                        Falla en el servidor
+                        <i class="bi bi-file-earmark-text me-2"></i><span>Falla en el servidor</span>
                     </h2>
                 </section>
 
@@ -93,23 +89,24 @@
                             <div class="text-muted small fw-semibold">Descripción</div>
                         </div>
                         <p class="mb-0 ps-2" th:text="${incidencia.descripcion}">
-                            El servidor se reinicia constantemente sin motivo aparente.
+                            <span>El servidor se reinicia constantemente sin motivo aparente.</span>
                         </p>
                     </div>
                 </section>
 
                 <section class="d-flex justify-content-between align-items-center mt-4">
-                    <a th:href="@{/tech/incidencias/asignadas}" href="listar.html" title="Ver mis asignadas" class="btn btn-outline-secondary">
-                        <i class="bi bi-arrow-left me-1"></i>Volver al listado
+                    <a th:href="@{/tech/incidencias/asignadas}" href="/tech/incidencias/asignadas"
+                        title="Ver mis asignadas" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left me-1"></i><span>Volver al listado</span>
                     </a>
                     <div>
                         <button th:unless="${incidencia.estado.tipo == 'Final'}" class="btn btn-primary me-2"
                             data-bs-toggle="modal" data-bs-target="#editarEstadoModal">
-                            <i class="bi bi-pencil me-1"></i>Editar
+                            <i class="bi bi-pencil me-1"></i><span>Editar</span>
                         </button>
                         <button class="btn btn-danger" data-bs-toggle="modal"
                             data-bs-target="#confirmarEliminacionModal">
-                            <i class="bi bi-trash me-1"></i>Eliminar
+                            <i class="bi bi-trash me-1"></i><span>Eliminar</span>
                         </button>
                     </div>
                 </section>
@@ -117,17 +114,14 @@
         </article>
     </main>
 
-    <!-- Modal para editar estado -->
-    <div class="modal fade" id="editarEstadoModal" tabindex="-1"
-        >
+    <div class="modal fade" id="editarEstadoModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-main text-white">
                     <h5 class="modal-title" id="editarEstadoModalLabel">
-                        <i class="bi bi-pencil-square me-2"></i>Cambiar Estado
+                        <i class="bi bi-pencil-square me-2"></i><span>Cambiar Estado</span>
                     </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        ></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <form th:action="@{'/tech/incidencias/modificar/' + ${incidencia.id}}" th:method="put">
                     <div class="modal-body">
@@ -142,10 +136,10 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            <i class="bi bi-x-circle me-1"></i>Cancelar
+                            <i class="bi bi-x-circle me-1"></i><span>Cancelar</span>
                         </button>
                         <button type="submit" class="btn btn-main">
-                            <i class="bi bi-check-circle me-1"></i>Guardar Cambios
+                            <i class="bi bi-check-circle me-1"></i><span>Guardar Cambios</span>
                         </button>
                     </div>
                 </form>
@@ -157,14 +151,15 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-danger text-white">
-                    <h2 class="modal-title h5" id="modalEliminarLabel">Confirmar Eliminación</h2>
+                    <h2 class="modal-title h5" id="modalEliminarLabel"><span>Confirmar Eliminación</span></h2>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    ¿Estás seguro que deseas eliminar esta incidencia? Esta acción no se puede deshacer.
+                    <span>¿Estás seguro que deseas eliminar esta incidencia? Esta acción no se puede deshacer.</span>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal"><span>Cancelar</span></button>
                     <form th:action="@{'/tech/incidencias/' + ${incidencia.id}}" method="post">
                         <input type="hidden" name="_method" value="delete" />
                         <input type="submit" class="btn btn-danger" value="Eliminar">

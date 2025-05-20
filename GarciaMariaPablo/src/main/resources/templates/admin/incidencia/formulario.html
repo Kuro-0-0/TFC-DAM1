@@ -12,16 +12,15 @@
 
     <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
 
-    <script defer th:src="@{/admin/javascript/reutilizables/buscarDesplegablesFiltros.js}"
-        src="../../../static/admin/javascript/reutilizables/buscarDesplegablesFiltros.js"></script>
-    <script defer th:src="@{/admin/javascript/incidencias/formulario/ajustarDropdows.js}"
-        src="../../../static/admin/javascript/incidencias/formulario/ajustarDropdows.js"></script>
-    <script defer th:src="@{/admin/javascript/incidencias/formulario/prevenirCreacionSinReportante.js}"
-        src="../../../static/admin/javascript/incidencias/formulario/prevenirCreacionSinReportante.js"></script>
+    <script defer src="../../../static/admin/javascript/reutilizables/buscarDesplegablesFiltros.js"
+        th:src="@{/admin/javascript/reutilizables/buscarDesplegablesFiltros.js}"></script>
+    <script defer src="../../../static/admin/javascript/incidencias/formulario/ajustarDropdows.js"
+        th:src="@{/admin/javascript/incidencias/formulario/ajustarDropdows.js}"></script>
+    <script defer src="../../../static/admin/javascript/incidencias/formulario/prevenirCreacionSinReportante.js"
+        th:src="@{/admin/javascript/incidencias/formulario/prevenirCreacionSinReportante.js}"></script>
 </head>
 
 <body class="d-flex flex-column h-100 bg-light">
-
     <header th:replace="~{admin/_fragments/header.html :: header}"></header>
 
     <main class="container flex-grow-1 my-4">
@@ -46,20 +45,18 @@
                     <div class="row mb-4">
                         <div th:class="${modificar} ? 'col-md-5 mb-3' : 'col-md-6 mb-3'">
                             <label for="titulo" class="form-label fw-medium">
-                                <i class="bi bi-card-heading me-1"></i>Título<span
-                                    class="text-danger">*</span>
+                                <i class="bi bi-card-heading me-1"></i>Título <span class="text-danger">*</span>
                             </label>
                             <input th:field="*{titulo}" type="text" class="form-control form-control-lg"
-                                placeholder="Ej. Falla en el servidor" required maxlength="50">
+                                placeholder="Ej. Falla en el servidor" required maxlength="50" />
                         </div>
 
                         <div th:class="${modificar} ? 'col-md-4 mb-3' : 'col-md-6 mb-3'">
                             <label for="ubicacion" class="form-label fw-medium">
-                                <i class="bi bi-geo-alt me-1"></i>Ubicación<span
-                                    class="text-danger">*</span>
+                                <i class="bi bi-geo-alt me-1"></i>Ubicación <span class="text-danger">*</span>
                             </label>
                             <input th:field="*{ubicacion}" type="text" class="form-control form-control-lg"
-                                placeholder="Ej. Sala de servidores - Planta 2" required maxlength="100">
+                                placeholder="Ej. Sala de servidores - Planta 2" required maxlength="100" />
                         </div>
 
                         <div class="col-md-3 mb-3" th:if="${modificar}">
@@ -84,19 +81,17 @@
                     <div class="row mb-4">
                         <div class="col-md-4 mb-3">
                             <label for="filtroReportante" class="form-label fw-medium">
-                                <i class="bi bi-person me-1"></i>Reportante <span
-                                    class="text-danger">*</span>
+                                <i class="bi bi-person me-1"></i>Reportante <span class="text-danger">*</span>
                             </label>
                             <div class="input-group mb-2">
                                 <span class="input-group-text"><i class="bi bi-search"></i></span>
                                 <input type="text" class="form-control" id="filtroReportante"
-                                    placeholder="Buscar reportante...">
+                                    placeholder="Buscar reportante..." />
                             </div>
                             <div class="dropdown">
                                 <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"
                                     id="dropdownReportante" data-bs-toggle="dropdown"
-                                    th:text="${modificar} ? *{reportante.nombre} : 'Selecciona una opción'">
-                                </button>
+                                    th:text="${modificar} ? *{reportante.nombre} : 'Selecciona una opción'"></button>
                                 <ul class="dropdown-menu w-100 p-2 scroll-3-items" id="listaReportantes">
                                     <li th:each="reportante : ${reportantes}" th:data-label="${reportante.nombre}">
                                         <a class="dropdown-item d-flex align-items-center" href="#"
@@ -118,13 +113,12 @@
                             <div class="input-group mb-2">
                                 <span class="input-group-text"><i class="bi bi-search"></i></span>
                                 <input type="text" class="form-control" id="filtroTecnico"
-                                    placeholder="Buscar técnico...">
+                                    placeholder="Buscar técnico..." />
                             </div>
                             <div class="dropdown">
                                 <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"
                                     id="dropdownTecnico" data-bs-toggle="dropdown"
-                                    th:text="${modificar} ? *{tecnico.nombre} : 'Selecciona una opción'">
-                                </button>
+                                    th:text="${modificar} ? *{tecnico.nombre} : 'Selecciona una opción'"></button>
                                 <ul class="dropdown-menu w-100 p-2 scroll-3-items" id="listaTecnicos">
                                     <li th:each="tecnico : ${tecnicos}" th:data-label="${tecnico.nombre}">
                                         <a class="dropdown-item d-flex align-items-center" href="#"
@@ -146,13 +140,12 @@
                             <div class="input-group mb-2">
                                 <span class="input-group-text"><i class="bi bi-search"></i></span>
                                 <input type="text" class="form-control" id="filtroEstado"
-                                    placeholder="Filtrar estados...">
+                                    placeholder="Filtrar estados..." />
                             </div>
                             <div class="dropdown">
                                 <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"
                                     id="dropdownEstado" data-bs-toggle="dropdown"
-                                    th:text="${modificar} ? *{estado.nombre} : 'Selecciona una opción'">
-                                </button>
+                                    th:text="${modificar} ? *{estado.nombre} : 'Selecciona una opción'"></button>
                                 <ul class="dropdown-menu w-100 p-2 scroll-3-items" id="listaEstados">
                                     <li th:each="estado : ${estados}" th:data-label="${estado.nombre}">
                                         <a class="dropdown-item d-flex align-items-center" href="#"
@@ -168,7 +161,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="d-flex justify-content-between mt-4 pt-3 border-top">
                         <a th:if="${modificar}" href="listar.html" th:href="@{/admin/incidencias}"
                             class="btn btn-outline-secondary">
