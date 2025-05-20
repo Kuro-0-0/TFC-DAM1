@@ -2,6 +2,44 @@ import random
 from datetime import datetime, timedelta
 
 
+bloque_obligatorio = """
+INSERT INTO Estado (id, nombre, valor, activo, color_fondo, color_texto, tipo) VALUES (0, 'Resuelto', 'resuelto', true, '#198754', '#000000', 2);
+INSERT INTO Estado (id, nombre, valor, activo, color_fondo, color_texto, tipo) VALUES (2, 'En Proceso', 'en-proceso', true, '#0dcaf0', '#000000', 1);
+INSERT INTO Estado (id, nombre, valor, activo, color_fondo, color_texto, tipo) VALUES (3, 'Cancelado', 'cancelado', true, '#dc3545', '#ffffff', 2);
+INSERT INTO Estado (id, nombre, valor, activo, color_fondo, color_texto, tipo) VALUES (4, 'Bloqueado', 'bloqueado', true, '#6c757d', '#ffffff', 1);
+INSERT INTO Estado (id, nombre, valor, activo, color_fondo, color_texto, tipo) VALUES (1, 'Pendiente', 'pendiente', true, '#ffc107', '#000000', 0);
+INSERT INTO Estado (id, nombre, valor, activo, color_fondo, color_texto, tipo) VALUES (5, 'Sin Estado', 'sin-estado', true, '#04c7f5', '#ffffff', 0);
+
+ALTER TABLE Estado ALTER COLUMN id RESTART WITH 6;
+
+INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (1, 'user01', '$2a$12$7.MmeCKa9h.4u2uC31zOgOKFEyXQmIWKswTbNu4.MQedYyvQ2pgzW', 'USER', 'Ana', 'Martínez', 'ana.martinez@example.com', '612345678', '2024-11-03', true);
+INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (2, 'user02', '$2a$12$Ur0Am.HjJ0WseHbtWuZLjuJ2yBbyQU5MJPORmweLEEd5ip2C05IYq', 'USER', 'Carlos', 'Jiménez', 'carlos.jimenez@example.com', '622345679', '2024-12-10', true);
+INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (3, 'user03', '$2a$12$qiHV.kWZWYJXcpQWUwJME.c4o2bZxgINRb8jQCghvK5MrMRD0kNCy', 'USER', 'Lucía', 'Navarro', 'lucia.navarro@example.com', '632345680', '2025-01-05', true);
+INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (4, 'user04', '$2a$12$Z9N.3Njv.bBXFfui5ysesu6Oc39oXfGs8n7V45ae/QIMunErTl3Fy', 'USER', 'David', 'Fernández', 'david.fernandez@example.com', '642345681', '2025-02-12', true);
+INSERT INTO usuario (id, username, password, nombre, apellidos, rol, editable) VALUES (5, 'sin-tecnico', 'sin-tecnico', 'Sin Tecnico', '', 'TECH',false);
+INSERT INTO usuario (id, username, password, nombre, apellidos, rol, editable) VALUES (6, 'sin-reportante', 'sin-reportante', 'Sin Reportante', '','USER',false);
+INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (7, 'user05', '$2a$12$BxOL/W6prcl10mPFM8sTlOudTdxmw/mNqYsINIkw5Ze1otkt58X0q', 'USER', 'Elena', 'Romero', 'elena.romero@example.com', '652345682', '2025-03-18', true);
+INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (8, 'user06', '$2a$12$wcv3W3nrkedYQM1py43D5OyoxU6WOmPqrwDmnR7CnOtkzO2M44fhG', 'USER', 'Javier', 'Ortiz', 'javier.ortiz@example.com', '662345683', '2025-03-21', true);
+INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (9, 'user07', '$2a$12$.Xv5w.qDf964rO.2x8TBJOu.Yq6xR7kXLOQUrwcHdpS8lYsfQB5yq', 'USER', 'Sara', 'Cano', 'sara.cano@example.com', '672345684', '2025-03-27', true);
+INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (10, 'user08', '$2a$12$qL1JYDBiYRpCwyUp9/r/euX7gmLChdir8NAX7LJQBWS6DApOZxQ.i', 'USER', 'Mario', 'González', 'mario.gonzalez@example.com', '682345685', '2025-04-04', true);
+INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (11, 'user09', '$2a$12$WL05lv72x9P6zeymFJzqre5smIW5t6L/v832MDKaZIyG4uTG7NsaK', 'USER', 'Nuria', 'Sanz', 'nuria.sanz@example.com', '692345686', '2025-04-11', true);
+INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (12, 'user10', '$2a$12$smC6itF8JbqT83mXwnBPOu8ibh9aB/HryghmzLRB2B2/MJH1ImSom', 'USER', 'Raúl', 'Alonso', 'raul.alonso@example.com', '602345687', '2025-04-17', true);
+INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (13, 'tech01', '$2a$12$mYl/eUWoje6/6cs0OoYGa.4IOH4iG5ziFr5go4c/V6Nr9bmyl.z/q', 'TECH', 'Isabel', 'Pérez', 'isabel.perez@example.com', '611111111', '2025-04-20', true);
+INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (14, 'tech02', '$2a$12$JfN31Y95PREiph5/yuvBreFZhovgrjSzyGxdzC5EhdqPqMiJbdB8S', 'TECH', 'Pedro', 'Herrera', 'pedro.herrera@example.com', '622222222', '2025-04-21', true);
+INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (15, 'tech03', '$2a$12$FePPC3xeTTHl8FsgK1APFuH8Sxdnh48BGoIq8k/HFkxG1RwyxOdlu', 'TECH', 'Claudia', 'Mora', 'claudia.mora@example.com', '633333333', '2025-04-22', true);
+INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (16, 'tech04', '$2a$12$obaRrurahwkaCtabLacxg.rVgpJO9Bo2jaEPvmrK1EP/xiF/tNS1m', 'TECH', 'Alberto', 'Reyes', 'alberto.reyes@example.com', '644444444', '2025-04-23', true);
+INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (17, 'tech05', '$2a$12$obaRrurahwkaCtabLacxg.rVgpJO9Bo2jaEPvmrK1EP/xiF/tNS1m', 'TECH', 'Patricia', 'Crespo', 'patricia.crespo@example.com', '655555555', '2025-04-24', true);
+INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (18, 'tech06', '$2a$12$obaRrurahwkaCtabLacxg.rVgpJO9Bo2jaEPvmrK1EP/xiF/tNS1m', 'TECH', 'Hugo', 'López', 'hugo.lopez@example.com', '666666666', '2025-04-25', true);
+INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (19, 'tech07', '$2a$12$obaRrurahwkaCtabLacxg.rVgpJO9Bo2jaEPvmrK1EP/xiF/tNS1m', 'TECH', 'Teresa', 'Delgado', 'teresa.delgado@example.com', '677777777', '2025-04-26', true);
+INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (20, 'tech08', '$2a$12$obaRrurahwkaCtabLacxg.rVgpJO9Bo2jaEPvmrK1EP/xiF/tNS1m', 'TECH', 'Andrés', 'Ruiz', 'andres.ruiz@example.com', '688888888', '2025-04-27', true);
+INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (21, 'tech09', '$2a$12$obaRrurahwkaCtabLacxg.rVgpJO9Bo2jaEPvmrK1EP/xiF/tNS1m', 'TECH', 'Laura', 'Suárez', 'laura.suarez@example.com', '699999999', '2025-04-28', true);
+INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (22, 'tech10', '$2a$12$obaRrurahwkaCtabLacxg.rVgpJO9Bo2jaEPvmrK1EP/xiF/tNS1m', 'TECH', 'Sergio', 'Bermúdez', 'sergio.bermudez@example.com', '600000000', '2025-04-29', true);
+INSERT INTO Usuario (id,username,password,rol,editable, nombre, apellidos) VALUES (23,'user','$2a$10$P.INQOjXA6Krg12MKDl3ne0jZKqQPwjdNd9LfzYl9m2GTwm1nfm3y','USER',false,'user','');
+INSERT INTO usuario (id, username, password, nombre, apellidos, rol, editable) VALUES (24, 'tech', '$2a$12$cVbhu2H9QtaWAA8zmXs7luqThZjcKrBTLd5upkgn.SFRPEVo76OKm', 'tech', '', 'TECH',false);
+ALTER TABLE usuario ALTER COLUMN id RESTART WITH 25;
+INSERT INTO usuario (username, password, nombre, apellidos, rol, editable) VALUES ( 'admin', '$2a$12$fMCbeiD5ulJd0HVupQClOeUglGpw9z2UphGQPI3ANsiEtGP.TA67K', 'admin', '', 'ADMIN',false);
+"""
+
 # Datos reutilizables
 
 incidencias_por_categoria = {
@@ -171,7 +209,6 @@ incidencias_por_categoria = {
             "Se siente aire caliente en lugar de frío.",
             "El sistema de ventilación hace ruidos extraños.",
             "Hace mas calor que en la comunion de charmander",
-            "Tanta  calor que hacia como David Pulido y me iba del grado"
         ]
     },
     "frio":{
@@ -190,20 +227,6 @@ incidencias_por_categoria = {
             "Aqui hace mucho frio, OTRO MES QUE NO COBRAS."
         ]
     },
-    # "control_anti_dopping":{
-    #     "titulos": [
-    #         "Olor fuerte en los verdes",
-    #         "Olor fuerte en el parque los naranjos"
-    #     ],
-    #     "descripciones": [
-    #         "Creo que estan fumando porros.",
-    #         "Me parece a mi, que lo des la basica estan desatados.",
-    #         "Creo que los de informatica llevan sin ducharse desde el primer hijo de miguel.",
-    #         "Me parece a mi, que el mauro se ha pasado con la colonia.",
-    #         "No huele un poco raro aqui?",
-    #         "Medio raros los amigos del abraham, no?",
-    #     ]
-    # },
     "ruido": {
         "titulos": [
             "Ruido infernal",
@@ -216,8 +239,6 @@ incidencias_por_categoria = {
             "Parece que alguien taladra constantemente en el aula.",
             "El zumbido es tan constante que se sincroniza con mis pensamientos.",
             "Hay más ruido que en una boda gitana con altavoces Bose.",
-            "El german no se calla ni debajo del agua.",
-            "Llevamos 3 horas en clase con luismi, no hay mas que decir."
         ]
     },
     "pantalla": {
@@ -283,9 +304,14 @@ incidencias_por_categoria = {
 start_date = datetime(2025, 5, 1)
 end_date = datetime(2025, 5, 19)
 
-def rand_date(start=start_date, end=end_date):
-    base = start + timedelta(days=random.randint(0, (end - start).days - 3))
-    return base.date(), (base + timedelta(days=1)).date(), (base + timedelta(days=2)).date()
+def rand_datetime(start, end):
+    delta = end - start
+    random_seconds = random.randint(0, int(delta.total_seconds()))
+    base = start + timedelta(seconds=random_seconds)
+    f1 = base
+    f2 = f1 + timedelta(seconds=random.randint(60, 3600*40))
+    f3 = f2 + timedelta(seconds=random.randint(60, 3600*40))
+    return f1, f2, f3
 
 # Reportantes válidos
 valid_reportantes = list(range(1, 5)) + list(range(7, 13)) + [23]
@@ -300,8 +326,11 @@ for _ in range(len(valid_reportantes) * 10):
     cont += 1
     reportante_id = random.choice(valid_reportantes)
     tecnico_id = random.choice(valid_tecnicos)
-    estado_id = random.randint(0, 5)
-    fecha_creacion, fechaiea, fecha_modificacion = rand_date()
+    if tecnico_id == 5:
+        estado_id = 5
+    else:
+        estado_id = random.randint(0, 5)
+    fecha_creacion, fechaiea, fecha_modificacion = rand_datetime(start_date, end_date)
     categoria = random.choice(list(incidencias_por_categoria.keys()))
     titulo = random.choice(incidencias_por_categoria[categoria]["titulos"])
     descripcion = random.choice(incidencias_por_categoria[categoria]["descripciones"])
@@ -313,7 +342,7 @@ for _ in range(len(valid_reportantes) * 10):
         f"'{fecha_creacion}', '{fechaiea}', '{fecha_modificacion}');"
     )
 
-    saltos = random.randint(2, 5)
+    saltos = random.randint(0, 3)
     estado_inicial = 5
     fecha_comienzo = fecha_creacion
 
@@ -322,26 +351,32 @@ for _ in range(len(valid_reportantes) * 10):
             fecha_final = fecha_modificacion
             historial.append(
                 f"INSERT INTO historial_estados (incidencia_id, estado_inicial_id, estado_actual_id, fecha_comienzo, fecha_final) "
-                f"VALUES ({id_incidencia}, {estado_inicial}, {estado_id}, '{fecha_comienzo}', '{fecha_final}');"
+                f"VALUES ({id_incidencia}, {estado_inicial}, {estado_id}, '{fecha_comienzo.strftime('%Y-%m-%d %H:%M:%S')}', '{fecha_final.strftime('%Y-%m-%d %H:%M:%S')}');"
             )
         else:
             nuevo_estado = random.randint(0, 5)
             while nuevo_estado == estado_inicial:
                 nuevo_estado = random.randint(0, 5)
-            nueva_fecha = fecha_comienzo + timedelta(days=random.randint(1, 2))
+            nueva_fecha = fecha_comienzo + timedelta(hours=random.randint(1, 24), minutes=random.randint(1, 59))
+            while nueva_fecha > fecha_modificacion:
+                print(fecha_comienzo, nueva_fecha, fecha_modificacion)
+                nueva_fecha = fecha_comienzo + timedelta(hours=random.randint(1, 24), minutes=random.randint(1, 59))
             historial.append(
                 f"INSERT INTO historial_estados (incidencia_id, estado_inicial_id, estado_actual_id, fecha_comienzo, fecha_final) "
-                f"VALUES (NULL, {estado_inicial}, {nuevo_estado}, '{fecha_comienzo}', '{nueva_fecha}');"
+                f"VALUES (NULL, {estado_inicial}, {nuevo_estado}, '{fecha_comienzo.strftime('%Y-%m-%d %H:%M:%S')}', '{nueva_fecha.strftime('%Y-%m-%d %H:%M:%S')}');"
             )
             estado_inicial = nuevo_estado
             fecha_comienzo = nueva_fecha
 
-resultado_final = incidencias
+
+resultado_final = []
+resultado_final += bloque_obligatorio.strip().splitlines()
+resultado_final += incidencias
 resultado_final += [f"ALTER TABLE Incidencia ALTER COLUMN id RESTART WITH {id_incidencia};"]
 resultado_final += historial
 
 # Guardar a archivo
-path = "static\BORRAR\incidencias.sql"
+path = "static/BORRAR/incidencias.sql"
 with open(path, "w", encoding="utf-8") as f:
     f.write('\n'.join(resultado_final))
 

@@ -3,8 +3,10 @@ package com.salesianostriana.dam.GarciaMariaPablo.admin.servicios;
 
 import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.estado.external.EstadoDao_FiltrarIncidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.incidencia.IncidenciaAdminDao_Crear;
-import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.incidencia.IncidenciaDao_Estadisticas;
 import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.incidencia.IncidenciaAdminDao_Modificar;
+import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.incidencia.IncidenciaDao_Estadisticas;
+import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.otros.EstadisticasDao;
+import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.usuario.external.UsuarioDao_Estadisticas;
 import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.usuario.external.UsuarioDao_FiltrarIncidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.admin.daos.usuario.external.UsuarioDao_FormularioIncidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.global.daos.estado.external.EstadoDao_Seleccionar;
@@ -19,6 +21,7 @@ import com.salesianostriana.dam.GarciaMariaPablo.global.repositorios.Repositorio
 import com.salesianostriana.dam.GarciaMariaPablo.global.repositorios.RepositorioIncidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.global.repositorios.RepositorioUsuario;
 import com.salesianostriana.dam.GarciaMariaPablo.global.servicios.ServicioIncidencia;
+import com.salesianostriana.dam.GarciaMariaPablo.global.servicios.ServicioUsuario;
 import com.salesianostriana.dam.GarciaMariaPablo.global.servicios.otros.base.ServicioBaseImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +50,8 @@ public class ServicioAdminIncidencia extends ServicioBaseImpl<Incidencia, Long, 
 
     @Autowired
     private ServicioIncidencia servicioIncidencia;
-
+    @Autowired
+    private ServicioUsuario servicioUsuario;
 
 
     public Incidencia revertirDao(IncidenciaAdminDao_Crear incidenciaDao) {
@@ -258,10 +262,24 @@ public class ServicioAdminIncidencia extends ServicioBaseImpl<Incidencia, Long, 
     }
 
     public String cargarEstadisticas(Model model) {
+        List<Usuario> usuarios = servicioUsuario.findAll();
+        List<UsuarioDao_Estadisticas> usuariosDao = usuarios.stream().map(UsuarioDao_Estadisticas::crearDao).toList();
+
+        EstadisticasDao estadisticasDao = new EstadisticasDao(
+                usuariosDao.stream().filter(u -> u.getNumeroResueltas() > 0).sorted(Comparator.comparing(UsuarioDao_Estadisticas::getNumeroResueltas).reversed()).limit(3).toList(),
+                usuariosDao.stream().filter(u -> u.getHorasMedias() > 0).sorted(Comparator.comparing(UsuarioDao_Estadisticas::getHorasMedias)).limit(3).toList(),
+                usuariosDao.stream().filter(u -> u.getNumeroReportes() > 0).sorted(Comparator.comparing(UsuarioDao_Estadisticas::getNumeroReportes).reversed()).limit(3).toList()
+        );
+
+        model.addAttribute("estadisticasJAVA",estadisticasDao);
+
+
         model.addAttribute("incidencias",findAll().stream()
         		.filter(i -> i.getEstado().isActivo())
                 .map(IncidenciaDao_Estadisticas::crearDao)
                 .toList());
+
+
 
         /*
         Ahora que tenemos historial de estados se pueden hacer estadísticas como por ejemplo:

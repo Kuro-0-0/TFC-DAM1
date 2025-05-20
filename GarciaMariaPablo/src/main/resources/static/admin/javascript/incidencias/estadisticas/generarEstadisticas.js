@@ -65,7 +65,7 @@ function generarTarjetasEstados() {
     totalCard.style.backgroundColor = `rgba(20, 203, 97, 0.4)`; // Color verde con transparencia
 
     totalCard.innerHTML = `
-    <div class="card-body">
+    <div class="card-body custom-card-witdh">
         <div class="d-flex justify-content-between align-items-start">
             <div>
                 <h5 class="card-title text-dark">Total</h5>
@@ -84,7 +84,7 @@ function generarTarjetasEstados() {
         card.style.backgroundColor = hexToRGBA(estado.colorFondo, 0.4); // Color del fondo con opacidad
 
         card.innerHTML = `
-    <div class="card-body">
+    <div class="card-body custom-card-witdh">
         <div class="d-flex justify-content-between align-items-start">
             <div>
                 <h5 class="card-title" style="color: ${estado.colorTexto}">${estado.nombre}</h5>
