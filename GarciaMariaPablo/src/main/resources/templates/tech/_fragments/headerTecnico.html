@@ -2,7 +2,7 @@
     <header class="bg-main shadow-sm">
         <nav class="navbar navbar-expand-lg navbar-dark container px-3">
             <div class="container-fluid">
-                <a class="navbar-brand d-flex align-items-center gap-2" th:href="@{/tech/dashboard}">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="../otros/dashboard.html" title="Ir al dashboard" th:href="@{/tech/dashboard}">
                     <i class="bi bi-tools fs-4 me-2"></i>
                     <span class="fw-bold">Panel Técnico</span>
                 </a>
@@ -21,17 +21,17 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a class="dropdown-item" th:href="@{/tech/incidencias/sin-asignar}">
+                                    <a class="dropdown-item" href="../incidencia/listar.html" title="Ver sin asignar." th:href="@{/tech/incidencias/sin-asignar}">
                                         <i class="bi bi-hourglass-split me-2"></i>Sin asignar
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" th:href="@{/tech/incidencias/asignadas}">
+                                    <a class="dropdown-item" href="../incidencia/listar.html" title="Ver asignadas." th:href="@{/tech/incidencias/asignadas}">
                                         <i class="bi bi-person-check me-2"></i>Asignadas a mí
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" th:href="@{/tech/incidencias/resueltas}">
+                                    <a class="dropdown-item" href="../incidencia/listar.html" title="Ver finalizadas." th:href="@{/tech/incidencias/resueltas}">
                                         <i class="bi bi-patch-check-fill me-2"></i>Finalizadas
                                     </a>
                                 </li>
@@ -61,7 +61,7 @@
             </div>
             <div class="offcanvas-body d-flex flex-column">
                 <div class="nav flex-column gap-2 mb-auto">
-                    <a class="nav-link d-flex align-items-center" th:href="@{/tech/dashboard}">
+                    <a class="nav-link d-flex align-items-center" href="../otros/dashboard.html" title="Ir al dashboard" th:href="@{/tech/dashboard}">
                         <i class="bi bi-speedometer2 me-2"></i>Dashboard
                     </a>
                     <div class="accordion" id="accordionTecnico">
@@ -75,13 +75,13 @@
                             <div id="collapseTecnicoIncidencias" class="accordion-collapse collapse">
                                 <div class="accordion-body p-0">
                                     <div class="nav flex-column ps-3">
-                                        <a class="nav-link" th:href="@{/tech/incidencias/sin-asignar}">
+                                        <a class="nav-link" href="../incidencia/listar.html" title="Ver sin asignar." th:href="@{/tech/incidencias/sin-asignar}">
                                             <i class="bi bi-hourglass-split me-2"></i>Sin asignar
                                         </a>
-                                        <a class="nav-link" th:href="@{/tech/incidencias/asignadas}">
+                                        <a class="nav-link" href="../incidencia/listar.html" title="Ver asignadas a mi." th:href="@{/tech/incidencias/asignadas}">
                                             <i class="bi bi-person-check me-2"></i>Asignadas a mí
                                         </a>
-                                        <a class="nav-link" th:href="@{/tech/incidencias/resueltas}">
+                                        <a class="nav-link" href="../incidencia/listar.html" title="Ver mis resueltas" th:href="@{/tech/incidencias/resueltas}">
                                             <i class="bi bi-patch-check-fill me-2"></i>Finalizadas
                                         </a>
                                     </div>

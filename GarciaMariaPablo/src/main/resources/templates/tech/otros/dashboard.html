@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="card-footer bg-transparent border-0 py-3">
-                        <a th:href="@{/tech/incidencias/sin-asignar}" class="btn btn-sm btn-outline-primary w-100">
+                        <a th:href="@{/tech/incidencias/sin-asignar}" class="btn btn-sm btn-outline-primary w-100" href="../incidencia/listar.html" title="Ver todas las incidencias sin asignar">
                             Ver todas <i class="bi bi-arrow-right ms-2"></i>
                         </a>
                     </div>
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                     <div class="card-footer bg-transparent border-0 py-3">
-                        <a th:href="@{/tech/incidencias/asignadas}" class="btn btn-sm btn-outline-warning w-100">
+                        <a th:href="@{/tech/incidencias/asignadas}" class="btn btn-sm btn-outline-warning w-100" href="../incidencia/listar.html" title="Ver todas mis incidencias">
                             Ver todas mis incidencias <i class="bi bi-arrow-right ms-2"></i>
                         </a>
                     </div>
@@ -79,7 +79,7 @@
                         </div>
                     </div>
                     <div class="card-footer bg-transparent border-0 py-3">
-                        <a th:href="@{/tech/incidencias/resueltas}" class="btn btn-sm btn-outline-success w-100">
+                        <a th:href="@{/tech/incidencias/resueltas}" class="btn btn-sm btn-outline-success w-100" href="../incidencia/listar.html" title="Ver todas las incidencias finalizadas">
                             Ver resueltas <i class="bi bi-arrow-right ms-2"></i>
                         </a>
                     </div>
@@ -92,7 +92,7 @@
                 <div class="card border-0 shadow-sm h-100">
                     <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
                         <h2 class="h5 mb-0"><i class="bi bi-hourglass-split me-2"></i>Incidencias sin asignar</h2>
-                        <a th:href="@{/tech/incidencias/sin-asignar}" class="btn btn-sm btn-outline-secondary">
+                        <a th:href="@{/tech/incidencias/sin-asignar}" class="btn btn-sm btn-outline-secondary" href="../incidencia/listar.html" title="Ver todas las incidencias sin asignar">
                             Ver todas
                         </a>
                     </div>
@@ -107,6 +107,7 @@
                                 <div class="d-flex justify-content-between align-items-start row">
                                     <div class="col-8">
                                         <a th:href="@{/tech/incidencias/inspeccionar/} + ${incidencia.id}"
+                                        href="../incidencia/listar.html" title="Ver detalles de incidencia"
                                             class="text-decoration-none fw-bold" th:text="${incidencia.titulo}">Título
                                             incidencia</a>
                                         <div class="small text-muted"
@@ -132,7 +133,7 @@
                 <div class="card border-0 shadow-sm h-100">
                     <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
                         <h2 class="h5 mb-0"><i class="bi bi-person-check me-2"></i>Mis incidencias recientes</h2>
-                        <a th:href="@{/tech/incidencias/asignadas}" class="btn btn-sm btn-outline-secondary">
+                        <a th:href="@{/tech/incidencias/asignadas}" class="btn btn-sm btn-outline-secondary" href="../incidencia/listar.html" title="Ver todas mis incidencias">
                             Ver todas
                         </a>
                     </div>
@@ -147,7 +148,9 @@
                                 <div class="d-flex justify-content-between align-items-start">
                                     <div>
                                         <a th:href="@{/tech/incidencias/inspeccionar/} + ${incidencia.id}"
-                                            class="text-decoration-none fw-bold" th:text="${incidencia.titulo}">Título
+                                            class="text-decoration-none fw-bold" th:text="${incidencia.titulo}"
+                                            href="../incidencia/listar.html" title="Ver detalles de incidencia"
+                                            >Título
                                             incidencia</a>
                                         <div class="small text-muted"
                                             th:text="${#temporals.format(incidencia.fechaCreacion, 'dd/MM/yyyy HH:mm')}">
