@@ -3,11 +3,14 @@ document.addEventListener("DOMContentLoaded", function () {
         const modalElement = document.getElementById('contactModal');
         const modalInstance = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
         modalInstance.hide();
+        setTimeout(() => {
+            document.getElementById("infoMessage").classList.remove("d-none");
+            document.getElementById("infoMessage").scrollIntoView({ behavior: "smooth" });
+            const infoText = document.getElementById("infoTextMessage");
+            infoText.textContent = "Tu mensaje se está enviando. Por favor, espera un momento.";
+        }, 1000);
 
-        document.getElementById("infoMessage").classList.remove("d-none");
-        document.getElementById("infoMessage").scrollIntoView({ behavior: "smooth" });
-        const infoText = document.getElementById("infoTextMessage");
-        infoText.textContent = "Tu mensaje se está enviando. Por favor, espera un momento.";
     }
-)}
+    )
+}
 );
