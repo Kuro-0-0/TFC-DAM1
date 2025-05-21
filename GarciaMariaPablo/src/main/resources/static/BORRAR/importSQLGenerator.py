@@ -347,6 +347,9 @@ for _ in range(len(valid_reportantes) * 10):
     descripcion = random.choice(incidencias_por_categoria[categoria]["descripciones"])
     ubicacion = f"Aula {random.randint(1, 20)}"
 
+    if estado_id == 1 or estado_id == 3:
+        fecha_modificacion = fechaiea
+
     incidencias.append(
         f"INSERT INTO Incidencia (id, titulo, ubicacion, descripcion, reportante_id, tecnico_id, estado_id, fecha_creacion, fechaiea, fecha_modificacion) "
         f"VALUES ({id_incidencia}, '{titulo}', '{ubicacion}', '{descripcion}', {reportante_id}, {tecnico_id}, {estado_id}, "

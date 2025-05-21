@@ -279,7 +279,7 @@ public class ServicioAdminIncidencia extends ServicioBaseImpl<Incidencia, Long, 
 
 
         /*
-        Ahora que tenemos historial de estados se pueden hacer estadísticas como por ejemplo:
+        Ahora que tengo historial de estados se pueden hacer estadísticas como por ejemplo:
             - Tiempo medio de cambio de estado.
             - Tiempo medio de cambio de estado por usuario
             - Incidencias por tipos

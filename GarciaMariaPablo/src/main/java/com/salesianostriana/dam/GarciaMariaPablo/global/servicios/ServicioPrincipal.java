@@ -76,7 +76,7 @@ public class ServicioPrincipal {
                 long horasMedias=0;
 
                 for (Incidencia incidencia : incidencias) {
-                    horasMedias += ChronoUnit.HOURS.between(incidencia.getFechaCreacion(), incidencia.getFechaIEA());
+                    horasMedias += ChronoUnit.HOURS.between(incidencia.getFechaCreacion(), incidencia.getFechaModificacion());
                 }
 
                 horasMedias = horasMedias/incidencias.size();

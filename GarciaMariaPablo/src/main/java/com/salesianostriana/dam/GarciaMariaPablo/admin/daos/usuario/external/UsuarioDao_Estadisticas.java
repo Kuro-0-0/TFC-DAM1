@@ -30,7 +30,7 @@ public class UsuarioDao_Estadisticas {
                  .filter(i -> i.getEstado().getTipo().equals(TipoEstados.Final))
                  .toList();
          return !listaIntermedia.isEmpty() ? listaIntermedia.stream()
-                 .mapToDouble(i -> ChronoUnit.HOURS.between(i.getFechaCreacion(),i.getFechaModificacion()))
+                 .mapToDouble(i -> ChronoUnit.HOURS.between(i.getFechaCreacion(),i.getFechaIEA()))
                  .average()
                  .orElse(0L)
                  : -1;
