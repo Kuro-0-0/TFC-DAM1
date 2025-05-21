@@ -81,9 +81,12 @@ public class ServicioAdminEstado extends ServicioBaseImpl<Estado, Long, Reposito
 
     public String cargarModificar(Model model, long id, RedirectAttributes redirectAttributes) {
         Estado estado = repositorio.findById(id).orElseThrow();
-        model.addAttribute("estadoDao", EstadoDao_Modificar.crearDao(estado));
+        if (!model.containsAttribute("estadoDao")) {
+            model.addAttribute("estadoDao", EstadoDao_Modificar.crearDao(estado));
+        }
         model.addAttribute("tipos", TipoEstados.values());
         model.addAttribute("modificar", true);
+
         if (estado.getValor().equals("sin-estado")) {
             redirectAttributes.addFlashAttribute("error","No puedes editar esta incidencia.");
             return "redirect:/admin/estados";
@@ -103,8 +106,15 @@ public class ServicioAdminEstado extends ServicioBaseImpl<Estado, Long, Reposito
         return "redirect:/admin/estados";
     }
 
-    public String modificar(EstadoDao_Modificar estadoDao) {
-        edit(revertirDao(estadoDao));
+    public String modificar(EstadoDao_Modificar estadoDao, RedirectAttributes redirectAttributes, Model model) {
+        Estado nuevoEstado = revertirDao(estadoDao);
+        Estado antiguaIncidencia = repositorio.findById(nuevoEstado.getId()).orElseThrow();
+        if (!repositorio.findByNombre(estadoDao.getNombre()).isEmpty() && !antiguaIncidencia.getNombre().equals(nuevoEstado.getNombre())) {
+            model.addAttribute("error", "Ya existe una incidencia con el mismo nombre");
+            model.addAttribute("estadoDao", estadoDao);
+            return cargarModificar(model,estadoDao.getId(),redirectAttributes);
+        }
+        edit(nuevoEstado);
         return "redirect:/admin/estados";
     }
 
