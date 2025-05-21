@@ -9,7 +9,9 @@
     <meta name="author" content="Pablo Garcia Maria">
     <title>Página principal | Gestión de Incidencias</title>
     <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
-    <script src="../../static/js/index/loadVideo.js" th:src="@{/js/index/loadVideo.js}"></script>
+    <script defer src="../../static/js/index/loadVideo.js" th:src="@{/js/index/loadVideo.js}"></script>
+    <script defer src="../../static/js/index/loadMailModal.js" th:src="@{/js/index/loadMailModal.js}"></script>
+    <script defer src="../../static/js/index/notificarTardanza.js" th:src="@{/js/index/notificarTardanza.js}"></script>
 </head>
 
 <body class="bg-light">
@@ -18,7 +20,7 @@
 
     <main>
 
-        <section class="py-5 bg-white">
+        <section class="py-5 bg-white" id="planes">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
@@ -341,6 +343,39 @@
             </div>
         </section>
     </main>
+
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-main text-white">
+                    <h5 class="modal-title" id="contactModalLabel">Contratar Plan</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <form th:action="@{/contratar}" id="formMail" th:method="put" th:object="${emailDao}">
+                    <div class="modal-body">
+                        <input type="hidden" th:field="*{planSeleccionado}">
+
+                        <div class="alert alert-info mt-3">
+                            <i class="bi bi-info-circle me-2"></i>Te enviaremos los detalles de la contratación a este
+                            correo.
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email de contacto</label>
+                            <input type="email" class="form-control" th:field="*{email}" required
+                                placeholder="tu@email.com">
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <input type="submit" class="btn btn-main text-white" value="Enviar Solicitud">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
 </body>
