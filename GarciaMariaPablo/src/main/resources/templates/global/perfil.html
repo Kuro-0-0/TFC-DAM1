@@ -11,7 +11,7 @@
 </head>
 
 <body class="d-flex flex-column h-100 bg-light">
-    <header th:replace="~{/global/_fragments/header.html :: headerGlobal}"></header>
+    <th:block th:replace="~{global/_fragments/header.html :: headerGlobal}"></th:block>
 
     <main class="container my-4 flex-grow-1">
         <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>

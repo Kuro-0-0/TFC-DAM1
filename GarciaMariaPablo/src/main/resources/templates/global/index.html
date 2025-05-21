@@ -9,6 +9,7 @@
     <meta name="author" content="Pablo Garcia Maria">
     <title>Página principal | Gestión de Incidencias</title>
     <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
+    <script src="../../static/js/index/loadVideo.js" th:src="@{/js/index/loadVideo.js}"></script>
 </head>
 
 <body class="bg-light">
@@ -49,28 +50,41 @@
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
             </div>
             <div class="offcanvas-body text-center">
-                <div class="spinner-border txt-main mb-3">
-                    <!-- Simularia la carga de un video que no existe -->
+                <div id="video-loader" class="spinner-border txt-main mb-3">
                     <span class="visually-hidden">Cargando...</span>
                 </div>
+
+                <div id="video-container" class="ratio ratio-16x9 mb-3 d-none">
+                    <iframe id="demoVideo" src="" title="Video funcionalidad" allowfullscreen></iframe>
+                </div>
+
                 <h4>Funcionalidades clave</h4>
-                <!-- Al hacer click en los botones de la lista, el video cambiaria por uno mostrando la funcionalidad indicada, pero como no tenemos video, simplemente se muestra un spinner -->
+
                 <div class="list-group mb-3">
-                    <a href="#" class="list-group-item list-group-item-action" title="Creación de incidencias">
-                        <i class="bi bi-plus-circle txt-main me-2"></i>Creación de incidencias
+                    <a href="#" class="list-group-item list-group-item-action"
+                        data-video="https://www.youtube.com/embed/bknR-sjrazE?si=hwBMSJ-A0OmaKH7C"
+                       title="Creación de incidencias">
+                        <i class="bi bi-plus-circle txt-main me-2"></i><span>Creación de incidencias</span>
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action" title="Seguimiento de estados">
-                        <i class="bi bi-list-task txt-main me-2"></i>Seguimiento de estados
+                    <a href="#" class="list-group-item list-group-item-action"
+                        data-video="https://www.youtube.com/embed/CIqzJxuL8m0?si=EXp5chTbI_UfIWRP"
+                        title="Seguimiento de estados">
+                        <i class="bi bi-list-task txt-main me-2"></i><span>Seguimiento de estados</span>
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action" title="Asignación a técnicos">
-                        <i class="bi bi-people txt-main me-2"></i>Asignación a técnicos
+                    <a href="#" class="list-group-item list-group-item-action"
+                        data-video="https://www.youtube.com/embed/N1opuwwFUd0?si=x-o118gJ0M6tUQ7p"
+                        title="Asignación a técnicos">
+                        <i class="bi bi-people txt-main me-2"></i><span>Asignación a técnicos</span>
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action" title="Visualizar reportes">
-                        <i class="bi bi-graph-up txt-main me-2"></i>Reportes básicos
+                    <a href="#" class="list-group-item list-group-item-action"
+                        data-video="https://www.youtube.com/embed/5v04wBzN7Gw?si=3oRoeaFPnanodb8h"
+                       title="Visualizar reportes">
+                        <i class="bi bi-graph-up txt-main me-2"></i><span>Reportes básicos</span>
                     </a>
                 </div>
+
                 <button class="btn btn-main text-white w-100" data-bs-dismiss="offcanvas">
-                    <i class="bi bi-eye me-2"></i>Entendido
+                    <i class="bi bi-eye me-2"></i><span>Entendido</span>
                 </button>
             </div>
         </div>
