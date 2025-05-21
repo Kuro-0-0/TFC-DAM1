@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Preguntas Frecuentes | Gestión de Incidencias</title>
+    <meta name="description"
+        content="Explora las respuestas a las preguntas más frecuentes sobre cómo usar el sistema de gestión de incidencias. Soluciones rápidas para usuarios y técnicos.">
+    <meta name="author" content="Pablo Garcia Maria">
+    <script defer src="../../static/js/faq/buscarFAQs.js" th:src="@{/js/faq/buscarFAQs.js}"></script>
+    <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
+</head>
+
+<body class="d-flex flex-column h-100 bg-light">
+    <th:block th:replace="~{global/_fragments/header.html :: headerGlobal}"></th:block>
+    <th:block th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></th:block>
+
+    <main class="flex-grow-1 container my-5">
+        <div class="bg-white shadow-sm rounded-3 p-4 p-md-5">
+            <h1 class="mb-4 border-bottom pb-3 fw-bold text-center txt-main">
+                <i class="bi bi-question-circle me-2"></i><span>Preguntas Frecuentes</span>
+            </h1>
+
+            <section class="row mb-5">
+                <div class="col-md-8 mx-auto">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="faqSearch"
+                            placeholder="Buscar en preguntas frecuentes...">
+                        <button class="btn btn-main text-white" type="button" id="searchButton">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="row g-4">
+                <div class="col-lg-6">
+                    <article class="card h-100 border-main">
+                        <header class="card-header bg-main text-white">
+                            <h2 class="h4 mb-0">
+                                <i class="bi bi-person me-2"></i><span>Para Usuarios</span>
+                            </h2>
+                        </header>
+                        <div class="card-body">
+                            <div class="accordion" id="userAccordion">
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="headingUser1">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#userQ1">
+                                            <span>¿Cómo reporto una nueva incidencia?</span>
+                                        </button>
+                                    </h3>
+                                    <div id="userQ1" class="accordion-collapse collapse"
+                                        data-bs-parent="#userAccordion">
+                                        <div class="accordion-body">
+                                            <ol>
+                                                <li><span>Inicia sesión en el sistema</span></li>
+                                                <li><span>Haz clic en "Nueva Incidencia"</span></li>
+                                                <li><span>Completa el formulario con los detalles del problema</span>
+                                                </li>
+                                                <li><span>Selecciona la categoría adecuada</span></li>
+                                                <li><span>Envía el reporte</span></li>
+                                            </ol>
+                                            <p><span>Podrás ver el estado de tu incidencia en tu panel de
+                                                    usuario.</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="headingUser2">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#userQ2">
+                                            <span>¿Cómo sé quién está atendiendo mi incidencia?</span>
+                                        </button>
+                                    </h3>
+                                    <div id="userQ2" class="accordion-collapse collapse"
+                                        data-bs-parent="#userAccordion">
+                                        <div class="accordion-body">
+                                            <p><span>Puedes ver esta información:</span></p>
+                                            <ul>
+                                                <li><span>En el detalle de tu incidencia</span></li>
+                                                <li><span>En tu panel de usuario</span></li>
+                                            </ul>
+                                            <p><span>El sistema mostrará el nombre del técnico asignado una vez que
+                                                    alguien del equipo tome tu caso.</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="headingUser3">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#userQ3">
+                                            <span>¿Qué tipos de incidencias puedo reportar?</span>
+                                        </button>
+                                    </h3>
+                                    <div id="userQ3" class="accordion-collapse collapse"
+                                        data-bs-parent="#userAccordion">
+                                        <div class="accordion-body">
+                                            <p><span>Puedes reportar cualquier tipo de problema, incluyendo:</span></p>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <h4 class="h6 fw-bold"><span>Mantenimiento</span></h4>
+                                                    <ul>
+                                                        <li><span>Mobiliario dañado</span></li>
+                                                        <li><span>Problemas eléctricos</span></li>
+                                                        <li><span>Necesidades de limpieza</span></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <h4 class="h6 fw-bold"><span>Tecnología</span></h4>
+                                                    <ul>
+                                                        <li><span>Fallas en equipos</span></li>
+                                                        <li><span>Problemas de software</span></li>
+                                                        <li><span>Errores en sistemas</span></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="col-lg-6">
+                    <article class="card h-100 border-main">
+                        <header class="card-header bg-main text-white">
+                            <h2 class="h4 mb-0">
+                                <i class="bi bi-tools me-2"></i><span>Para Técnicos</span>
+                            </h2>
+                        </header>
+                        <div class="card-body">
+                            <div class="accordion" id="techAccordion">
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="headingTech1">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#techQ1">
+                                            <span>¿Cómo asigno una incidencia a mi equipo?</span>
+                                        </button>
+                                    </h3>
+                                    <div id="techQ1" class="accordion-collapse collapse"
+                                        data-bs-parent="#techAccordion">
+                                        <div class="accordion-body">
+                                            <p><span>Para asignarte una incidencia:</span></p>
+                                            <ol>
+                                                <li><span>Accede al listado de incidencias disponibles</span></li>
+                                                <li><span>Selecciona la incidencia que deseas atender</span></li>
+                                                <li><span>Haz clic en el botón "Asignar a mí"</span></li>
+                                                <li><span>Actualiza el estado según avances</span></li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="headingTech2">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#techQ2">
+                                            <span>¿Cómo cambio el estado de una incidencia?</span>
+                                        </button>
+                                    </h3>
+                                    <div id="techQ2" class="accordion-collapse collapse"
+                                        data-bs-parent="#techAccordion">
+                                        <div class="accordion-body">
+                                            <p><span>Cada empresa configura sus propios estados de incidencias. Los
+                                                    pasos para cambiarlos son:</span></p>
+                                            <ol>
+                                                <li><span>Accede al detalle de la incidencia</span></li>
+                                                <li><span>Localiza el dropdown de estados</span></li>
+                                                <li><span>Selecciona el nuevo estado</span></li>
+                                                <li><span>Guarda los cambios</span></li>
+                                            </ol>
+                                            <p><span>Consulta con tu administrador para conocer los estados específicos
+                                                    de tu organización.</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h3 class="accordion-header" id="headingTech3">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#techQ3">
+                                            <span>¿Cómo priorizo las incidencias asignadas?</span>
+                                        </button>
+                                    </h3>
+                                    <div id="techQ3" class="accordion-collapse collapse"
+                                        data-bs-parent="#techAccordion">
+                                        <div class="accordion-body">
+                                            <p><span>Puedes organizar tu trabajo de la siguiente manera:</span></p>
+                                            <ul>
+                                                <li><span class="fw-bold">Por fecha de creación:</span> <span>Atiende
+                                                        primero las incidencias más antiguas</span></li>
+                                                <li><span class="fw-bold">Por urgencia:</span> <span>Si la empresa ha
+                                                        marcado prioridades</span></li>
+                                                <li><span class="fw-bold">Por tipo:</span> <span>Agrupa incidencias
+                                                        similares para mayor eficiencia</span></li>
+                                            </ul>
+                                            <p><span>El sistema te permite filtrar y ordenar las incidencias según estos
+                                                    criterios.</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="alert alert-info mt-5">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-life-preserver txt-main fs-3 me-3"></i>
+                    <div>
+                        <h3 class="h5 mb-2"><span>¿No encontraste lo que buscabas?</span></h3>
+                        <p><span>Contacta a nuestro equipo de soporte para ayuda personalizada.</span></p>
+                        <a th:href="@{/contacto}" href="contacto.html" class="btn btn-main text-white btn-sm mt-2"
+                            title="Ir al formulario de contacto">
+                            <i class="bi bi-headset me-1"></i><span>Contactar soporte</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
+</body>
+
+</html>

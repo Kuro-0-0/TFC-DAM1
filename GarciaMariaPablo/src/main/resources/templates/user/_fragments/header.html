@@ -1,0 +1,131 @@
+<th:block th:fragment="headerOff">
+    <header class="navbar navbar-expand-lg navbar-dark bg-main shadow-lg px-3">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="../otros/dashboard.html"
+                th:href="@{/user/dashboard}" title="Ir al dashboard">
+                <i class="bi bi-person-fill"></i>
+                <span class="fw-bold">Panel de Usuario</span>
+            </a>
+            <button class="navbar-toggler order-lg-1" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown"
+                        th:classappend="${activeTab.contains('/user/incidencias')} ? 'active'">
+                        <a class="nav-link dropdown-toggle" href="#" id="incidenciasDropdown" data-bs-toggle="dropdown">
+                            <i class="bi bi-file-earmark-text me-1"></i><span>Incidencias</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" th:href="@{/user/incidencias}" href="../incidencia/listar.html"
+                                    title="Ver incidencias">
+                                    <i class="bi bi-list-ul me-2"></i><span>Mis Incidencias</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" th:href="@{/user/incidencias/crear}"
+                                    href="../incidencia/formulario.html" title="Crear una incidencia">
+                                    <i class="bi bi-plus-circle me-2"></i><span>Nueva Incidencia</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/Kuro-0-0/TFC-DAM1" title="Ver ayuda en GitHub">
+                            <i class="bi bi-question-circle me-1"></i><span>Ayuda</span>
+                        </a>
+                    </li>
+                </ul>
+                <form class="d-flex mx-3" method="get" th:action="@{/user/incidencias}">
+                    <div class="input-group">
+                        <input class="form-control" name="q" type="search" placeholder="Buscar incidencias...">
+                        <button class="btn btn-light" type="submit" title="Buscar incidencias"><i
+                                class="bi bi-search"></i></button>
+                    </div>
+                </form>
+                <th:block th:replace="~{_fragments/headerPerfil.html :: headerPerfil}"></th:block>
+            </div>
+        </div>
+    </header>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar">
+        <div class="offcanvas-header bg-main text-white">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+                <i class="bi bi-list me-2"></i><span>Menú</span>
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active custom-nav-link" href="#" title="Inicio">
+                        <i class="bi bi-house-door me-2"></i><span>Inicio</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <div class="accordion" id="accordionIncidencias">
+                        <div class="accordion-item border-0">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed bg-transparent shadow-none" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseIncidencias">
+                                    <i class="bi bi-file-earmark-text me-2"></i><span>Incidencias</span>
+                                </button>
+                            </h2>
+                            <div id="collapseIncidencias" class="accordion-collapse collapse">
+                                <div class="accordion-body p-0">
+                                    <ul class="nav flex-column ps-3">
+                                        <li class="nav-item">
+                                            <a class="nav-link custom-nav-link" th:href="@{/user/incidencias}"
+                                                href="../incidencia/listar.html" title="Ver incidencias">
+                                                <i class="bi bi-list-ul me-2"></i><span>Mis Incidencias</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link custom-nav-link" th:href="@{/user/incidencias/crear}"
+                                                href="../incidencia/formulario.html" title="Crear una incidencia">
+                                                <i class="bi bi-plus-circle me-2"></i><span>Nueva Incidencia</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-link" href="https://github.com/Kuro-0-0/TFC-DAM1/blob/main/README.md"
+                        title="Ir al tutorial del sistema">
+                        <i class="bi bi-question-circle me-2"></i><span>Ayuda</span>
+                    </a>
+                </li>
+                <li class="nav-item mt-3">
+                    <div class="card bg-light border-0">
+                        <div class="card-body">
+                            <h6 class="card-title">
+                                <i class="bi bi-info-circle me-2"></i><span>Información rápida</span>
+                            </h6>
+                            <p class="small text-muted">
+                                Aquí puedes acceder a todas las opciones del sistema de gestión de incidencias.
+                            </p>
+                            <a href="https://github.com/Kuro-0-0/TFC-DAM1/blob/main/README.md"
+                                class="btn btn-sm btn-outline-main w-100" title="Ver tutorial completo">
+                                Ver tutorial
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="offcanvas-footer p-3 bg-light border-top">
+            <div class="d-grid gap-2">
+                <form th:action="@{/logout}" method="post" class="d-grid">
+                    <button type="submit" class="btn btn-outline-danger" title="Cerrar sesión">
+                        <i class="bi bi-box-arrow-left me-2"></i><span>Cerrar sesión</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</th:block>

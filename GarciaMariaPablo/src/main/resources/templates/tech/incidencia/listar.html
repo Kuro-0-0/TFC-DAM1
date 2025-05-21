@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Pablo Garcia Maria">
+    <meta name="description" content="Listado de incidencias para técnicos">
+    <title th:text="${tituloPagina} + ' | Gestión de Incidencias'">Listado | Gestión de Incidencias</title>
+    <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
+    <script defer src="../../../static/tech/javascript/incidencia/listar/eliminarIncidencia.js" th:src="@{/tech/javascript/incidencia/listar/eliminarIncidencia.js}"></script>
+    <script defer src="../../../static/js/params/modificarParams.js" th:src="@{/js/params/modificarParams.js}" type="text/javascript" crossorigin="anonymous"></script>
+    <script defer src="../../../static/tech/javascript/incidencia/formulario/editar.js" th:src="@{/tech/javascript/incidencia/formulario/editar.js}" type="text/javascript" crossorigin="anonymous"></script>
+</head>
+
+<body class="d-flex flex-column h-100 bg-light">
+    <th:block th:replace="~{tech/_fragments/headerTecnico.html :: headerTecnico}"></th:block>
+
+    <main class="container my-4 flex-grow-1">
+        <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
+
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
+            <div class="mb-3 mb-md-0">
+                <h1 class="h3 mb-1 fw-bold txt-main" th:text="${tituloPagina}">Listado de Incidencias</h1>
+                <p class="text-muted mb-0" th:text="${subtituloPagina}">Incidencias asignadas a técnicos</p>
+            </div>
+
+            <form method="get" class="d-flex">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="q" th:value="${param.q}" placeholder="Buscar...">
+                    <select class="form-select" name="estado">
+                        <option value="">Todos</option>
+                        <option th:each="estado : ${estados}" th:value="${estado.valor}" th:text="${estado.nombre}" th:selected="${param.estado != null and param.estado == estado.valor}"></option>
+                    </select>
+                    <button class="btn btn-main" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <section>
+            <div class="row mb-4">
+                <div class="col-md-4 mb-3">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body py-3 d-flex align-items-center">
+                            <div class="bg-primary bg-opacity-10 p-3 rounded me-3">
+                                <i class="bi bi-file-earmark-text fs-4 text-primary"></i>
+                            </div>
+                            <div>
+                                <h3 class="h6 mb-0">Total incidencias</h3>
+                                <p class="fs-4 fw-bold mb-0" th:text="${estadisticas.totalIncidencias}">0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body py-3 d-flex align-items-center">
+                            <div class="bg-warning bg-opacity-10 p-3 rounded me-3">
+                                <i class="bi bi-hourglass fs-4 text-warning"></i>
+                            </div>
+                            <div>
+                                <h3 class="h6 mb-0">En progreso</h3>
+                                <p class="fs-4 fw-bold mb-0" th:text="${estadisticas.incidenciasEnProgreso}">0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body py-3 d-flex align-items-center">
+                            <div class="bg-success bg-opacity-10 p-3 rounded me-3">
+                                <i class="bi bi-check-circle fs-4 text-success"></i>
+                            </div>
+                            <div>
+                                <h3 class="h6 mb-0">Finalizadas</h3>
+                                <p class="fs-4 fw-bold mb-0" th:text="${estadisticas.incidenciasResueltas}">0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-4">
+
+        <section>
+            <h2 class="h5 mb-3">Tus Incidencias</h2>
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-0">
+                    <div th:if="${incidencias.empty}" class="text-center py-5">
+                        <i class="bi bi-file-earmark-excel fs-1 text-muted mb-3"></i>
+                        <h3 class="h5">No se encontraron incidencias</h3>
+                        <p class="text-muted" th:text="${mensajeNoResultados} ?: 'No hay incidencias que mostrar'"></p>
+                        <a th:href="@{/tech/incidencias/sin-asignar}" href="listar.html" class="btn btn-sm btn-success" title="Ver sin asignar" th:if="${mostrarBotonSinAsignar}">
+                            <i class="bi bi-hourglass-split me-2"></i>Ver incidencias sin asignar
+                        </a>
+                    </div>
+
+                    <div th:unless="${incidencias.empty}" class="list-group list-group-flush">
+                        <div th:each="incidencia : ${incidencias}" class="list-group-item mb-3 border-0 p-0 position-relative">
+                            <div class="card mb-3 incidencia-card">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div class="w-75 pe-3">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <h3 class="h5 mb-0 me-3">
+                                                    <a th:href="@{/tech/incidencias/inspeccionar/} + ${incidencia.id}" href="inspeccionar.html" title="Ver detalles de la incidencia" class="text-decoration-none" th:text="${incidencia.titulo}">Título incidencia</a>
+                                                </h3>
+                                                <span class="badge badge-estado" th:style="'background-color:' + ${incidencia.estado.colorFondo} + '; color:' + ${incidencia.estado.colorTexto}" th:text="${incidencia.estado.nombre}">Estado</span>
+                                            </div>
+                                            <p class="text-muted mb-2" th:text="${incidencia.descripcion.length() > 100} ? ${incidencia.descripcion.substring(0, 100) + '...'} : ${incidencia.descripcion}">Descripción breve de la incidencia...</p>
+                                            <div class="d-flex flex-wrap gap-3">
+                                                <small class="text-muted"><i class="bi bi-calendar me-1"></i><span th:text="'Creada el: ' + ${#temporals.format(incidencia.fechaCreacion, 'dd/MM/yyyy HH:mm')}">01/01/2023 10:00</span></small>
+                                                <small class="text-muted"><i class="bi bi-calendar me-1"></i><span th:text="' |  Modificada el: ' + ${#temporals.format(incidencia.fechaModificacion, 'dd/MM/yyyy HH:mm')}">01/01/2023 10:00</span></small>
+                                                <small class="text-muted" th:if="${incidencia.reportante != null}"><span> | </span><i class="bi bi-person me-1"></i><span th:text="${incidencia.reportante.nombre} + ' ' + ${incidencia.reportante.apellidos}">Usuario</span></small>
+                                            </div>
+                                        </div>
+
+                                        <div class="dropdown dropstart z-3">
+                                            <button class="btn btn-sm btn-outline-secondary" type="button" data-bs-toggle="dropdown">
+                                                <i class="bi bi-three-dots-vertical"></i>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li th:unless="${mostrarAsignar}">
+                                                    <a class="dropdown-item" th:href="@{/tech/incidencias/inspeccionar/} + ${incidencia.id}" href="inspeccionar.html" title="Ver detalles de la incidencia">
+                                                        <i class="bi bi-eye me-2"></i>Ver detalles
+                                                    </a>
+                                                </li>
+                                                <li th:unless="${mostrarAsignar}">
+                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editarEstadoModal" th:attr="data-incidencia-id=${incidencia.id}" th:data-estado-valor="${incidencia.estado.valor}">
+                                                        <i class="bi bi-pencil me-2"></i>Editar
+                                                    </a>
+                                                </li>
+                                                <li th:if="${mostrarAsignar and incidencia.tecnico.id == 5}">
+                                                    <form class="p-0 dropdown-item text-primary" th:action="@{/tech/incidencias/asignar/} + ${incidencia.id}" th:method="put">
+                                                        <button class="btn btn-link text-decoration-none text-dark" type="submit">
+                                                            <i class="bi bi-person-check me-2"></i>Asignarme
+                                                        </button>
+                                                    </form>
+                                                </li>
+                                                <li th:unless="${mostrarAsignar}">
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li th:unless="${mostrarAsignar}">
+                                                    <a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#confirmarEliminacionModal" th:attr="data-incidencia-id=${incidencia.id}, data-incidencia-titulo=${incidencia.titulo}">
+                                                        <i class="bi bi-trash me-2"></i>Eliminar
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <th:block th:replace="~{_fragments/paginacion.html :: paginacion}"></th:block>
+            </div>
+        </section>
+
+        <div class="modal fade" id="editarEstadoModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-main text-white">
+                        <h5 class="modal-title" id="editarEstadoModalLabel">
+                            <i class="bi bi-pencil-square me-2"></i>Cambiar Estado
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <form id="formEditarEstado" th:object="${estadoNuevo}" method="post">
+                        <input type="hidden" name="_method" value="put">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="estado" class="form-label">Selecciona el nuevo estado:</label>
+                                <select class="form-select" th:field="*{valor}" id="estado" required>
+                                    <option th:each="estado : ${estados}" th:value="${estado.valor}" th:text="${estado.nombre}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                <i class="bi bi-x-circle me-1"></i>Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-main">
+                                <i class="bi bi-check-circle me-1"></i>Guardar Cambios
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="confirmarEliminacionModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title">
+                            <i class="bi bi-exclamation-triangle me-2"></i>Confirmar Eliminación
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>¿Estás seguro de que deseas eliminar esta incidencia?</p>
+                        <p class="fw-bold" id="incidenciaTitulo"></p>
+                        <p class="text-danger"><small>Esta acción no se puede deshacer.</small></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="bi bi-x-circle me-2"></i>Cancelar
+                        </button>
+                        <form id="formEliminarIncidencia" method="post">
+                            <input type="hidden" name="_method" value="delete">
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-trash me-2"></i>Eliminar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
+
+    <!-- Scripts de Bootstrap CAMBIAR -->
+    <script>
+
+    </script>
+</body>
+
+</html>

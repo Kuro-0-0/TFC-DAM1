@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Sistema de gestión de incidencias para empresas. Solución completa para reportar y administrar problemas técnicos, de mantenimiento y más.">
+    <meta name="author" content="Pablo Garcia Maria">
+    <title>Página principal | Gestión de Incidencias</title>
+    <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
+    <script src="../../static/js/index/loadVideo.js" th:src="@{/js/index/loadVideo.js}"></script>
+</head>
+
+<body class="bg-light">
+    <th:block th:replace="~{global/_fragments/header.html :: headerGlobal}"></th:block>
+    <th:block th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></th:block>
+
+    <main>
+
+        <section class="py-5 bg-white">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h1 class="fw-bold mb-4">Gestión Profesional de Incidencias para Empresas</h1>
+                        <p class="lead mb-4">Nuestra plataforma permite a las empresas administrar eficientemente todo
+                            tipo
+                            de incidencias, desde problemas técnicos hasta necesidades de mantenimiento.</p>
+                        <div class="d-flex flex-wrap gap-2 row">
+                            <a href="#registro" class="btn col-lg-6 btn-main text-white btn-lg px-4"
+                                title="Ir a la sección de solicitud de acceso">
+                                <i class="bi bi-person-plus me-2"></i>Solicitar acceso
+                            </a>
+                            <button class="btn btn-outline-secondary col-lg-5 btn-lg px-4" data-bs-toggle="offcanvas"
+                                data-bs-target="#demoOffcanvas">
+                                <i class="bi bi-play-circle me-2"></i>Ver demostración
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-center d-none d-lg-block">
+                        <i class="bi bi-clipboard2-pulse hero-illustration txt-main"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="demoOffcanvas">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title">Demostración del Sistema</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body text-center">
+                <div id="video-loader" class="spinner-border txt-main mb-3">
+                    <span class="visually-hidden">Cargando...</span>
+                </div>
+
+                <div id="video-container" class="ratio ratio-16x9 mb-3 d-none">
+                    <iframe id="demoVideo" src="" title="Video funcionalidad" allowfullscreen></iframe>
+                </div>
+
+                <h4>Funcionalidades clave</h4>
+
+                <div class="list-group mb-3">
+                    <a href="#" class="list-group-item list-group-item-action"
+                        data-video="https://www.youtube.com/embed/bknR-sjrazE?si=hwBMSJ-A0OmaKH7C"
+                       title="Creación de incidencias">
+                        <i class="bi bi-plus-circle txt-main me-2"></i><span>Creación de incidencias</span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action"
+                        data-video="https://www.youtube.com/embed/CIqzJxuL8m0?si=EXp5chTbI_UfIWRP"
+                        title="Seguimiento de estados">
+                        <i class="bi bi-list-task txt-main me-2"></i><span>Seguimiento de estados</span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action"
+                        data-video="https://www.youtube.com/embed/N1opuwwFUd0?si=x-o118gJ0M6tUQ7p"
+                        title="Asignación a técnicos">
+                        <i class="bi bi-people txt-main me-2"></i><span>Asignación a técnicos</span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action"
+                        data-video="https://www.youtube.com/embed/5v04wBzN7Gw?si=3oRoeaFPnanodb8h"
+                       title="Visualizar reportes">
+                        <i class="bi bi-graph-up txt-main me-2"></i><span>Reportes básicos</span>
+                    </a>
+                </div>
+
+                <button class="btn btn-main text-white w-100" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-eye me-2"></i><span>Entendido</span>
+                </button>
+            </div>
+        </div>
+
+        <section id="features" class="py-5">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold">Funcionalidades Principales</h2>
+                    <p class="text-muted">Todo lo que tu empresa necesita para gestionar incidencias</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="p-4 h-100 border rounded shadow-sm">
+                            <h3> <i class="bi bi-ticket-detailed txt-main me-2"></i>Reporte Simple</h3>
+                            <p>Interfaz intuitiva para que los empleados reporten cualquier tipo de incidencia con los
+                                datos
+                                esenciales.</p>
+                            <button class="btn btn-sm btn-main text-white" data-bs-toggle="modal"
+                                data-bs-target="#featureModal1">Más info</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-4 h-100 border rounded shadow-sm">
+                            <h3><i class="bi bi-person-workspace txt-main me-2"></i>Gestión Técnica</h3>
+                            <p>Los técnicos pueden ver, asignarse y gestionar las incidencias reportadas con un flujo de
+                                trabajo claro.</p>
+                            <button class="btn btn-sm btn-main text-white" data-bs-toggle="modal"
+                                data-bs-target="#featureModal2">Más info</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-4 h-100 border rounded shadow-sm">
+                            <h3><i class="bi bi-clipboard-data txt-main me-2"></i>Estadísticas Básicas</h3>
+                            <p>Visualización de métricas clave para entender el volumen y tipo de incidencias
+                                gestionadas.
+                            </p>
+                            <button class="btn btn-sm btn-main text-white" data-bs-toggle="modal"
+                                data-bs-target="#featureModal3">Más info</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="modal fade" id="featureModal1" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Reporte Simple</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Los empleados pueden reportar fácilmente:</p>
+                        <ul>
+                            <li>Problemas técnicos (hardware, software)</li>
+                            <li>Necesidades de mantenimiento</li>
+                            <li>Incidencias en instalaciones</li>
+                            <li>Cualquier otro tipo de problema</li>
+                        </ul>
+                        <p class="mb-0">El sistema guía al usuario para incluir toda la información relevante.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="featureModal2" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Gestión Técnica</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Los técnicos pueden:</p>
+                        <ul>
+                            <li>Ver listado de incidencias disponibles</li>
+                            <li>Asignarse incidencias manualmente</li>
+                            <li>Actualizar el estado del trabajo</li>
+                            <li>Marcar incidencias como resueltas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="featureModal3" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Estadísticas Básicas</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Los administradores pueden ver:</p>
+                        <ul>
+                            <li>Número de incidencias por estado</li>
+                            <li>Tiempos promedio de resolución</li>
+                            <li>Tipos de incidencias más comunes</li>
+                            <li>Carga de trabajo por técnico</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section id="como-funciona" class="py-5 bg-light">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold">Cómo Funciona Nuestro Sistema</h2>
+                    <p class="text-muted">Flujo de trabajo para la gestión de incidencias</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-3 text-center p-3">
+                        <div
+                            class="step-icon bg-main text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">
+                            <i class="bi bi-person-plus"></i>
+                        </div>
+                        <h4>1. Registro</h4>
+                        <p class="mb-0">Los empleados solicitan acceso al sistema.</p>
+                    </div>
+                    <div class="col-md-3 text-center p-3">
+                        <div
+                            class="step-icon bg-main text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">
+                            <i class="bi bi-plus-circle"></i>
+                        </div>
+                        <h4>2. Reporte</h4>
+                        <p class="mb-0">Los usuarios reportan incidencias con descripción detallada.</p>
+                    </div>
+                    <div class="col-md-3 text-center p-3">
+                        <div
+                            class="step-icon bg-main text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">
+                            <i class="bi bi-person-check"></i>
+                        </div>
+                        <h4>3. Asignación</h4>
+                        <p class="mb-0">Los técnicos se asignan las incidencias manualmente.</p>
+                    </div>
+                    <div class="col-md-3 text-center p-3">
+                        <div
+                            class="step-icon bg-main text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3">
+                            <i class="bi bi-check-circle"></i>
+                        </div>
+                        <h4>4. Resolución</h4>
+                        <p class="mb-0">Los técnicos marcan las incidencias como resueltas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="registro" class="py-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="p-5 text-center border border-main rounded">
+                            <h2 class="fw-bold mb-3">¿Necesitas acceso al sistema?</h2>
+                            <p class="lead mb-4">Solicita tus credenciales para comenzar a reportar incidencias</p>
+                            <div class="row g-3 justify-content-center">
+                                <div class="col-md-6">
+                                    <div class="d-grid">
+                                        <a th:href="@{/register}" href="register.html"
+                                            class="btn btn-main text-white btn-lg" title="Solicitar acceso al sistema">
+                                            <i class="bi bi-person-plus me-2"></i>Solicitar Registro
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mt-4 mb-0 small text-muted">* El acceso de tecnico debe ser autorizado por el
+                                administrador de tu empresa</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="precios" class="py-5 bg-white">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold">Planes Disponibles</h2>
+                    <p class="text-muted">Elige la opción que mejor se adapte a tu empresa</p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-main text-white">
+                                <h4 class="my-0 fw-normal">Básico</h4>
+                            </div>
+                            <div class="card-body">
+                                <h2 class="card-title">$99<small class="text-muted fw-light">/mes</small></h2>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li><i class="bi bi-check txt-main me-2"></i> Hasta 50 usuarios</li>
+                                    <li><i class="bi bi-check txt-main me-2"></i> Reporte de incidencias</li>
+                                    <li><i class="bi bi-check txt-main me-2"></i> Gestión técnica básica</li>
+                                    <li><i class="bi bi-x text-muted me-2"></i> Estadísticas avanzadas</li>
+                                </ul>
+                                <button type="button" class="w-100 btn btn-lg btn-main text-white"
+                                    data-bs-toggle="modal" data-bs-target="#contactModal">Contratar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border border-main border-2">
+                            <div class="card-header bg-main text-white">
+                                <h4 class="my-0 fw-normal">Profesional</h4>
+                            </div>
+                            <div class="card-body">
+                                <h2 class="card-title">$199<small class="text-muted fw-light">/mes</small></h2>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li><i class="bi bi-check txt-main me-2"></i> Hasta 200 usuarios</li>
+                                    <li><i class="bi bi-check txt-main me-2"></i> Todas funciones básicas</li>
+                                    <li><i class="bi bi-check txt-main me-2"></i> Estadísticas básicas</li>
+                                    <li><i class="bi bi-check txt-main me-2"></i> Soporte prioritario</li>
+                                </ul>
+                                <button type="button" class="w-100 btn btn-lg btn-main text-white"
+                                    data-bs-toggle="modal" data-bs-target="#contactModal">Contratar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <div class="card-header bg-main text-white">
+                                <h4 class="my-0 fw-normal">Empresa</h4>
+                            </div>
+                            <div class="card-body">
+                                <h2 class="card-title">$399<small class="text-muted fw-light">/mes</small></h2>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li><i class="bi bi-check txt-main me-2"></i> Usuarios ilimitados</li>
+                                    <li><i class="bi bi-check txt-main me-2"></i> Todas las funciones</li>
+                                    <li><i class="bi bi-check txt-main me-2"></i> Estadísticas avanzadas</li>
+                                    <li><i class="bi bi-check txt-main me-2"></i> Soporte 24/7</li>
+                                </ul>
+                                <button type="button" class="w-100 btn btn-lg btn-main text-white"
+                                    data-bs-toggle="modal" data-bs-target="#contactModal">Contratar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5 bg-main text-white">
+            <div class="container text-center">
+                <h2 class="fw-bold mb-3">¿Listo para optimizar la gestión de incidencias?</h2>
+                <p class="lead mb-4">Nuestro sistema ayuda a empresas como la tuya a manejar problemas de manera
+                    eficiente</p>
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <a th:href="@{/register}" href="register.html" class="btn btn-light btn-lg px-4"
+                        title="Registrarse en el sistema">
+                        <i class="bi bi-person-plus me-2"></i>Registrarse
+                    </a>
+                    <a class="btn btn-outline-light btn-lg px-4" th:href="@{/contacto}" href="contacto.html"
+                        title="Contacta con nosotros">
+                        <i class="bi bi-envelope me-2"></i>Contactar
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
+</body>
+
+</html>

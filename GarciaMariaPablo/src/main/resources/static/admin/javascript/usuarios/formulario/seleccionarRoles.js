@@ -1,4 +1,6 @@
 // Al cargar la pagina
+
+
 document.addEventListener('DOMContentLoaded', function() {
     const menu = document.getElementById('listaRoles'); // almacenamos la lista de roles en una variable
     if (menu) { // si se ha alamacenado bien

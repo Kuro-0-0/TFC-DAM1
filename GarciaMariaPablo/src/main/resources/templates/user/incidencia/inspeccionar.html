@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Visualiza y gestiona los detalles de una incidencia reportada en el sistema. Consulta ubicación, reportante, técnico asignado y más.">
+    <meta name="author" content="Pablo Garcia Maria">
+    <title>Detalle de Incidencia | Gestión de Incidencias</title>
+    <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
+</head>
+
+<body class="d-flex flex-column h-100 bg-light">
+
+    <header th:replace="~{user/_fragments/header.html :: headerOff}"></header>
+
+    <main class="container flex-grow-1 my-4">
+        <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
+
+        <article class="card border-0 shadow rounded-3 overflow-hidden">
+            <header class="card-header bg-main text-white rounded-top-3 p-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1 class="h5 mb-0">
+                        <i class="bi bi-file-earmark-text me-2"></i><span>Detalle de Incidencia</span>
+                    </h1>
+                    <span class="status-badge fw-bold" th:text="${incidencia.estado.nombre}"
+                        th:style="'background-color: '+${incidencia.estado.colorFondo}+';color: '+${incidencia.estado.colorTexto}">Pendiente</span>
+                </div>
+            </header>
+
+            <div class="card-body p-4">
+                <section class="mb-4 pb-3 border-bottom">
+                    <h2 id="titulo-incidencia" class="h4 mb-3 txt-main" th:text="${incidencia.titulo}">
+                        <i class="bi bi-file-earmark-text me-2"></i><span>Falla en el servidor</span>
+                    </h2>
+                </section>
+
+                <section class="row mb-4 pb-3 border-bottom">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <div class="d-flex">
+                            <i class="bi bi-geo-alt-fill text-muted mt-1 me-2"></i>
+                            <div>
+                                <div class="text-muted small fw-semibold">Ubicación</div>
+                                <div class="ps-2" th:text="${incidencia.ubicacion}">Planta 2 - Sala de servidores</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex">
+                            <i class="bi bi-calendar-event text-muted mt-1 me-2"></i>
+                            <div>
+                                <div class="text-muted small fw-semibold">Fecha de Creación</div>
+                                <div>
+                                    <time class="ps-2" th:text="${incidencia.fechaCreacion}"
+                                        datetime="2025-04-23">2025-04-23</time>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="row mb-4 pb-3 border-bottom">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <div class="d-flex">
+                            <i class="bi bi-person-fill text-muted mt-1 me-2"></i>
+                            <div>
+                                <div class="text-muted small fw-semibold">Reportante</div>
+                                <div class="ps-2" th:text="${incidencia.reportante.nombre}">Ana Gómez</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex">
+                            <i class="bi bi-person-gear text-muted mt-1 me-2"></i>
+                            <div>
+                                <div class="text-muted small fw-semibold">Técnico Asignado</div>
+                                <div class="ps-2" th:text="${incidencia.tecnico.nombre}">Carlos Díaz</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="mb-4 pb-3 border-bottom">
+                    <div class="bg-light rounded-3 p-3 border-start border-4 border-danger">
+                        <div class="d-flex mb-2">
+                            <i class="bi bi-card-text text-muted mt-1 me-2"></i>
+                            <div class="text-muted small fw-semibold">Descripción</div>
+                        </div>
+                        <p class="mb-0 ps-2" th:text="${incidencia.descripcion}">El servidor se reinicia constantemente
+                            sin motivo aparente.</p>
+                    </div>
+                </section>
+
+                <section class="d-flex justify-content-between align-items-center mt-4">
+                    <a th:href="@{/user/incidencias}" href="listar.html" class="btn btn-outline-secondary"
+                        title="Volver a las incidencias">
+                        <i class="bi bi-arrow-left me-1"></i><span>Volver al listado</span>
+                    </a>
+                    <div>
+                        <a th:unless="${incidencia.estado.tipo == 'Final'}" href="formulario.html"
+                            th:href="@{'/user/incidencias/modificar/' + ${incidencia.id}}" class="btn btn-primary me-2"
+                            title="Modificar incidencia">
+                            <i class="bi bi-pencil me-1"></i><span>Editar</span>
+                        </a>
+                        <button class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#confirmarEliminacionModal">
+                            <i class="bi bi-trash me-1"></i><span>Eliminar</span>
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </article>
+    </main>
+
+    <div class="modal fade" id="confirmarEliminacionModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h2 class="modal-title h5" id="modalEliminarLabel"><span>Confirmar Eliminación</span></h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <span>¿Estás seguro que deseas eliminar esta incidencia? Esta acción no se puede deshacer.</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal"><span>Cancelar</span></button>
+                    <form th:action="@{'/user/incidencias/' + ${incidencia.id}}" method="post">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="submit" class="btn btn-danger" value="Eliminar">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
+</body>
+
+</html>

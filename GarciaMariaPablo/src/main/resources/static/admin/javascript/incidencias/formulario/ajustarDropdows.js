@@ -1,4 +1,5 @@
 // Función modificada para manejar solo los dropdowns específicos
+
 function configurarDropdownsEspecificos() {
     // IDs de los menús desplegables que queremos manejar para evitar que se usen las del header.
     const menusIds = ['listaEstados', 'listaTecnicos', 'listaReportantes'];

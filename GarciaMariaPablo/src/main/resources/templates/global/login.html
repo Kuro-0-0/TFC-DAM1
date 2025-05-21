@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Inicia sesión en tu cuenta para gestionar incidencias de forma segura y eficiente.">
+    <meta name="author" content="Pablo Garcia Maria">
+    <title>Iniciar Sesión | Gestión de Incidencias</title>
+
+    <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
+    <script defer th:src="@{/js/login/mostrarContraseña.js}" src="../../static/js/login/mostrarContraseña.js"></script>
+</head>
+
+<body class="d-flex flex-column min-vh-100 bg-light">
+    <th:block th:replace="~{global/_fragments/header.html :: headerGlobal}"></th:block>
+    <th:block th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></th:block>
+
+    <main class="container flex-grow-1 d-flex align-items-center justify-content-center my-5">
+        <div class="row w-100 shadow-sm bg-white rounded-3 overflow-hidden limited-width-600">
+            <div class="col-12 p-5">
+                <h1 class="mb-4 fw-bold text-center txt-main">
+                    <span>Iniciar sesión</span>
+                </h1>
+
+                <form th:action="@{/login}" method="post" th:object="${usuarioDao}">
+                    <div class="mb-3">
+                        <label for="username" class="form-label fw-medium">
+                            <i class="bi bi-person-badge me-1"></i><span>Nombre de usuario</span><span
+                                class="text-danger">*</span>
+                        </label>
+                        <input type="text" id="username" class="form-control form-control-lg" th:field="*{username}"
+                            placeholder="Ingresa tu usuario" required maxlength="20"
+                            title="Debe tener entre 4 y 20 caracteres. Solo letras, números, puntos, guiones o guiones bajos."
+                            autocomplete="username">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label fw-medium">
+                            <i class="bi bi-lock me-1"></i><span>Contraseña</span><span class="text-danger">*</span>
+                        </label>
+                        <div class="input-group">
+                            <input type="password" id="password" class="form-control form-control-lg"
+                                th:field="*{password}" placeholder="••••••••" required maxlength="32"
+                                title="Debe tener maximo 32 caracteres"
+                                autocomplete="current-password">
+                            <button type="button" class="btn btn-outline-secondary" id="togglePassword"
+                                title="Mostrar u ocultar contraseña">
+                                <i class="bi bi-eye" id="togglePasswordIcon"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="rememberMe" name="remember-me">
+                        <label class="form-check-label" for="rememberMe"><span>Recordar sesión</span></label>
+                    </div>
+
+                    <div class="d-grid">
+                        <!-- No se sustituye por <input type="submit"> porque incluye icono -->
+                        <button type="submit" class="btn btn-lg btn-main text-light">
+                            <i class="bi bi-box-arrow-in-right me-1"></i><span>Acceder</span>
+                        </button>
+                    </div>
+                </form>
+
+                <div class="mt-4 text-center small">
+                    <p><span>¿No tienes cuenta?</span>
+                        <a th:href="@{/register}" href="register.html" class="txt-main text-decoration-none"
+                            title="Ir a la página de registro"><span>Regístrate aquí</span></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
+</body>
+
+</html>

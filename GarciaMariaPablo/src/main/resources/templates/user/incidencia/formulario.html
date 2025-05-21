@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Pablo Garcia Maria">
+    <meta name="description" content="Reporta una nueva incidencia técnica">
+    <title th:if="${modificar}">Modificar Incidencia | Gestión de Incidencias</title>
+    <title th:unless="${modificar}">Nueva Incidencia | Gestión de Incidencias</title>
+    <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
+    <script defer src="../../../static/user/javascript/incidencia/formulario/revisarFormulario.js"
+        th:src="@{/user/javascript/incidencia/formulario/revisarFormulario.js}"></script>
+</head>
+
+<body class="d-flex flex-column h-100 bg-light">
+    <th:block th:replace="~{user/_fragments/header.html :: headerOff}"></th:block>
+
+    <main class="container my-4 flex-grow-1">
+        <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-header bg-white border-0">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h1 class="h4 mb-0 fw-bold txt-main">
+                                <i class="bi bi-plus-circle me-2"></i><span
+                                    th:text="${modificar} ? 'Modificar Incidencia' : 'Nueva Incidencia'">Nueva
+                                    Incidencia</span>
+                            </h1>
+                            <a th:href="@{/user/incidencias}" class="btn btn-outline-secondary btn-sm"
+                                href="../incidencia/listar.html" title="Volver a las incidencias">
+                                <i class="bi bi-arrow-left me-1"></i><span>Volver</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <form th:action="@{/user/incidencias}" th:method="${modificar} ? 'put' : 'post'"
+                            th:object="${incidenciaDao}">
+                            <input type="hidden" th:if="${modificar}" th:field="*{id}">
+                            <div class="mb-4">
+                                <label for="titulo" class="form-label fw-bold">Título <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control" th:field="*{titulo}" id="titulo" required
+                                    maxlength="50">
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="descripcion" class="form-label fw-bold">Descripción <span
+                                        class="text-danger">*</span></label>
+                                <textarea class="form-control" th:field="*{descripcion}" id="descripcion" required
+                                    placeholder="Describe detalladamente el problema..."></textarea>
+                                <div class="form-text">Sé lo más específico posible para una solución rápida.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="ubicacion" class="form-label fw-bold">Ubicación <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control" th:field="*{ubicacion}" id="ubicacion" required
+                                    placeholder="Ej: Edificio A, Planta 2, Oficina 204">
+                            </div>
+
+                            <div class="d-flex justify-content-between border-top pt-4 mt-3">
+                                <button type="reset" class="btn btn-outline-secondary">
+                                    <i class="bi bi-eraser me-2"></i><span>Limpiar</span>
+                                </button>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="bi bi-save me-2"></i><span
+                                        th:text="${modificar} ? 'Actualizar Incidencia' : 'Guardar Incidencia'">Guardar
+                                        Incidencia</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="card-footer bg-white border-0 text-muted small">
+                        <i class="bi bi-info-circle me-1"></i><span>Los campos marcados con <span
+                                class="text-danger">*</span> son obligatorios.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
+</body>
+
+</html>

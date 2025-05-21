@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Pablo Garcia Maria">
+    <meta name="description" content="Panel de control para técnicos">
+    <title>Dashboard Técnico | Gestión de Incidencias</title>
+    <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
+</head>
+
+<body class="d-flex flex-column h-100 bg-light">
+    <th:block th:replace="~{tech/_fragments/headerTecnico.html :: headerTecnico}"></th:block>
+
+    <main class="container my-4 flex-grow-1">
+        <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
+
+        <header class="text-center mb-5">
+            <h1 class="mb-3 fw-bold txt-main">Bienvenido, <span th:text="${nombreTecnico}">Técnico</span></h1>
+            <p class="lead text-muted">Panel de gestión de incidencias asignadas</p>
+        </header>
+
+        <div class="row mb-4">
+            <div class="col-md-4 mb-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded me-3">
+                            <i class="bi bi-hourglass-split fs-3 text-primary"></i>
+                        </div>
+                        <div>
+                            <h3 class="h6 mb-0">Incidencias sin asignar</h3>
+                            <p class="fs-4 fw-bold mb-0" th:text="${estadisticas.incidenciasSinAsignar}">0</p>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 py-3">
+                        <a th:href="@{/tech/incidencias/sin-asignar}" href="../incidencia/listar.html"
+                            title="Ver todas las incidencias sin asignar" class="btn btn-sm btn-outline-primary w-100">
+                            Ver todas <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="bg-warning bg-opacity-10 p-3 rounded me-3">
+                            <i class="bi bi-person-check fs-3 text-warning"></i>
+                        </div>
+                        <div>
+                            <h3 class="h6 mb-0">Mis incidencias abiertas</h3>
+                            <p class="fs-4 fw-bold mb-0" th:text="${estadisticas.incidenciasAsignadas}">0</p>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 py-3">
+                        <a th:href="@{/tech/incidencias/asignadas}" href="../incidencia/listar.html"
+                            title="Ver todas mis incidencias" class="btn btn-sm btn-outline-warning w-100">
+                            Ver todas mis incidencias <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body d-flex align-items-center">
+                        <div class="bg-success bg-opacity-10 p-3 rounded me-3">
+                            <i class="bi bi-check-circle fs-3 text-success"></i>
+                        </div>
+                        <div>
+                            <h3 class="h6 mb-0">Finalizadas este mes</h3>
+                            <p class="fs-4 fw-bold mb-0" th:text="${estadisticas.incidenciasResueltas}">0</p>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 py-3">
+                        <a th:href="@{/tech/incidencias/resueltas}" href="../incidencia/listar.html"
+                            title="Ver todas las incidencias finalizadas" class="btn btn-sm btn-outline-success w-100">
+                            Ver resueltas <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
+                        <h2 class="h5 mb-0"><i class="bi bi-hourglass-split me-2"></i>Incidencias sin asignar</h2>
+                        <a th:href="@{/tech/incidencias/sin-asignar}" href="../incidencia/listar.html"
+                            title="Ver todas las incidencias sin asignar" class="btn btn-sm btn-outline-secondary">
+                            Ver todas
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div th:if="${incidenciasSinAsignar.empty}" class="text-center py-4">
+                            <i class="bi bi-check-circle fs-1 text-muted mb-3"></i>
+                            <p class="text-muted">No hay incidencias sin asignar</p>
+                        </div>
+                        <div th:unless="${incidenciasSinAsignar.empty}" class="list-group list-group-flush">
+                            <div th:each="incidencia : ${incidenciasSinAsignar}"
+                                class="list-group-item border-0 px-0 py-3">
+                                <div class="d-flex justify-content-between align-items-start row">
+                                    <div class="col-8">
+                                        <a th:href="@{/tech/incidencias/inspeccionar/} + ${incidencia.id}"
+                                            href="../incidencia/listar.html" title="Ver detalles de incidencia"
+                                            class="text-decoration-none fw-bold" th:text="${incidencia.titulo}">Título
+                                            incidencia</a>
+                                        <div class="small text-muted"
+                                            th:text="${#temporals.format(incidencia.fechaCreacion, 'dd/MM/yyyy HH:mm')}">
+                                            01/01/2023 10:00</div>
+                                    </div>
+                                    <div class="col-4 text-end d-flex justify-content-end">
+                                        <span class="badge me-2 align-middle"
+                                            th:style="'background-color:' + ${incidencia.estado.colorFondo} + '; color:' + ${incidencia.estado.colorTexto}"
+                                            th:text="${incidencia.estado.nombre}">Estado</span>
+                                        <form th:action="@{/tech/incidencias/asignar/} + ${incidencia.id}"
+                                            th:method="put">
+                                            <input type="submit" class="btn btn-sm btn-outline-primary" value="Asignar">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 mb-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center">
+                        <h2 class="h5 mb-0"><i class="bi bi-person-check me-2"></i>Mis incidencias recientes</h2>
+                        <a th:href="@{/tech/incidencias/asignadas}" href="../incidencia/listar.html"
+                            title="Ver todas mis incidencias" class="btn btn-sm btn-outline-secondary">
+                            Ver todas
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div th:if="${incidenciasAsignadas.empty}" class="text-center py-4">
+                            <i class="bi bi-check-circle fs-1 text-muted mb-3"></i>
+                            <p class="text-muted">No tienes incidencias asignadas</p>
+                        </div>
+                        <div th:unless="${incidenciasAsignadas.empty}" class="list-group list-group-flush">
+                            <div th:each="incidencia : ${incidenciasAsignadas}"
+                                class="list-group-item border-0 px-0 py-3">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div>
+                                        <a th:href="@{/tech/incidencias/inspeccionar/} + ${incidencia.id}"
+                                            href="../incidencia/listar.html" title="Ver detalles de incidencia"
+                                            class="text-decoration-none fw-bold" th:text="${incidencia.titulo}">Título
+                                            incidencia</a>
+                                        <div class="small text-muted"
+                                            th:text="${#temporals.format(incidencia.fechaCreacion, 'dd/MM/yyyy HH:mm')}">
+                                            01/01/2023 10:00</div>
+                                    </div>
+                                    <span class="badge"
+                                        th:style="'background-color:' + ${incidencia.estado.colorFondo} + '; color:' + ${incidencia.estado.colorTexto}"
+                                        th:text="${incidencia.estado.nombre}">Estado</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
+</body>
+
+</html>
