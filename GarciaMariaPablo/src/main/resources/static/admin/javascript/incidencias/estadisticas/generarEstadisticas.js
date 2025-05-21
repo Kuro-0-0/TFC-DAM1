@@ -65,13 +65,13 @@ function generarTarjetasEstados() {
     totalCard.style.backgroundColor = `rgba(20, 203, 97, 0.4)`; // Color verde con transparencia
 
     totalCard.innerHTML = `
-    <div class="card-body">
+    <div class="card-body custom-card-witdh">
         <div class="d-flex justify-content-between align-items-start">
             <div>
-                <h5 class="card-title text-dark" aria-label="Total incidencias">Total</h5>
-                <p class="fs-3 fw-bold text-dark" id="TotalNum" aria-live="polite">${estadosData.total}</p>
+                <h5 class="card-title text-dark">Total</h5>
+                <p class="fs-3 fw-bold text-dark" id="TotalNum">${estadosData.total}</p>
             </div>
-            <i class="bi bi-circle-half text-dark fs-4" aria-hidden="true"></i>
+            <i class="bi bi-circle-half text-dark fs-4"></i>
         </div>
     </div>
 `;
@@ -84,13 +84,13 @@ function generarTarjetasEstados() {
         card.style.backgroundColor = hexToRGBA(estado.colorFondo, 0.4); // Color del fondo con opacidad
 
         card.innerHTML = `
-    <div class="card-body">
+    <div class="card-body custom-card-witdh">
         <div class="d-flex justify-content-between align-items-start">
             <div>
-                <h5 class="card-title" style="color: ${estado.colorTexto}" aria-label="Estado: ${estado.nombre}">${estado.nombre}</h5>
+                <h5 class="card-title" style="color: ${estado.colorTexto}">${estado.nombre}</h5>
                 <p class="fs-3 fw-bold" style="color: ${estado.colorTexto}" id="${estado.nombre.replace(/\s+/g, '')}Num">${estado.cantidad}</p>
             </div>
-            <i class="bi bi-circle-fill fs-4" style="color: ${estado.colorTexto}" aria-hidden="true"></i>
+            <i class="bi bi-circle-fill fs-4" style="color: ${estado.colorTexto}"></i>
         </div>
     </div>
 `;
@@ -109,14 +109,12 @@ function generarBarrasProgreso() {
 
         progressDiv.innerHTML = `
                 <div class="d-flex justify-content-between mb-1">
-                    <span class="fw-semibold text-dark" id="${estado.nombre.replace(/\s+/g, '')}" aria-label="Estado: ${estado.nombre}">
+                    <span class="fw-semibold text-dark" id="${estado.nombre.replace(/\s+/g, '')}">
                         ${estado.nombre}
                     </span>
-                    <small class="text-muted" aria-label="Porcentaje completado">${estado.porcentaje}%</small>
+                    <small class="text-muted">${estado.porcentaje}%</small>
                 </div>
-                <div class="progress" style="height: 10px;" role="progressbar" 
-                    aria-valuenow="${estado.porcentaje}" aria-valuemin="0" aria-valuemax="100" 
-                    aria-labelledby="${estado.nombre.replace(/\s+/g, '')}">
+                <div class="progress" style="height: 10px;">
                     <div class="progress-bar rounded" 
                         style="width: ${estado.porcentaje}%; background-color: ${estado.colorFondo}; color: ${estado.colorTexto}"
                         title="Progreso de ${estado.nombre}: ${estado.porcentaje}%">

@@ -2,17 +2,13 @@
 <html lang="es" class="h-100">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="author" content="Pablo Garcia Maria" />
-    <meta name="description" content="Formulario para crear o modificar usuarios en el panel de administración." />
-    <link rel="icon" href="../../../static/img/favicon.ico" th:href="@{/img/favicon.ico}" type="image/x-icon" />
-
-    <title th:if="${modificar}">Modificar Usuario | Gestión de Usuarios</title>
-    <title th:unless="${modificar}">Crear Usuario | Gestión de Usuarios</title>
-
-    <th:block th:replace="~{admin/_fragments/head.html :: head}"></th:block>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Pablo Garcia Maria">
+    <meta name="description" content="Formulario para crear o modificar usuarios en el panel de administración.">
+    <title th:if="${modificar}">Modificar Usuario | Gestión de Incidencias</title>
+    <title th:unless="${modificar}">Crear Usuario | Gestión de Incidencias</title>
+    <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
     <script defer src="../../../static/admin/javascript/reutilizables/buscarDesplegablesFiltros.js"
         th:src="@{/admin/javascript/reutilizables/buscarDesplegablesFiltros.js}"></script>
     <script defer src="../../../static/admin/javascript/usuarios/formulario/seleccionarRoles.js"
@@ -22,100 +18,85 @@
 <body class="d-flex flex-column h-100 bg-light">
     <header th:replace="~{admin/_fragments/header.html :: header}"></header>
 
-    <main class="container flex-grow-1 my-4" role="main">
-        <div th:replace="~{admin/_fragments/popUpMessages.html :: popUpMessages}"></div>
+    <main class="container flex-grow-1 my-4">
+        <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
 
-        <section class="card border-0 rounded-3 shadow" aria-labelledby="tituloFormularioUsuario">
+        <section class="card border-0 rounded-3 shadow">
             <div class="card-header bg-main text-white rounded-top-3 p-3">
-                <h1 class="h5 mb-0" id="tituloFormularioUsuario" th:if="${modificar}">
-                    <i class="bi bi-pencil-square me-2" aria-hidden="true"></i>Modificar Usuario
+                <h1 class="h5 mb-0" th:if="${modificar}">
+                    <i class="bi bi-pencil-square me-2"></i>Modificar Usuario
                 </h1>
-                <h1 class="h5 mb-0" id="tituloFormularioUsuario" th:unless="${modificar}">
-                    <i class="bi bi-plus-circle me-2" aria-hidden="true"></i>Crear Nuevo Usuario
+                <h1 class="h5 mb-0" th:unless="${modificar}">
+                    <i class="bi bi-plus-circle me-2"></i>Crear Nuevo Usuario
                 </h1>
             </div>
 
             <div class="card-body p-4">
-                <form th:action="@{/usuarios}" th:object="${usuarioDao}" th:method="${modificar} ? put : post"
-                    name="crearUsuario" id="crearUsuarioForm" aria-describedby="formDescripcion">
-                    <p id="formDescripcion" class="visually-hidden">Formulario para crear o modificar un usuario.
-                        Incluye campos para nombre, apellidos, usuario, contraseña y rol.</p>
+                <form th:action="@{/admin/usuarios}" th:object="${usuarioDao}" th:method="${modificar} ? put : post"
+                    name="crearUsuario" id="crearUsuarioForm">
 
                     <input type="hidden" th:if="${modificar}" th:field="*{id}">
 
                     <div class="row mb-4">
                         <div class="col-md-6 mb-3">
                             <label for="username" class="form-label fw-medium">
-                                <i class="bi bi-person-badge me-1" aria-hidden="true"></i>
-                                Nombre de usuario <span class="text-danger">*</span>
+                                <i class="bi bi-person-badge me-1"></i>Nombre de usuario <span
+                                    class="text-danger">*</span>
                             </label>
                             <input th:field="*{username}" type="text" id="username" class="form-control form-control-lg"
-                                placeholder="Ej. jperez" required maxlength="20" pattern="^[a-zA-Z0-9._-]{4,20}$"
-                                title="Debe tener entre 4 y 20 caracteres. Solo letras, números, puntos, guiones o guiones bajos.">
+                                placeholder="Ej. jperez" required maxlength="20">
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="password" class="form-label fw-medium">
-                                <i class="bi bi-lock me-1" aria-hidden="true"></i>
-                                Contraseña <span th:unless="${modificar}" class="text-danger">*</span>
+                                <i class="bi bi-lock me-1"></i>Contraseña <span th:unless="${modificar}"
+                                    class="text-danger">*</span>
                             </label>
                             <input th:field="*{password}" type="password" id="password"
                                 class="form-control form-control-lg" placeholder="Contraseña"
-                                th:required="!${modificar}" minlength="8" maxlength="32"
-                                pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,32}$"
-                                title="Debe tener entre 8 y 32 caracteres, con al menos una mayúscula, una minúscula y un número.">
-                            <small class="text-muted" th:if="${modificar}">Dejar en blanco para mantener la contraseña
-                                actual</small>
+                                th:required="!${modificar}" maxlength="32"
+                                title="Debe tener un maximo de 32 caracteres.">
+                            <div class="text-muted small mt-1" th:if="${modificar}">Dejar en blanco para mantener la
+                                contraseña actual</div>
                         </div>
                     </div>
 
                     <div class="row mb-4">
                         <div class="col-md-6 mb-3">
                             <label for="nombre" class="form-label fw-medium">
-                                <i class="bi bi-person me-1" aria-hidden="true"></i>
-                                Nombre <span class="text-danger">*</span>
+                                <i class="bi bi-person me-1"></i>Nombre <span class="text-danger">*</span>
                             </label>
                             <input th:field="*{nombre}" type="text" id="nombre" class="form-control form-control-lg"
-                                placeholder="Ej. Juan" required maxlength="30" pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,30}$"
-                                title="Solo letras y espacios. Máximo 30 caracteres.">
+                                placeholder="Ej. Juan" required maxlength="30">
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="apellidos" class="form-label fw-medium">
-                                <i class="bi bi-people me-1" aria-hidden="true"></i>
-                                Apellidos
+                                <i class="bi bi-people me-1"></i>Apellidos
                             </label>
                             <input th:field="*{apellidos}" type="text" id="apellidos"
-                                class="form-control form-control-lg" placeholder="Ej. Pérez García" maxlength="60"
-                                pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,60}$"
-                                title="Solo letras y espacios. Máximo 60 caracteres.">
+                                class="form-control form-control-lg" placeholder="Ej. Pérez García" maxlength="60">
                         </div>
                     </div>
 
                     <div class="mb-4">
                         <label for="filtroRol" class="form-label fw-medium">
-                            <i class="bi bi-shield me-1" aria-hidden="true"></i>
-                            Rol <span class="text-danger">*</span>
+                            <i class="bi bi-shield me-1"></i>Rol <span class="text-danger">*</span>
                         </label>
                         <div class="input-group mb-2">
-                            <span class="input-group-text" id="filtroRolLabel"><i class="bi bi-search"
-                                    aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" id="filtroRol" placeholder="Filtrar roles..."
-                                aria-describedby="filtroRolLabel">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" id="filtroRol" placeholder="Filtrar roles...">
                         </div>
 
                         <div class="dropdown">
                             <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button"
-                                id="dropdownRol" data-bs-toggle="dropdown" aria-expanded="false"
-                                th:text="${modificar} ? *{rol.name()} : 'Selecciona un rol'">
-                            </button>
-                            <ul class="dropdown-menu w-100 p-2 scroll-3-items" aria-labelledby="dropdownRol"
-                                id="listaRoles">
+                                id="dropdownRol" data-bs-toggle="dropdown"
+                                th:text="${modificar} ? *{rol.name()} : 'Selecciona un rol'"></button>
+                            <ul class="dropdown-menu w-100 p-2 scroll-3-items" id="listaRoles">
                                 <li th:each="rol : ${roles}" th:data-label="${rol.name()}">
                                     <a class="dropdown-item d-flex align-items-center" href="#"
                                         th:data-value="${rol.name()}">
-                                        <i class="bi bi-shield-check me-2" aria-hidden="true"></i>
-                                        <span th:text="${rol.name()}"></span>
+                                        <i class="bi bi-shield-check me-2"></i><span th:text="${rol.name()}">ROL</span>
                                     </a>
                                 </li>
                             </ul>
@@ -124,14 +105,16 @@
                     </div>
 
                     <div class="d-flex justify-content-between mt-4 pt-3 border-top">
-                        <a th:href="@{/usuarios}" class="btn btn-outline-secondary"
-                            title="Cancelar y volver al listado de usuarios">
-                            <i class="bi bi-arrow-left me-1" aria-hidden="true"></i>Cancelar
+                        <a th:href="@{/admin/usuarios}" href="listar.html" title="Volver al menú de usuarios"
+                            class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left me-1"></i>Cancelar
                         </a>
-                        <button type="submit" class="btn btn-primary px-4" title="Guardar los datos del usuario">
-                            <i class="bi bi-check-circle me-1" th:if="${modificar}" aria-hidden="true"></i>
-                            <i class="bi bi-plus-circle me-1" th:unless="${modificar}" aria-hidden="true"></i>
-                            <span th:text="${modificar} ? 'Actualizar Usuario' : 'Crear Usuario'"></span>
+
+                        <!-- No se sustituye por <input type="submit"> porque incluye icono -->
+                        <button type="submit" class="btn btn-primary px-4">
+                            <i class="bi bi-check-circle me-1" th:if="${modificar}"></i>
+                            <i class="bi bi-plus-circle me-1" th:unless="${modificar}"></i>
+                            <span th:text="${modificar} ? 'Actualizar Usuario' : 'Crear Usuario'">Crear Usuario</span>
                         </button>
                     </div>
                 </form>
@@ -139,7 +122,7 @@
         </section>
     </main>
 
-    <footer th:replace="~{admin/_fragments/footer.html :: footer}"></footer>
+    <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
 </body>
 
 </html>

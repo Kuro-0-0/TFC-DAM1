@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Pablo Garcia Maria">
+    <meta name="description" content="Visualiza y gestiona todas tus incidencias reportadas">
+    <title>Mis Incidencias | Gestión de Incidencias</title>
+    <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
+    <script defer src="../../../static/user/javascript/incidencia/listar/eliminarIncidencia.js"
+        th:src="@{/user/javascript/incidencia/listar/eliminarIncidencia.js}"></script>
+    <script defer src="../../../static/js/params/modificarParams.js" th:src="@{/js/params/modificarParams.js}"
+        type="text/javascript" crossorigin="anonymous"></script>
+</head>
+
+<body class="d-flex flex-column h-100 bg-light">
+    <th:block th:replace="~{user/_fragments/header.html :: headerOff}"></th:block>
+
+    <main class="container my-4 flex-grow-1">
+        <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
+
+        <header class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h1 class="h3 mb-1 fw-bold txt-main"><i class="bi bi-file-earmark-text me-2"></i><span>Mis
+                        Incidencias</span></h1>
+                <p class="text-muted mb-0"><span>Aquí puedes ver y gestionar todas las incidencias que has
+                        reportado</span></p>
+            </div>
+            <a th:href="@{/user/incidencias/crear}" href="formulario.html" class="btn btn-success"
+                title="Crear nueva incidencia">
+                <i class="bi bi-plus-lg me-2"></i><span>Nueva Incidencia</span>
+            </a>
+        </header>
+
+        <section class="filtros-container p-4 mb-4 shadow-sm">
+            <form class="row g-3" method="get">
+                <div class="col-md-6">
+                    <label for="q" class="form-label"><span>Buscar incidencias</span></label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+                        <input type="text" class="form-control" id="q" name="q" th:value="${param.q}"
+                            placeholder="Buscar por título...">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label for="estado" class="form-label"><span>Filtrar por estado</span></label>
+                    <select class="form-select" id="estado" name="estado">
+                        <option selected value=""><span>Todos los estados</span></option>
+                        <option th:each="estado : ${estados}" th:value="${estado.valor}" th:text="${estado.nombre}">
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-3 d-flex align-items-end">
+                    <input class="btn btn-main" type="submit" value="Filtrar">
+                </div>
+            </form>
+        </section>
+
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body py-3">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-primary bg-opacity-10 p-2 rounded me-3">
+                                <i class="bi bi-file-earmark-text fs-4 text-primary"></i>
+                            </div>
+                            <div>
+                                <h3 class="h6 mb-0"><span>Total de Incidencias</span></h3>
+                                <p class="fs-4 fw-bold mb-0" th:text="${totalIncidencias}">0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body py-3">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-warning bg-opacity-10 p-2 rounded me-3">
+                                <i class="bi bi-clock-history fs-4 text-warning"></i>
+                            </div>
+                            <div>
+                                <h3 class="h6 mb-0"><span>Pendientes</span></h3>
+                                <p class="fs-4 fw-bold mb-0" th:text="${datosIncidencias[1] + datosIncidencias[0]}">0
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body py-3">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-success bg-opacity-10 p-2 rounded me-3">
+                                <i class="bi bi-check-circle fs-4 text-success"></i>
+                            </div>
+                            <div>
+                                <h3 class="h6 mb-0"><span>Finalizadas</span></h3>
+                                <p class="fs-4 fw-bold mb-0" th:text="${datosIncidencias[2]}">0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="h5 mb-0"><span>Tus Incidencias Reportadas</span></h2>
+            </div>
+
+            <div th:if="${incidencias.empty}" class="empty-state p-5 text-center mb-4">
+                <i class="bi bi-file-earmark-excel fs-1 text-muted mb-3"></i>
+                <h3 class="h5"><span>No hay incidencias para mostrar</span></h3>
+                <p class="text-muted"><span>Parece que no hay incidencias.</span></p>
+                <a th:href="@{/user/incidencias/crear}" href="formulario.html" class="btn btn-success mt-2"
+                    title="Crear una nueva incidencia">
+                    <i class="bi bi-plus-lg me-2"></i><span>Crear una incidencia</span>
+                </a>
+            </div>
+
+            <div th:unless="${incidencias.empty}" class="list-group">
+                <div th:each="incidencia : ${incidencias}" class="list-group-item p-0 mb-3">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div class="flex-grow-1 pe-3">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <h3 class="h5 mb-0 me-3">
+                                            <a th:href="@{/user/incidencias/inspeccionar/} + ${incidencia.id}"
+                                                href="inspeccionar.html" th:text="${incidencia.titulo}"
+                                                title="Ver detalles de la incidencia"
+                                                class="text-decoration-none text-dark">Error</a>
+                                        </h3>
+                                        <span class="badge badge-estado font-weight-semi-bold"
+                                            th:style="'background-color:' + ${incidencia.estado.colorFondo} + '; color:' + ${incidencia.estado.colorTexto}"
+                                            th:text="${incidencia.estado.nombre}">En progreso</span>
+                                    </div>
+                                    <p class="text-muted mb-2"
+                                        th:text="${incidencia.descripcion.length() > 100 ? incidencia.descripcion.substring(0, 100) + '...' : incidencia.descripcion}">
+                                        Descripción breve de la incidencia que describe el problema...</p>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <small class="text-muted me-2">
+                                            <i class="bi bi-calendar"></i>
+                                            <span
+                                                th:text="'Creada el: ' + ${incidencia.fechaCreacion + ' | '}">15/03/2023
+                                                10:30</span>
+                                        </small>
+                                        <small class="text-muted">
+                                            <span
+                                                th:text="'Modificada el: ' + ${#temporals.format(incidencia.fechaModificacion, 'dd/MM/yyyy HH:mm')}">15/03/2023
+                                                10:30</span>
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="dropdown dropstart">
+                                    <button class="btn btn-sm btn-outline-secondary" type="button"
+                                        data-bs-toggle="dropdown">
+                                        <i class="bi bi-three-dots-vertical"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item"
+                                                th:href="@{/user/incidencias/inspeccionar/} + ${incidencia.id}"
+                                                href="inspeccionar.html" title="Ver detalles de la incidencia">
+                                                <i class="bi bi-eye me-2"></i><span>Ver detalles</span>
+                                            </a>
+                                        </li>
+                                        <li th:if="${incidencia.estado.tipo != 'Final'}">
+                                            <a class="dropdown-item"
+                                                th:href="@{/user/incidencias/modificar/} + ${incidencia.id}"
+                                                href="formulario.html" title="Modificar incidencia">
+                                                <i class="bi bi-pencil me-2"></i><span>Editar</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item text-danger" href="#" data-bs-toggle="modal"
+                                                data-bs-target="#confirmarEliminacionModal"
+                                                th:attr="data-incidencia-id=${incidencia.id}, data-incidencia-titulo=${incidencia.titulo}">
+                                                <i class="bi bi-trash me-2"></i><span>Eliminar</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section th:replace="~{_fragments/paginacion.html :: paginacion}"></section>
+        </section>
+
+        <div class="modal fade" id="confirmarEliminacionModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title" id="confirmarEliminacionModalLabel">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i><span>Confirmar Eliminación</span>
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p><span>¿Estás seguro de que deseas eliminar esta incidencia? Esta acción no se puede
+                                deshacer.</span></p>
+                        <p class="fw-bold" id="incidenciaTitulo"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="bi bi-x-circle me-2"></i><span>Cancelar</span>
+                        </button>
+                        <form id="formEliminarIncidencia" th:method="delete">
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-trash me-2"></i><span>Eliminar</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
+</body>
+
+</html>

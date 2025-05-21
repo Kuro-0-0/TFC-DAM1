@@ -4,60 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Pablo Garcia Maria" />
-    <meta name="description"
-        content="Formulario para crear o modificar un estado en la plataforma de administración." />
-    <meta name="robots" content="index, follow" />
-    <link rel="icon" href="../../../static/img/favicon.ico" th:href="@{/img/favicon.ico}" type="image/x-icon">
-    <title th:text="${modificar} ? 'Gestión de Estados - Modificar Estado' : 'Gestión de Estados - Crear Estado'">
-        Gestión de Estados</title>
-
-    <th:block th:replace="~{admin/_fragments/head.html :: head}"></th:block>
-
+    <meta name="author" content="Pablo Garcia Maria">
+    <meta name="description" content="Formulario para crear o modificar un estado en la plataforma de administración.">
+    <title
+        th:text="${modificar} ? 'Modificar Estado | Gestión de Incidencias' : 'Crear Estado | Gestión de Incidencias'">
+        Gestión de Estados
+    </title>
+    <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
     <script defer src="../../../static/admin/javascript/estados/formulario/modificarVistaPrevia.js"
         th:src="@{/admin/javascript/estados/formulario/modificarVistaPrevia.js}"></script>
 </head>
 
 <body class="d-flex flex-column h-100 bg-light">
     <header th:replace="~{admin/_fragments/header.html :: header}"></header>
-
-    <main class="container flex-grow-1 my-4" role="main">
-        <div th:replace="~{admin/_fragments/popUpMessages.html :: popUpMessages}"></div>
-
-        <section class="card border-0 rounded-3 shadow mx-auto mw-50vw" aria-labelledby="tituloFormularioEstado">
+    <main class="container flex-grow-1 my-4">
+        <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
+        <section class="card border-0 rounded-3 shadow mx-auto">
             <div class="card-header bg-main text-white rounded-top-3 p-3">
-                <h1 class="h5 mb-0" id="tituloFormularioEstado" th:if="${modificar}">
-                    <i class="bi bi-pencil-square me-2" aria-hidden="true"></i>Modificar Estado
+                <h1 class="h5 mb-0" th:if="${modificar}">
+                    <i class="bi bi-pencil-square me-2"></i>Modificar Estado
                 </h1>
-                <h1 class="h5 mb-0" id="tituloFormularioEstado" th:unless="${modificar}">
-                    <i class="bi bi-plus-circle me-2" aria-hidden="true"></i>Crear Nuevo Estado
+                <h1 class="h5 mb-0" th:unless="${modificar}">
+                    <i class="bi bi-plus-circle me-2"></i>Crear Nuevo Estado
                 </h1>
             </div>
-
             <div class="card-body p-4">
-                <form th:action="@{/estados}" th:method="${modificar} ? put : post" th:object="${estadoDao}"
-                    id="formEstado" aria-label="Formulario de Estado">
-
+                <form th:action="@{/admin/estados}" th:method="${modificar} ? put : post" th:object="${estadoDao}"
+                    id="formEstado">
                     <input th:if="${modificar}" type="hidden" th:field="*{id}">
-
-                    <section class="row mb-4" aria-labelledby="seccionNombreActivo">
+                    <section class="row mb-4">
                         <div class="col-md-8 mb-3">
                             <label for="nombre" class="form-label fw-medium">
-                                <i class="bi bi-tag me-1" aria-hidden="true"></i>
-                                Nombre del Estado <span class="text-main">*</span>
+                                <i class="bi bi-tag me-1"></i>Nombre del Estado <span class="text-main">*</span>
                             </label>
                             <input th:field="*{nombre}" type="text" class="form-control form-control-lg" id="nombre"
-                                placeholder="Ej. Pendiente, Resuelto..." required maxlength="50"
-                                pattern="^[\p{L}0-9\s,.-]{3,50}$"
-                                title="Debe tener entre 3 y 50 caracteres. Solo letras, números y signos básicos.">
+                                placeholder="Ej. Pendiente, Resuelto..." required maxlength="15">
                         </div>
-
                         <div class="col-md-4 mb-3 d-flex align-items-end">
                             <div class="form-check form-switch ps-0">
-                                <input class="form-check-input ms-0 me-2" type="checkbox" role="switch"
-                                    th:field="*{activo}" id="activoEstado" aria-label="Estado Activo">
+                                <input class="form-check-input ms-0 me-2" type="checkbox" th:field="*{activo}"
+                                    id="activoEstado">
                                 <label class="form-check-label fw-medium" for="activoEstado">
-                                    <i class="bi bi-power me-1" aria-hidden="true"></i>Estado Activo
+                                    <i class="bi bi-power me-1"></i>Estado Activo
                                 </label>
                             </div>
                         </div>
@@ -65,59 +53,50 @@
 
                     <section class="mb-4">
                         <div class="mb-3">
-                            <label for="tipo" class="form-label" id="seccionTipo">Tipo de incidencia</label>
-                            <select id="tipo" name="tipo" th:field="*{tipo}" class="form-select" aria-labelledby="seccionTipo" required>
+                            <label for="tipo" class="form-label">Tipo de incidencia</label>
+                            <select id="tipo" name="tipo" th:field="*{tipo}" class="form-select" required>
                                 <option th:if="${!modificar}" value="" disabled selected>Selecciona un tipo</option>
-                                <option th:each="tipoSelec : ${tipos}"
-                                        th:text="${tipoSelec}"
-                                        th:value="${tipoSelec}"
-                                        th:selected="${modificar} ? (${tipoSelec} == ${estadoDao}) : false">
-                                </option>
+                                <option th:each="tipoSelec : ${tipos}" th:text="${tipoSelec}" th:value="${tipoSelec}"
+                                    th:selected="${modificar} ? (${tipoSelec} == ${estadoDao}) : false"></option>
                             </select>
                         </div>
                     </section>
 
-                    <section class="row mb-4" aria-labelledby="seccionColores">
+                    <section class="row mb-4">
                         <div class="col-md-6 mb-3">
                             <label for="colorFondo" class="form-label fw-medium">
-                                <i class="bi bi-palette me-1" aria-hidden="true"></i>Color de Fondo <span
-                                    class="text-main">*</span>
+                                <i class="bi bi-palette me-1"></i>Color de Fondo <span class="text-main">*</span>
                             </label>
                             <div class="input-group position-relative">
                                 <div class="border rounded-1 d-flex align-items-center justify-content-center me-2 preview-square"
-                                    id="colorFondoPreview" title="Vista previa del color de fondo"></div>
+                                    id="colorFondoPreview"></div>
                                 <input type="color"
                                     class="form-control form-control-color position-absolute opacity-0 w-100 h-100"
-                                    th:field="*{colorFondo}" id="colorFondo" required
-                                    aria-label="Selector de color de fondo">
+                                    th:field="*{colorFondo}" id="colorFondo" required>
                                 <input type="text" class="form-control" id="hexFondo"
-                                    th:value="${modificar} ? *{colorFondo}" readonly
-                                    aria-label="Código HEX del color de fondo">
+                                    th:value="${modificar} ? *{colorFondo}" readonly>
                             </div>
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label for="colorTexto" class="form-label fw-medium">
-                                <i class="bi bi-fonts me-1" aria-hidden="true"></i>Color de Texto <span
-                                    class="text-main">*</span>
+                                <i class="bi bi-fonts me-1"></i>Color de Texto <span class="text-main">*</span>
                             </label>
                             <div class="input-group position-relative">
                                 <div class="border rounded-1 d-flex align-items-center justify-content-center me-2 preview-square"
-                                    id="colorTextoPreview" title="Vista previa del color de texto">Aa</div>
+                                    id="colorTextoPreview">Aa</div>
                                 <input type="color"
                                     class="form-control form-control-color position-absolute opacity-0 w-100 h-100"
-                                    th:field="*{colorTexto}" id="colorTexto" value="#ffffff" required
-                                    aria-label="Selector de color de texto">
+                                    th:field="*{colorTexto}" id="colorTexto" value="#ffffff" required>
                                 <input type="text" class="form-control" id="hexTexto"
-                                    th:value="${modificar} ? *{colorTexto} : '#ffffff'" readonly
-                                    aria-label="Código HEX del color de texto">
+                                    th:value="${modificar} ? *{colorTexto} : '#ffffff'" readonly>
                             </div>
                         </div>
                     </section>
 
-                    <section class="mb-4" aria-labelledby="vistaPreviaEstado">
-                        <label class="form-label fw-medium" id="vistaPreviaEstado">
-                            <i class="bi bi-eye me-1" aria-hidden="true"></i>Vista Previa
+                    <section class="mb-4">
+                        <label class="form-label fw-medium">
+                            <i class="bi bi-eye me-1"></i>Vista Previa
                         </label>
                         <div class="d-flex align-items-center justify-content-center fw-bold rounded-2 p-3 preview-rectangle"
                             id="vistaPreviaEstadoContenido">
@@ -126,13 +105,13 @@
                     </section>
 
                     <div class="d-flex justify-content-between mt-4 pt-3 border-top">
-                        <a th:href="@{/estados}" class="btn btn-outline-secondary"
-                            aria-label="Cancelar y volver a la lista de estados">
-                            <i class="bi bi-arrow-left me-1" aria-hidden="true"></i>Cancelar
+                        <a th:href="@{/admin/estados}" href="listar.html" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left me-1"></i>Cancelar
                         </a>
-                        <button type="submit" class="btn btn-primary px-4" aria-label="Guardar estado">
-                            <i class="bi bi-check-circle me-1" th:if="${modificar}" aria-hidden="true"></i>
-                            <i class="bi bi-plus-circle me-1" th:unless="${modificar}" aria-hidden="true"></i>
+                        <!-- No se sustituye por <input type="submit"> porque incluye icono -->
+                        <button type="submit" class="btn btn-primary px-4">
+                            <i class="bi bi-check-circle me-1" th:if="${modificar}"></i>
+                            <i class="bi bi-plus-circle me-1" th:unless="${modificar}"></i>
                             <span th:text="${modificar} ? 'Actualizar Estado' : 'Crear Estado'">Guardar</span>
                         </button>
                     </div>
@@ -141,7 +120,7 @@
         </section>
     </main>
 
-    <footer th:replace="~{admin/_fragments/footer.html :: footer}"></footer>
+    <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
 </body>
 
 </html>

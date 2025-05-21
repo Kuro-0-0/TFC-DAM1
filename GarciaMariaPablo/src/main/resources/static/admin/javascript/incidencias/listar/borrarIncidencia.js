@@ -7,7 +7,7 @@ document.getElementById('confirmarEliminacionModal').addEventListener('shown.bs.
     var incidenciaId = button.getAttribute('data-id');
     
     // Actualizar el action del formulario con el id de la incidencia
-    var actionUrl = '/incidencias/' + incidenciaId;
+    var actionUrl = '/admin/incidencias/' + incidenciaId;
     // Usar js para actualizar el atributo 'action' del formulario
     document.getElementById('borrarIncidencia').action = actionUrl;
 });

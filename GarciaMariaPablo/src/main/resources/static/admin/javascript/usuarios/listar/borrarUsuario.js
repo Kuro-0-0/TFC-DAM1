@@ -7,7 +7,7 @@ document.getElementById('confirmarEliminacionModal').addEventListener('shown.bs.
     var usuarioId = button.getAttribute('data-id');
 
     // Actualizar el action del formulario con el id de la incidencia
-    var actionUrl = '/usuarios/' + usuarioId;
+    var actionUrl = '/admin/usuarios/' + usuarioId;
     // Usar el DOM para actualizar el atributo 'action' del formulario
     document.getElementById('borrarUsuario').action = actionUrl;
 });

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Pablo Garcia Maria">
+    <meta name="description" content="Gestiona tu perfil de usuario">
+    <title>Mi Perfil | Gestión de Incidencias</title>
+    <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
+</head>
+
+<body class="d-flex flex-column h-100 bg-light">
+    <th:block th:replace="~{global/_fragments/header.html :: headerGlobal}"></th:block>
+
+    <main class="container my-4 flex-grow-1">
+        <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
+
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="profile-header rounded-top text-center p-4">
+                        <div
+                            class="mx-auto mb-3 rounded-circle bg-white d-flex align-items-center justify-content-center overflow-hidden border border-3 border-white shadow">
+                            <img th:src="@{'https://robohash.org/' + ${usuario.username} + '?set=set4&size=120x120'}"
+                                src="https://robohash.org/noFoto?set=set4&size=120x120" alt="Foto de perfil"
+                                class="img-fluid">
+                        </div>
+                        <h2 class="h4 mb-1" th:text="${usuario.nombre} + ' ' + ${usuario.apellidos}">Nombre Usuario</h2>
+                        <span class="badge bg-main text-white" th:text="${usuario.rol.name}">ROL</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-grid gap-2 mb-4">
+                            <button class="btn btn-outline-secondary" data-bs-toggle="modal"
+                                data-bs-target="#cambiarPasswordModal">
+                                <i class="bi bi-lock me-2"></i><span>Cambiar contraseña</span>
+                            </button>
+                        </div>
+
+                        <h3 class="h6 text-muted mb-3">
+                            <i class="bi bi-info-circle me-2"></i><span>Información básica</span>
+                        </h3>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <span class="fw-bold"><i class="bi bi-envelope me-2"></i><span>Email:</span></span>
+                                <span th:text="${usuario.email}">usuario@ejemplo.com</span>
+                            </li>
+                            <li class="mb-2">
+                                <span class="fw-bold"><i class="bi bi-telephone me-2"></i><span>Teléfono:</span></span>
+                                <span th:text="${usuario.telefono}">+34 600 000 000</span>
+                            </li>
+                            <li class="mb-2">
+                                <span class="fw-bold"><i class="bi bi-calendar me-2"></i><span>Registro:</span></span>
+                                <span
+                                    th:text="${#temporals.format(usuario.fechaRegistro, 'dd/MM/yyyy')}">01/01/2023</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-white border-0 pt-3">
+                        <ul class="nav nav-tabs card-header-tabs" id="profileTabs">
+                            <li class="nav-item">
+                                <button class="nav-link active" id="edit-tab" data-bs-toggle="tab"
+                                    data-bs-target="#edit-profile" type="button">
+                                    <i class="bi bi-pencil me-2"></i><span>Editar perfil</span>
+                                </button>
+                            </li>
+                            <li class="nav-item" th:if="${usuario.rol.name == 'USER'}">
+                                <a class="nav-link" id="incidencias-tab" href="../user/incidencia/listar.html"
+                                    th:href="@{/user/incidencias}" title="Comprobar mis incidencias">
+                                    <i class="bi bi-file-earmark-text me-2"></i><span>Mis incidencias</span>
+                                </a>
+                            </li>
+                            <li class="nav-item" th:if="${usuario.rol.name == 'TECH' || usuario.rol.name == 'ADMIN'}">
+                                <button class="nav-link" id="stats-tab" data-bs-toggle="tab"
+                                    data-bs-target="#estadisticas" type="button">
+                                    <i class="bi bi-bar-chart me-2"></i><span>Estadísticas</span>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="profileTabsContent">
+                            <div class="tab-pane fade show active" id="edit-profile">
+                                <form th:action="@{/perfil/modificar}" th:object="${usuarioDao}" th:method="put">
+                                    <input type="hidden" th:field="*{id}">
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label for="nombre" class="form-label"><span>Nombre</span></label>
+                                            <input type="text" class="form-control" th:field="*{nombre}"
+                                                placeholder="Ej. Juan" required maxlength="30">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="apellidos" class="form-label"><span>Apellidos</span></label>
+                                            <input type="text" class="form-control" th:field="*{apellidos}"
+                                                placeholder="Ej. Pérez García" maxlength="60">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="email" class="form-label"><span>Email</span></label>
+                                            <input type="email" class="form-control" th:field="*{email}">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="telefono" class="form-label"><span>Teléfono</span></label>
+                                            <input type="tel" class="form-control" th:field="*{telefono}">
+                                        </div>
+                                        <div class="col-12 mt-4">
+                                            <!-- No se usa el input porque contiene un icono -->
+                                            <button type="submit" class="btn btn-main">
+                                                <i class="bi bi-save me-2"></i><span>Guardar cambios</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="tab-pane fade" id="estadisticas"
+                                th:if="${usuario.rol.name == 'TECH' || usuario.rol.name == 'ADMIN'}">
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+                                        <div class="card border-0 shadow-sm h-100">
+                                            <div class="card-body">
+                                                <h3 class="h6 text-muted">
+                                                    <i class="bi bi-check-circle me-2"></i><span>Incidencias
+                                                        resueltas</span>
+                                                </h3>
+                                                <div class="d-flex align-items-center mt-3">
+                                                    <div class="bg-success bg-opacity-10 p-3 rounded me-3">
+                                                        <i class="bi bi-check-lg fs-2 text-success"></i>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="mb-0 fw-bold" th:text="${estadisticas.resueltas}">0
+                                                        </h4>
+                                                        <small class="text-muted"><span>en los últimos 30
+                                                                días</span></small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <div class="card border-0 shadow-sm h-100">
+                                            <div class="card-body">
+                                                <h3 class="h6 text-muted">
+                                                    <i class="bi bi-clock me-2"></i><span>Tiempo promedio de Trabajo</span>
+                                                </h3>
+                                                <div class="d-flex align-items-center mt-3">
+                                                    <div class="bg-info bg-opacity-10 p-3 rounded me-3">
+                                                        <i class="bi bi-speedometer2 fs-2 text-info"></i>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="mb-0 fw-bold"
+                                                            th:text="${estadisticas.tiempoPromedio}">0</h4>
+                                                        <small class="text-muted"><span>horas por
+                                                                incidencia</span></small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="cambiarPasswordModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"><span>Cambiar contraseña</span></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form th:action="@{/perfil/password}" th:object="${contrasena}" th:method="put">
+                            <div class="mb-3">
+                                <label for="passwordActual" class="form-label"><span>Contraseña actual</span></label>
+                                <input type="password" class="form-control" th:field="*{actual}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="nuevaPassword" class="form-label"><span>Nueva contraseña</span></label>
+                                <input type="password" class="form-control" th:field="*{nueva}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmarPassword" class="form-label"><span>Confirmar nueva
+                                        contraseña</span></label>
+                                <input type="password" class="form-control" th:field="*{confirmar}" required>
+                            </div>
+                            <div class="d-flex justify-content-end gap-2">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    <span>Cancelar</span>
+                                </button>
+                                <input type="submit" class="btn btn-main" value="Cambiar contraseña">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
+</body>
+
+</html>

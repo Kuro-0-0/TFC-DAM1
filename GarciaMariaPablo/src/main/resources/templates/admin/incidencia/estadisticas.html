@@ -4,40 +4,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Visualiza estadísticas detalladas de las incidencias registradas en el sistema. Consulta distribuciones, estados, totales y gráficos interactivos." />
-  <meta name="keywords" content="estadísticas, incidencias, distribución, estados, gráficas, resumen, sistema de gestión" />
-  <meta name="robots" content="index, follow" />
+  <meta name="description"
+    content="Visualiza estadísticas detalladas de las incidencias registradas en el sistema. Consulta distribuciones, estados, totales y gráficos interactivos." />
   <meta name="author" content="Pablo Garcia Maria" />
-  <link rel="icon" href="../../../static/img/favicon.ico" th:href="@{/img/favicon.ico}" type="image/x-icon" />
   <title>Estadísticas | Gestión de Incidencias</title>
 
-  <th:block th:replace="~{admin/_fragments/head.html :: head}"></th:block>
+  <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
 
-  <!-- JavaScript -->
   <script defer src="../../../static/admin/javascript/incidencias/estadisticas/generarEstadisticas.js"
-          th:src="@{/admin/javascript/incidencias/estadisticas/generarEstadisticas.js}"></script>
+    th:src="@{/admin/javascript/incidencias/estadisticas/generarEstadisticas.js}"></script>
 
-<script defer th:inline="javascript">
+  <script defer th:inline="javascript">
     var incidencias = [[${ incidencias }]];
-    
-    window.addEventListener('DOMContentLoaded', function() {
-        if (typeof procesarIncidencias === 'function') {
-            procesarIncidencias(incidencias);
-        } else {
-            console.error('La función procesarIncidencias no está disponible');
-        }
+    window.addEventListener('DOMContentLoaded', function () {
+      procesarIncidencias(incidencias);
     });
-</script>
+  </script>
 </head>
 
 <body class="d-flex flex-column h-100 bg-light">
-
-  <!-- Encabezado -->
   <header th:replace="~{admin/_fragments/header.html :: header}"></header>
 
-  <!-- Contenido principal -->
   <main class="container flex-grow-1 my-4">
-    <div th:replace="~{admin/_fragments/popUpMessages.html :: popUpMessages}"></div>
+    <div th:replace="~{_fragments/popUpMessages.html :: popUpMessages}"></div>
 
     <section class="mb-4">
       <h1 class="h4 fw-bold">
@@ -45,7 +34,6 @@
       </h1>
     </section>
 
-    <!-- Tarjeta de resumen total -->
     <section class="row mb-4">
       <div class="col-12">
         <div class="card bg-white rounded-3 shadow-sm p-3">
@@ -59,42 +47,88 @@
       </div>
     </section>
 
-    <!-- Estados -->
+    <section class="row mb-4">
+      <div class="col-md-4 mb-3">
+        <div class="card bg-white rounded-3 shadow-sm h-100">
+          <div class="card-body">
+            <h3 class="h6 fw-semibold txt-main">
+              <i class="bi bi-trophy-fill me-2 text-warning"></i>Top 3 técnicos
+            </h3>
+            <p class="text-muted small mb-3">Con más incidencias resueltas</p>
+            <div class="d-flex flex-column gap-2">
+              <div th:each="usuario, iterStat : ${estadisticasJAVA.topResueltas}"
+                class="d-flex justify-content-between align-items-center">
+                <span th:text="${iterStat.index + 1} + '. ' + ${usuario.nombreCompleto}">1. Juan Pérez</span>
+                <span class="badge bg-success" th:text="${usuario.numeroResueltas} + ' resueltas'">42 resueltas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <div class="card bg-white rounded-3 shadow-sm h-100">
+          <div class="card-body">
+            <h3 class="h6 fw-semibold txt-main">
+              <i class="bi bi-lightning-charge-fill me-2 text-success"></i>Top 3 rápidos
+            </h3>
+            <p class="text-muted small mb-3">Menor tiempo promedio de resolución</p>
+            <div class="d-flex flex-column gap-2">
+              <div th:each="usuario, iterStat : ${estadisticasJAVA.topRapidos}"
+                class="d-flex justify-content-between align-items-center">
+                <span th:text="${iterStat.index + 1} + '. ' + ${usuario.nombreCompleto}">1. Ana López</span>
+                <span class="badge bg-primary" th:text="${#numbers.formatDecimal(usuario.horasMedias,0,2)} + ' horas'">2.5 horas</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <div class="card bg-white rounded-3 shadow-sm h-100">
+          <div class="card-body">
+            <h3 class="h6 fw-semibold txt-main">
+              <i class="bi bi-person-lines-fill me-2 text-primary"></i>Top 3 reportantes
+            </h3>
+            <p class="text-muted small mb-3">Con más incidencias reportadas</p>
+            <div class="d-flex flex-column gap-2">
+              <div th:each="usuario, iterStat : ${estadisticasJAVA.topReportantes}"
+                class="d-flex justify-content-between align-items-center">
+                <span th:text="${iterStat.index + 1} + '. ' + ${usuario.nombreCompleto}">1. Departamento IT</span>
+                <span th:text="${usuario.numeroReportes} + ' reportes'" class="badge bg-info">78 reportes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="card bg-white rounded-3 shadow-sm p-3 mb-3">
       <h2 class="h5 fw-semibold mb-3 txt-main">
         <i class="bi bi-tags me-2"></i>Estados de Incidencias
       </h2>
-      <div class="d-flex overflow-x-auto stats-scroll-container" id="estadosContainer">
-        <!-- Dinámico -->
-      </div>
+      <div class="d-flex overflow-x-auto stats-scroll-container" id="estadosContainer"></div>
       <div id="scrollIndicator" class="text-center text-muted small mt-1 mb-2">
         <i class="bi bi-arrow-left-right"></i> Desliza para ver más estados
       </div>
     </section>
 
-    <!-- Gráficos -->
     <section class="card bg-white rounded-3 shadow-sm p-3 mb-3">
       <h2 class="h5 fw-semibold mb-3 txt-main">
         <i class="bi bi-speedometer2 me-2"></i>Distribución por Estados
       </h2>
-      <div id="progressBarsContainer">
-        <!-- Dinámico -->
-      </div>
+      <div id="progressBarsContainer"></div>
     </section>
 
-    <!-- Leyenda -->
     <section class="card bg-white rounded-3 shadow-sm p-3">
       <h2 class="h5 fw-semibold mb-3 txt-main">
         <i class="bi bi-tags me-2"></i>Leyenda de Estados
       </h2>
-      <div id="leyendaEstados" class="d-flex flex-wrap gap-2">
-        <!-- Dinámico -->
-      </div>
+      <div id="leyendaEstados" class="d-flex flex-wrap gap-2"></div>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer th:replace="~{admin/_fragments/footer.html :: footer}"></footer>
+  <footer th:replace="~{_fragments/footer.html :: footer}"></footer>
 </body>
 
 </html>
