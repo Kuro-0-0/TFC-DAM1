@@ -36,10 +36,11 @@ INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, tele
 INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (20, 'tech08', '$2a$12$obaRrurahwkaCtabLacxg.rVgpJO9Bo2jaEPvmrK1EP/xiF/tNS1m', 'TECH', 'Andrés', 'Ruiz', 'andres.ruiz@example.com', '688888888', '2025-04-27', true);
 INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (21, 'tech09', '$2a$12$obaRrurahwkaCtabLacxg.rVgpJO9Bo2jaEPvmrK1EP/xiF/tNS1m', 'TECH', 'Laura', 'Suárez', 'laura.suarez@example.com', '699999999', '2025-04-28', true);
 INSERT INTO Usuario (id, username, password, rol, nombre, apellidos, email, telefono, fecha_registro, editable) VALUES (22, 'tech10', '$2a$12$obaRrurahwkaCtabLacxg.rVgpJO9Bo2jaEPvmrK1EP/xiF/tNS1m', 'TECH', 'Sergio', 'Bermúdez', 'sergio.bermudez@example.com', '600000000', '2025-04-29', true);
-INSERT INTO Usuario (id,username,password,rol,editable, nombre, apellidos) VALUES (23,'user','$2a$10$P.INQOjXA6Krg12MKDl3ne0jZKqQPwjdNd9LfzYl9m2GTwm1nfm3y','USER',false,'user','');
-INSERT INTO usuario (id, username, password, nombre, apellidos, rol, editable) VALUES (24, 'tech', '$2a$12$cVbhu2H9QtaWAA8zmXs7luqThZjcKrBTLd5upkgn.SFRPEVo76OKm', 'tech', '', 'TECH',false);
+INSERT INTO Usuario (id,username,password,rol,editable, nombre, apellidos, fecha_registro) VALUES (23,'user','$2a$10$P.INQOjXA6Krg12MKDl3ne0jZKqQPwjdNd9LfzYl9m2GTwm1nfm3y','USER',false,'user','','2025-05-21');
+INSERT INTO usuario (id, username, password, nombre, apellidos, rol, editable, fecha_registro) VALUES (24, 'tech', '$2a$12$cVbhu2H9QtaWAA8zmXs7luqThZjcKrBTLd5upkgn.SFRPEVo76OKm', 'tech', '', 'TECH',false,'2025-05-21');
 ALTER TABLE usuario ALTER COLUMN id RESTART WITH 25;
-INSERT INTO usuario (username, password, nombre, apellidos, rol, editable) VALUES ( 'admin', '$2a$12$fMCbeiD5ulJd0HVupQClOeUglGpw9z2UphGQPI3ANsiEtGP.TA67K', 'admin', '', 'ADMIN',false);
+INSERT INTO usuario (username, password, nombre, apellidos, rol, editable, fecha_registro) VALUES ( 'admin', '$2a$12$fMCbeiD5ulJd0HVupQClOeUglGpw9z2UphGQPI3ANsiEtGP.TA67K', 'admin', '', 'ADMIN',false,'2025-05-21');
+
 """
 
 # Datos reutilizables
