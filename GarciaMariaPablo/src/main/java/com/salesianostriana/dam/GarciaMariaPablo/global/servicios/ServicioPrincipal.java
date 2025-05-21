@@ -1,20 +1,24 @@
 package com.salesianostriana.dam.GarciaMariaPablo.global.servicios;
 
 import com.salesianostriana.dam.GarciaMariaPablo.global.daos.otros.ContrasenaDao_Modificar;
+import com.salesianostriana.dam.GarciaMariaPablo.global.daos.otros.EmailDao_Contratar;
 import com.salesianostriana.dam.GarciaMariaPablo.global.daos.otros.EstadisticasDao;
 import com.salesianostriana.dam.GarciaMariaPablo.global.daos.usuario.UsuarioDao_LogIn;
 import com.salesianostriana.dam.GarciaMariaPablo.global.daos.usuario.UsuarioDao_Modificar;
 import com.salesianostriana.dam.GarciaMariaPablo.global.daos.usuario.UsuarioDao_Register;
+import com.salesianostriana.dam.GarciaMariaPablo.global.email.ServicioEmail;
 import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.Incidencia;
 import com.salesianostriana.dam.GarciaMariaPablo.global.modelos.Usuario;
 import com.salesianostriana.dam.GarciaMariaPablo.global.seguridad.CodificadorContrasenas;
 import com.salesianostriana.dam.GarciaMariaPablo.global.seguridad.ServicioSeguridad;
+import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -28,6 +32,8 @@ public class ServicioPrincipal {
     private ServicioIncidencia servicioIncidencia;
     @Autowired
     private ServicioUsuario servicioUsuario;
+    @Autowired
+    private ServicioEmail servicioEmail;
 
     public Usuario revertirDao(UsuarioDao_Modificar usuarioDao) {
         Usuario original = servicioUsuario.findById(usuarioDao.getId()).orElseThrow();
@@ -46,7 +52,8 @@ public class ServicioPrincipal {
 
     }
 
-    public String cargarIndex(Model model) {
+    public String cargarIndex(Model model, RedirectAttributes redirectAttributes) {
+        model.addAttribute("emailDao", new EmailDao_Contratar());
         return "global/index";
     }
 
@@ -170,5 +177,12 @@ public class ServicioPrincipal {
         redirectAttributes.addFlashAttribute("info","Tus datos de usuarios han sido modificados por ende se solicita que vuelvas a iniciar sesion.");
         seguridad.forzarCerrarSesion(request);
         return "redirect:/login";
+    }
+
+    public String enviarMail(Model model, RedirectAttributes redirectAttributes, EmailDao_Contratar emailDao) throws MessagingException, IOException {
+        redirectAttributes.addFlashAttribute("info","Deberías haber recibido un mail con información " +
+                "sobre el plan que quieres contratar, si no lo ve, revise la carpeta SPAM");
+        servicioEmail.enviarEmail(servicioEmail.prepararEmailContratarPlan(emailDao));
+        return "redirect:/";
     }
 }

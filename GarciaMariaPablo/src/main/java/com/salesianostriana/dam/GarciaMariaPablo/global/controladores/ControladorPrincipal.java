@@ -1,10 +1,12 @@
 package com.salesianostriana.dam.GarciaMariaPablo.global.controladores;
 
 import com.salesianostriana.dam.GarciaMariaPablo.global.daos.otros.ContrasenaDao_Modificar;
+import com.salesianostriana.dam.GarciaMariaPablo.global.daos.otros.EmailDao_Contratar;
 import com.salesianostriana.dam.GarciaMariaPablo.global.daos.usuario.UsuarioDao_LogIn;
 import com.salesianostriana.dam.GarciaMariaPablo.global.daos.usuario.UsuarioDao_Modificar;
 import com.salesianostriana.dam.GarciaMariaPablo.global.daos.usuario.UsuarioDao_Register;
 import com.salesianostriana.dam.GarciaMariaPablo.global.servicios.ServicioPrincipal;
+import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,11 +17,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
+
 @Controller
 public class ControladorPrincipal {
 
     @Autowired
     private ServicioPrincipal servicioPrincipal;
+
+
+
+    @PutMapping("/contratar")
+    public String mail(Model model, RedirectAttributes redirectAttributes, @ModelAttribute EmailDao_Contratar emailDao) throws MessagingException, IOException {
+        return servicioPrincipal.enviarMail(model,redirectAttributes,emailDao);
+    }
 
     @GetMapping("/login")
     public String cargarLogIn(Model model, RedirectAttributes redirectAttributes) {
@@ -80,8 +91,8 @@ public class ControladorPrincipal {
     public String cargarFAQ(Model model) {return servicioPrincipal.cargarFAQ(model);}
 
     @GetMapping()
-    public String cargarIndex(Model model) {
-        return servicioPrincipal.cargarIndex(model);
+    public String cargarIndex(Model model, RedirectAttributes redirectAttributes) {
+        return servicioPrincipal.cargarIndex(model, redirectAttributes);
     }
 
 }
