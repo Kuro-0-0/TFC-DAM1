@@ -1,6 +1,7 @@
 package com.salesianostriana.dam.GarciaMariaPablo.global.controladores;
 
 import com.salesianostriana.dam.GarciaMariaPablo.global.daos.otros.ContrasenaDao_Modificar;
+import com.salesianostriana.dam.GarciaMariaPablo.global.daos.otros.EmailDao_Contactar;
 import com.salesianostriana.dam.GarciaMariaPablo.global.daos.otros.EmailDao_Contratar;
 import com.salesianostriana.dam.GarciaMariaPablo.global.daos.usuario.UsuarioDao_LogIn;
 import com.salesianostriana.dam.GarciaMariaPablo.global.daos.usuario.UsuarioDao_Modificar;
@@ -78,10 +79,9 @@ public class ControladorPrincipal {
     @GetMapping("/contacto")
     public String cargarContacto(Model model) {return servicioPrincipal.cargarContacto(model);}
 
-    @GetMapping("/contacto/submit")
-    public String responderFormulario(Model model,RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("info", "Tu mensaje ha sido enviado. En menos de 24 horas, nuestro equipo se pondrá en contacto con usted.");
-        return "redirect:/";
+    @PutMapping("/contacto/submit")
+    public String responderFormulario(Model model, RedirectAttributes redirectAttributes, @ModelAttribute EmailDao_Contactar emailDao) throws MessagingException {
+        return servicioPrincipal.enviarContacto(model,redirectAttributes,emailDao);
     }
 
     @GetMapping("/politica-privacidad")

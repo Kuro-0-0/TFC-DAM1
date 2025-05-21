@@ -1,6 +1,7 @@
 package com.salesianostriana.dam.GarciaMariaPablo.global.servicios;
 
 import com.salesianostriana.dam.GarciaMariaPablo.global.daos.otros.ContrasenaDao_Modificar;
+import com.salesianostriana.dam.GarciaMariaPablo.global.daos.otros.EmailDao_Contactar;
 import com.salesianostriana.dam.GarciaMariaPablo.global.daos.otros.EmailDao_Contratar;
 import com.salesianostriana.dam.GarciaMariaPablo.global.daos.otros.EstadisticasDao;
 import com.salesianostriana.dam.GarciaMariaPablo.global.daos.usuario.UsuarioDao_LogIn;
@@ -66,6 +67,7 @@ public class ServicioPrincipal {
     }
 
     public String cargarContacto(Model model) {
+        model.addAttribute("emailDao", new EmailDao_Contactar());
         return "global/contacto";
     }
 
@@ -179,10 +181,18 @@ public class ServicioPrincipal {
         return "redirect:/login";
     }
 
-    public String enviarMail(Model model, RedirectAttributes redirectAttributes, EmailDao_Contratar emailDao) throws MessagingException, IOException {
+    public String enviarMail(Model model, RedirectAttributes redirectAttributes, EmailDao_Contratar emailDao) throws MessagingException {
         redirectAttributes.addFlashAttribute("info","Deberías haber recibido un mail con información " +
                 "sobre el plan que quieres contratar, si no lo ve, revise la carpeta SPAM");
         servicioEmail.enviarEmail(servicioEmail.prepararEmailContratarPlan(emailDao));
+        return "redirect:/";
+    }
+
+    public String enviarContacto(Model model, RedirectAttributes redirectAttributes, EmailDao_Contactar emailDao) throws MessagingException {
+        servicioEmail.enviarEmail(servicioEmail.prepararEmailContactoManagement(emailDao));
+        servicioEmail.enviarEmail(servicioEmail.prepararEmailContactoCliente(emailDao));
+        redirectAttributes.addFlashAttribute("info","Deberías haber recibido un mail como confirmación " +
+                "de la solicitud que acabas de realizar, si no lo ve, revise la carpeta SPAM");
         return "redirect:/";
     }
 }

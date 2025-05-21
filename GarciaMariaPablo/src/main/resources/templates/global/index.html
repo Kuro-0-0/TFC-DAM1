@@ -9,8 +9,9 @@
     <meta name="author" content="Pablo Garcia Maria">
     <title>Página principal | Gestión de Incidencias</title>
     <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
-    <script src="../../static/js/index/loadVideo.js" th:src="@{/js/index/loadVideo.js}"></script>
-    <script src="../../static/js/index/loadMailModal.js" th:src="@{/js/index/loadMailModal.js}"></script>
+    <script defer src="../../static/js/index/loadVideo.js" th:src="@{/js/index/loadVideo.js}"></script>
+    <script defer src="../../static/js/index/loadMailModal.js" th:src="@{/js/index/loadMailModal.js}"></script>
+    <script defer src="../../static/js/index/notificarTardanza.js" th:src="@{/js/index/notificarTardanza.js}"></script>
 </head>
 
 <body class="bg-light">
@@ -351,7 +352,7 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
-                <form th:action="@{/contratar}" th:method="put" th:object="${emailDao}">
+                <form th:action="@{/contratar}" id="formMail" th:method="put" th:object="${emailDao}">
                     <div class="modal-body">
                         <input type="hidden" th:field="*{planSeleccionado}">
 
