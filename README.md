@@ -21,6 +21,7 @@
 - 📊 Panel de administración unificado
 - 🔄 Datos generados automáticamente al iniciar (no persistentes)
 - 🎨 Interfaz intuitiva y fácil de usar
+- 📧 Envio de mails automatizados.
 
 ## 👥 Usuarios de prueba
 
@@ -88,5 +89,5 @@ java -jar GarciaMariaPablo-VERSION.jar
 #### ⚠️ Protecciones del sistema:
 - Intento de eliminar un admin → Mensaje de error especial
 
-#### 🤖 Funciones simuladas:
-- Envío de mensajes en /contacto → Alerta simulada
+#### 🤖 Funciones reales:
+- Contacta mediante los formularios habilitados → Recibiras una sorpresa en el mail indicado.
