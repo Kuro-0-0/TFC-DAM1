@@ -54,8 +54,8 @@
                             </label>
                             <input th:field="*{password}" type="password" id="password"
                                 class="form-control form-control-lg" placeholder="Contraseña"
-                                th:required="!${modificar}" minlength="8" maxlength="32"
-                                title="Debe tener entre 8 y 32 caracteres, con al menos una mayúscula, una minúscula y un número.">
+                                th:required="!${modificar}" maxlength="32"
+                                title="Debe tener un maximo de 32 caracteres.">
                             <div class="text-muted small mt-1" th:if="${modificar}">Dejar en blanco para mantener la
                                 contraseña actual</div>
                         </div>

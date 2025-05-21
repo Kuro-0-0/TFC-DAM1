@@ -6,6 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const incidenciaTitulo = button.getAttribute('data-incidencia-titulo');
 
         document.getElementById('incidenciaTitulo').textContent = incidenciaTitulo;
-        document.getElementById('formEliminarIncidencia').action = `/tech/incidencias/eliminar/${incidenciaId}`;
+        document.getElementById('formEliminarIncidencia').action = `/tech/incidencias/${incidenciaId}`;
     });
 });

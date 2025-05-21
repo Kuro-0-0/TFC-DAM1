@@ -111,12 +111,14 @@
                                             th:text="${#temporals.format(incidencia.fechaCreacion, 'dd/MM/yyyy HH:mm')}">
                                             01/01/2023 10:00</div>
                                     </div>
-                                    <div class="col-4 text-end d-flex justify-content-end">
-                                        <span class="badge me-2 align-middle"
+                                    <div class="col-4 d-flex align-items-center justify-content-end gap-2">
+                                        <span class="badge d-flex align-items-center justify-content-center px-3 py-2"
                                             th:style="'background-color:' + ${incidencia.estado.colorFondo} + '; color:' + ${incidencia.estado.colorTexto}"
-                                            th:text="${incidencia.estado.nombre}">Estado</span>
+                                            th:text="${incidencia.estado.nombre}">
+                                            Estado
+                                        </span>
                                         <form th:action="@{/tech/incidencias/asignar/} + ${incidencia.id}"
-                                            th:method="put">
+                                            th:method="put" class="d-flex align-items-center">
                                             <input type="submit" class="btn btn-sm btn-outline-primary" value="Asignar">
                                         </form>
                                     </div>
@@ -154,7 +156,7 @@
                                             th:text="${#temporals.format(incidencia.fechaCreacion, 'dd/MM/yyyy HH:mm')}">
                                             01/01/2023 10:00</div>
                                     </div>
-                                    <span class="badge"
+                                    <span class="badge py-2"
                                         th:style="'background-color:' + ${incidencia.estado.colorFondo} + '; color:' + ${incidencia.estado.colorTexto}"
                                         th:text="${incidencia.estado.nombre}">Estado</span>
                                 </div>

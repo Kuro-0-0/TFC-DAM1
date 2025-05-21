@@ -6,16 +6,30 @@ document.addEventListener('DOMContentLoaded', function () {
     const demoOffcanvas = document.getElementById('demoOffcanvas');
     let defaultVideo = 'https://www.youtube.com/embed/d1OoUeSv-Ng?si=T2q-aWl0i6L2-ti4';
 
-    demoOffcanvas.addEventListener('shown.bs.offcanvas', () => {
+    function showLoader(videoUrl) {
         iframe.src = '';
         container.classList.add('d-none');
         loader.classList.remove('d-none');
+        links.forEach(link => {
+            link.classList.add('disabled');
+        })
+        currentTimeout = setTimeout(function() {
+            hideLoader(videoUrl)
+        },750)
+    }
 
-        currentTimeout = setTimeout(() => {
-            iframe.src = defaultVideo;
-            loader.classList.add('d-none');
-            container.classList.remove('d-none');
-        }, 3400);
+    function hideLoader(videoUrl) {
+        iframe.src = videoUrl;
+        loader.classList.add('d-none');
+        container.classList.remove('d-none');
+        links.forEach(link => {
+            link.classList.remove('disabled');
+        })
+
+    }
+
+    demoOffcanvas.addEventListener('shown.bs.offcanvas', () => {
+        showLoader(defaultVideo)
     });
 
     demoOffcanvas.addEventListener('hidden.bs.offcanvas', () => {
@@ -27,15 +41,12 @@ document.addEventListener('DOMContentLoaded', function () {
     links.forEach(link => {
         link.addEventListener('click', function (e) {
             e.preventDefault();
-
-            iframe.src = '';
-            container.classList.add('d-none');
-            loader.classList.remove('d-none');
-
             const videoUrl = this.getAttribute('data-video');
-            iframe.src = videoUrl;
-            loader.classList.add('d-none');
-            container.classList.remove('d-none');
+
+            showLoader(videoUrl)
+
+
         });
     });
 });
+
