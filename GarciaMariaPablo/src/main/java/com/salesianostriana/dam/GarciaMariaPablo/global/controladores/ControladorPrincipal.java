@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.awt.*;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 @Controller
@@ -93,6 +95,22 @@ public class ControladorPrincipal {
     @GetMapping()
     public String cargarIndex(Model model, RedirectAttributes redirectAttributes) {
         return servicioPrincipal.cargarIndex(model, redirectAttributes);
+    }
+
+    @GetMapping("/pdf")
+    public String cargarPdf(Model model, RedirectAttributes redirectAttributes) {
+
+
+        Document document = new Document();
+        PdfWriter.getInstance(document, new FileOutputStream("iTextHelloWorld.pdf"));
+
+        document.open();
+        Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
+        Chunk chunk = new Chunk("Hello World", font);
+
+        document.add(chunk);
+        document.close();
+        return "redirect:/";
     }
 
 }
