@@ -1,5 +1,5 @@
 <div th:fragment="popUpMessages">
-    <div th:classappend="${error == null or error.isEmpty()} ? 'd-none' : ''"
+    <div id="errorMessage" th:classappend="${error == null or error.isEmpty()} ? 'd-none' : ''"
         class="alert alert-danger alert-dismissible fade show d-flex align-items-center my-4 mw-50vw mx-auto">
         <div class="position-relative pe-4 w-100 text-center">
             <i class="bi bi-exclamation-triangle-fill me-2"></i>
@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <div th:classappend="${info == null or info.isEmpty()} ? 'd-none' : ''"
+    <div id="infoMessage" th:classappend="${info == null or info.isEmpty()} ? 'd-none' : ''"
         class="alert alert-info alert-dismissible fade show d-flex align-items-center my-4 mw-50vw mx-auto">
         <div class="position-relative pe-4 w-100 text-center">
             <i class="bi bi-info-circle-fill me-2"></i>

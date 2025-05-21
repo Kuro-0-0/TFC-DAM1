@@ -9,6 +9,7 @@
         content="Formulario de contacto para soporte técnico, consultas comerciales o colaboraciones con nuestro equipo." />
     <meta name="author" content="Pablo Garcia Maria" />
     <th:block th:replace="~{_fragments/head.html :: head}"></th:block>
+    <script src="../../static/js/contacto/notiificarTardanza.js" th:src="@{/js/contacto/notiificarTardanza.js}" defer></script>
 </head>
 
 <body class="d-flex flex-column h-100 bg-light">
@@ -72,7 +73,7 @@
 
                 <section class="col-lg-6">
                     <h2 id="formulario-contacto" class="h4 fw-semibold mb-3"><span>Formulario de contacto</span></h2>
-                    <form th:action="@{/contacto/submit}" method="get">
+                    <form th:action="@{/contacto/submit}" th:method="put" id="formContacto" th:object="${emailDao}">
                         <div class="mb-3">
                             <label for="nombre" class="form-label">
                                 <span>Nombre completo</span> <span class="text-danger">*</span>
@@ -84,8 +85,7 @@
                             <label for="email" class="form-label">
                                 <span>Email</span> <span class="text-danger">*</span>
                             </label>
-                            <input type="email" class="form-control" id="email" name="email"
-                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required autocomplete="email" />
+                            <input type="email" class="form-control" id="email" name="email" required autocomplete="email" />
                         </div>
                         <div class="mb-3">
                             <label for="asunto" class="form-label">
@@ -118,7 +118,7 @@
                             </label>
                         </div>
                         <!-- No se usa <input type="submit"> porque el botón contiene un icono -->
-                        <button type="submit" class="btn btn-main text-light w-100">
+                        <button type="submit" id="enviarForm" class="btn btn-main text-light w-100">
                             <i class="bi bi-send-fill me-1"></i><span>Enviar mensaje</span>
                         </button>
                     </form>
