@@ -150,11 +150,10 @@ public class ServicioPrincipal {
         }
         if (!contrasenaDaoModificar.getNueva().equals(contrasenaDaoModificar.getConfirmar())) {
             redirectAttributes.addFlashAttribute("error","Las contraseñas no coinciden.");
+            return "redirect:/perfil";
         }
         usuario.setPassword(CodificadorContrasenas.passwordEncoder().encode(contrasenaDaoModificar.getNueva()));
         servicioUsuario.save(usuario);
-        redirectAttributes.addFlashAttribute("success", "Contraseña actualizada correctamente.");
-
         redirectAttributes.addFlashAttribute("info","Tus datos de usuarios han sido modificados por ende se solicita que vuelvas a iniciar sesion.");
         return "redirect:/logout";
     }
