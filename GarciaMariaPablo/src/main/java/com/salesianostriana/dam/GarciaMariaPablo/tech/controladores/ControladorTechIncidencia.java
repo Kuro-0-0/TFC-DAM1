@@ -55,7 +55,7 @@ public class ControladorTechIncidencia {
         return servicioTechIncidencia.inspeccionarIncidencia(model,redirectAttributes,id);
     }
 
-    @DeleteMapping("/incidencias/{id}")
+    @DeleteMapping("/{id}")
     public String eliminarIncidencia(Model model, RedirectAttributes redirectAttributes, @PathVariable long id) {
         return servicioTechIncidencia.eliminarIncidencia(model,redirectAttributes,id);
     }
@@ -64,7 +64,6 @@ public class ControladorTechIncidencia {
     public String modificarIncidencia(Model model, RedirectAttributes redirectAttributes, @ModelAttribute EstadoTechDao_ModificarIncidencia estadoDao, @PathVariable long id) {
         return servicioTechIncidencia.modificarIncidencia(model,redirectAttributes,estadoDao,id);
     }
-
 
 
 }
