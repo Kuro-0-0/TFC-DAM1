@@ -151,7 +151,10 @@ public class ServicioTechIncidencia {
                 } else {
                     if (!servicioIncidencia.eliminar(id)) {
                         throw new Exception("Algo ha salido mal durante la eliminacion de la incidencia.");
-                    }                }
+                    } else {
+                        redirectAttributes.addFlashAttribute("info", "Incidencia eliminada con exito.");
+                    }
+                }
             } else {
                 throw new Exception("Incidencia no encontrada");
             }
