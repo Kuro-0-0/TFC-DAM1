@@ -263,9 +263,9 @@ public class ServicioAdminIncidencia extends ServicioBaseImpl<Incidencia, Long, 
         List<UsuarioDao_Estadisticas> usuariosDao = usuarios.stream().map(UsuarioDao_Estadisticas::crearDao).toList();
 
         EstadisticasDao estadisticasDao = new EstadisticasDao(
-                usuariosDao.stream().filter(u -> u.getNumeroResueltas() > 0).sorted(Comparator.comparing(UsuarioDao_Estadisticas::getNumeroResueltas).reversed()).limit(3).toList(),
-                usuariosDao.stream().filter(u -> u.getHorasMedias() > 0).sorted(Comparator.comparing(UsuarioDao_Estadisticas::getHorasMedias)).limit(3).toList(),
-                usuariosDao.stream().filter(u -> u.getNumeroReportes() > 0).sorted(Comparator.comparing(UsuarioDao_Estadisticas::getNumeroReportes).reversed()).limit(3).toList()
+                usuariosDao.stream().filter(u -> u.getNumeroResueltas() >= 0).sorted(Comparator.comparing(UsuarioDao_Estadisticas::getNumeroResueltas).reversed()).limit(3).toList(),
+                usuariosDao.stream().filter(u -> u.getHorasMedias() >= 0).sorted(Comparator.comparing(UsuarioDao_Estadisticas::getHorasMedias)).limit(3).toList(),
+                usuariosDao.stream().filter(u -> u.getNumeroReportes() >= 0).sorted(Comparator.comparing(UsuarioDao_Estadisticas::getNumeroReportes).reversed()).limit(3).toList()
         );
 
         model.addAttribute("estadisticasJAVA",estadisticasDao);
