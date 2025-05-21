@@ -127,7 +127,7 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="estado" class="form-label">Selecciona el nuevo estado:</label>
-                            <select class="form-select" id="estado" name="estado" required>
+                            <select class="form-select" id="estado" name="valor" required>
                                 <option th:each="estado : ${estados}" th:value="${estado.valor}"
                                     th:text="${estado.nombre}" th:selected="${incidencia.estado.valor == estado.valor}">
                                 </option>
