@@ -44,8 +44,8 @@ public class ControladorAdminEstado {
     }
 
     @PutMapping
-    public String modificar(EstadoDao_Modificar estadoDao) {
-        return servicioEstado.modificar(estadoDao);
+    public String modificar(EstadoDao_Modificar estadoDao, RedirectAttributes redirectAttributes, Model model) {
+        return servicioEstado.modificar(estadoDao, redirectAttributes, model);
     }
 
     @PutMapping("/alternar/{id}")
